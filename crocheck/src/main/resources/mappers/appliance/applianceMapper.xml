@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="appliance">
+	<select id="nowStatus"
+		resultType="com.humanstar.crocheck.model.appliance.dto.applianceVO">
+		SELECT
+		cpu_idle_pct,
+		cpu_sys_pct,
+		cpu_user_pct,
+		cpu_iowait_pct,
+		mem_use,
+		mem_total
+		from tb_usage_system
+		order by seq desc limit 1
+	</select>
+</mapper>

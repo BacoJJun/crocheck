@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  다른 mapper와 중독되지 않도록 네임스페이스 기재  -->
+<mapper namespace="list">
+	<select id="listAll" resultType="com.humanstar.crocheck.model.list.dto.listVO">
+		SELECT 
+				USERNAME AS USERNAME,
+				encrypted_password as encrypted_password
+		FROM 
+			ADMINS
+	</select>
+	<select id="test" >
+	SELECT *,date_part('epoch', hhmmss) as unixtimestamp from
+	tb_usage_system order by seq desc limit 5
+	</select>
+</mapper>
