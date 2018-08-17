@@ -162,7 +162,7 @@
 			</div>
                         <div class="row">
                             <div class="col-sm-6 col-lg-6">
-                                <h2 class="title-1 m-b-25">Earnings By Items</h2>
+                                <h2 class="title-1 m-b-25">Domain Top List</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
@@ -173,71 +173,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td class="text-right">$999.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-28 01:22</td>
-                                                <td>100397</td>
-                                                <td class="text-right">$756.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>100396</td>
-                                                <td class="text-right">$44.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
+
                                         </tbody>
+                                          
+                                        
                                     </table>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-6">
-                                <h2 class="title-1 m-b-25">Top countries</h2>
+                                <h2 class="title-1 m-b-25">Client Top List</h2>
                                 <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
                                     <div class="au-card-inner">
                                         <div class="table-responsive">
                                             <table class="table table-top-countries">
                                                 <tbody>
-                                                    <tr>
-                                                        <td>United States</td>
-                                                        <td class="text-right">$119,366.96</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Australia</td>
-                                                        <td class="text-right">$70,261.65</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>United Kingdom</td>
-                                                        <td class="text-right">$46,399.22</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Turkey</td>
-                                                        <td class="text-right">$35,364.90</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Turkey</td>
-                                                        <td class="text-right">$35,364.90</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Turkey</td>
-                                                        <td class="text-right">$35,364.90</td>
-                                                    </tr>
+                                        			<div id="show_domain"></div>
                                                 </tbody>
                                             </table>
                                         </div>

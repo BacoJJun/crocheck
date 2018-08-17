@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="alertLive">
+	<select id="Domain"
+		resultType="com.humanstar.crocheck.model.pharming.dto.alertLiveDomainVO">
+		SELECT
+		 	domain, 
+		 	case 
+		 		when result = -1 or result = -11 
+		 			then -1 when result = -2 or result = -12 
+		 			then -2 else result end result2, 
+		 	sum(count) as 	count 
+		FROM alert_live 
+			where 
+				created_at >= now() - interval '24 hour'
+			and
+				result in (-1,-11,-2,-12)
+			 group by domain, result2 
+			 order by result2 ASC, count desc limit 5;
+	</select>
+	<select id="Departure"
+		resultType="com.humanstar.crocheck.model.pharming.dto.alertLiveDepartVO">
+		SELECT 
+			departure, 
+			case 
+				when result = -1 or result = -11 
+					then -1 when result = -2 or result = -12 
+					then -2 else result end result2,
+			sum(count) as count 
+		FROM alert_live
+			 where
+			 	created_at >= now() - interval '24 hour'
+			and 
+				result in (-1,-11,-2,-12) 
+			group by departure, result2 
+			order by result2 ASC, count desc limit 5;
+	</select>
+</mapper>

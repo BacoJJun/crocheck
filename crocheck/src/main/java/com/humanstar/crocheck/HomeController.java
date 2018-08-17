@@ -53,35 +53,6 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/SystemStatus", method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> SystemStatus() {
-		
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
-		List<applianceVO> systemStatus = new ArrayList<applianceVO>();
-		
-		try {
-			systemStatus = applianceService.nowStatus();
-		
-		}catch (Exception e) {
 
-			resultMap.put(RESULT, RESULT_ERROR);
-			resultMap.put(ERROR_MESSAGE, "connect_faled!");
-	
-		}
-		
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
-		resultMap.put("systemStatus", systemStatus);
-
-		return resultMap;
-	}
-	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index(Locale locale, Model model) throws Exception {
-		logger.info("crocheck dashboard test");
-		return "index";
-	}
 	
 }

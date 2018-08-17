@@ -4,9 +4,11 @@ $( document ).ready(function() {
 });
 function charLoop() {
 	getSystemInfo();
+	getPharmingDomain();
+	
 	setTimeout(charLoop, 1000);
 
-}
+};
 function getSystemInfo(){
 	var cpu_idle = document.getElementById("cpu_idle");
     var cpu_sys = document.getElementById("cpu_sys");
@@ -39,5 +41,33 @@ function getSystemInfo(){
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
 			}
 	});
-	
 };
+	function getPharmingDomain(){
+		var show_Domain = document.getElementById("show_domain");
+
+		$.ajax({
+			url : '/crocheck/AlertLiveDomain'
+				, type : 'post'
+				, dataType : 'json'
+				, async : false
+				, success : function(result){
+						if(result.result == 'success'){
+							var domain_html = '';
+							alert(result.pharmingDomainList.length);
+								for( var i = 0 ; i< result.pharmingDomainList.length;i++){
+									domain_html += '<tr> <td>';
+									domain_html += result.pharmingDomainList[i].domain + '</td>';
+									domain_html += '<td>' + result.pharmingDomainList[i].result2 + '</td>';
+									domain_html += '<td>' + result.pharmingDomainList[i].count + '</td></tr>'; 
+								}
+								show_Domain.innerHTML = domain_html;								
+						}else{
+							alert(result.errorMsg);
+						}
+				}
+				, error : function(request){
+					alert('error!'); 
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+				}
+		});
+	};
