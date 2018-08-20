@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.appliance.dto.applianceVO;
-import com.humanstar.crocheck.model.pharming.dto.alertLiveDomainVO;
-import com.humanstar.crocheck.service.alertLive.alertLiveServiceImpl;
-import com.humanstar.crocheck.service.appliance.applianceService;;
+import com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO;
+import com.humanstar.crocheck.service.appliance.applianceService;
+import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;;
 
 /**
  * Handles requests for the application home page.
@@ -40,7 +40,6 @@ public class HomeController {
 	public static final String ERROR_MESSAGE = "errorMsg";
 	
 	@Inject
-	applianceService applianceService;
 	alertLiveServiceImpl alertLiveService;
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -48,7 +47,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
-		logger.info("crocheck main test");
+
 		
 		List<alertLiveDomainVO> pharmingDomainList = new ArrayList<alertLiveDomainVO>();
 		pharmingDomainList = alertLiveService.alertLiveDomain();

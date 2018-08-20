@@ -4,7 +4,7 @@
 <!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
 <mapper namespace="alertLive">
 	<select id="Domain"
-		resultType="com.humanstar.crocheck.model.pharming.dto.alertLiveDomainVO">
+		resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO">
 		SELECT
 		 	domain, 
 		 	case 
@@ -18,10 +18,10 @@
 			and
 				result in (-1,-11,-2,-12)
 			 group by domain, result2 
-			 order by result2 ASC, count desc limit 1;
+			 order by result2 ASC, count desc limit 5;
 	</select>
-<!-- 	<select id="Departure"
-		resultType="com.humanstar.crocheck.model.pharming.dto.alertLiveDepartVO">
+<select id="Departure"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO">
 		SELECT 
 			departure, 
 			case 
@@ -36,5 +36,5 @@
 				result in (-1,-11,-2,-12) 
 			group by departure, result2 
 			order by result2 ASC, count desc limit 5;
-	</select> -->
+	</select>
 </mapper>

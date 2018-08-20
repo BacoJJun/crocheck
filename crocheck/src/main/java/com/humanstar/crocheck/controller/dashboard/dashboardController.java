@@ -21,11 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.appliance.dto.applianceVO;
-import com.humanstar.crocheck.model.pharming.dto.alertLiveDepartVO;
-import com.humanstar.crocheck.model.pharming.dto.alertLiveDomainVO;
-import com.humanstar.crocheck.service.alertLive.alertLiveService;
-import com.humanstar.crocheck.service.alertLive.alertLiveServiceImpl;
+import com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO;
+import com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO;
 import com.humanstar.crocheck.service.appliance.applianceServiceImpl;
+import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;
 
 /**
  * Handles requests for the application home page.
@@ -43,6 +42,7 @@ public class dashboardController {
 
 	@Inject
 	applianceServiceImpl applianceService;
+	@Inject
 	alertLiveServiceImpl alertLiveService;
 
 	/**
@@ -56,7 +56,6 @@ public class dashboardController {
 	public Map<String, Object> SystemStatus() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<applianceVO> systemStatus = new ArrayList<applianceVO>();
 
 		try {
@@ -84,24 +83,43 @@ public class dashboardController {
 		Map<String, Object> condition = new HashMap<String, Object>();
 		List<alertLiveDomainVO> pharmingDomainList = new ArrayList<alertLiveDomainVO>();
 		
-		logger.debug("test");
 		try {
 			pharmingDomainList = alertLiveService.alertLiveDomain();
-			logger.debug(alertLiveService.alertLiveDomain().toString());
-		} catch (Exception e) {
 
+		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
 			resultMap.put(ERROR_MESSAGE, "connect_faled!");
 
 		}
-
 		resultMap.put(RESULT, RESULT_SUCCESS);
 		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		resultMap.put("pharmingDomainList", pharmingDomainList);
 
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/alertLiveDeparture", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> AlertLiveDeparture() {
 
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<alertLiveDepartureVO> pharmingDepartureList = new ArrayList<alertLiveDepartureVO>();
+		
+		try {
+			pharmingDepartureList = alertLiveService.alertLiveDeparture();
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+
+		}
+		resultMap.put(RESULT, RESULT_SUCCESS);
+		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		resultMap.put("pharmingDepartureList", pharmingDepartureList);
+
+		return resultMap;
+	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) throws Exception {
