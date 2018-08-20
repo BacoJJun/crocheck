@@ -11,7 +11,21 @@
 		cpu_user_pct,
 		cpu_iowait_pct,
 		mem_use,
-		mem_total
+		mem_total,
+		bytes_rx_total,
+		pkts_rx_total,
+		disk_vol1_mount,
+		disk_vol1_usage_byte,
+		disk_vol1_total_byte,
+		disk_vol1_usage_pct,
+		disk_vol2_mount,
+		disk_vol2_usage_byte,
+		disk_vol2_total_byte,
+		disk_vol2_usage_pct,
+		disk_vol3_mount,
+		disk_vol3_usage_byte,
+		disk_vol3_total_byte,
+		disk_vol3_usage_pct
 		from tb_usage_system
 		order by seq desc limit 1
 	</select>

@@ -6,7 +6,7 @@ function charLoop() {
 	getSystemInfo();
 	getPharmingDomain();
 	getPharmingDeparture();
-//	getLiveDomain();
+// getLiveDomain();
 	setTimeout(charLoop, 1000);
 
 };
@@ -17,6 +17,13 @@ function getSystemInfo(){
     var cpu_iowait = document.getElementById("cpu_iowait");
     var mem_percentage = document.getElementById("mem_percentage");
     var mem_total = document.getElementById("mem_total");
+
+  var bytes_rx_total = document.getElementById("bytes_rx_total"); var
+  pkts_rx_total = document.getElementById("pkts_rx_total"); var disk1 =
+  document.getElementById("disk1"); var disk2 =
+  document.getElementById("disk2"); var disk3 =
+  document.getElementById("disk3");
+ 
     
 	$.ajax({
 		url : '/crocheck/SystemStatus'
@@ -29,8 +36,15 @@ function getSystemInfo(){
 						cpu_sys.innerText =  result.systemStatus[0].cpu_sys_pct.toFixed(1) + "%";
 						cpu_user.innerText = result.systemStatus[0].cpu_user_pct.toFixed(1) + "%";
 						cpu_iowait.innerText =  result.systemStatus[0].cpu_iowait_pct.toFixed(1) +"%";
-						mem_total.innerText =  Math.floor(result.systemStatus[0].mem_use) + "/"+  Math.floor(result.systemStatus[0].mem_total);
+						mem_total.innerHTML =  Math.floor(result.systemStatus[0].mem_use) + '</br>' +"/"+  Math.floor(result.systemStatus[0].mem_total);
 						mem_percentage.innerText = ( Math.floor( ( result.systemStatus[0].mem_use/1024/1024/1024) / ( result.systemStatus[0].mem_total /1024/1024/1024) ) * 100)+"%";
+
+						bytes_rx_total.innerText = "rx_byes : " + result.systemStatus[0].bytes_rx_total;
+						pkts_rx_total.innerText = "rx : " + result.systemStatus[0].pkts_rx_total; 
+						disk1.innerHTML = '<p>' +  result.systemStatus[0].disk_vol1_mount  +' : ' + result.systemStatus[0].disk_vol1_usage_pct.toFixed(1) + "%" + '</p>';
+						disk2.innerHTML = '<p>' +  result.systemStatus[0].disk_vol2_mount  +' : ' + result.systemStatus[0].disk_vol2_usage_pct.toFixed(1) + "%" + '</p>';
+						disk3.innerHTML = '<p>' +  result.systemStatus[0].disk_vol3_mount  +' : ' + result.systemStatus[0].disk_vol3_usage_pct.toFixed(1) + "%" + '</p>';
+ 
 				
 					}else{
 						alert(result.errorMsg);

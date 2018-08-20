@@ -114,7 +114,7 @@
 											<div class="overview-box clearfix">
 												<div class="text-right" style="color: white;">
 													<h2 class="text-left" style="color: white;">CPU</h2>
-													<h2 style="color: white;" id="cpu_idle">52%</h2>
+													<h4 style="color: white;" id="cpu_idle">52%</h2>
 													<p>
 														IOWait : <span id="cpu_iowait">48</span>
 													</p>
@@ -135,22 +135,9 @@
 											<div class="overview-box clearfix">
 												<div class="text-right" style="color: white;">
 													<h2 style="color: white;">MEMORY</h2>
-													<h2 style="color: white;" id="mem_percentage">32%</h2>
+													<h4 style="color: white;" id="mem_percentage">32%</h2>
 													<p class="text-right" id="mem_total"></p>
 												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-lg-6">
-									<div class="statistic__item">
-										<div class="overview-box clearfix">
-											<div class="text-right" style="color: white;">
-												<h2 class="number text-left">Network</h2>
-												<h2>52%</h2>
-												<span class="desc">Idle : 48% </span></br> <span class="desc">IOWait
-													: 0%</span></br> <span class="desc">System : 0%</span></br> <span
-													class="desc">User : 0%</span>
 											</div>
 										</div>
 									</div>
@@ -159,19 +146,29 @@
 									<div class="statistic__item statistic__item--blue">
 										<div class="overview__inner">
 											<div class="overview-box clearfix">
-												<div class="text-right" style="color: white;">
-													<h2 class="text-left" style="color: white;">DISK</h2>
-													<h2 style="color: white;">52%</h2>
-													<span class="desc">Total : 719837289MB </span></br> <span
-														class="desc">/ : 15% </span></br> <span class="desc">/boot
-														: 13%</span></br> <span class="desc" style="color: red;">/DATA1
-														: 55%</span></br>
+												<div style="color: white;">
+													<h2 class="text-left">Network</h2>
+													<h4 class="desc" id="bytes_rx_total">Idle : 48% </h4></br> <h4
+														class="desc" id="pkts_rx_total">IOWait : 0%</h4></br>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
+								<div class="col-md-6 col-lg-6">
+									<div class="statistic__item statistic__item--blue">
+										<div class="overview__inner">
+											<div class="overview-box clearfix">
+												<div style="color: white;">
+													<h2 class="text-left" style="color: white;">DISK</h2>
+													<h4 class="text-left" style="color: white;" id="disk1"></h2>
+													<h4 class="text-left" style="color: white;" id="disk2"></h2>
+													<h4 class="text-left" style="color: white;" id="disk3"></h2>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -193,11 +190,11 @@
 							</div>
 							<div class="col-sm-6 col-lg-6">
 								<h2 class="title-1 m-b-25">Client Top List</h2>
-								<div
-									class="table-responsive table--no-card m-b-40">
+								<div class="table-responsive table--no-card m-b-40">
 									<div class="au-card-inner">
 										<div class="table-responsive">
-											<table class="table table-borderless table-striped table-earning">
+											<table
+												class="table table-borderless table-striped table-earning">
 												<thead>
 													<tr>
 														<th>Client</th>
