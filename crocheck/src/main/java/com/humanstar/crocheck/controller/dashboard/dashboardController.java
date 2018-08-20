@@ -76,14 +76,15 @@ public class dashboardController {
 		return resultMap;
 	}
 
-	@RequestMapping(value = "/AlertLiveDomain", method = RequestMethod.POST)
+	@RequestMapping(value = "/alertLiveDomain", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> AlertLiveDomain() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Map<String, Object> condition = new HashMap<String, Object>();
 		List<alertLiveDomainVO> pharmingDomainList = new ArrayList<alertLiveDomainVO>();
-
+		
+		logger.debug("test");
 		try {
 			pharmingDomainList = alertLiveService.alertLiveDomain();
 			logger.debug(alertLiveService.alertLiveDomain().toString());
@@ -101,30 +102,6 @@ public class dashboardController {
 		return resultMap;
 	}
 
-	@RequestMapping(value = "/AlertLiveDeparture", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> AlertLiveDeparture() {
-
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
-		List<alertLiveDepartVO> pharmingDepartureList = new ArrayList<alertLiveDepartVO>();
-
-		try {
-			pharmingDepartureList = alertLiveService.alertLiveDepart();
-
-		} catch (Exception e) {
-
-			resultMap.put(RESULT, RESULT_ERROR);
-			resultMap.put(ERROR_MESSAGE, "connect_faled!");
-
-		}
-
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
-		resultMap.put("pharmingDepartureList", pharmingDepartureList);
-
-		return resultMap;
-	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) throws Exception {

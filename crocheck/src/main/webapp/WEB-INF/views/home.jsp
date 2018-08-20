@@ -22,11 +22,9 @@
 <table>
 	<c:forEach  var="row" items="${list}">
 				<tr>
-					<td> cpu : </td>
-					<td>${row.cpu_sys_pct } + ${row.cpu_user_pct} + ${row.cpu_iowait_pct}</td>
-					<td>memory : </td>
-					<td>${row.mem_use}</td>
-					<td>${row.mem_total}</td>
+					<td>  </td>
+					<td>${row.domain} + ${row.result2} + ${row.count}</td>
+
 				</tr>
 	</c:forEach>
 </table>

@@ -18,9 +18,9 @@
 			and
 				result in (-1,-11,-2,-12)
 			 group by domain, result2 
-			 order by result2 ASC, count desc limit 5;
+			 order by result2 ASC, count desc limit 1;
 	</select>
-	<select id="Departure"
+<!-- 	<select id="Departure"
 		resultType="com.humanstar.crocheck.model.pharming.dto.alertLiveDepartVO">
 		SELECT 
 			departure, 
@@ -36,5 +36,5 @@
 				result in (-1,-11,-2,-12) 
 			group by departure, result2 
 			order by result2 ASC, count desc limit 5;
-	</select>
+	</select> -->
 </mapper>

@@ -3,7 +3,7 @@ $( document ).ready(function() {
 
 });
 function charLoop() {
-	getSystemInfo();
+ getSystemInfo();
 	getPharmingDomain();
 	
 	setTimeout(charLoop, 1000);
@@ -46,14 +46,14 @@ function getSystemInfo(){
 		var show_Domain = document.getElementById("show_domain");
 
 		$.ajax({
-			url : '/crocheck/AlertLiveDomain'
+			url : '/crocheck/alertLiveDomain'
 				, type : 'post'
 				, dataType : 'json'
 				, async : false
 				, success : function(result){
 						if(result.result == 'success'){
 							var domain_html = '';
-							alert(result.pharmingDomainList.length);
+/*							alert(result.pharmingDomainList.length);*/
 								for( var i = 0 ; i< result.pharmingDomainList.length;i++){
 									domain_html += '<tr> <td>';
 									domain_html += result.pharmingDomainList[i].domain + '</td>';

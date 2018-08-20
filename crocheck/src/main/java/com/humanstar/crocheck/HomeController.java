@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.appliance.dto.applianceVO;
+import com.humanstar.crocheck.model.pharming.dto.alertLiveDomainVO;
+import com.humanstar.crocheck.service.alertLive.alertLiveServiceImpl;
 import com.humanstar.crocheck.service.appliance.applianceService;;
 
 /**
@@ -39,6 +41,7 @@ public class HomeController {
 	
 	@Inject
 	applianceService applianceService;
+	alertLiveServiceImpl alertLiveService;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
@@ -47,8 +50,10 @@ public class HomeController {
 	public String home(Locale locale, Model model) throws Exception {
 		logger.info("crocheck main test");
 		
-    	List<applianceVO> list = applianceService.nowStatus();
-		model.addAttribute("list", list);
+		List<alertLiveDomainVO> pharmingDomainList = new ArrayList<alertLiveDomainVO>();
+		pharmingDomainList = alertLiveService.alertLiveDomain();
+		logger.debug(pharmingDomainList.toString());
+		model.addAttribute("list", pharmingDomainList);
 		
 		return "home";
 	}
