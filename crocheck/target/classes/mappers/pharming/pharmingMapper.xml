@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="pharming">
+	<select id="now"
+		resultType="com.humanstar.crocheck.model.dashboard.pharming.dto.nowPharmingVO">
+		select count(case when result in (-2,-12)and created_at
+		>=
+		now() -
+		interval '5 min' then 1 end) as min_pharming,
+		count(case when
+		result in (-2,-12) and created_at > now() - interval '1
+		hour' then
+		1
+		end) as hour_pharming,
+		count(case when result in (-1,-11) and
+		created_at >= now() - interval '5
+		min' then 1 end) as min_suspicion,
+		count(case when result in (-1,-11) and created_at > now() -
+		interval '1
+		hour' then 1 end) as hour_suspicion,
+		count(case when
+		created_at >= now()
+		- interval '5 min' then 1 end) as
+		min_allcount,
+		count(case when
+		created_at > now() - interval '1 hour' then 1 end) as
+		hour_allcount
+		from alert_live where created_at > now()- interval '1
+		hour'
+	</select>
+<!-- 	<select id="day"
+		resultType="com.humanstar.crocheck.model.dashboard.pharming.dto.dayPharmingVO">
+		SELECT
+		COUNT(CASE WHEN RESULT IN('-2', '-12') AND CREATED_AT >= CURRENT_DATE THEN 1
+		END) AS TODAY_PHARMING,
+		COUNT(CASE WHEN RESULT IN('-1', '-12') AND CREATED_AT < CURRENT_DATE THEN 1 END)
+		AS YESTERDAY_PHARMING,
+		COUNT(CASE WHEN RESULT IN('-1', '-11') AND CREATED_AT >= CURRENT_DATE THEN 1
+		END) AS TODAY_SUSPICION,
+		COUNT(CASE WHEN RESULT IN('-1', '-11') AND CREATED_AT < CURRENT_DATE THEN 1 END)
+		AS YESTERDAY_SUSPICION,
+		COUNT(CASE WHEN CREATED_AT >= CURRENT_DATE THEN 1 END) AS TODAY_ALLCOUNT,
+		COUNT(CASE WHEN CREATED_AT < CURRENT_DATE THEN 1 END) AS
+		YESTERDAY_ALLCOUNT
+		FROM
+		ALERT_LIVE WHERE CREATED_AT > CURRENT_DATE - INTERVAL '1 DAY'
+	</select> -->
+</mapper>
+
