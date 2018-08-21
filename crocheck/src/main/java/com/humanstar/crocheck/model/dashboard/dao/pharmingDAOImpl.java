@@ -1,4 +1,4 @@
-package com.humanstar.crocheck.model.dashboard.pharming.dao;
+package com.humanstar.crocheck.model.dashboard.dao;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.humanstar.crocheck.model.dashboard.pharming.dto.dayPharmingVO;
-import com.humanstar.crocheck.model.dashboard.pharming.dto.nowPharmingVO;
+import com.humanstar.crocheck.model.dashboard.dto.dayPharmingVO;
+import com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO;
 
 @Repository
 public class pharmingDAOImpl implements pharmingDAO{

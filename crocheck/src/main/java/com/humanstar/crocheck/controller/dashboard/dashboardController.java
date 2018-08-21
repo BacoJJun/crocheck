@@ -23,8 +23,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.humanstar.crocheck.model.appliance.dto.applianceVO;
 import com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO;
 import com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO;
+import com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO;
 import com.humanstar.crocheck.service.appliance.applianceServiceImpl;
 import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;
+import com.humanstar.crocheck.service.dashboard.pharmingServiceImpl;
 
 /**
  * Handles requests for the application home page.
@@ -44,6 +46,8 @@ public class dashboardController {
 	applianceServiceImpl applianceService;
 	@Inject
 	alertLiveServiceImpl alertLiveService;
+	@Inject
+	pharmingServiceImpl pharmingService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -120,7 +124,29 @@ public class dashboardController {
 
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/nowPharmingList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> nowPharmingList() {
 
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<nowPharmingVO> nowPharmingList = new ArrayList<nowPharmingVO>();
+		
+		try {
+			nowPharmingList = pharmingService.nowPharmingList();
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+
+		}
+		resultMap.put(RESULT, RESULT_SUCCESS);
+		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		resultMap.put("nowPharmingList", nowPharmingList);
+
+		return resultMap;
+	}
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) throws Exception {
 		logger.info("crocheck dashboard test");

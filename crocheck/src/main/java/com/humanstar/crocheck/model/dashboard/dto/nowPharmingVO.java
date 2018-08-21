@@ -1,4 +1,4 @@
-package com.humanstar.crocheck.model.dashboard.pharming.dto;
+package com.humanstar.crocheck.model.dashboard.dto;
 
 public class nowPharmingVO {
 	private int min_pharming;

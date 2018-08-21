@@ -6,6 +6,7 @@ function charLoop() {
 	getSystemInfo();
 	getPharmingDomain();
 	getPharmingDeparture();
+	getPharmingNowCount();
 // getLiveDomain();
 	setTimeout(charLoop, 1000);
 
@@ -82,6 +83,29 @@ function getLiveDomain(){
         ]
 
     });
+};
+function getPharmingNowCount(){
+	var nowPharmingList = document.getElementById("nowPharmingList");
+	var yesterdayPharmingList = document.getElementById("yesterdayPharmingList");
+	
+	$.ajax({
+		url : '/crocheck/nowPharmingList'
+			, type : 'post'
+			, dataType : 'json'
+			, async : false
+			, success : function(result){
+					if(result.result == 'success'){
+								nowPharmingList.innerText = result.nowPharmingList[0].min_pharming + " / " + result.nowPharmingList[0].min_suspicion + " / " + result.nowPharmingList[0].min_allcount;
+								yesterdayPharmingList.innerText = result.nowPharmingList[0].hour_pharming + " / " + result.nowPharmingList[0].hour_suspicion + " / " + result.nowPharmingList[0].hour_allcount;
+					}else{
+						alert(result.errorMsg);
+					}
+			}
+			, error : function(request){
+				alert('error!'); 
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+			}
+	});
 };
 	function getPharmingDomain(){
 		var show_Domain = document.getElementById("show_domain");

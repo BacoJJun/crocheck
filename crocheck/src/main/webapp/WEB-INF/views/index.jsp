@@ -89,9 +89,10 @@
 										<div class="overview__inner">
 											<div class="overview-box clearfix">
 												<div class="text-right">
-													<span>Today Total</span>
-													<h2 style="color: white;">1036128</h2>
-													<span>Yesterday Total </span> <span>12302029</span>
+													<span>Last 5 Min</span>
+													<h2 style="color: white;" id="nowPharmingList">1036128</h2>
+													<p> 1 Hour </p>
+													<span style="color: white;" id="yesterdayPharmingList"></span> 
 												</div>
 
 											</div>
