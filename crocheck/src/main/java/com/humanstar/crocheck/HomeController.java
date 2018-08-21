@@ -47,14 +47,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
-
-		
-		List<alertLiveDomainVO> pharmingDomainList = new ArrayList<alertLiveDomainVO>();
-		pharmingDomainList = alertLiveService.alertLiveDomain();
-		logger.debug(pharmingDomainList.toString());
-		model.addAttribute("list", pharmingDomainList);
-		
-		return "home";
+		return "index";
 	}
 	
 

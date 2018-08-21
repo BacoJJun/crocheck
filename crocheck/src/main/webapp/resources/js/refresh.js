@@ -1,12 +1,13 @@
 $( document ).ready(function() {
 	charLoop();
-
+	barChart();
 });
 function charLoop() {
 	getSystemInfo();
 	getPharmingDomain();
 	getPharmingDeparture();
 	getPharmingNowCount();
+	getPharmingDayCount();
 // getLiveDomain();
 	setTimeout(charLoop, 1000);
 
@@ -86,7 +87,7 @@ function getLiveDomain(){
 };
 function getPharmingNowCount(){
 	var nowPharmingList = document.getElementById("nowPharmingList");
-	var yesterdayPharmingList = document.getElementById("yesterdayPharmingList");
+	var hourPharmingList = document.getElementById("hourPharmingList");
 	
 	$.ajax({
 		url : '/crocheck/nowPharmingList'
@@ -96,7 +97,30 @@ function getPharmingNowCount(){
 			, success : function(result){
 					if(result.result == 'success'){
 								nowPharmingList.innerText = result.nowPharmingList[0].min_pharming + " / " + result.nowPharmingList[0].min_suspicion + " / " + result.nowPharmingList[0].min_allcount;
-								yesterdayPharmingList.innerText = result.nowPharmingList[0].hour_pharming + " / " + result.nowPharmingList[0].hour_suspicion + " / " + result.nowPharmingList[0].hour_allcount;
+								hourPharmingList.innerText = result.nowPharmingList[0].hour_pharming + " / " + result.nowPharmingList[0].hour_suspicion + " / " + result.nowPharmingList[0].hour_allcount;
+					}else{
+						alert(result.errorMsg);
+					}
+			}
+			, error : function(request){
+				alert('error!'); 
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+			}
+	});
+};
+function getPharmingDayCount(){
+	var daypharmingList = document.getElementById("dayPharmingList");
+	var yesterdayPharmingList = document.getElementById("yesterdayPharmingList");
+	
+	$.ajax({
+		url : '/crocheck/dayPharmingList'
+			, type : 'post'
+			, dataType : 'json'
+			, async : false
+			, success : function(result){
+					if(result.result == 'success'){
+						daypharmingList.innerText = result.dayPharmingList[0].pharming + " / " + result.dayPharmingList[0].suspicion + " / " + result.dayPharmingList[0].today_allcount;
+						yesterdayPharmingList.innerText = result.dayPharmingList[0].yesterday_pharming + " / " + result.dayPharmingList[0].yesterday_suspicion + " / " + result.dayPharmingList[0].yesterday_allcount;
 					}else{
 						alert(result.errorMsg);
 					}
@@ -162,3 +186,79 @@ function getPharmingNowCount(){
 				}
 		});
 	};
+	
+	function barChart(){
+	    var jsonData = $.ajax({
+	        url: '/crocheck/dayPacketList',
+	        dataType: 'json',
+	      }).done(function (results) {
+
+	        var data=[];
+	        results["today_count"].forEach(function(today_count) {
+	          data.push(parseFloat(today_count.payloadString));
+	        });
+	        
+		 try {
+			    // bar chart
+			    var ctx = document.getElementById("barChart");
+			    if (ctx) {
+			      ctx.height = 200;
+			      var myChart = new Chart(ctx, {
+			        type: 'bar',
+			        defaultFontFamily: 'Poppins',
+			        data: {
+			          labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],
+			          datasets: [
+			            {
+			              label: "Today Packet",
+			              data: data
+			              ,borderColor: "rgba(0, 123, 255, 0.9)",
+			              borderWidth: "0",
+			              backgroundColor: "rgba(0, 123, 255, 0.5)",
+			              fontFamily: "Poppins"
+			            },
+			            {
+			              label: "Yesterday Packet",
+			              data: [28, 48, 40, 19, 86, 27, 90],
+			              borderColor: "rgba(0,0,0,0.09)",
+			              borderWidth: "0",
+			              backgroundColor: "rgba(0,0,0,0.07)",
+			              fontFamily: "Poppins"
+			            }
+			          ]
+			        },
+			        options: {
+			          legend: {
+			            position: 'top',
+			            labels: {
+			              fontFamily: 'Poppins'
+			            }
+
+			          },
+			          scales: {
+			            xAxes: [{
+			              ticks: {
+			                fontFamily: "Poppins"
+
+			              }
+			            }],
+			            yAxes: [{
+			              ticks: {
+			                beginAtZero: true,
+			                fontFamily: "Poppins"
+			              }
+			            }]
+			          }
+			        }
+			      });
+			    }
+
+
+			  } catch (error) {
+			    console.log(error);
+			  }
+	      });
+	  }
+	
+	
+	

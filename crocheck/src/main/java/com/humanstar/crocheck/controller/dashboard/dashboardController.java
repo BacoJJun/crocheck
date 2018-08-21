@@ -23,10 +23,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.humanstar.crocheck.model.appliance.dto.applianceVO;
 import com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO;
 import com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO;
+import com.humanstar.crocheck.model.dashboard.dto.dayPharmingVO;
 import com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO;
+import com.humanstar.crocheck.model.dashboard.dto.todayPacketVO;
 import com.humanstar.crocheck.service.appliance.applianceServiceImpl;
 import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;
 import com.humanstar.crocheck.service.dashboard.pharmingServiceImpl;
+import com.humanstar.crocheck.service.dashboard.todayPacketServiceImpl;
 
 /**
  * Handles requests for the application home page.
@@ -48,6 +51,8 @@ public class dashboardController {
 	alertLiveServiceImpl alertLiveService;
 	@Inject
 	pharmingServiceImpl pharmingService;
+	@Inject
+	todayPacketServiceImpl dayPacketService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -86,7 +91,7 @@ public class dashboardController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Map<String, Object> condition = new HashMap<String, Object>();
 		List<alertLiveDomainVO> pharmingDomainList = new ArrayList<alertLiveDomainVO>();
-		
+
 		try {
 			pharmingDomainList = alertLiveService.alertLiveDomain();
 
@@ -101,7 +106,7 @@ public class dashboardController {
 
 		return resultMap;
 	}
-	
+
 	@RequestMapping(value = "/alertLiveDeparture", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> AlertLiveDeparture() {
@@ -109,7 +114,7 @@ public class dashboardController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Map<String, Object> condition = new HashMap<String, Object>();
 		List<alertLiveDepartureVO> pharmingDepartureList = new ArrayList<alertLiveDepartureVO>();
-		
+
 		try {
 			pharmingDepartureList = alertLiveService.alertLiveDeparture();
 
@@ -124,7 +129,7 @@ public class dashboardController {
 
 		return resultMap;
 	}
-	
+
 	@RequestMapping(value = "/nowPharmingList", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> nowPharmingList() {
@@ -132,7 +137,7 @@ public class dashboardController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Map<String, Object> condition = new HashMap<String, Object>();
 		List<nowPharmingVO> nowPharmingList = new ArrayList<nowPharmingVO>();
-		
+
 		try {
 			nowPharmingList = pharmingService.nowPharmingList();
 
@@ -147,6 +152,53 @@ public class dashboardController {
 
 		return resultMap;
 	}
+
+	@RequestMapping(value = "/dayPharmingList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dayPharmingList() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<dayPharmingVO> dayPharmingList = new ArrayList<dayPharmingVO>();
+
+		try {
+			dayPharmingList = pharmingService.dayPharmingList();
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+
+		}
+		resultMap.put(RESULT, RESULT_SUCCESS);
+		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		resultMap.put("dayPharmingList", dayPharmingList);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "/dayPacketList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dayPacketList() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<todayPacketVO> daypacketList = new ArrayList<todayPacketVO>();
+
+		try {
+			daypacketList = dayPacketService.todayPacketList();
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+
+		}
+		resultMap.put(RESULT, RESULT_SUCCESS);
+		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		resultMap.put("daypacketList", daypacketList);
+
+		return resultMap;
+	}
+
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) throws Exception {
 		logger.info("crocheck dashboard test");

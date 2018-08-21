@@ -18,7 +18,7 @@ public class pharmingDAOImpl implements pharmingDAO{
 	
 	@Override
 	public List<dayPharmingVO> dayPharmingList() throws Exception {
-		return SqlSession.selectList("pharming.allday");
+		return SqlSession.selectList("pharming.day");
 	}
 
 	@Override

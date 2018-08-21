@@ -882,10 +882,10 @@
         type: 'bar',
         defaultFontFamily: 'Poppins',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],
           datasets: [
             {
-              label: "My First dataset",
+              label: "Today Packet",
               data: [65, 59, 80, 81, 56, 55, 40],
               borderColor: "rgba(0, 123, 255, 0.9)",
               borderWidth: "0",
@@ -893,7 +893,7 @@
               fontFamily: "Poppins"
             },
             {
-              label: "My Second dataset",
+              label: "Yesterday Packet",
               data: [28, 48, 40, 19, 86, 27, 90],
               borderColor: "rgba(0,0,0,0.09)",
               borderWidth: "0",

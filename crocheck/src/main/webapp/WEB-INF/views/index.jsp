@@ -76,9 +76,10 @@
 										<div class="overview__inner">
 											<div class="overview-box clearfix">
 												<div class="text-right" style="color: white;">
-													<span>Today Total</span>
-													<h2 style="color: white;">1036128</h2>
-													<span>Yesterday ì´í© </span> <span>12302029</span>
+													<span>Today</span>
+													<h2 style="color: white;" id="dayPharmingList">1036128</h2>
+													<p> yesterday </p>
+													<span style="color: white;" id="yesterdayPharmingList"></span> 
 												</div>
 											</div>
 										</div>
@@ -92,7 +93,7 @@
 													<span>Last 5 Min</span>
 													<h2 style="color: white;" id="nowPharmingList">1036128</h2>
 													<p> 1 Hour </p>
-													<span style="color: white;" id="yesterdayPharmingList"></span> 
+													<span style="color: white;" id="hourPharmingList"></span> 
 												</div>
 
 											</div>
@@ -252,7 +253,7 @@
 		
 	</script>
 	<!-- Main JS-->
-	<script src="js/main.js"></script>
+	<!-- <script src="js/main.js"></script>-->
 	<script type="text/javascript" src="/crocheck/js/refresh.js"></script>
 
 

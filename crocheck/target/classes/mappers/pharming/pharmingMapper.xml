@@ -5,7 +5,8 @@
 <mapper namespace="pharming">
 	<select id="now"
 		resultType="com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO">
-		select count(case when result in (-2,-12)and created_at >=	now() -	interval '5 min' then 1 end) as min_pharming,
+		select count(case when result in (-2,-12)and created_at >=
+		now() - interval '5 min' then 1 end) as min_pharming,
 		count(case when
 		result in (-2,-12) and created_at > now() - interval '1
 		hour' then
@@ -27,5 +28,21 @@
 		from alert_live where created_at > now()- interval '1
 		hour'
 	</select>
-
-	</mapper>
+	<select id="day"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.dayPharmingVO">
+		select
+		count(case when result in ('-2','-12') and created_at >= current_date then 1
+		end) as today_pharming,
+		count(case when result in ('-2','-12') and current_date > created_at   then 1 end)
+		as yesterday_pharming,
+		count(case when result in ('-1','-11') and created_at >= current_date then 1
+		end) as today_suspicion,
+		count(case when result in ('-1','-11') and current_date > created_at   then 1 end)
+		as yesterday_suspicion,
+		count(case when created_at >= current_date then 1 end) as today_allcount,
+		count(case when current_date  > created_at   then 1 end) as
+		yesterday_allcount
+		from
+		alert_live where created_at > CURRENT_DATE - interval '1 day';
+	</select>
+</mapper>
