@@ -190,6 +190,7 @@ public class dashboardController {
 		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
 			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.debug(ERROR_MESSAGE);
 
 		}
 		resultMap.put(RESULT, RESULT_SUCCESS);

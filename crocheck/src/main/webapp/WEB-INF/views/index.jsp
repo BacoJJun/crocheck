@@ -252,8 +252,6 @@
 	<script src="vendor/select2/select2.min.js">
 		
 	</script>
-	<!-- Main JS-->
-	<!-- <script src="js/main.js"></script>-->
 	<script type="text/javascript" src="/crocheck/js/refresh.js"></script>
 
 

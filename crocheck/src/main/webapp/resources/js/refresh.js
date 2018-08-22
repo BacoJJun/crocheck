@@ -1,7 +1,11 @@
 $( document ).ready(function() {
 	charLoop();
-	barChart();
+	barLoop();
 });
+function barLoop(){
+	barChart();
+	setTimeout(barLoop, 5000);
+};
 function charLoop() {
 	getSystemInfo();
 	getPharmingDomain();
@@ -188,16 +192,26 @@ function getPharmingDayCount(){
 	};
 	
 	function barChart(){
-	    var jsonData = $.ajax({
-	        url: '/crocheck/dayPacketList',
-	        dataType: 'json',
-	      }).done(function (results) {
-
 	        var data=[];
-	        results["today_count"].forEach(function(today_count) {
-	          data.push(parseFloat(today_count.payloadString));
-	        });
-	        
+			$.ajax({
+				url : '/crocheck/dayPacketList'
+					, type : 'post'
+					, dataType : 'json'
+					, async : false
+					, success : function(result){
+							if(result.result == 'success'){
+								for( var i = 0 ; i< result.daypacketList.length;i++){
+										data[i] = result.daypacketList[i].today_count;
+									}
+							}else{
+								alert(result.errorMsg);
+							}
+					}
+					, error : function(request){
+						alert('error!'); 
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+					}
+			});
 		 try {
 			    // bar chart
 			    var ctx = document.getElementById("barChart");
@@ -257,7 +271,7 @@ function getPharmingDayCount(){
 			  } catch (error) {
 			    console.log(error);
 			  }
-	      });
+
 	  }
 	
 	
