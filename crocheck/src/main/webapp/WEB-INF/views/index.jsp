@@ -62,7 +62,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="overview-wrap">
-									<h2 class="title-1">2018. 08. 07 10:00:00</h2>
+									<h2 class="title-1" id="date_title">2018. 08. 07 10:00:00</h2>
 									<button class="au-btn au-btn-icon au-btn--blue">
 										<i class="zmdi zmdi-plus"></i>MENU
 									</button>
@@ -71,16 +71,31 @@
 						</div>
 						<div class="row">
 							<div class="row col-sm-6 col-lg-8">
-								<div class="col-sm-6 col-lg-6">
+								<div class="col-sm-3 col-lg-3">
 									<div class="overview-item overview-item--c1">
 										<div class="overview__inner">
 											<div class="overview-box clearfix">
 												<div class="text-right" style="color: white;">
 													<span>Today</span>
 													<h2 style="color: white;" id="dayPharmingList">1036128</h2>
-													<p> yesterday </p>
-													<span style="color: white;" id="yesterdayPharmingList"></span> 
+													<p>yesterday</p>
+													<span style="color: white;" id="yesterdayPharmingList"></span>
 												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3 col-lg-3">
+									<div class="overview-item overview-item--c4">
+										<div class="overview__inner">
+											<div class="overview-box clearfix">
+												<div class="text-right">
+													<span>Last 5 Min</span>
+													<h2 style="color: white;" id="nowPharmingList">1036128</h2>
+													<p>1 Hour</p>
+													<span style="color: white;" id="hourPharmingList"></span>
+												</div>
+
 											</div>
 										</div>
 									</div>
@@ -89,18 +104,12 @@
 									<div class="overview-item overview-item--c4">
 										<div class="overview__inner">
 											<div class="overview-box clearfix">
-												<div class="text-right">
-													<span>Last 5 Min</span>
-													<h2 style="color: white;" id="nowPharmingList">1036128</h2>
-													<p> 1 Hour </p>
-													<span style="color: white;" id="hourPharmingList"></span> 
-												</div>
+												<div class="text-right"></div>
 
 											</div>
 										</div>
 									</div>
 								</div>
-
 								<div class="au-cardw col-lg-12">
 									<div class="au-card-inner">
 										<div class="cahrtjs-size-monitor">
@@ -116,16 +125,18 @@
 											<div class="overview-box clearfix">
 												<div class="text-right" style="color: white;">
 													<h2 class="text-left" style="color: white;">CPU</h2>
-													<h4 style="color: white;" id="cpu_idle">52%</h2>
-													<p>
-														IOWait : <span id="cpu_iowait">48</span>
-													</p>
-													<p>
-														System : <span id="cpu_sys">0%</span>
-													</p>
-													<p>
-														User : <span id="cpu_user">48</span>
-													</p>
+													<h4 style="color: white;" id="cpu_idle">
+														52%
+														</h2>
+														<p>
+															IOWait : <span id="cpu_iowait">48</span>
+														</p>
+														<p>
+															System : <span id="cpu_sys">0%</span>
+														</p>
+														<p>
+															User : <span id="cpu_user">48</span>
+														</p>
 												</div>
 											</div>
 										</div>
@@ -137,8 +148,10 @@
 											<div class="overview-box clearfix">
 												<div class="text-right" style="color: white;">
 													<h2 style="color: white;">MEMORY</h2>
-													<h4 style="color: white;" id="mem_percentage">32%</h2>
-													<p class="text-right" id="mem_total"></p>
+													<h4 style="color: white;" id="mem_percentage">
+														32%
+														</h2>
+														<p class="text-right" id="mem_total"></p>
 												</div>
 											</div>
 										</div>
@@ -150,8 +163,10 @@
 											<div class="overview-box clearfix">
 												<div style="color: white;">
 													<h2 class="text-left">Network</h2>
-													<h4 class="desc" id="bytes_rx_total">Idle : 48% </h4></br> <h4
-														class="desc" id="pkts_rx_total">IOWait : 0%</h4></br>
+													<h4 class="desc" id="bytes_rx_total">Idle : 48%</h4>
+													</br>
+													<h4 class="desc" id="pkts_rx_total">IOWait : 0%</h4>
+													</br>
 												</div>
 											</div>
 										</div>
@@ -163,9 +178,12 @@
 											<div class="overview-box clearfix">
 												<div style="color: white;">
 													<h2 class="text-left" style="color: white;">DISK</h2>
-													<h4 class="text-left" style="color: white;" id="disk1"></h2>
-													<h4 class="text-left" style="color: white;" id="disk2"></h2>
-													<h4 class="text-left" style="color: white;" id="disk3"></h2>
+													<h4 class="text-left" style="color: white;" id="disk1">
+														</h2>
+														<h4 class="text-left" style="color: white;" id="disk2">
+															</h2>
+															<h4 class="text-left" style="color: white;" id="disk3">
+																</h2>
 												</div>
 											</div>
 										</div>

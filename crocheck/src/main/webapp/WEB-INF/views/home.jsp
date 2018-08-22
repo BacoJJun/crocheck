@@ -62,14 +62,18 @@
 
       }, 1000);
 
-      var smoothie = new SmoothieChart({ grid: { strokeStyle: 'rgb(125, 0, 0 )', fillStyle: 'rgb(60, 0, 0)', lineWidth: 1, millisPerLine: 250, verticalSections: 6 } });
-      smoothie.addTimeSeries(line1, { strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 1, 0, 0.4)', lineWidth: 3 });
-      smoothie.addTimeSeries(line2, { strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(1, 0, 255, 0.3)', lineWidth: 3 }); 
-      smoothie.addTimeSeries(line3, { strokeStyle: 'rgb(0, 0, 255)', fillStyle: 'rgba(1, 0, 255, 0.3)', lineWidth: 3 }); 
+      var smoothie = new SmoothieChart({ grid: { strokeStyle: 'rgb(255, 255, 255 )', fillStyle: 'rgb(255, 255, 255)', lineWidth: 1, millisPerLine: 500, verticalSections: 6 } });
+      smoothie.addTimeSeries(line1, { strokeStyle: 'rgb(0, 15, 0)', fillStyle: 'rgba(255, 255, 255, 0)', lineWidth: 3 });
+      smoothie.addTimeSeries(line2, { strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 255, 255, 0)', lineWidth: 3 }); 
+      smoothie.addTimeSeries(line3, { strokeStyle: 'rgb(0, 0, 255)', fillStyle: 'rgba(255, 255, 255, 0)', lineWidth: 3 }); 
       smoothie.streamTo(document.getElementById("mycanvas"), 1000);
     </script>
 
     <p><a href="tutorial.html">Return to tutorial</a></p>
+      <div class="col-md-3 chart section">
+      <h3 class="home-section-title">Packet <small class="section-sub-title">Detection</small></h3>
+      <div id="c3-network-chart"></div>
+    </div>
   
   </body>
 </html>

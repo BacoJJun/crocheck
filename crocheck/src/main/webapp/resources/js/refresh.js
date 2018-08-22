@@ -1,18 +1,30 @@
 $( document ).ready(function() {
 	charLoop();
 	barLoop();
+	
 });
 function barLoop(){
 	barChart();
-	setTimeout(barLoop, 5000);
+	setTimeout(barLoop, 300000);
 };
+function now_date(){
+	var ND_date = new Date();
+	var nt_year = ND_date.getYear() + 1900;
+	var nt_month = ND_date.getMonth()+1;
+	var nt_day = ND_date.getDate();
+	var nt_hour = ND_date.getHours();
+	var nt_min = ND_date.getMinutes();
+	var nt_sec = ND_date.getSeconds();
+	var time_str = nt_year + "." + nt_month + "." + nt_day + " " + nt_hour + ":" + nt_min + ":" + nt_sec;
+	$("#date_title").html(time_str);
+}
 function charLoop() {
 	getSystemInfo();
 	getPharmingDomain();
 	getPharmingDeparture();
 	getPharmingNowCount();
 	getPharmingDayCount();
-// getLiveDomain();
+	now_date();
 	setTimeout(charLoop, 1000);
 
 };
@@ -61,33 +73,6 @@ function getSystemInfo(){
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
 			}
 	});
-};
-function getLiveDomain(){
-    $('#userTable').dataTable({
-        pageLength: 3,
-        bPaginate: true,
-        bLengthChange: true,
-        lengthMenu : [ [ 3, 5, 10, -1 ], [ 3, 5, 10, "All" ] ],
-        bAutoWidth: false,
-        processing: true,
-        ordering: true,
-        serverSide: false,
-        searching: true,
-        ajax : {
-            "url":"/crocheck/alertLiveDomain",
-            "type":"POST",
-            "data": function (d) {
-                d.userStatCd = "NR";
-            }
-        },
-        columns : [
-            {data: "email"},
-            {data: "fullNmKr"},
-            {data: "userStatCd"},
-            {data: "superUser"}
-        ]
-
-    });
 };
 function getPharmingNowCount(){
 	var nowPharmingList = document.getElementById("nowPharmingList");
@@ -212,11 +197,31 @@ function getPharmingDayCount(){
 						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
 					}
 			});
+	        var y_data=[];
+			$.ajax({
+				url : '/crocheck/yesterdayPacketList'
+					, type : 'post'
+					, dataType : 'json'
+					, async : false
+					, success : function(result){
+							if(result.result == 'success'){
+								for( var i = 0 ; i< result.yesterdaypacketList.length;i++){
+										y_data[i] = result.yesterdaypacketList[i].yesterday_count;
+									}
+							}else{
+								alert(result.errorMsg);
+							}
+					}
+					, error : function(request){
+						alert('error!'); 
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+					}
+			});
 		 try {
 			    // bar chart
 			    var ctx = document.getElementById("barChart");
 			    if (ctx) {
-			      ctx.height = 200;
+			      ctx.height = 150;
 			      var myChart = new Chart(ctx, {
 			        type: 'bar',
 			        defaultFontFamily: 'Poppins',
@@ -233,7 +238,7 @@ function getPharmingDayCount(){
 			            },
 			            {
 			              label: "Yesterday Packet",
-			              data: [28, 48, 40, 19, 86, 27, 90],
+			              data: y_data,
 			              borderColor: "rgba(0,0,0,0.09)",
 			              borderWidth: "0",
 			              backgroundColor: "rgba(0,0,0,0.07)",

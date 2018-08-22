@@ -26,10 +26,12 @@ import com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO;
 import com.humanstar.crocheck.model.dashboard.dto.dayPharmingVO;
 import com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO;
 import com.humanstar.crocheck.model.dashboard.dto.todayPacketVO;
+import com.humanstar.crocheck.model.dashboard.dto.yesterdayPacketVO;
 import com.humanstar.crocheck.service.appliance.applianceServiceImpl;
 import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;
 import com.humanstar.crocheck.service.dashboard.pharmingServiceImpl;
 import com.humanstar.crocheck.service.dashboard.todayPacketServiceImpl;
+import com.humanstar.crocheck.service.dashboard.yesterdayPacketServiceImpl;
 
 /**
  * Handles requests for the application home page.
@@ -53,6 +55,8 @@ public class dashboardController {
 	pharmingServiceImpl pharmingService;
 	@Inject
 	todayPacketServiceImpl dayPacketService;
+	@Inject
+	yesterdayPacketServiceImpl yesterdayPacketService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -176,6 +180,30 @@ public class dashboardController {
 		return resultMap;
 	}
 
+	@RequestMapping(value = "/yesterdayPacketList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> yesterdayPacketList() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<yesterdayPacketVO> yesterdaypacketList = new ArrayList<yesterdayPacketVO>();
+
+		try {
+			yesterdaypacketList = yesterdayPacketService.yesterdayPacketList();
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.debug(ERROR_MESSAGE);
+
+		}
+		resultMap.put(RESULT, RESULT_SUCCESS);
+		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		resultMap.put("yesterdaypacketList", yesterdaypacketList);
+
+		return resultMap;
+	}
+	
 	@RequestMapping(value = "/dayPacketList", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> dayPacketList() {
@@ -198,12 +226,6 @@ public class dashboardController {
 		resultMap.put("daypacketList", daypacketList);
 
 		return resultMap;
-	}
-
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index(Locale locale, Model model) throws Exception {
-		logger.info("crocheck dashboard test");
-		return "index";
 	}
 
 }
