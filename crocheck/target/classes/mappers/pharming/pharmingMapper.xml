@@ -31,18 +31,40 @@
 	<select id="day"
 		resultType="com.humanstar.crocheck.model.dashboard.dto.dayPharmingVO">
 		select
-		count(case when result in ('-2','-12') and created_at >= current_date then 1
+		count(case when result in ('-2','-12') and created_at
+		>= current_date then 1
 		end) as today_pharming,
-		count(case when result in ('-2','-12') and current_date > created_at   then 1 end)
-		as yesterday_pharming,
-		count(case when result in ('-1','-11') and created_at >= current_date then 1
+		count(case when result in
+		('-2','-12') and current_date > created_at then 1 end)
+		as
+		yesterday_pharming,
+		count(case when result in ('-1','-11') and
+		created_at >= current_date then 1
 		end) as today_suspicion,
-		count(case when result in ('-1','-11') and current_date > created_at   then 1 end)
+		count(case
+		when result in ('-1','-11') and current_date > created_at then 1 end)
 		as yesterday_suspicion,
-		count(case when created_at >= current_date then 1 end) as today_allcount,
-		count(case when current_date  > created_at   then 1 end) as
+		count(case when created_at >= current_date then
+		1 end) as today_allcount,
+		count(case when current_date > created_at
+		then 1 end) as
 		yesterday_allcount
 		from
-		alert_live where created_at > CURRENT_DATE - interval '1 day';
+		alert_live where created_at >
+		CURRENT_DATE - interval '1 day';
+	</select>
+	<select id="nowStatus"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO">
+
+		select count(case when
+		result in (-2,-12) then
+		1
+		end) as pharming,
+		count(case
+		when result in (-1,-11)then 1 end) as suspicion,
+		count(case when result
+		in (-1,-2,-11,-12) then 0 else 1 end) as normal
+		from alert_live where created_at >= now() - interval '10 sec';
+
 	</select>
 </mapper>
