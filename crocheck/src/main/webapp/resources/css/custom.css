@@ -1,0 +1,101 @@
+@media (min-width: 992px) {
+  .smart-listing-controls input:not([type="radio"]):not([type='checkbox']) {
+    height: 35px !important;
+  }
+}
+
+.modal input.form-control, textarea.form-control {
+  margin-top: 5px;
+}
+
+@supports (-webkit-appearance: none) {
+  input[type="checkbox"] {
+    margin-top: 1px;
+  }
+
+  .checkbox-inline input[type="checkbox"] {
+    margin-top: 4px;
+  }
+}
+.form-horizontal .radio, .form-horizontal .checkbox {
+  padding-top: 5px;
+  min-height: 20px;
+}
+.form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+  padding-top: 1px;
+}
+
+[class*="col-"] {
+  border-radius: 4px;
+}
+
+[class*="col-"].section, [class*="col-"].cell {
+  background: white;
+  border: 21px solid #F3F3F4;
+}
+
+.alert {
+  margin: 10px 20px -20px;
+}
+
+.form-group {
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.modal-body .form-group {
+  overflow: auto;
+}
+
+@media (min-width: 992px) {
+  .similar-fh-label {
+    text-align: right;
+    margin-bottom: 0;
+    padding-top: 7px;
+  }
+}
+@media (max-width: 991px) {
+  .nav-stacked > li {
+    float: left;
+  }
+
+  .nav-stacked > li > a {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  [class*="col-md"] .form-horizontal .control-label {
+    text-align: inherit;
+  }
+}
+@media (min-width: 1440px) {
+  .container:not([id="export-content"]) {
+    width: 1440px;
+  }
+}
+
+.control-label {
+  color: #5f6169;
+}
+
+.pagination {
+  margin: 10px;
+}
+
+.pagination > li > a {
+  color: #777777;
+}
+
+.pagination > .active > a {
+  border-color: #777777;
+  background-color: #777777;
+}
+
+.pagination-per-page > a {
+  color: #979797;
+}
+
+.smart-listing .loading {
+  overflow: hidden;
+}

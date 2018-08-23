@@ -1,0 +1,49 @@
+#roles-content .row {
+  max-height: 424px;
+  margin: 0 0 40px;
+}
+#roles-content .panel {
+  overflow: auto;
+  max-height: 380px;
+  margin-bottom: 10px;
+}
+#roles-content #run-engine {
+  margin-bottom: 30px;
+}
+#roles-content .engine-name {
+  padding-top: 4px;
+}
+#roles-content .form-group .search, #roles-content .form-group button {
+  float: right;
+}
+#roles-content .form-group button {
+  margin-right: 3px;
+}
+#roles-content th {
+  padding-left: 8px;
+}
+#roles-content td {
+  padding-left: 8px;
+}
+#roles-content th.narrow-action {
+  padding-bottom: 4px;
+}
+#roles-content .btn-export {
+  float: right;
+}
+#roles-content button.btn-break-delete, #roles-content button.btn-break-run {
+  float: right;
+}
+#roles-content input.break-delete, #roles-content input.break-run {
+  float: right;
+  margin-right: 40%;
+}
+#roles-content .balance {
+  width: 5%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#new-warning-block-modal .balance {
+  width: 10%;
+}

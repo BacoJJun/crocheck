@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 100;
+  font-style: normal;
+  src: url('/fonts/NotoSansKR-Thin.woff') format("woff");
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 300;
+  font-style: normal;
+  src: url('/fonts/NotoSansKR-Light.woff') format("woff");
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 350;
+  font-style: normal;
+  src: url('/fonts/NotoSansKR-DemiLight.woff') format("woff");
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/fonts/NotoSansKR-Regular.woff') format("woff");
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/NotoSansKR-Medium.woff') format("woff");
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/NotoSansKR-Bold.woff') format("woff");
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/fonts/NotoSansKR-Black.woff') format("woff");
+}
+
+#main-header {
+	min-height: 40px;
+}
+
+#main-header .navbar-header .navbar-brand {
+	height: 40px;
+	font-size: 16px;
+	line-height: 25px;
+	padding: 7px 15px 7px 20px;
+}
+
+#main-header .navbar-header .navbar-brand img {
+	width: 35px;
+}
+
+#main-header .navbar-nav li a {
+	padding: 10px 12px;
+}
+
+#main-header .navbar-nav li a .here-triangle {
+	display: none;
+}
+
+#main-header .navbar-nav li a.active {
+	color: #3D4049;
+	font-weight: 500;
+}
+
+@media ( min-width : 768px) {
+	#main-header .navbar-nav li a.active .here-triangle {
+		display: block;
+		height: 0;
+		font-size: 30px;
+		line-height: 25px;
+		text-align: center;
+		margin: 0 0 0 13px;
+		animation-name: slideInUp;
+		animation-duration: 1000ms;
+	}
+}
+
+@keyframes slideInUp {
+	from { transform:translate(0, 10px); visibility: visible;}
+	to {transform: translate(0, 0);}
+}
+
+#sub-header, #report-sub-header {
+	background-color: #3D4049;
+}
+
+#sub-header h3, #report-sub-header h3 {
+	margin-top: 17px;
+	margin-bottom: 17px;
+	color: #F8F8F8 !important;
+}
+
+#report-print-header h3 {
+	margin-top: 17px;
+	margin-bottom: 17px;
+}
+
+header {
+	margin-bottom: 121px;
+}
+
+header .navbar {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+}
+
+body {
+  background-color: #F3F3F4;
+}
+
+h3, h4, div, a, td, p {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Noto Sans KR', 'Apple SD Gothic Neo',
+               'Nanum Barun Gothic', 'Nanum Gothic', 'Arial', sans-serif;
+}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./head.jsp" %>
+<%@ include file="head.jsp" %>
+	<script type='text/javascript' src='js/page/dashboard.js'></script>
 <div class="container" id="home-content">
   <div class="row">
     <div class="col-md-3 chart section" id="cpu-section">

@@ -8,97 +8,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
-
-    <!-- Title Page-->
-    <title>Dashboard</title>
-
-    <!-- Fontfaces CSS-->
-    <link href="ex/css/font-face.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="ex/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="ex/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="ex/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="ex/css/theme.css" rel="stylesheet" media="all">
-
-    <!-- Jquery JS-->
-    <script src="ex/vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="ex/vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="ex/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="ex/vendor/slick/slick.min.js">
-    </script>
-    <script src="ex/vendor/wow/wow.min.js"></script>
-    <script src="ex/vendor/animsition/animsition.min.js"></script>
-    <script src="ex/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="ex/vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="ex/vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="ex/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="ex/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="ex/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="ex/vendor/select2/select2.min.js">
-    </script>
-
     <!-- Main JS-->
-    <script src="js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/c3.css">
+	<link rel="stylesheet" type="text/css" href="css/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.toast.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-table.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-editable.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.bootstrap-touchspin.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-switch.css">
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	
+	<script type='text/javascript' src='js/jquery-3.2.1.min.js'></script>
+	<script type='text/javascript' src='js/jquery-ui.min.js'></script>
+	<script type='text/javascript' src='js/jquery.toast.js'></script>
+	<script type='text/javascript' src='js/d3.min.js'></script>
+	<script type='text/javascript' src='js/c3.min.js'></script>
+	<script type='text/javascript' src='js/moment.js'></script>
+	<script type='text/javascript' src='js/bootstrap.min.js'></script>
 
-<script type='text/javascript' src='ex/js/jquery-3.2.1.min.js'></script>
-<script type='text/javascript' src='ex/js/jquery-ui.min.js'></script>
-<script type='text/javascript' src='ex/js/jquery.toast.js'></script>
-<script type='text/javascript' src='ex/js/d3.min.js'></script>
-<script type='text/javascript' src='ex/js/c3.min.js'></script>
-<script type='text/javascript' src='ex/js/moment.js'></script>
-<script type='text/javascript' src='ex/js/mobile-detect.js'></script>
-<script type='text/javascript' src='ex/js/daterangepicker.js'></script>
-<script type='text/javascript' src='ex/js/bootstrap.min.js'></script>
-<script type='text/javascript' src='ex/js/bootstrap-table.min.js'></script>1111111111111111111111111111111111111111111111111111111111111111111
-<script type='text/javascript' src='ex/js/bootstrap-table-ko-KR.min.js'></script>
-<script type='text/javascript' src='ex/js/bootstrap-editable.min.js'></script>
-<script type='text/javascript' src='ex/js/bootstrap-table-editable.js'></script>
-<script type='text/javascript' src='ex/js/jquery.bootstrap-touchspin.js'></script>
-<script type='text/javascript' src='ex/js/bootstrap-switch.js'></script>
-<script type='text/javascript' src='ex/js/common.js'></script>
-<script>
-	$(document).ready(function() {
-		updateTime();
-		setInterval(updateTime, 1000);
-
-		$('[data-hide]').on('click', function() {
-			$('.' + $(this).attr('data-hide')).hide();
-		});
-
-		$('.alert').delay(2400).fadeTo(760, 0.42).slideUp(500, function() {
-			$(this).remove();
-		});
-	});
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-	function updateTime() {
-		var date = moment().format('YYYY. MM. DD HH:mm:ss');
-		$('#sub-header .navbar-header #current-time').text(date);
-	}
-</script>
-<title>CROCHECK</title>
+<title></title>
 </head>
 <body class="homes index">
 	<header>
@@ -114,19 +46,30 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-main">
 				<ul class="nav navbar-nav">
+					<li>
 					<span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> 대시보드
 						<p class="here-triangle">▲</p> </a></li>
+
 					<li>
+						
 					<span class="glyphicon glyphicon-bell" aria-hidden="true"></span> 파밍 
 						<p class="here-triangle">▲</p> </a></li>
+
+					<li>
 					<span class="glyphicon glyphicon-pawn" aria-hidden="true"></span> 정책 관리
 						<p class="here-triangle">▲</p> </a></li>
+					<li>
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 조직도 관리
 						<p class="here-triangle">▲</p> </a></li>
+					<li>
 					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 보고서
 						<p class="here-triangle">▲</p> </a></li>
 				</ul>
-
+				<ul class="nav navbar-nav navbar-right">
+					<li> Setting </a></li>
+					<li> Guide </a></li>
+		            <li> <a rel="nofollow" data-method="delete" href="/proc/logout">Logout</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="container-fluid" id="sub-header">

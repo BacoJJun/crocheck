@@ -1,0 +1,129 @@
+#alerts-content .section-control .form-group {
+  margin-bottom: 7px;
+}
+#alerts-content .section-control .form-group #btn-export, #alerts-content .section-control .form-group .search, #alerts-content .section-control .form-group button {
+  float: right;
+}
+#alerts-content .section-control .form-group #btn-search {
+  margin-left: 5px;
+  margin-right: 0;
+}
+#alerts-content .section-control .form-group .search {
+  margin-left: 5px;
+}
+#alerts-content .section-control .form-group button {
+  margin-right: 3px;
+}
+#alerts-content .section-control .form-group #btn-calendar {
+  height: 68px;
+}
+#alerts-content .section-control .form-group .search {
+  max-width: 195px;
+}
+#alerts-content .section-control .form-group .daterange {
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555555;
+  background: #fff none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  float: right;
+}
+#alerts-content .section-control .form-group .daterange.desktop {
+  width: 265px;
+  text-align: center;
+}
+#alerts-content .section-control .form-group .daterange.mobile {
+  width: 185px;
+}
+#alerts-content .section-control .form-group .mobile {
+  display: none;
+}
+#alerts-content .section-control .form-group div.mobile {
+  width: 235px;
+  float: right;
+}
+#alerts-content #confirm-add-modal .modal-dialog {
+  min-width: 420px;
+}
+#alerts-content #cell-explain {
+  text-align: right;
+  padding-right: 7px;
+}
+#alerts-content #cell-explain label#https {
+  color: #5CB85C;
+}
+#alerts-content #cell-explain label#http {
+  color: #5f6169;
+}
+#alerts-content #cell-explain label#normal {
+  color: #5f6169;
+}
+#alerts-content #cell-explain label#pharming {
+  color: #C9302C;
+}
+#alerts-content #cell-explain label#suspicion {
+  color: #EC971E;
+}
+#alerts-content #cell-explain label#inquiring {
+  color: #1b6d85;
+}
+#alerts-content #cell-explain .checkbox-inline input[type="checkbox"] {
+  margin-left: -15px;
+}
+#alerts-content #cell-explain .checkbox-inline + .checkbox-inline {
+  margin-left: 0;
+}
+#alerts-content .table {
+  margin-top: 20px;
+}
+#alerts-content .table .glyphicon-ok-sign {
+    color: #5CB85C;
+    text-align: center;
+    vertical-align: top;
+    font-size: 15;
+    }
+#alerts-content .table .ssl {
+  width: 1%;
+  padding-left: 0;
+  padding-right: 0;
+}
+#alerts-content .table .domain {
+  width: 21%;
+}
+#alerts-content .table .address {
+  width: 10%;
+}
+#alerts-content .table .count {
+  width: 3%;
+}
+#alerts-content .table .status {
+  width: 6%;
+}
+#alerts-content .table .time {
+  width: 16%;
+}
+#alerts-content .table thead th a {
+  color: #5f6169;
+}
+#alerts-content .table thead th a:hover {
+  background-color: transparent;
+  text-decoration: none;
+}
+#alerts-content .table tbody tr td {
+  color: #333333;
+}
+#alerts-content div#export {
+  overflow: hidden;
+}
+#alerts-content div#export #btn-export {
+  position: relative;
+  float: right;
+}
+#alerts-content p.no-record {
+  margin: 76px;
+}

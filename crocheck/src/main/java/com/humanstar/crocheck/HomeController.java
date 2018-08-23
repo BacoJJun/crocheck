@@ -59,9 +59,12 @@ public class HomeController {
 		return "chart";
 	}
 	
-	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String dashboard(Locale locale, Model model) throws Exception {
-		return "chart";
+		return "dashboard";
 	}
-	
+	@RequestMapping(value = "/head", method = RequestMethod.GET)
+	public String head(Locale locale, Model model) throws Exception {
+		return "head";
+	}
 }
