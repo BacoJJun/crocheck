@@ -1,34 +1,32 @@
 package com.humanstar.crocheck.controller.dashboard;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.appliance.dto.applianceVO;
 import com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO;
 import com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO;
+import com.humanstar.crocheck.model.dashboard.dto.applianceStatusVO;
 import com.humanstar.crocheck.model.dashboard.dto.dayPharmingVO;
+import com.humanstar.crocheck.model.dashboard.dto.networkStatusVO;
 import com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO;
 import com.humanstar.crocheck.model.dashboard.dto.todayPacketVO;
 import com.humanstar.crocheck.model.dashboard.dto.yesterdayPacketVO;
 import com.humanstar.crocheck.service.appliance.applianceServiceImpl;
 import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;
+import com.humanstar.crocheck.service.dashboard.applianceStatusServiceImpl;
+import com.humanstar.crocheck.service.dashboard.networkStatusServiceImpl;
 import com.humanstar.crocheck.service.dashboard.pharmingServiceImpl;
 import com.humanstar.crocheck.service.dashboard.todayPacketServiceImpl;
 import com.humanstar.crocheck.service.dashboard.yesterdayPacketServiceImpl;
@@ -57,6 +55,10 @@ public class dashboardController {
 	todayPacketServiceImpl dayPacketService;
 	@Inject
 	yesterdayPacketServiceImpl yesterdayPacketService;
+	@Inject
+	applianceStatusServiceImpl applianceStatusService;
+	@Inject
+	networkStatusServiceImpl networkStatusService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -73,7 +75,8 @@ public class dashboardController {
 
 		try {
 			systemStatus = applianceService.nowStatus();
-
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
 
 			resultMap.put(RESULT, RESULT_ERROR);
@@ -81,8 +84,7 @@ public class dashboardController {
 
 		}
 
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
 		resultMap.put("systemStatus", systemStatus);
 
 		return resultMap;
@@ -98,14 +100,14 @@ public class dashboardController {
 
 		try {
 			pharmingDomainList = alertLiveService.alertLiveDomain();
-
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
 			resultMap.put(ERROR_MESSAGE, "connect_faled!");
 
 		}
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
 		resultMap.put("pharmingDomainList", pharmingDomainList);
 
 		return resultMap;
@@ -121,14 +123,14 @@ public class dashboardController {
 
 		try {
 			pharmingDepartureList = alertLiveService.alertLiveDeparture();
-
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
 			resultMap.put(ERROR_MESSAGE, "connect_faled!");
 
 		}
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
 		resultMap.put("pharmingDepartureList", pharmingDepartureList);
 
 		return resultMap;
@@ -144,14 +146,14 @@ public class dashboardController {
 
 		try {
 			nowPharmingList = pharmingService.nowPharmingList();
-
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
 			resultMap.put(ERROR_MESSAGE, "connect_faled!");
 
 		}
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
 		resultMap.put("nowPharmingList", nowPharmingList);
 
 		return resultMap;
@@ -167,14 +169,14 @@ public class dashboardController {
 
 		try {
 			dayPharmingList = pharmingService.dayPharmingList();
-
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
 			resultMap.put(ERROR_MESSAGE, "connect_faled!");
 
 		}
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
 		resultMap.put("dayPharmingList", dayPharmingList);
 
 		return resultMap;
@@ -190,15 +192,15 @@ public class dashboardController {
 
 		try {
 			yesterdaypacketList = yesterdayPacketService.yesterdayPacketList();
-
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
 			resultMap.put(ERROR_MESSAGE, "connect_faled!");
 			logger.debug(ERROR_MESSAGE);
 
 		}
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
 		resultMap.put("yesterdaypacketList", yesterdaypacketList);
 
 		return resultMap;
@@ -214,6 +216,56 @@ public class dashboardController {
 
 		try {
 			daypacketList = dayPacketService.todayPacketList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.debug(ERROR_MESSAGE);
+
+		}
+
+		resultMap.put("daypacketList", daypacketList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/applianceStatus", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> applianceStatus() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<applianceStatusVO> applianceStatusList = new ArrayList<applianceStatusVO>();
+
+		try {
+			applianceStatusList = applianceStatusService.applianceStatusList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+			
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.debug(ERROR_MESSAGE);
+
+		}
+
+		resultMap.put("applianceStatus", applianceStatusList);
+
+		return resultMap;
+	}
+	@RequestMapping(value = "/networkStatus", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> networkStatus() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<networkStatusVO> neworkStatus = new ArrayList<networkStatusVO>();
+
+		try {
+			neworkStatus = networkStatusService.networkStatusList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 
 		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
@@ -221,11 +273,9 @@ public class dashboardController {
 			logger.debug(ERROR_MESSAGE);
 
 		}
-		resultMap.put(RESULT, RESULT_SUCCESS);
-		resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
-		resultMap.put("daypacketList", daypacketList);
+
+		resultMap.put("neworkStatus", neworkStatus);
 
 		return resultMap;
 	}
-
 }

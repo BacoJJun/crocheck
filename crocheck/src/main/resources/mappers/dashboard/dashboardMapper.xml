@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dashboard">
+	<select id="applianceStatus"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.applianceStatusVO">
+		SELECT seq,
+		hhmmss,
+		cpu_sys_pct,
+		cpu_iowait_pct,
+		cpu_idle_pct,
+		cpu_user_pct,
+		mem_total,
+		mem_use,
+		mem_use_pct,
+		mem_shared,
+		mem_shared_pct,
+		mem_buffer,
+		mem_buffer_pct,
+		mem_cache,
+		mem_cache_pct,
+		mem_free,
+		mem_free_pct,
+		swap_total,
+		swap_use,
+		swap_use_pct,
+		swap_free,
+		date_part('epoch', hhmmss) as unixtimestamp,
+		disk_vol1_usage_pct,
+		disk_vol2_usage_pct,
+		disk_vol3_usage_pct,
+		disk_vol4_usage_pct
+		from
+		tb_usage_system
+		order by seq desc limit 10
+	</select>
+	<select id="networkStatus"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.networkStatusVO">
+		(SELECT 1 as ph_type, id, result, count as count, date_part('epoch',
+		created_at) as created_at, created_at as date FROM
+		alert_stat_10sec_ratio WHERE
+		created_at = (SELECT created_at FROM alert_stat_10sec_ratio order by id desc
+		limit 1) ORDER BY created_at, ph_type)
+		union all
+		(SELECT 2 as ph_type, id, result, count as count, date_part('epoch',
+		created_at) as created_at, created_at as date FROM
+		harmful_stat_10sec_ratio WHERE
+		created_at = (SELECT created_at FROM alert_stat_10sec_ratio order by id desc
+		limit 1) ORDER BY created_at, ph_type );
+
+	</select>
+	<select id="pharmingDomainList"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO">
+		SELECT
+		domain,
+		case
+		when result = -1 or result = -11
+		then -1
+		when result = -2 or result = -12
+		then -2 else result end result2,
+		sum(count) as count
+		FROM alert_live
+		where
+		created_at >= now() - interval
+		'24 hour'
+		and
+		result in (-1,-11,-2,-12)
+		group by domain, result2
+		order by
+		result2 ASC, count desc limit 5;
+	</select>
+	<select id="pharmingClientList"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO">
+		SELECT
+		departure,
+		case
+		when result = -1 or result = -11
+		then -1
+		when result = -2 or result = -12
+		then -2 else result end result2,
+		sum(count) as count
+		FROM alert_live
+		where
+		created_at >= now() - interval
+		'24 hour'
+		and
+		result in (-1,-11,-2,-12)
+		group by departure, result2
+		order
+		by result2 ASC, count desc limit 5;
+	</select>
+</mapper>

@@ -5,11 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.humanstar.crocheck.model.dashboard.dto.yesterdayPacketVO;
 
-@Service
+@Repository
 public class yesterdayPacketDAOImpl implements yesterdayPacketDAO{
 
 	@Inject

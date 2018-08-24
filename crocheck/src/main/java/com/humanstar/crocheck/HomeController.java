@@ -63,8 +63,5 @@ public class HomeController {
 	public String dashboard(Locale locale, Model model) throws Exception {
 		return "dashboard";
 	}
-	@RequestMapping(value = "/head", method = RequestMethod.GET)
-	public String head(Locale locale, Model model) throws Exception {
-		return "head";
-	}
+
 }

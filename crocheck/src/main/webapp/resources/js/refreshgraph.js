@@ -29,7 +29,7 @@ var updateChart = function (count) {
 	// count is number of times loop runs to generate random dataPoints.
 		xVal = new Date();
 		var jsonData = $.ajax({
-			url : '/crocheck/SystemStatus'
+			url : '/SystemStatus'
 				, type : 'post'
 				, dataType : 'json'
 				, async : false

@@ -179,7 +179,7 @@ function getPharmingDayCount(){
 	function barChart(){
 	        var data=[];
 			$.ajax({
-				url : '/crocheck/dayPacketList'
+				url : '/dayPacketList'
 					, type : 'post'
 					, dataType : 'json'
 					, async : false

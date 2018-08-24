@@ -8,18 +8,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import com.humanstar.crocheck.model.dashboard.dto.todayPacketVO;
+import com.humanstar.crocheck.model.dashboard.dto.applianceStatusVO;
 
 @Repository
-public class todayPacketDAOImpl implements todayPacketDAO {
-
+public class applianceStatusDAOImpl implements applianceStatusDAO{
+	
 	@Inject
 	SqlSession SqlSession;
 	
 	@Override
-	public List<todayPacketVO> todayPacketList() throws Exception {
+	public List<applianceStatusVO> applianceStatus() throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("packet.now");
+		return SqlSession.selectList("dashboard.applianceStatus");
 	}
 
 }
