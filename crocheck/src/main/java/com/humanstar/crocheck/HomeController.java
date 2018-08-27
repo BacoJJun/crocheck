@@ -58,10 +58,20 @@ public class HomeController {
 	public String chart(Locale locale, Model model) throws Exception {
 		return "chart";
 	}
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String dashboard(Locale locale, Model model) throws Exception {
 		return "dashboard";
+	}	
+	@RequestMapping(value = "/index1", method = RequestMethod.GET)
+	public String index1(Locale locale, Model model) throws Exception {
+		return "gentelella/dashboard";
 	}
-
+	@RequestMapping(value = "/index2", method = RequestMethod.GET)
+	public String index2(Locale locale, Model model) throws Exception {
+		return "gentelella/index2";
+	}
+	@RequestMapping(value = "/index3", method = RequestMethod.GET)
+	public String index3(Locale locale, Model model) throws Exception {
+		return "gentelella/index3";
+	}
 }
