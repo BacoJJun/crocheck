@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="DnsGraph">
+	<select id="today"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.todayDnsVO">
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '00')
+		union all
+		(select
+		coalesce(sum(count),0) as
+		dnsCount from dns_stat_10sec_all where
+		created_at >=
+		CURRENT_DATE and to_char(created_at, 'HH24') = '01')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at
+		>= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '02')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE and to_char(created_at, 'HH24') =
+		'03')
+		union all
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') =
+		'04')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '05')
+		union all
+		(select coalesce(sum(count),0) as
+		dnsCount from
+		dns_stat_10sec_all where
+		created_at >=
+		CURRENT_DATE and
+		to_char(created_at, 'HH24') = '06')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from dns_stat_10sec_all
+		where
+		created_at
+		>= CURRENT_DATE and to_char(created_at, 'HH24') = '07')
+		union all
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '08')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE and to_char(created_at, 'HH24') =
+		'09')
+		union all
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '10')
+		union all
+		(select
+		coalesce(sum(count),0) as
+		dnsCount from dns_stat_10sec_all where
+		created_at >=
+		CURRENT_DATE and to_char(created_at, 'HH24') = '11')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at
+		>= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '12')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE and to_char(created_at, 'HH24') =
+		'13')
+		union all
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') =
+		'14')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '15')
+		union all
+		(select coalesce(sum(count),0) as
+		dnsCount from
+		dns_stat_10sec_all where
+		created_at >=
+		CURRENT_DATE and
+		to_char(created_at, 'HH24') = '16')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from dns_stat_10sec_all
+		where
+		created_at
+		>= CURRENT_DATE and to_char(created_at, 'HH24') = '17')
+		union all
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '18')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE and to_char(created_at, 'HH24') =
+		'19')
+		union all
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '20')
+		union all
+		(select
+		coalesce(sum(count),0) as
+		dnsCount from dns_stat_10sec_all where
+		created_at >=
+		CURRENT_DATE and to_char(created_at, 'HH24') = '21')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at
+		>= CURRENT_DATE and
+		to_char(created_at, 'HH24') = '22')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE and to_char(created_at, 'HH24') =
+		'23')
+
+	</select>
+	<select id="yesterday"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.todayDnsVO">
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '00')
+		union all
+		(select
+		coalesce(sum(count),0) as
+		dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '01')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '02')
+		union
+		all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and to_char(created_at, 'HH24') =
+		'03')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') =
+		'04')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '05')
+		union all
+		(select
+		coalesce(sum(count),0) as
+		dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '06')
+		union
+		all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and to_char(created_at, 'HH24') = '07')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '08')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and to_char(created_at, 'HH24') =
+		'09')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '10')
+		union all
+		(select
+		coalesce(sum(count),0) as
+		dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '11')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '12')
+		union
+		all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and to_char(created_at, 'HH24') =
+		'13')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') =
+		'14')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '15')
+		union all
+		(select
+		coalesce(sum(count),0) as
+		dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '16')
+		union
+		all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and to_char(created_at, 'HH24') = '17')
+		union all
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE > created_at and
+		to_char(created_at, 'HH24') = '18')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE > created_at and to_char(created_at, 'HH24') =
+		'19')
+		union all
+		(select coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE > created_at and
+		to_char(created_at, 'HH24') = '20')
+		union all
+		(select
+		coalesce(sum(count),0) as
+		dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '21')
+		union all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and
+		to_char(created_at, 'HH24') = '22')
+		union
+		all
+		(select
+		coalesce(sum(count),0) as dnsCount from
+		dns_stat_10sec_all
+		where
+		created_at >= CURRENT_DATE - interval '1 day'
+		and CURRENT_DATE >
+		created_at and to_char(created_at, 'HH24') =
+		'23')
+
+	</select>
+</mapper>

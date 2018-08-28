@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.humanstar.crocheck.model.dashboard.dao.networkStatusDAOImpl;
 import com.humanstar.crocheck.model.dashboard.dto.networkStatusVO;
 
-@Repository
+@Service
 public class networkStatusServiceImpl implements networkStatusService{
 
 	@Inject 

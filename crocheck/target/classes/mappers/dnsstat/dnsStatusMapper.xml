@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 <mapper namespace="dnsstatus">
+	<select id="dnsstat"
+	resultType="com.humanstar.crocheck.model.dashboard.dto.dnsStatVO">
+	(select sum(count) as totalcount from dns_stat_10sec_all
+		where created_at>=current_date)
+		union all
+		(select sum(count) as
+		totalcount from dns_stat_10sec_all where created_at>=(now() - interval	'1 hour'))
+		union all
+		(select count as totalcount from dns_stat_10sec_all
+		order by created_at desc
+		limit 1)
+		</select>
+			<select id="ddosstat"
+	resultType="com.humanstar.crocheck.model.dashboard.dto.dnsStatVO">
+		(select sum(count) as totalcount from ddos_stat_10sec_all
+		where created_at>=current_date)
+		union all
+		(select sum(count) as
+		totalcount from ddos_stat_10sec_all where created_at>=(now() - 	interval '1 hour' ))
+		union all
+		(select count as totalcount from
+		ddos_stat_10sec_all order by created_at
+		desc limit 1)
+		</select>
+</mapper>

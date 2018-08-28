@@ -16,18 +16,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.appliance.dto.applianceVO;
 import com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO;
+import com.humanstar.crocheck.model.dashboard.dto.alertLiveDnsDDosVO;
 import com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO;
 import com.humanstar.crocheck.model.dashboard.dto.applianceStatusVO;
 import com.humanstar.crocheck.model.dashboard.dto.dayPharmingVO;
+import com.humanstar.crocheck.model.dashboard.dto.dnsStatVO;
 import com.humanstar.crocheck.model.dashboard.dto.networkStatusVO;
 import com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO;
+import com.humanstar.crocheck.model.dashboard.dto.todayDnsVO;
 import com.humanstar.crocheck.model.dashboard.dto.todayPacketVO;
 import com.humanstar.crocheck.model.dashboard.dto.yesterdayPacketVO;
 import com.humanstar.crocheck.service.appliance.applianceServiceImpl;
+import com.humanstar.crocheck.service.dashboard.alertLiveDnsDDosServiceImpl;
 import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;
 import com.humanstar.crocheck.service.dashboard.applianceStatusServiceImpl;
+import com.humanstar.crocheck.service.dashboard.dnsStatServiceImpl;
 import com.humanstar.crocheck.service.dashboard.networkStatusServiceImpl;
 import com.humanstar.crocheck.service.dashboard.pharmingServiceImpl;
+import com.humanstar.crocheck.service.dashboard.todayDnsServiceImpl;
 import com.humanstar.crocheck.service.dashboard.todayPacketServiceImpl;
 import com.humanstar.crocheck.service.dashboard.yesterdayPacketServiceImpl;
 
@@ -59,7 +65,13 @@ public class dashboardController {
 	applianceStatusServiceImpl applianceStatusService;
 	@Inject
 	networkStatusServiceImpl networkStatusService;
-
+	@Inject
+	alertLiveDnsDDosServiceImpl alertLiveDnsDDosService;
+	@Inject
+	todayDnsServiceImpl todayDnsService;
+	@Inject
+	dnsStatServiceImpl dnsStatService;
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * 
@@ -135,7 +147,50 @@ public class dashboardController {
 
 		return resultMap;
 	}
+	@RequestMapping(value = "/alertLiveDns", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> AlertLiveDns() {
 
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<alertLiveDnsDDosVO> alertLiveDnsList = new ArrayList<alertLiveDnsDDosVO>();
+
+		try {
+			alertLiveDnsList = alertLiveDnsDDosService.alertLiveDnsList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+
+		}
+
+		resultMap.put("alertLiveDnsList", alertLiveDnsList);
+
+		return resultMap;
+	}
+	@RequestMapping(value = "/alertLiveDDos", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> AlertLiveDDos() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<alertLiveDnsDDosVO> alertLiveDDosList = new ArrayList<alertLiveDnsDDosVO>();
+
+		try {
+			alertLiveDDosList = alertLiveDnsDDosService.alertLiveDDosList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+
+		}
+
+		resultMap.put("alertLiveDDosList", alertLiveDDosList);
+
+		return resultMap;
+	}
 	@RequestMapping(value = "/nowPharmingList", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> nowPharmingList() {
@@ -275,6 +330,104 @@ public class dashboardController {
 		}
 
 		resultMap.put("neworkStatus", neworkStatus);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/todayDns", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> todayDns() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<todayDnsVO> todayDnsList = new ArrayList<todayDnsVO>();
+
+		try {
+			todayDnsList = todayDnsService.todayDnsList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.debug(ERROR_MESSAGE);
+
+		}
+
+		resultMap.put("todayDnsList", todayDnsList);
+
+		return resultMap;
+	}
+	@RequestMapping(value = "/yesterdayDns", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> yesterdayDns() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<todayDnsVO> yesterDnsList = new ArrayList<todayDnsVO>();
+
+		try {
+			yesterDnsList = todayDnsService.yesterdayDnsList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.debug(ERROR_MESSAGE);
+
+		}
+
+		resultMap.put("yesterDnsList", yesterDnsList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/dnsStat", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dnsStat() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<dnsStatVO> dnsStatusList = new ArrayList<dnsStatVO>();
+
+		try {
+			dnsStatusList =dnsStatService.dnsStatusList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());;
+
+		}
+
+		resultMap.put("dnsStatusList", dnsStatusList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/ddosStat", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> ddosStat() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<String, Object>();
+		List<dnsStatVO> ddosStatusList = new ArrayList<dnsStatVO>();
+
+		try {
+			ddosStatusList =dnsStatService.ddosStatusList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());;
+		}
+
+		resultMap.put("ddosStatusList", ddosStatusList);
 
 		return resultMap;
 	}

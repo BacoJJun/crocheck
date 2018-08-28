@@ -6,35 +6,53 @@
 	<select id="Domain"
 		resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO">
 		SELECT
-		 	domain, 
-		 	case 
-		 		when result = -1 or result = -11 
-		 			then -1 when result = -2 or result = -12 
-		 			then -2 else result end result2, 
-		 	sum(count) as 	count 
-		FROM alert_live 
-			where 
-				created_at >= now() - interval '24 hour'
-			and
-				result in (-1,-11,-2,-12)
-			 group by domain, result2 
-			 order by result2 ASC, count desc limit 5;
-	</select>
-<select id="Departure"
-		resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO">
-		SELECT 
-			departure, 
-			case 
-				when result = -1 or result = -11 
-					then -1 when result = -2 or result = -12 
-					then -2 else result end result2,
-			sum(count) as count 
+		domain,
+		case
+		when result = -1 or result = -11
+		then -1
+		when result = -2 or result = -12
+		then -2 else result end result2,
+		sum(count) as count
 		FROM alert_live
-			 where
-			 	created_at >= now() - interval '24 hour'
-			and 
-				result in (-1,-11,-2,-12) 
-			group by departure, result2 
-			order by result2 ASC, count desc limit 5;
+		where
+		created_at >= now() - interval
+		'24 hour'
+		and
+		result in (-1,-11,-2,-12)
+		group by domain, result2
+		order by
+		result2 ASC, count desc limit 5;
+	</select>
+	<select id="Departure"
+		resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO">
+		SELECT
+		departure,
+		case
+		when result = -1 or result = -11
+		then -1
+		when result = -2 or result = -12
+		then -2 else result end result2,
+		sum(count) as count
+		FROM alert_live
+		where
+		created_at >= now() - interval
+		'24 hour'
+		and
+		result in (-1,-11,-2,-12)
+		group by departure, result2
+		order
+		by result2 ASC, count desc limit 5;
+	</select>
+	<select id="dnsList" resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDnsDDosVO">
+		SELECT src_ip , domain , SUM(count) AS count FROM
+		dns_query_status WHERE
+		created_at >= now() - interval '1 hour' GROUP BY
+		src_ip , domain ORDER
+		BY count DESC LIMIT 5
+	</select>
+	<select id="ddosList" resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDnsDDosVO">
+		SELECT src_ip , domain , SUM(count) AS count FROM ddos_block_status WHERE
+		created_at >= now() - interval '1 hour' GROUP BY src_ip , domain ORDER
+		BY count DESC LIMIT 5
 	</select>
 </mapper>
