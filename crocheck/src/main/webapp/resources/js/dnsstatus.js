@@ -1,0 +1,97 @@
+$(document).ready(function() {
+	$("#reservation-time").value= new Date();
+	initDnsLoop();
+	initLoopCheck();
+	DataTables();
+});
+function initDnsLoop() {
+	getDnsList();
+	setTimeout(initDnsLoop, 3000);
+}
+function initLoopCheck(){
+	$("#submit").click(function(){
+		var arrDate = $("#reservation-time").val().split("-");
+	    $('#date_start').val(arrDate[0]);
+	    $('#date_end').val(arrDate[1]);
+
+	    
+	});
+}
+function DataTables() {
+
+	if (typeof ($.fn.DataTable) === 'undefined') {
+		return;
+	}
+
+	var handleDataTableButtons = function() {
+		if ($("#dnsdatatable").length) {
+			$("#dnsdatatable").DataTable();
+		}
+	
+		if ($("#dnsdatatable-buttons").length) {
+			$("#dnsdatatable-buttons").DataTable({
+				dom : "Blfrtip",
+				buttons : [ {
+					extend : "excel",
+					className : "btn-sm"
+				}, {
+					extend : "csv",
+					className : "btn-sm"
+				}, {
+					extend : "pdfHtml5",
+					className : "btn-sm"
+				}, {
+					extend : "print",
+					className : "btn-sm"
+				}, ],
+				responsive : true
+			});
+		}
+	};
+
+	TableManageButtons = function() {
+		"use strict";
+		return {
+			init : function() {
+				handleDataTableButtons();
+			}
+		};
+	}();
+	TableManageButtons.init();
+	getDnsList();
+};
+
+function getDnsList() {
+	var show_dns = document.getElementById("show_dns_list");
+
+	$.ajax({
+		url : '/crocheck/dnsNowList',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				var domain_html = ' ';
+				for (var i = 0; i < result.dnsnowlist.length; i++) {
+					domain_html += '<tr>';
+					domain_html += '<td>' + result.dnsnowlist[i].src_ip
+							+ '</td>'
+					domain_html += '<td>' + result.dnsnowlist[i].domain
+							+ '</td>';
+					domain_html += '<td>' + result.dnsnowlist[i].server_ip
+							+ '</td>';
+					domain_html += '<td>' + result.dnsnowlist[i].cr_at
+							+ '</td></tr>';
+				}
+				show_dns.innerHTML = domain_html;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+};

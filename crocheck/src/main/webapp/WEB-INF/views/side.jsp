@@ -7,18 +7,13 @@
 			<li><a><i class="fa fa-home"></i> Home <span
 					class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
-					<li><a href="index1.html">Dashboard</a></li>
-					<li><a href="index2.html">Dashboard2</a></li>
-					<li><a href="index3.html">Dashboard3</a></li>
+					<li><a href="/crocheck">Dashboard</a></li>
 				</ul></li>
-			<li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span
+			<li><a><i class="fa fa-bar-chart-o"></i> Statistics <span
 					class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
-					<li><a href="chartjs.html">Chart JS</a></li>
-					<li><a href="chartjs2.html">Chart JS2</a></li>
-					<li><a href="morisjs.html">Moris JS</a></li>
-					<li><a href="echarts.html">ECharts</a></li>
-					<li><a href="other_charts.html">Other Charts</a></li>
+					<li><a href="/crocheck/dnsstatus">DNS-STATUS</a></li>
+					<li><a href="/crocheck/statistics">ANALYSIS</a></li>
 				</ul></li>
 			<li><a><i class="fa fa-edit"></i> Forms <span
 					class="fa fa-chevron-down"></span></a>

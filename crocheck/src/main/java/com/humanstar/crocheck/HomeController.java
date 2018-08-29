@@ -62,16 +62,12 @@ public class HomeController {
 	public String dashboard(Locale locale, Model model) throws Exception {
 		return "dashboard";
 	}	
-	@RequestMapping(value = "/index1", method = RequestMethod.GET)
-	public String index1(Locale locale, Model model) throws Exception {
-		return "gentelella/dashboard";
+	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
+	public String statistics(Locale locale, Model model) throws Exception {
+		return "statistics";
 	}
-	@RequestMapping(value = "/index2", method = RequestMethod.GET)
-	public String index2(Locale locale, Model model) throws Exception {
-		return "gentelella/index2";
-	}
-	@RequestMapping(value = "/index3", method = RequestMethod.GET)
-	public String index3(Locale locale, Model model) throws Exception {
-		return "gentelella/index3";
+	@RequestMapping(value = "/dnsstatus", method = RequestMethod.GET)
+	public String dnsstatus(Locale locale, Model model) throws Exception {
+		return "dnsstatus";
 	}
 }
