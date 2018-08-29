@@ -21,5 +21,11 @@ public class dnsListDAOImpl implements dnsListDAO{
 		return SqlSession.selectList("dnsstatus.dnsnowlist");
 	}
 
+	@Override
+	public List<dnsListVO> dnsSearchList(dnsListVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("dnsstatus.searchdns", vo);
+	}
+
 	
 }

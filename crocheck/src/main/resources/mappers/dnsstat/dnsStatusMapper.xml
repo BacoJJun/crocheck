@@ -40,4 +40,20 @@
 		LEFT OUTER JOIN organization_members org ON dns.src_ip =
 		host(org.ip)::varchar
 	</select>
+	<select id="searchdns" resultType="com.humanstar.crocheck.model.status.dto.dnsListVO">
+			SELECT dns.type, dns.src_ip, dns.domain, dns.count,
+		dns.server_ip, date_trunc('second',(dns.created_at::TIMESTAMP WITHOUT
+		TIME ZONE)) as cr_at, org.ip, org.post, org.name, org.phone, mobile,
+		org.email, org.etc from
+		(SELECT type, src_ip, domain, count, server_ip, created_at FROM
+		dns_query_status 
+		where 
+		created_at >= #{date_start}
+		and
+		#{date_end} > created_at
+		 order by
+		created_at desc limit 10) dns
+		LEFT OUTER JOIN organization_members org ON dns.src_ip =
+		host(org.ip)::varchar
+	</select>
 </mapper>

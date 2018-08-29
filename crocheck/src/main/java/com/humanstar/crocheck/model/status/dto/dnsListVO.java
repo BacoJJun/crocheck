@@ -14,6 +14,8 @@ public class dnsListVO {
 	private String mobile;
 	private String email;
 	private String etc;
+	private String date_start;
+	private String date_end;
 	
 	public String getTyep() {
 		return tyep;

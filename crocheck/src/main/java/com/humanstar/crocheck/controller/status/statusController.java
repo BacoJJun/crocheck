@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,6 +63,27 @@ public class statusController {
 
 		return resultMap;
 	}
+	
 
 
+	@RequestMapping(value = "/dnsSearchList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dnsSearchList(@ModelAttribute dnsListVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<dnsListVO> dnssearchlist = new ArrayList<dnsListVO>();
+
+		try {
+			dnssearchlist = dnsListService.dnsSearchList(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+
+		}
+		resultMap.put("dnssearchlist", dnssearchlist);
+
+		return resultMap;
+	}
 }

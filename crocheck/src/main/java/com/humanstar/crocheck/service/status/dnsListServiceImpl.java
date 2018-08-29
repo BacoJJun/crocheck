@@ -20,5 +20,11 @@ public class dnsListServiceImpl implements dnsListService{
 		// TODO Auto-generated method stub
 		return dnsListDAO.dnsNowList();
 	}
+
+	@Override
+	public List<dnsListVO> dnsSearchList(dnsListVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dnsListDAO.dnsSearchList(vo);
+	}
 	
 }

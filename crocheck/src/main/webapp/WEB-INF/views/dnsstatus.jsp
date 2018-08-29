@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<body class="nav-md">
+<body class="nav-sm">
 	<div class="container body">
 		<div class="main_container">
 			<div class="col-md-3 left_col">
@@ -99,7 +99,7 @@
 						<div class="x_panel">
 							<div class="x_title">
 								<h2>
-									Default Example <small>Users</small>
+									DNS <small>dns</small>
 								</h2>
 								<div class="clearfix"></div>
 							</div>
@@ -124,7 +124,9 @@
 									</form>
 
 								</div>
-								<button id="submit" type="button" class="btn btn-success">submit</button>
+								<button id="submit" type="button" class="btn btn-success fa fa-search"></button>
+								<button id="pause" type="button" class="btn btn-info fa fa-pause"></button>
+								<button id="play" type="button" class="btn btn-warning fa fa-play"></button>
 								<table id="dnsdatatable"
 									class="table table-striped table-bordered">
 									<thead>
