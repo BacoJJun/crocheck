@@ -1,9 +1,31 @@
 $(document).ready(function() {
+	$("#reservation-time").value = new Date();
 	linechartdns();
 	linechartddos();
 	piechartdns();
 	piechartddos();
 });
+
+function init_daterangepicker_reservation() {
+
+	if (typeof ($.fn.daterangepicker) === 'undefined') {
+		return;
+	}
+	// console.log('init_daterangepicker_reservation');
+
+	$('#reservation').daterangepicker(null, function(start, end, label) {
+		// console.log(start.toISOString(), end.toISOString(), label);
+	});
+
+	$('#reservation-times').daterangepicker({
+		timePicker : true,
+		timePickerIncrement : 30,
+		locale : {
+			format : 'YYYY.MM.DD H:mm '
+		}
+	});
+
+}
 
 function piechartdns() {
 	if ($('#echart_pie_dns').length) {
@@ -37,14 +59,6 @@ function piechartdns() {
 							}
 						}
 					},
-					restore : {
-						show : true,
-						title : "Restore"
-					},
-					saveAsImage : {
-						show : true,
-						title : "Save Image"
-					}
 				}
 			},
 			calculable : true,

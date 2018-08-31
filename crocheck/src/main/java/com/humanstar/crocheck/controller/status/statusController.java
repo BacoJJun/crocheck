@@ -64,14 +64,13 @@ public class statusController {
 		return resultMap;
 	}
 	
-
-
 	@RequestMapping(value = "/dnsSearchList", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> dnsSearchList(@ModelAttribute dnsListVO vo) {
+	public Map<String, Object> dnsSearchList(@ModelAttribute dnsListVO vo) throws Exception {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<dnsListVO> dnssearchlist = new ArrayList<dnsListVO>();
+		
 
 		try {
 			dnssearchlist = dnsListService.dnsSearchList(vo);
@@ -80,7 +79,7 @@ public class statusController {
 		} catch (Exception e) {
 			resultMap.put(RESULT, RESULT_ERROR);
 			resultMap.put(ERROR_MESSAGE, "connect_faled!");
-
+			logger.error(e.toString());
 		}
 		resultMap.put("dnssearchlist", dnssearchlist);
 

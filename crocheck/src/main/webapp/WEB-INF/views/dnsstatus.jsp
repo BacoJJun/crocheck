@@ -128,7 +128,7 @@
 								<button id="pause" type="button" class="btn btn-info fa fa-pause"></button>
 								<button id="play" type="button" class="btn btn-warning fa fa-play"></button>
 								<table id="dnsdatatable"
-									class="table table-striped table-bordered">
+									class="table table-striped table-bordered dt-responsive nowrap">
 									<thead>
 										<tr>
 											<th>Client</th>
