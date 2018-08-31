@@ -1813,15 +1813,15 @@ function init_daterangepicker() {
 	var cb = function(start, end, label) {
 		// console.log(start.toISOString(), end.toISOString(), label);
 		$('#reportrange span').html(
-				start.format('MMMM D, YYYY') + ' - '
-						+ end.format('MMMM D, YYYY'));
+				start.format('YYYY-MM-DD') + ' - '
+						+ end.format('YYYY-MM-DD'));
 	};
 
 	var optionSet1 = {
 		startDate : moment().subtract(29, 'days'),
 		endDate : moment(),
-		minDate : '01/01/2012',
-		maxDate : '12/31/2015',
+		minDate : '2018-01-01',
+		maxDate : '2021-12-31',
 		dateLimit : {
 			days : 60
 		},
@@ -1844,7 +1844,7 @@ function init_daterangepicker() {
 		buttonClasses : [ 'btn btn-default' ],
 		applyClass : 'btn-small btn-primary',
 		cancelClass : 'btn-small',
-		format : 'MM/DD/YYYY',
+		format : 'YYYY-MM-DD',
 		separator : ' to ',
 		locale : {
 			applyLabel : 'Submit',
@@ -1861,8 +1861,8 @@ function init_daterangepicker() {
 	};
 
 	$('#reportrange span').html(
-			moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - '
-					+ moment().format('MMMM D, YYYY'));
+			moment().subtract(29, 'days').format('YYYY-MM-DD') + ' - '
+					+ moment().format('YYYY-MM-DD'));
 	$('#reportrange').daterangepicker(optionSet1, cb);
 	$('#reportrange').on('show.daterangepicker', function() {
 		// console.log("show event fired");

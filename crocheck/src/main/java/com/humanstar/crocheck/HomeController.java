@@ -70,4 +70,35 @@ public class HomeController {
 	public String dnsstatus(Locale locale, Model model) throws Exception {
 		return "dnsstatus";
 	}
+	
+	@RequestMapping(value = "/dnspolicy", method = RequestMethod.GET)
+	public String dnspolicy(Locale locale, Model model) throws Exception {
+		return "dnspolicy";
+	}
+	
+	@RequestMapping(value = "/dhcppolicy", method = RequestMethod.GET)
+	public String dhcppolicy(Locale locale, Model model) throws Exception {
+		return "dhcppolicy";
+	}
+	
+	@RequestMapping(value = "/policy", method = RequestMethod.GET)
+	public String policy(Locale locale, Model model) throws Exception {
+		return "policy";
+	}
+	
+	@RequestMapping(value = "/organizition", method = RequestMethod.GET)
+	public String organizition(Locale locale, Model model) throws Exception {
+		return "organizition";
+	}
+	
+	@RequestMapping(value = "/status_report", method = RequestMethod.GET)
+	public String status_report(Locale locale, Model model) throws Exception {
+		return "status_report";
+	}
+	
+	@RequestMapping(value = "/update_report", method = RequestMethod.GET)
+	public String update_report(Locale locale, Model model) throws Exception {
+		return "update_report";
+	}
+	
 }
