@@ -86,9 +86,9 @@ public class HomeController {
 		return "policy";
 	}
 	
-	@RequestMapping(value = "/organizition", method = RequestMethod.GET)
-	public String organizition(Locale locale, Model model) throws Exception {
-		return "organizition";
+	@RequestMapping(value = "/organization", method = RequestMethod.GET)
+	public String organization(Locale locale, Model model) throws Exception {
+		return "organization";
 	}
 	
 	@RequestMapping(value = "/status_report", method = RequestMethod.GET)

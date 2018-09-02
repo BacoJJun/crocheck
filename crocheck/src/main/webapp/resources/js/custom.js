@@ -1811,7 +1811,7 @@ function init_daterangepicker() {
 	// console.log('init_daterangepicker');
 
 	var cb = function(start, end, label) {
-		// console.log(start.toISOString(), end.toISOString(), label);
+		 console.log(start.toISOString(), end.toISOString(), label);
 		$('#reportrange span').html(
 				start.format('YYYY-MM-DD') + ' - '
 						+ end.format('YYYY-MM-DD'));
@@ -1871,9 +1871,9 @@ function init_daterangepicker() {
 		// console.log("hide event fired");
 	});
 	$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-		// console.log("apply event fired, start/end dates are " +
-		// picker.startDate.format('MMMM D, YYYY') + " to " +
-		// picker.endDate.format('MMMM D, YYYY'));
+//		 console.log("apply event fired, start/end dates are " +
+//		 picker.startDate.format('MMMM D, YYYY') + " to " +
+//		 picker.endDate.format('MMMM D, YYYY'));
 	});
 	$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
 		// console.log("cancel event fired");
@@ -1900,15 +1900,15 @@ function init_daterangepicker_right() {
 	var cb = function(start, end, label) {
 		// console.log(start.toISOString(), end.toISOString(), label);
 		$('#reportrange_right span').html(
-				start.format('MMMM D, YYYY') + ' - '
-						+ end.format('MMMM D, YYYY'));
+				start.format('YYYY-MM-DD') + ' - '
+						+ end.format('YYYY-MM-DD'));
 	};
 
 	var optionSet1 = {
 		startDate : moment().subtract(29, 'days'),
 		endDate : moment(),
-		minDate : '01/01/2012',
-		maxDate : '12/31/2020',
+		minDate : '01/01/2018',
+		maxDate : '12/31/2023',
 		dateLimit : {
 			days : 60
 		},
@@ -1931,7 +1931,7 @@ function init_daterangepicker_right() {
 		buttonClasses : [ 'btn btn-default' ],
 		applyClass : 'btn-small btn-primary',
 		cancelClass : 'btn-small',
-		format : 'MM/DD/YYYY',
+		format : 'YYYY-MM-DD',
 		separator : ' to ',
 		locale : {
 			applyLabel : 'Submit',
@@ -1948,8 +1948,8 @@ function init_daterangepicker_right() {
 	};
 
 	$('#reportrange_right span').html(
-			moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - '
-					+ moment().format('MMMM D, YYYY'));
+			moment().subtract(29, 'days').format('YYYY-MM-DD') + ' - '
+					+ moment().format('YYYY-MM-DD'));
 
 	$('#reportrange_right').daterangepicker(optionSet1, cb);
 

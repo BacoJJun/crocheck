@@ -22,7 +22,7 @@
 					<li><a href="/crocheck/dhcppolicy">DHCP</a></li>
 					<li><a href="/crocheck/policy">POLICY</a></li>
 				</ul></li>
-			<li><a><i class="fa fa-sitemap"></i> Organiziton<span
+			<li><a><i class="fa fa-sitemap"></i>Organiziton<span
 					class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
 					<li><a href="/crocheck/organization">ORGANIZATION SETTING</a></li>
