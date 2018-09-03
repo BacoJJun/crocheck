@@ -1,19 +1,42 @@
+var date_start  = '';
+var date_end = '';
+var limitCount = '';
+
 $(document).ready(function() {
-	$("#check_dns_domain_div").click = function() {
-		console.log("Test_div");
-	};
-	$("#check_dns_domain_label").click = function() {
-		console.log("Test_label");
-	};
-	$("#check_dns_domain_checkbox").click = function() {
-		console.log("Test_check");
-	};
+
 	base_view();
+	test_ajax();
 	check_list();
 });
 function check_list() {
 	console.log("check_list_start");
-
+}
+function test_ajax(){
+	console.log("ajax_test start");
+	$.ajax({
+		url : '/crocheck/dnsDomainCount'
+			, type : 'post'
+			,data : {
+				table_name :  "dns_stat_1month_distinct",
+				date_start : "2018-08-01",
+				date_end :  "2018-08-31",
+				limitCount : "100"
+			}
+			, dataType : 'json'
+			, async : false
+			, success : function(result){
+					if(result.result == 'success'){
+						console.log(result.dnsDomainCountList);
+						console.log(result.dnsDomainCountList.length);				
+					}else{
+						alert(result.errorMsg);
+					}
+			}
+			, error : function(request){
+				alert('error!'); 
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+			}
+	});
 }
 function base_view() {
 

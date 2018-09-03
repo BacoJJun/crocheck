@@ -60,42 +60,64 @@
 								<div class="x_content">
 
 									<!-- organization list -->
-									
+									<div class="col-md-2 col-sm-12 col-xs-12">
+										<div class="panel-body">
+											<div class="x_title"> 
+												<h2 class="text-right"><small><a href="#" class="btn btn-info btn-xs"><i
+															class="fa fa-pencil"></i> </a><a href="#" class="btn btn-success btn-xs"><i class="fa fa-plus"></i></a></small></h2>
+											</div>
+											<div class="clearfix"></div>
+											<ul class="treeview">
+												<li><a href="#">휴먼스타 </a>
+													<ul>
+														<li><a href="#">본사 </a>
+															<ul>
+																<li><a href="#">경영지원팀 </a></li>
+																<li><a href="#">인프라운영팀 </a></li>
+																<li><a href="#">개발연구소 </a></li>
+															</ul></li>
+														<li><a href="#">메뉴 테스트  </a></li>
+													</ul></li>
+											</ul>
+											<!-- TREEVIEW CODE -->
+										</div>
+									</div>
 									<!-- organization list end -->
 									<!-- start project list -->
-									<table id="datatable-responsive"
-										class="table table-striped table-bordered dt-responsive nowrap"
-										cellspacing="0" width="100%">
-										<thead>
-											<tr>
-												<th style="width: 2%">#</th>
-												<th style="width: 20%">부서</th>
-												<th>직급</th>
-												<th>이름</th>
-												<th>IP</th>
-												<th>인적사항</th>
-												<th style="width: 15%">수정</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>휴먼스타/개발연구소
-												</td>
-												<td>주임</td>
-												<td>이준석</td>
-												<td>192.168.0.78</td>
-												<td><i class="fa fa-phone"></i> 02-XXXX-XXXX <br> <i
-													class="fa fa-mobile-phone"></i> 010-XXXX-XXXX<br> <i
-													class="fa fa-envelope-o"></i> jslee@humanstar.co.kr</td>
-												<td><a href="#" class="btn btn-info btn-xs"><i
-														class="fa fa-pencil"></i> Edit </a> <a href="#"
-													class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
-														Delete </a></td>
-											</tr>
+									<div class="col-md-10 col-sm-12 col-xs-12">
+										<table id="datatable-responsive"
+											class="table table-striped table-bordered dt-responsive nowrap"
+											cellspacing="0" width="100%">
+											<thead>
+												<tr>
+													<th style="width: 2%">#</th>
+													<th style="width: 20%">부서</th>
+													<th>직급</th>
+													<th>이름</th>
+													<th>IP</th>
+													<th>인적사항</th>
+													<th style="width: 15%">수정</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td>휴먼스타/개발연구소</td>
+													<td>주임</td>
+													<td>이준석</td>
+													<td>192.168.0.78</td>
+													<td><i class="fa fa-phone"></i> 02-XXXX-XXXX <br>
+														<i class="fa fa-mobile-phone"></i> 010-XXXX-XXXX<br>
+														<i class="fa fa-envelope-o"></i> jslee@humanstar.co.kr</td>
+													<td><a href="#" class="btn btn-info btn-xs"><i
+															class="fa fa-pencil"></i> Edit </a> <a href="#"
+														class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
+															Delete </a></td>
+												</tr>
 
-										</tbody>
-									</table>
+											</tbody>
+										</table>
+									</div>
 									<!-- end project list -->
 
 
@@ -150,7 +172,7 @@
 	<script src="js/echarts.min.js"></script>
 
 	<!-- Custom Theme Scripts -->
-
+	<script src="js/organization_menu.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>

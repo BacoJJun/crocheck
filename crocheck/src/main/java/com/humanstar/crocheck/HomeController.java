@@ -101,4 +101,18 @@ public class HomeController {
 		return "update_report";
 	}
 	
+	@RequestMapping(value = "/alert_notice", method = RequestMethod.GET)
+	public String alert_notice(Locale locale, Model model) throws Exception {
+		return "alert_notice";
+	}
+	
+	@RequestMapping(value = "/setting", method = RequestMethod.GET)
+	public String setting(Locale locale, Model model) throws Exception {
+		return "setting";
+	}
+	
+	@RequestMapping(value = "/guide", method = RequestMethod.GET)
+	public String guide(Locale locale, Model model) throws Exception {
+		return "guide";
+	}
 }

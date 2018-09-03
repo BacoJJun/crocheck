@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="reportDns">
+	<select id="domainCount" parameterType="HashMap"
+		resultType="com.humanstar.crocheck.model.report.dto.dnsDomainCountVO">
+		SELECT
+		domain,
+		sum(count) as count,
+		TRUNC( sum(count) * 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		${table_name}
+		<where>
+			<if test="date_start != null">
+				created_at BETWEEN date_trunc('second',(
+				#{date_start}::TIMESTAMP WITHOUT TIME
+				ZONE))
+			</if>
+			<if test="date_end != null">
+				AND
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE))
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1
+		) as percentage
+		FROM
+		${table_name}
+		<where>
+			<if test="date_start != null">
+				created_at BETWEEN date_trunc('second',(
+				#{date_start}::TIMESTAMP WITHOUT TIME
+				ZONE))
+			</if>
+			<if test="date_end != null">
+				AND
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE))
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC
+		<if test="limitCount != null"> LIMIT #{limitCount}</if>
+	</select>
+	
+		<select id="srcCount" parameterType="HashMap"
+		resultType="com.humanstar.crocheck.model.report.dto.dnsSrcCountVO">
+		SELECT
+		src_ip,
+		sum(count) as count,
+		TRUNC( sum(count) * 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		${table_name}
+		<where>
+			<if test="date_start != null">
+				created_at BETWEEN date_trunc('second',(
+				#{date_start}::TIMESTAMP WITHOUT TIME
+				ZONE))
+			</if>
+			<if test="date_end != null">
+				AND
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE))
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1
+		) as percentage
+		FROM
+		${table_name}
+		<where>
+			<if test="date_start != null">
+				created_at BETWEEN date_trunc('second',(
+				#{date_start}::TIMESTAMP WITHOUT TIME
+				ZONE))
+			</if>
+			<if test="date_end != null">
+				AND
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE))
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC
+		<if test="limitCount != null"> LIMIT #{limitCount}</if>
+	</select>
+</mapper>
