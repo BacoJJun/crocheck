@@ -8,8 +8,9 @@ $(document)
 					linechartdns();
 					linechartapp();
 					toplist();
-					init_dns_bar()
-					init_ddos_bar()
+					init_dns_bar();
+					init_ddos_bar();
+					lastDate();
 
 					$('#search_stat')
 							.click(
@@ -33,6 +34,27 @@ $(document)
 										}
 									})
 				});
+
+function lastDate(){
+	
+	$.ajax({
+		url : '/crocheck/statLastApp'
+			, type : 'post'
+			, dataType : 'json'
+			, async : false
+			, success : function(result){
+					if(result.result == 'success'){
+						console.log(result.lastApplist);
+					}else{
+						alert(result.errorMsg);
+					}
+			}
+			, error : function(request){
+				alert('error!'); 
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+			}
+	});
+}
 function toplist() {
 	if ($('#topListquery').length) {
 
@@ -530,7 +552,7 @@ function init_dns_bar() {
 			} ],
 			yAxis : [ {
 				type : 'category',
-				data : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May']
+				data : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May' ]
 			} ],
 			series : [ {
 				name : '2015',

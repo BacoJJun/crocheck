@@ -17,18 +17,27 @@
 		created_at desc
 		limit 1)
 	</select>
+	<!-- <select id="ddosstat" resultType="com.humanstar.crocheck.model.dashboard.dto.dnsStatVO"> 
+		(select sum(count) as totalcount from ddos_stat_10sec_all where created_at>=current_date) 
+		union all (select sum(count) as totalcount from ddos_stat_10sec_all where 
+		created_at>=(now() - interval '1 hour' )) union all (select count as totalcount 
+		from ddos_stat_10sec_all order by created_at desc limit 1) </select> -->
 	<select id="ddosstat"
 		resultType="com.humanstar.crocheck.model.dashboard.dto.dnsStatVO">
-		(select sum(count) as totalcount from ddos_stat_10sec_all
-		where created_at>=current_date)
+		(SELECT count as totalcount  FROM (SELECT SUM(count)
+		AS count, DATE_TRUNC('min', created_at) AS cr_at
+		FROM ddos_stat_10sec_all WHERE created_at > now() - interval '1 min' GROUP
+		BY cr_at ORDER BY cr_at desc limit 1) AS ddos)
 		union all
-		(select sum(count) as
-		totalcount from ddos_stat_10sec_all where created_at>=(now() -
-		interval '1 hour' ))
+		(SELECT count as totalcount  FROM (SELECT SUM(count) AS
+		count, DATE_TRUNC('hour', created_at) AS cr_at
+		FROM ddos_stat_10sec_all WHERE created_at > now() - interval '1 hour'
+		GROUP BY cr_at ORDER BY cr_at desc limit 1) AS ddos)
 		union all
-		(select count as totalcount from
-		ddos_stat_10sec_all order by created_at
-		desc limit 1)
+		(SELECT count as totalcount FROM (SELECT SUM(count) AS count,
+		DATE_TRUNC('day', created_at) AS cr_at
+		FROM ddos_stat_10sec_all WHERE created_at > now() - interval '1 day' GROUP
+		BY cr_at ORDER BY cr_at desc limit 1) AS ddos);
 	</select>
 	<select id="dnsnowlist"
 		resultType="com.humanstar.crocheck.model.status.dto.dnsListVO">
@@ -52,7 +61,8 @@
 		org ON dns.src_ip =
 		host(org.ip)::varchar
 	</select>
-	<select id="searchdns" 	resultType="com.humanstar.crocheck.model.status.dto.dnsListVO">
+	<select id="searchdns"
+		resultType="com.humanstar.crocheck.model.status.dto.dnsListVO">
 		SELECT dns.type, dns.src_ip, dns.domain, dns.count,
 		dns.server_ip,
 		date_trunc('second',(dns.created_at::TIMESTAMP WITHOUT
@@ -65,18 +75,20 @@
 		dns_query_status
 		<where>
 			<if test="date_start != null">
-				created_at >= date_trunc('second',( #{date_start}::TIMESTAMP WITHOUT
-		TIME ZONE))
+				created_at >= date_trunc('second',(
+				#{date_start}::TIMESTAMP WITHOUT
+				TIME ZONE))
 			</if>
 			<if test="date_end != null">
 				AND
 				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
-		TIME ZONE)) > created_at
+				TIME ZONE)) > created_at
 			</if>
 		</where>
 		order by
 		created_at asc limit 100) dns
-		LEFT OUTER JOIN organization_members org
+		LEFT OUTER JOIN
+		organization_members org
 		ON
 		dns.src_ip =
 		host(org.ip)::varchar

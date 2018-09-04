@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="querystatus">
+	<select id="lastdnsdomain">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		dns_query_status WHERE ( created_at >= now() - interval '10 min')
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM dns_query_status WHERE ( created_at >= now() - interval '10 min')
+		GROUP BY domain ORDER BY count DESC LIMIT 100;
+	</select>
+	<select id="lastddosdomain">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		ddos_block_status WHERE ( created_at >= now() - interval '10 min')
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM ddos_block_status WHERE ( created_at >= now() - interval '10
+		min') GROUP BY domain ORDER BY count DESC LIMIT 100;
+	</select>
+	<select id="lastdnssrc">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		dns_query_status WHERE ( created_at >= now() - interval '10 min')
+		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM dns_query_status WHERE ( created_at >= now() - interval '10 min')
+		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
+	</select>
+	<select id="lastddossrc">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		ddos_block_status WHERE ( created_at >= now() - interval '10 min')
+		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM ddos_block_status WHERE ( created_at >= now() - interval '10
+		min') GROUP BY src_ip ORDER BY count DESC LIMIT 100;
+	</select>
+	<select id="mindnsdomain">
+	</select>
+	<select id="minddosdomain">
+	</select>
+	<select id="mindnssrc">
+	</select>
+	<select id="minddossrc">
+	</select>
+	<select id="hourdnsdomain">
+	</select>
+	<select id="hourddosdomain">
+	</select>
+	<select id="hourdnssrc">
+	</select>
+	<select id="hourddossrc">
+	</select>
+	<select id="daydomain">
+	</select>
+	<select id="dayddosdomain">
+	</select>
+	<select id="daydnssrc">
+	</select>
+	<select id="dayddossrc">
+	</select>
+</mapper>

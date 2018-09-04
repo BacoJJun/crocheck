@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="statPacket">
+	<select id="lastdns" resultType="com.humanstar.crocheck.model.statistics.dto.statPacketVO">
+	SELECT count, cr_at AS created_at  FROM (SELECT SUM(count) AS count, DATE_TRUNC('min', created_at) AS cr_at  FROM dns_stat_10sec_all  WHERE created_at >= now() - interval '10 min'  GROUP BY cr_at  ORDER BY cr_at ASC) AS dns;
+	
+	</select>
+	<select id="lastddos" resultType="com.humanstar.crocheck.model.statistics.dto.statPacketVO">
+	SELECT count, cr_at AS created_at FROM (SELECT SUM(count) AS count, DATE_TRUNC('min', created_at) AS cr_at  FROM ddos_stat_10sec_all  WHERE created_at >= now() - interval '10 min'  GROUP BY cr_at  ORDER BY cr_at ASC) AS ddos;
+	
+	</select>
+	<select id="mindns">
+	</select>
+	<select id="minddos">
+	</select>
+	<select id="hourdns">
+	</select>
+	<select id="hourddos">
+	</select>
+	<select id="daysdns">
+	</select>
+	<select id="daysddos">
+	</select>
+</mapper>
