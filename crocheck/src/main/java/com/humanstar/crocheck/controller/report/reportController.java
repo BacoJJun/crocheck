@@ -47,9 +47,7 @@ public class reportController {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<dnsDomainCountVO> dnsDomainCountList = new ArrayList<dnsDomainCountVO>();
-		logger.info(vo.getDate_start());
-		logger.info(vo.getTable_name());
-		logger.info(vo.getDate_end());
+
 
 		try {
 			dnsDomainCountList = dnsDomainCountService.dnsDomainCountList(vo);
@@ -72,9 +70,7 @@ public class reportController {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<dnsSrcCountVO> dnsSrcCountList = new ArrayList<dnsSrcCountVO>();
-		logger.info(vo.getDate_start());
-		logger.info(vo.getTable_name());
-		logger.info(vo.getDate_end());
+
 
 		try {
 			dnsSrcCountList = dnsSrcCountService.dnsSrcCountList(vo);
