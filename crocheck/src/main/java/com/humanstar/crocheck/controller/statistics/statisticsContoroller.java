@@ -10,14 +10,17 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.humanstar.crocheck.model.searchtype.dto.searchTypeVO;
 import com.humanstar.crocheck.model.statistics.dto.domainQueryVO;
 import com.humanstar.crocheck.model.statistics.dto.srcQueryVO;
 import com.humanstar.crocheck.model.statistics.dto.statApplianceVO;
 import com.humanstar.crocheck.model.statistics.dto.statPacketVO;
+import com.humanstar.crocheck.model.status.dto.dnsListVO;
 import com.humanstar.crocheck.service.statistics.statisticsServiceImpl;
 
 @Controller
@@ -42,6 +45,50 @@ public class statisticsContoroller {
 
 		try {
 			lastApplist = statisticsService.lastApplianceStat();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("lastApplist", lastApplist);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/searchMinApp", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> searchMinApp(@ModelAttribute searchTypeVO vo) throws Exception {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<statApplianceVO> lastApplist = new ArrayList<statApplianceVO>();
+
+		try {
+			lastApplist = statisticsService.searchMinApplianceStat(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("lastApplist", lastApplist);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/searchHourApp", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> searchHourApp(@ModelAttribute searchTypeVO vo) throws Exception {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<statApplianceVO> lastApplist = new ArrayList<statApplianceVO>();
+
+		try {
+			lastApplist = statisticsService.searchHourApplianceStat(vo);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {

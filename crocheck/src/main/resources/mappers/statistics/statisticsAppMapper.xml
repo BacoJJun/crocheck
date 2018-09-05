@@ -3,20 +3,71 @@
 
 <!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
 <mapper namespace="statApp">
-	<select id="last" resultType="com.humanstar.crocheck.model.statistics.dto.statApplianceVO">
-		SELECT 
-		max(cpu_total_pct) as cpu_pct, 
+	<select id="last"
+		resultType="com.humanstar.crocheck.model.statistics.dto.statApplianceVO">
+		SELECT
+		max(cpu_total_pct) as cpu_pct,
+		max(mem_use_pct) as
+		mem_pct,
+		max(disk_vol1_usage_pct) as disk_vol1_pct,
+		to_char(date_trunc('min',hhmmss), 'hh24:mi') as hhmmss
+		FROM
+		tb_usage_system_1min
+		WHERE hhmmss >= now() - interval '10 min'
+		GROUP BY
+		date_trunc('min', hhmmss)
+		ORDER BY date_trunc('min', hhmmss) ASC;
+	</select>
+
+	<select id="min"
+		resultType="com.humanstar.crocheck.model.statistics.dto.statApplianceVO">
+		SELECT
+		max(cpu_total_pct) as cpu_pct,
+		max(mem_use_pct) as
+		mem_pct,
+		max(disk_vol1_usage_pct) as disk_vol1_pct,
+		to_char(date_trunc('min', hhmmss), 'dd hh24 mi') as ct_at
+		FROM
+		tb_usage_system_1min
+		<where>
+			<if test="date_start != null">
+				hhmmss >= date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and 
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > hhmmss
+			</if>
+		</where>
+		GROUP BY date_trunc('min', hhmmss) ORDER
+		BY date_trunc('min', hhmmss)
+		asc;
+	</select>
+
+	<select id="hour">
+		SELECT
+		max(cpu_total_pct) as cpu_pct,
 		max(mem_use_pct) as mem_pct,
 		max(disk_vol1_usage_pct) as disk_vol1_pct,
-		to_char(date_trunc('min',hhmmss), 'hh24:mi') as hhmmss 
-		FROM tb_usage_system_1min 
-		WHERE hhmmss >= now() - interval '10 min' 
-		GROUP BY date_trunc('min', hhmmss) 
-		ORDER BY  date_trunc('min', hhmmss)  ASC;
-	</select>
-	<select id="min">
-	</select>
-	<select id="hour">
+		to_char(date_trunc('hour', hhmmss), 'dd hh24:mi') as ct_at
+		FROM
+		tb_usage_system_1min
+		<where>
+			<if test="date_start != null">
+				hhmmss >= date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and 
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > hhmmss
+			</if>
+		</where>
+		GROUP BY date_trunc('hour', hhmmss)
+		ORDER BY date_trunc('hour', hhmmss)
+		asc;
+
 	</select>
 	<select id="days">
 	</select>

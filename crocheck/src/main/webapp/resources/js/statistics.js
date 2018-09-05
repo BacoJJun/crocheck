@@ -1,5 +1,3 @@
-var date_start = '';
-var date_end = '';
 
 $(document)
 		.ready(
@@ -13,11 +11,11 @@ $(document)
 										if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'last_min') {
-											console.log('last');
+												init_startAjax();
 										} else if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'min') {
-											console.log('min');
+												init_minAjax();
 										} else if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'hour') {
@@ -132,7 +130,6 @@ function lastDatednsSrc() {
 		success : function(result) {
 			if (result.result == 'success') {
 				init_dnssrc_progress(result.lastdnssrcList);
-				console.log(result.lastdnssrcList);
 			} else {
 				alert(result.errorMsg);
 			}
@@ -192,6 +189,40 @@ function lastDateApp() {
 		}
 	});
 }
+
+function searchMinApp(start_date, end_date) {
+	var appCpu = [];
+	var appMem = [];
+	var appDate = [];
+	$.ajax({
+		url : '/crocheck/searchMinApp',
+		data : {
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				console.log(result.lastApplist);
+				for (var i = 0; i < result.lastApplist.length; i++) {
+					appCpu[i] = result.lastApplist[i].cpu_pct;
+					appMem[i] = result.lastApplist[i].mem_pct;
+					appDate[i] = result.lastApplist[i].hhmmss;
+				}
+				linechartapp(appCpu, appMem, appDate);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
 function init_startAjax() {
 	lastDateApp();
 	lastDatePacket();
@@ -199,6 +230,15 @@ function init_startAjax() {
 	lastDateddosDomain();
 	lastDatednsSrc();
 	lastDateddosSrc();
+}
+function init_minAjax(){
+	var arrDate = $("#reservation-time").val().split("-");
+	var start_date = arrDate[0];
+	var end_date = arrDate[1];
+	
+	console.log(start_date + " / " + end_date);
+	searchMinApp(start_date, end_date);
+	
 }
 function toplist(dns_data, dns_date, ddos_data, ddos_date) {
 	var maxDDosValue = '0';
@@ -579,6 +619,8 @@ function linechartapp(appCpu, appMem, appDate) {
 					data : mem_data,
 				} ]
 			},
+			responsive : true,
+			maintainAspectRatio : false,
 		});
 	}
 
@@ -655,8 +697,7 @@ function init_dns_doughnut(data) {
 		domain_html += "<td><i class='fa fa-square " + donut_color[i]
 				+ "'></i></td>"
 		domain_html += "<td>" + domain_data[i] + "</td>";
-		domain_html += "<td>" + count_data[i] + "(" + per_data[i].toFixed(1)
-				+ "%)</td>";
+//		domain_html += "<td>" + count_data[i] + "(" + per_data[i].toFixed(1)+ "%)</td>";
 		domain_html += "</tr>";
 	}
 	show_dns_domain.innerHTML = domain_html;
@@ -733,8 +774,7 @@ function init_ddos_doughnut(data) {
 		domain_html += "<td><i class='fa fa-square " + donut_color[i]
 				+ "'></i></td>"
 		domain_html += "<td>" + domain_data[i] + "</td>";
-		domain_html += "<td>" + count_data[i] + "(" + per_data[i].toFixed(1)
-				+ "%)</td>";
+//		domain_html += "<td>" + count_data[i] + "(" + per_data[i].toFixed(1)+ "%)</td>";
 		domain_html += "</tr>";
 	}
 	show_ddos_domain.innerHTML = domain_html;
@@ -745,7 +785,7 @@ function init_dnssrc_progress(data) {
 	var per_data = [];
 	var max_value = 5;
 	var i = 0;
-	console.log(data);
+	
 	if (data.length <= max_value) {
 		max_value = data.length;
 		for (; i < max_value; i++) {
@@ -767,7 +807,7 @@ function init_dnssrc_progress(data) {
 			per_data[max_value] = per_data[max_value] + data[i].percentage;
 		}
 	}
-	console.log(per_data);
+
 	var show_dns_src = document.getElementById("dnsQuerySrcList");
 	var domain_html = '';
 	for (i = 0; i < max_value; i++) {

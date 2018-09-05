@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.humanstar.crocheck.model.searchtype.dto.searchTypeVO;
 import com.humanstar.crocheck.model.status.dao.dnsListDAOImpl;
 import com.humanstar.crocheck.model.status.dto.dnsListVO;
 
@@ -22,7 +23,7 @@ public class dnsListServiceImpl implements dnsListService{
 	}
 
 	@Override
-	public List<dnsListVO> dnsSearchList(dnsListVO vo) throws Exception {
+	public List<dnsListVO> dnsSearchList(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return dnsListDAO.dnsSearchList(vo);
 	}

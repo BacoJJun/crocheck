@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.humanstar.crocheck.model.searchtype.dto.searchTypeVO;
 import com.humanstar.crocheck.model.statistics.dao.statisticsAppDAOImpl;
 import com.humanstar.crocheck.model.statistics.dao.statisticsPacketDAOImpl;
 import com.humanstar.crocheck.model.statistics.dao.statisticsQueryStatDAOImpl;
@@ -58,6 +59,16 @@ public class statisticsServiceImpl implements statisticsService{
 	public List<srcQueryVO> lastDDosSrc() throws Exception {
 		// TODO Auto-generated method stub
 		return statisticsQueryStatDAO.lastDDosSrc();
+	}
+	@Override
+	public List<statApplianceVO> searchMinApplianceStat(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsAppDAO.searchMinApplianceStat(vo);
+	}
+	@Override
+	public List<statApplianceVO> searchHourApplianceStat(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsAppDAO.searchHourApplianceStat(vo);
 	}
 	
 	

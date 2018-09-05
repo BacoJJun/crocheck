@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.humanstar.crocheck.model.searchtype.dto.searchTypeVO;
 import com.humanstar.crocheck.model.status.dto.dnsListVO;
 import com.humanstar.crocheck.service.status.dnsListServiceImpl;
 
@@ -66,7 +67,7 @@ public class statusController {
 	
 	@RequestMapping(value = "/dnsSearchList", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> dnsSearchList(@ModelAttribute dnsListVO vo) throws Exception {
+	public Map<String, Object> dnsSearchList(@ModelAttribute searchTypeVO vo) throws Exception {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<dnsListVO> dnssearchlist = new ArrayList<dnsListVO>();
