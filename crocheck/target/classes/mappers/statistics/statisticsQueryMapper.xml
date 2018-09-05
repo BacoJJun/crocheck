@@ -3,7 +3,7 @@
 
 <!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
 <mapper namespace="querystatus">
-	<select id="lastdnsdomain">
+	<select id="lastdnsdomain" resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
 		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
 		sum(total.count) from (SELECT sum(count) as count FROM
 		dns_query_status WHERE ( created_at >= now() - interval '10 min')
@@ -11,7 +11,7 @@
 		FROM dns_query_status WHERE ( created_at >= now() - interval '10 min')
 		GROUP BY domain ORDER BY count DESC LIMIT 100;
 	</select>
-	<select id="lastddosdomain">
+	<select id="lastddosdomain"  resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
 		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
 		sum(total.count) from (SELECT sum(count) as count FROM
 		ddos_block_status WHERE ( created_at >= now() - interval '10 min')
@@ -19,7 +19,7 @@
 		FROM ddos_block_status WHERE ( created_at >= now() - interval '10
 		min') GROUP BY domain ORDER BY count DESC LIMIT 100;
 	</select>
-	<select id="lastdnssrc">
+	<select id="lastdnssrc"  resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
 		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
 		sum(total.count) from (SELECT sum(count) as count FROM
 		dns_query_status WHERE ( created_at >= now() - interval '10 min')
@@ -27,7 +27,7 @@
 		FROM dns_query_status WHERE ( created_at >= now() - interval '10 min')
 		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
 	</select>
-	<select id="lastddossrc">
+	<select id="lastddossrc"  resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
 		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
 		sum(total.count) from (SELECT sum(count) as count FROM
 		ddos_block_status WHERE ( created_at >= now() - interval '10 min')

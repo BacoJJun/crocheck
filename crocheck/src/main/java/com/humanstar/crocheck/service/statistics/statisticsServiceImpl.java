@@ -19,7 +19,9 @@ public class statisticsServiceImpl implements statisticsService{
 
 	@Inject
 	statisticsAppDAOImpl statisticsAppDAO;
+	@Inject
 	statisticsPacketDAOImpl statisticsPacketDAO;
+	@Inject
 	statisticsQueryStatDAOImpl statisticsQueryStatDAO;
 	
 	@Override

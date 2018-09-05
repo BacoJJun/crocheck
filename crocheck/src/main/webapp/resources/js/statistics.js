@@ -5,12 +5,7 @@ $(document)
 		.ready(
 				function() {
 					$("#reservation-time").value = new Date();
-					linechartdns();
-					linechartapp();
-					toplist();
-					init_dns_bar();
-					init_ddos_bar();
-					lastDate();
+					init_startAjax();
 
 					$('#search_stat')
 							.click(
@@ -35,27 +30,212 @@ $(document)
 									})
 				});
 
-function lastDate(){
-	
+function lastDatePacket() {
+	var dns_data = [];
+	var dns_date = [];
+
 	$.ajax({
-		url : '/crocheck/statLastApp'
-			, type : 'post'
-			, dataType : 'json'
-			, async : false
-			, success : function(result){
-					if(result.result == 'success'){
-						console.log(result.lastApplist);
-					}else{
-						alert(result.errorMsg);
-					}
+		url : '/crocheck/statLastPacketDns',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				for (var i = 0; i < result.lastPacketDnsList.length; i++) {
+					dns_data[i] = result.lastPacketDnsList[i].count;
+					dns_date[i] = result.lastPacketDnsList[i].created_at;
+				}
+			} else {
+				alert(result.errorMsg);
 			}
-			, error : function(request){
-				alert('error!'); 
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	var ddos_data = [];
+	var ddos_date = [];
+
+	$.ajax({
+		url : '/crocheck/statLastPacketDDos',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				for (var i = 0; i < result.lastPacketDDosList.length; i++) {
+					ddos_data[i] = result.lastPacketDDosList[i].count;
+					ddos_date[i] = result.lastPacketDDosList[i].created_at;
+				}
+			} else {
+				alert(result.errorMsg);
 			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	linechartdns(dns_data, dns_date, ddos_data, ddos_date);
+	toplist(dns_data, dns_date, ddos_data, ddos_date);
+}
+
+function lastDatednsDomain() {
+	$.ajax({
+		url : '/crocheck/statlastdnsdomain',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				init_dns_doughnut(result.lastdnsdomainList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
 	});
 }
-function toplist() {
+function lastDateddosDomain() {
+	$.ajax({
+		url : '/crocheck/statlastddosdomain',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				init_ddos_doughnut(result.lastddosdomainList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+function lastDatednsSrc() {
+	$.ajax({
+		url : '/crocheck/statlastdnssrc',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				init_dnssrc_progress(result.lastdnssrcList);
+				console.log(result.lastdnssrcList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+function lastDateddosSrc() {
+	$.ajax({
+		url : '/crocheck/statlastddossrc',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				init_ddossrc_progress(result.lastddossrcList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+function lastDateApp() {
+	var appCpu = [];
+	var appMem = [];
+	var appDate = [];
+	$.ajax({
+		url : '/crocheck/statLastApp',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				for (var i = 0; i < result.lastApplist.length; i++) {
+					appCpu[i] = result.lastApplist[i].cpu_pct;
+					appMem[i] = result.lastApplist[i].mem_pct;
+					appDate[i] = result.lastApplist[i].hhmmss;
+				}
+				linechartapp(appCpu, appMem, appDate);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+function init_startAjax() {
+	lastDateApp();
+	lastDatePacket();
+	lastDatednsDomain();
+	lastDateddosDomain();
+	lastDatednsSrc();
+	lastDateddosSrc();
+}
+function toplist(dns_data, dns_date, ddos_data, ddos_date) {
+	var maxDDosValue = '0';
+	var maxDDosPoint = '0';
+	var startDDosPoint = '0';
+	var endDDosPoint = '0';
+
+	for (var i = 0; i < ddos_data.length; i++) {
+		if (ddos_data[i] > maxDDosValue) {
+			maxDDosValue = ddos_data[i];
+			maxDDosPoint = i;
+		}
+	}
+
+	startDDosPoint = maxDDosPoint - 4;
+	endDDosPoint = maxDDosPoint + 3;
+
+	if (maxDDosPoint < 4) {
+		startDDosPoint = 0;
+		endDDosPoint = 7;
+	}
+	if (maxDDosPoint + 3 > ddos_data.length) {
+		startDDosPoint = maxDDosPoint - (ddos_data.length - maxDDosPoint);
+		endDDosPoint = ddos_data.length;
+	}
+
+	var j = 0;
+	var dnslist = [];
+	var ddoslist = [];
+	var date = [];
+
+	for (var i = startDDosPoint; i < endDDosPoint; i++) {
+		dnslist[j] = dns_data[i];
+		ddoslist[j] = ddos_data[i];
+		date[j++] = ddos_date[i];
+	}
+
 	if ($('#topListquery').length) {
 
 		var echartBar = echarts.init(document.getElementById('topListquery'),
@@ -74,7 +254,7 @@ function toplist() {
 			calculable : false,
 			xAxis : [ {
 				type : 'category',
-				data : [ '1', '2', '3', '4', '5', '6', '7' ]
+				data : date
 			} ],
 			yAxis : [ {
 				type : 'value'
@@ -82,33 +262,33 @@ function toplist() {
 			series : [ {
 				name : 'dns',
 				type : 'bar',
-				data : [ 25.6, 76.7, 135.6, 162.2, 32.6, 162.2, 32.6 ],
+				data : dnslist,
 				markPoint : {
 					data : [ {
 						type : 'max',
-						name : '???'
+						name : 'maxDnsCount'
 					}, ]
 				},
 				markLine : {
 					data : [ {
 						type : 'average',
-						name : '???'
+						name : 'avg Dns'
 					} ]
 				}
 			}, {
 				name : 'ddos',
 				type : 'bar',
-				data : [ 26.4, 28.7, 70.7, 175.6, 182.2, 175.6, 182.2 ],
+				data : ddoslist,
 				markPoint : {
 					data : [ {
 						type : 'max',
-						name : '???'
+						name : 'maxDDosCount'
 					}, ]
 				},
 				markLine : {
 					data : [ {
 						type : 'average',
-						name : '???'
+						name : 'avg DDos'
 					} ]
 				}
 
@@ -117,27 +297,6 @@ function toplist() {
 
 	}
 }
-function init_daterangepicker_reservation() {
-
-	if (typeof ($.fn.daterangepicker) === 'undefined') {
-		return;
-	}
-	// console.log('init_daterangepicker_reservation');
-
-	$('#reservation').daterangepicker(null, function(start, end, label) {
-		// console.log(start.toISOString(), end.toISOString(), label);
-	});
-
-	$('#reservation-times').daterangepicker({
-		timePicker : true,
-		timePickerIncrement : 30,
-		locale : {
-			format : 'YYYY.MM.DD H:mm '
-		}
-	});
-
-}
-
 var theme = {
 	color : [ '#26B99A', '#34495E', '#BDC3C7', '#3498DB', '#9B59B6', '#8abb6f',
 			'#759c6a', '#bfd3b7' ],
@@ -352,112 +511,16 @@ var theme = {
 		fontFamily : 'Arial, Verdana, sans-serif'
 	}
 };
-function piechartddos() {
-	if ($('#echart_pie_ddos').length) {
-
-		var echartPie = echarts.init(
-				document.getElementById('echart_pie_ddos'), theme);
-
-		echartPie.setOption({
-			tooltip : {
-				trigger : 'item',
-				formatter : "{a} <br/>{b} : {c} ({d}%)"
-			},
-			legend : {
-				x : 'center',
-				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
-			},
-			toolbox : {
-				show : true,
-				feature : {
-					magicType : {
-						show : true,
-						type : [ 'pie', 'funnel' ],
-						option : {
-							funnel : {
-								x : '25%',
-								width : '50%',
-								funnelAlign : 'left',
-								max : 1548
-							}
-						}
-					},
-					restore : {
-						show : true,
-						title : "Restore"
-					},
-					saveAsImage : {
-						show : true,
-						title : "Save Image"
-					}
-				}
-			},
-			calculable : true,
-			series : [ {
-				name : '访问来源',
-				type : 'pie',
-				radius : '55%',
-				center : [ '50%', '48%' ],
-				data : [ {
-					value : 335,
-					name : 'Direct Access'
-				}, {
-					value : 310,
-					name : 'E-mail Marketing'
-				}, {
-					value : 234,
-					name : 'Union Ad'
-				}, {
-					value : 135,
-					name : 'Video Ads'
-				}, {
-					value : 1548,
-					name : 'Search Engine'
-				} ]
-			} ]
-		});
-
-		var dataStyle = {
-			normal : {
-				label : {
-					show : false
-				},
-				labelLine : {
-					show : false
-				}
-			}
-		};
-
-		var placeHolderStyle = {
-			normal : {
-				color : 'rgba(0,0,0,0)',
-				label : {
-					show : false
-				},
-				labelLine : {
-					show : false
-				}
-			},
-			emphasis : {
-				color : 'rgba(0,0,0,0)'
-			}
-		};
-
-	}
-}
-function linechartdns() {
+function linechartdns(dns_data, dns_date, ddos_data, ddos_date) {
 	if ($('#lineChart-dns').length) {
 
 		var ctx = document.getElementById("lineChart-dns");
 		var lineChart = new Chart(ctx, {
 			type : 'line',
 			data : {
-				labels : [ "January", "February", "March", "April", "May",
-						"June", "July" ],
+				labels : dns_date,
 				datasets : [ {
-					label : "My First dataset",
+					label : "DNS",
 					backgroundColor : "rgba(38, 185, 154, 0.31)",
 					borderColor : "rgba(38, 185, 154, 0.7)",
 					pointBorderColor : "rgba(38, 185, 154, 0.7)",
@@ -465,9 +528,9 @@ function linechartdns() {
 					pointHoverBackgroundColor : "#fff",
 					pointHoverBorderColor : "rgba(220,220,220,1)",
 					pointBorderWidth : 1,
-					data : [ 31, 74, 6, 39, 20, 85, 7 ]
+					data : dns_data
 				}, {
-					label : "My Second dataset",
+					label : "DDOS",
 					backgroundColor : "rgba(3, 88, 106, 0.3)",
 					borderColor : "rgba(3, 88, 106, 0.70)",
 					pointBorderColor : "rgba(3, 88, 106, 0.70)",
@@ -475,22 +538,25 @@ function linechartdns() {
 					pointHoverBackgroundColor : "#fff",
 					pointHoverBorderColor : "rgba(151,187,205,1)",
 					pointBorderWidth : 1,
-					data : [ 82, 23, 66, 9, 99, 4, 2 ]
+					data : ddos_data
 				} ]
 			},
 		});
 
 	}
 }
-function linechartapp() {
+function linechartapp(appCpu, appMem, appDate) {
+	var data = appDate;
+	var app_data = appCpu;
+	var mem_data = appMem;
+
 	if ($('#lineChart-app').length) {
 
 		var ctx = document.getElementById("lineChart-app");
 		var lineChart = new Chart(ctx, {
 			type : 'line',
 			data : {
-				labels : [ "January", "February", "March", "April", "May",
-						"June", "July" ],
+				labels : data,
 				datasets : [ {
 					label : "CPU",
 					backgroundColor : "rgba(50, 115, 154, 0.31)",
@@ -500,7 +566,7 @@ function linechartapp() {
 					pointHoverBackgroundColor : "#fff",
 					pointHoverBorderColor : "rgba(220,220,220,1)",
 					pointBorderWidth : 1,
-					data : [ 31, 74, 6, 39, 20, 85, 7 ]
+					data : app_data,
 				}, {
 					label : "MEMORY",
 					backgroundColor : "rgba(113, 88, 106, 0.3)",
@@ -510,61 +576,249 @@ function linechartapp() {
 					pointHoverBackgroundColor : "#fff",
 					pointHoverBorderColor : "rgba(151,187,205,1)",
 					pointBorderWidth : 1,
-					data : [ 82, 23, 66, 9, 99, 4, 2 ]
+					data : mem_data,
 				} ]
 			},
 		});
-
 	}
 
 }
-function init_dns_bar() {
-	if ($('#echart_dns_horizontal').length) {
+function init_dns_doughnut(data) {
 
-		var echartBar = echarts.init(document
-				.getElementById('echart_dns_horizontal'), theme);
+	var domain_data = [];
+	var count_data = [];
+	var per_data = [];
+	var max_value = 5;
+	var i = 0;
 
-		echartBar.setOption({
-			title : {
-				text : 'Bar Graph',
-				subtext : 'Graph subtitle'
-			},
-			tooltip : {
-				trigger : 'axis'
-			},
-			legend : {
-				x : 100,
-				data : [ '2015' ]
-			},
-			toolbox : {
-				show : true,
-				feature : {
-					saveAsImage : {
-						show : true,
-						title : "Save Image"
-					}
-				}
-			},
-			calculable : true,
-			xAxis : [ {
-				type : 'value',
-				boundaryGap : [ 0, 0.01 ]
-			} ],
-			yAxis : [ {
-				type : 'category',
-				data : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May' ]
-			} ],
-			series : [ {
-				name : '2015',
-				type : 'bar',
-				data : [ 18203, 23489, 29034, 104970, 131744 ]
-			} ]
-		});
-
+	if (data.length <= max_value) {
+		max_value = data.length;
+		for (; i < max_value; i++) {
+			domain_data[i] = data[i].domain;
+			count_data[i] = data[i].count;
+			per_data[i] = data[i].percentage;
+		}
+	} else {
+		for (; i < max_value; i++) {
+			domain_data[i] = data[i].domain;
+			count_data[i] = data[i].count;
+			per_data[i] = data[i].percentage;
+		}
+		count_data[max_value] = 0;
+		per_data[max_value] = 0;
+		domain_data[max_value] = "Others";
+		for (i = max_value; i < data.length; i++) {
+			count_data[max_value] = count_data[max_value] + data[i].count;
+			per_data[max_value] = per_data[max_value] + data[i].percentage;
+		}
+	}
+	if (typeof (Chart) === 'undefined') {
+		return;
 	}
 
+	if ($('#dnsDomainDoughnut').length) {
+
+		var chart_doughnut_settings = {
+			type : 'doughnut',
+			tooltipFillColor : "rgba(51, 51, 51, 0.55)",
+			data : {
+				labels : domain_data,
+				datasets : [ {
+					data : per_data,
+					backgroundColor : [ "#BDC3C7", "#9B59B6", "#E74C3C",
+							"#26B99A", "#3498DB" ],
+					hoverBackgroundColor : [ "#CFD4D8", "#B370CF", "#E95E4F",
+							"#36CAAB", "#49A9EA" ]
+				} ]
+			},
+			options : {
+				legend : false,
+				responsive : false
+			}
+		}
+
+		$('#dnsDomainDoughnut').each(
+				function() {
+
+					var chart_element = $(this);
+					var chart_doughnut = new Chart(chart_element,
+							chart_doughnut_settings);
+
+				});
+
+	}
+	var donut_color = [ "aero", "purple", "red", "green", "blue" ];
+	var show_dns_domain = document.getElementById("dnsQueryDomainList");
+	var domain_html = '';
+	for (i = 0; i < max_value + 1; i++) {
+		domain_html += "<tr>";
+		domain_html += "<td><i class='fa fa-square " + donut_color[i]
+				+ "'></i></td>"
+		domain_html += "<td>" + domain_data[i] + "</td>";
+		domain_html += "<td>" + count_data[i] + "(" + per_data[i].toFixed(1)
+				+ "%)</td>";
+		domain_html += "</tr>";
+	}
+	show_dns_domain.innerHTML = domain_html;
 }
-function init_ddos_bar() {
+function init_ddos_doughnut(data) {
+
+	var domain_data = [];
+	var count_data = [];
+	var per_data = [];
+	var max_value = 5;
+	var i = 0;
+
+	if (data.length <= max_value) {
+		max_value = data.length;
+		for (; i < max_value; i++) {
+			domain_data[i] = data[i].domain;
+			count_data[i] = data[i].count;
+			per_data[i] = data[i].percentage;
+		}
+	} else {
+		for (; i < max_value; i++) {
+			domain_data[i] = data[i].domain;
+			count_data[i] = data[i].count;
+			per_data[i] = data[i].percentage;
+		}
+		count_data[max_value] = 0;
+		per_data[max_value] = 0;
+		domain_data[max_value] = "Others";
+		for (i = max_value; i < data.length; i++) {
+			count_data[max_value] = count_data[max_value] + data[i].count;
+			per_data[max_value] = per_data[max_value] + data[i].percentage;
+		}
+	}
+	if (typeof (Chart) === 'undefined') {
+		return;
+	}
+
+	if ($('#ddosDomainDoughnut').length) {
+
+		var chart_doughnut_settings = {
+			type : 'doughnut',
+			tooltipFillColor : "rgba(51, 51, 51, 0.55)",
+			data : {
+				labels : domain_data,
+				datasets : [ {
+					data : per_data,
+					backgroundColor : [ "#BDC3C7", "#9B59B6", "#E74C3C",
+							"#26B99A", "#3498DB" ],
+					hoverBackgroundColor : [ "#CFD4D8", "#B370CF", "#E95E4F",
+							"#36CAAB", "#49A9EA" ]
+				} ]
+			},
+			options : {
+				legend : false,
+				responsive : false
+			}
+		}
+
+		$('#ddosDomainDoughnut').each(
+				function() {
+
+					var chart_element = $(this);
+					var chart_doughnut = new Chart(chart_element,
+							chart_doughnut_settings);
+
+				});
+
+	}
+	var donut_color = [ "aero", "purple", "red", "green", "blue" ];
+	var show_ddos_domain = document.getElementById("ddosQueryDomainList");
+	var domain_html = '';
+	for (i = 0; i < max_value + 1; i++) {
+		domain_html += "<tr>";
+		domain_html += "<td><i class='fa fa-square " + donut_color[i]
+				+ "'></i></td>"
+		domain_html += "<td>" + domain_data[i] + "</td>";
+		domain_html += "<td>" + count_data[i] + "(" + per_data[i].toFixed(1)
+				+ "%)</td>";
+		domain_html += "</tr>";
+	}
+	show_ddos_domain.innerHTML = domain_html;
 }
-function init_ddos_doughnut() {
+function init_dnssrc_progress(data) {
+	var src_data = [];
+	var count_data = [];
+	var per_data = [];
+	var max_value = 5;
+	var i = 0;
+	console.log(data);
+	if (data.length <= max_value) {
+		max_value = data.length;
+		for (; i < max_value; i++) {
+			src_data[i] = data[i].src_ip;
+			count_data[i] = data[i].count;
+			per_data[i] = data[i].percentage;
+		}
+	} else {
+		for (; i < max_value; i++) {
+			src_data[i] = data[i].src_ip;
+			count_data[i] = data[i].count;
+			per_data[i] = data[i].percentage;
+		}
+		count_data[max_value] = 0;
+		per_data[max_value] = 0;
+		domain_data[max_value] = "Others";
+		for (i = max_value; i < data.length; i++) {
+			count_data[max_value] = count_data[max_value] + data[i].count;
+			per_data[max_value] = per_data[max_value] + data[i].percentage;
+		}
+	}
+	console.log(per_data);
+	var show_dns_src = document.getElementById("dnsQuerySrcList");
+	var domain_html = '';
+	for (i = 0; i < max_value; i++) {
+		domain_html += "<tr>";
+		domain_html += "<td>" + src_data[i] + "</td>"
+		domain_html += "<td><div class='progress'><div class='progress-bar progress-bar-success'	data-transitiongoal='"
+				+ per_data[i].toFixed(1)
+				+ "'>"
+				+ count_data[i]
+				+ "</div></div></td>";
+		domain_html += "<td>" + per_data[i].toFixed(1) + "%</td>";
+		domain_html += "</tr>";
+	}
+	show_dns_src.innerHTML = domain_html;
+}
+function init_ddossrc_progress(data) {
+	var src_data = [];
+	var count_data = [];
+	var per_data = [];
+	var max_value = 5;
+	var i = 0;
+
+	if (data.length <= max_value) {
+		max_value = data.length;
+		for (; i < max_value; i++) {
+			src_data[i] = data[i].src_ip;
+			count_data[i] = data[i].count;
+			per_data[i] = data[i].percentage;
+		}
+	} else {
+		for (; i < max_value; i++) {
+			src_data[i] = data[i].src_ip;
+			count_data[i] = data[i].count;
+			per_data[i] = data[i].percentage;
+		}
+		count_data[max_value] = 0;
+		per_data[max_value] = 0;
+		domain_data[max_value] = "Others";
+		for (i = max_value; i < data.length; i++) {
+			count_data[max_value] = count_data[max_value] + data[i].count;
+			per_data[max_value] = per_data[max_value] + data[i].percentage;
+		}
+	}
+	var show_ddos_src = document.getElementById("ddosQuerySrcList");
+	var domain_html = '';
+	for (i = 0; i < max_value; i++) {
+		domain_html += "<tr>";
+		domain_html += "<td>" + src_data[i] + "</td>";
+		domain_html += "<td><div class='progress'><div class='progress-bar progress-bar-success' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width: "+per_data[i] +";'>" + count_data[i] + "</div></div></td>";
+		domain_html += "<td>" + per_data[i].toFixed(1) + "%</td>";
+		domain_html += "</tr>";
+	}
+	show_ddos_src.innerHTML = domain_html;
 }
