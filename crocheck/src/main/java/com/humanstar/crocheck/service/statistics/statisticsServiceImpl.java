@@ -70,6 +70,66 @@ public class statisticsServiceImpl implements statisticsService{
 		// TODO Auto-generated method stub
 		return statisticsAppDAO.searchHourApplianceStat(vo);
 	}
+	@Override
+	public List<statPacketVO> searchMinDnsPacket(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsPacketDAO.minDnsPacket(vo);
+	}
+	@Override
+	public List<statPacketVO> searchMinDDosPacket(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsPacketDAO.minDDosPacket(vo);
+	}
+	@Override
+	public List<domainQueryVO> searchMinDnsDomain(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsQueryStatDAO.minDnsDomain(vo);
+	}
+	@Override
+	public List<domainQueryVO> searchMinDDosDomain(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsQueryStatDAO.minDDosDomain(vo);
+	}
+	@Override
+	public List<srcQueryVO> searchMinDnsSrc(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsQueryStatDAO.minDnsSrc(vo);
+	}
+	@Override
+	public List<srcQueryVO> searchMinDDosSrc(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsQueryStatDAO.minDDosSrc(vo);
+	}
+	@Override
+	public List<statPacketVO> searchHourDnsPacket(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsPacketDAO.hourDnsPacket(vo);
+	}
+	@Override
+	public List<statPacketVO> searchHourDDosPacket(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsPacketDAO.hourDDosPacket(vo);
+	}
+	@Override
+	public List<domainQueryVO> searchHourDnsDomain(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsQueryStatDAO.hourDnsDomain(vo);
+	}
+	@Override
+	public List<domainQueryVO> searchHourDDosDomain(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsQueryStatDAO.hourDDosDomain(vo);
+	}
+	@Override
+	public List<srcQueryVO> searchHourDnsSrc(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsQueryStatDAO.hourDnsSrc(vo);
+	}
+	@Override
+	public List<srcQueryVO> searchHourDDosSrc(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return statisticsQueryStatDAO.hourDDosSrc(vo);
+	}
 	
 	
 }

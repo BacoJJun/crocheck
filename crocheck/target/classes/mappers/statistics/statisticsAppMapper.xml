@@ -26,7 +26,7 @@
 		max(mem_use_pct) as
 		mem_pct,
 		max(disk_vol1_usage_pct) as disk_vol1_pct,
-		to_char(date_trunc('min', hhmmss), 'dd hh24 mi') as ct_at
+		to_char(date_trunc('min', hhmmss), 'dd hh24 mi') as hhmmss
 		FROM
 		tb_usage_system_1min
 		<where>
@@ -45,12 +45,12 @@
 		asc;
 	</select>
 
-	<select id="hour">
+	<select id="hour" resultType="com.humanstar.crocheck.model.statistics.dto.statApplianceVO">
 		SELECT
 		max(cpu_total_pct) as cpu_pct,
 		max(mem_use_pct) as mem_pct,
 		max(disk_vol1_usage_pct) as disk_vol1_pct,
-		to_char(date_trunc('hour', hhmmss), 'dd hh24:mi') as ct_at
+		to_char(date_trunc('hour', hhmmss), 'dd hh24') as hhmmss
 		FROM
 		tb_usage_system_1min
 		<where>

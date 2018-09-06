@@ -1,4 +1,3 @@
-
 $(document)
 		.ready(
 				function() {
@@ -11,15 +10,16 @@ $(document)
 										if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'last_min') {
-												init_startAjax();
+											init_startAjax();
 										} else if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'min') {
-												init_minAjax();
+											init_minAjax("min");
 										} else if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'hour') {
-											console.log('hour');
+
+											init_hourAjax("hour");
 										} else if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'day') {
@@ -28,6 +28,68 @@ $(document)
 									})
 				});
 
+function searchDataPacket(start_date, end_date, search_type) {
+	var dns_data = [];
+	var dns_date = [];
+
+	$.ajax({
+		url : '/crocheck/searchPacketDns',
+		data : {
+			"type" : search_type,
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				for (var i = 0; i < result.lastPacketDnsList.length; i++) {
+					dns_data[i] = result.lastPacketDnsList[i].count;
+					dns_date[i] = result.lastPacketDnsList[i].created_at;
+				}
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	var ddos_data = [];
+	var ddos_date = [];
+
+	$.ajax({
+		url : '/crocheck/searchPacketDDos',
+		data : {
+			"type" : search_type,
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				for (var i = 0; i < result.lastPacketDDosList.length; i++) {
+					ddos_data[i] = result.lastPacketDDosList[i].count;
+					ddos_date[i] = result.lastPacketDDosList[i].created_at;
+				}
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	linechartdns(dns_data, dns_date, ddos_data, ddos_date);
+	toplist(dns_data, dns_date, ddos_data, ddos_date);
+}
 function lastDatePacket() {
 	var dns_data = [];
 	var dns_date = [];
@@ -101,9 +163,59 @@ function lastDatednsDomain() {
 		}
 	});
 }
+function searchdnsDomain(start_date, end_date, search_type) {
+	$.ajax({
+		url : '/crocheck/searchdnsdomain',
+		data : {
+			"type" : search_type,
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				init_dns_doughnut(result.lastdnsdomainList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
 function lastDateddosDomain() {
 	$.ajax({
 		url : '/crocheck/statlastddosdomain',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				init_ddos_doughnut(result.lastddosdomainList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+function searchddosDomain(start_date, end_date, search_type) {
+	$.ajax({
+		url : '/crocheck/searchddosdomain',
+		data : {
+			"type" : search_type,
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -141,9 +253,59 @@ function lastDatednsSrc() {
 		}
 	});
 }
+function searchdnsSrc(start_date, end_date, search_type) {
+	$.ajax({
+		url : '/crocheck/searchdnssrc',
+		data : {
+			"type" : search_type,
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				init_dnssrc_progress(result.lastdnssrcList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
 function lastDateddosSrc() {
 	$.ajax({
 		url : '/crocheck/statlastddossrc',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				init_ddossrc_progress(result.lastddossrcList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+function searchddosSrc(start_date, end_date, search_type) {
+	$.ajax({
+		url : '/crocheck/searchddossrc',
+		data : {
+			"type" : search_type,
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -190,15 +352,16 @@ function lastDateApp() {
 	});
 }
 
-function searchMinApp(start_date, end_date) {
+function searchApp(start_date, end_date, search_type) {
 	var appCpu = [];
 	var appMem = [];
 	var appDate = [];
 	$.ajax({
-		url : '/crocheck/searchMinApp',
+		url : '/crocheck/searchApp',
 		data : {
 			"date_start" : start_date,
-			"date_end" : end_date
+			"date_end" : end_date,
+			"type" : search_type
 		},
 		type : 'post',
 		dataType : 'json',
@@ -231,14 +394,29 @@ function init_startAjax() {
 	lastDatednsSrc();
 	lastDateddosSrc();
 }
-function init_minAjax(){
+function init_minAjax(search_type) {
 	var arrDate = $("#reservation-time").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
-	
-	console.log(start_date + " / " + end_date);
-	searchMinApp(start_date, end_date);
-	
+
+	searchApp(start_date, end_date, search_type);
+	searchDataPacket(start_date, end_date, search_type);
+	searchdnsDomain(start_date, end_date, search_type);
+	searchddosDomain(start_date, end_date, search_type);
+	searchdnsSrc(start_date, end_date, search_type);
+	searchddosSrc(start_date, end_date, search_type);
+}
+function init_hourAjax(search_type) {
+	var arrDate = $("#reservation-time").val().split("-");
+	var start_date = arrDate[0];
+	var end_date = arrDate[1];
+
+	searchApp(start_date, end_date, search_type);
+	searchDataPacket(start_date, end_date, search_type);
+	searchdnsDomain(start_date, end_date, search_type);
+	searchddosDomain(start_date, end_date, search_type);
+	searchdnsSrc(start_date, end_date, search_type);
+	searchddosSrc(start_date, end_date, search_type);
 }
 function toplist(dns_data, dns_date, ddos_data, ddos_date) {
 	var maxDDosValue = '0';
@@ -633,7 +811,7 @@ function init_dns_doughnut(data) {
 	var max_value = 5;
 	var i = 0;
 
-	if (data.length <= max_value) {
+	if (data.length < max_value) {
 		max_value = data.length;
 		for (; i < max_value; i++) {
 			domain_data[i] = data[i].domain;
@@ -697,7 +875,7 @@ function init_dns_doughnut(data) {
 		domain_html += "<td><i class='fa fa-square " + donut_color[i]
 				+ "'></i></td>"
 		domain_html += "<td>" + domain_data[i] + "</td>";
-//		domain_html += "<td>" + count_data[i] + "(" + per_data[i].toFixed(1)+ "%)</td>";
+		domain_html += "<td>" + count_data[i] + "(" + per_data[i]+ "%)</td>";
 		domain_html += "</tr>";
 	}
 	show_dns_domain.innerHTML = domain_html;
@@ -710,7 +888,7 @@ function init_ddos_doughnut(data) {
 	var max_value = 5;
 	var i = 0;
 
-	if (data.length <= max_value) {
+	if (data.length < max_value) {
 		max_value = data.length;
 		for (; i < max_value; i++) {
 			domain_data[i] = data[i].domain;
@@ -774,7 +952,7 @@ function init_ddos_doughnut(data) {
 		domain_html += "<td><i class='fa fa-square " + donut_color[i]
 				+ "'></i></td>"
 		domain_html += "<td>" + domain_data[i] + "</td>";
-//		domain_html += "<td>" + count_data[i] + "(" + per_data[i].toFixed(1)+ "%)</td>";
+		domain_html += "<td>" + count_data[i] + "(" + per_data[i]+ "%)</td>";
 		domain_html += "</tr>";
 	}
 	show_ddos_domain.innerHTML = domain_html;
@@ -785,7 +963,7 @@ function init_dnssrc_progress(data) {
 	var per_data = [];
 	var max_value = 5;
 	var i = 0;
-	
+
 	if (data.length <= max_value) {
 		max_value = data.length;
 		for (; i < max_value; i++) {
@@ -818,7 +996,7 @@ function init_dnssrc_progress(data) {
 				+ "'>"
 				+ count_data[i]
 				+ "</div></div></td>";
-		domain_html += "<td>" + per_data[i].toFixed(1) + "%</td>";
+		domain_html += "<td>" + per_data[i] +"%</td>";
 		domain_html += "</tr>";
 	}
 	show_dns_src.innerHTML = domain_html;
@@ -856,8 +1034,10 @@ function init_ddossrc_progress(data) {
 	for (i = 0; i < max_value; i++) {
 		domain_html += "<tr>";
 		domain_html += "<td>" + src_data[i] + "</td>";
-		domain_html += "<td><div class='progress'><div class='progress-bar progress-bar-success' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width: "+per_data[i] +";'>" + count_data[i] + "</div></div></td>";
-		domain_html += "<td>" + per_data[i].toFixed(1) + "%</td>";
+		domain_html += "<td><div class='progress'>";
+		domain_html += "<div class='progress-bar progress-bar-success' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:'"
+	domain_html += per_data[i] + ";'>" + count_data[i] + "</div></div></td>";
+		domain_html += "<td>" + per_data[i] + "%</td>";
 		domain_html += "</tr>";
 	}
 	show_ddos_src.innerHTML = domain_html;

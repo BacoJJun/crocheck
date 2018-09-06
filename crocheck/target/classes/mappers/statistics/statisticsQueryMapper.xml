@@ -3,53 +3,344 @@
 
 <!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
 <mapper namespace="querystatus">
-	<select id="lastdnsdomain" resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
-		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+	<select id="lastdnsdomain"
+		resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select
 		sum(total.count) from (SELECT sum(count) as count FROM
 		dns_query_status WHERE ( created_at >= now() - interval '10 min')
 		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
 		FROM dns_query_status WHERE ( created_at >= now() - interval '10 min')
 		GROUP BY domain ORDER BY count DESC LIMIT 100;
 	</select>
-	<select id="lastddosdomain"  resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
-		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+	<select id="lastddosdomain"
+		resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select
 		sum(total.count) from (SELECT sum(count) as count FROM
 		ddos_block_status WHERE ( created_at >= now() - interval '10 min')
 		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
 		FROM ddos_block_status WHERE ( created_at >= now() - interval '10
 		min') GROUP BY domain ORDER BY count DESC LIMIT 100;
 	</select>
-	<select id="lastdnssrc"  resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
-		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+	<select id="lastdnssrc"
+		resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select
 		sum(total.count) from (SELECT sum(count) as count FROM
 		dns_query_status WHERE ( created_at >= now() - interval '10 min')
 		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
 		FROM dns_query_status WHERE ( created_at >= now() - interval '10 min')
 		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
 	</select>
-	<select id="lastddossrc"  resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
-		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+	<select id="lastddossrc"
+		resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select
 		sum(total.count) from (SELECT sum(count) as count FROM
 		ddos_block_status WHERE ( created_at >= now() - interval '10 min')
 		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
 		FROM ddos_block_status WHERE ( created_at >= now() - interval '10
 		min') GROUP BY src_ip ORDER BY count DESC LIMIT 100;
 	</select>
-	<select id="mindnsdomain">
+	<select id="mindnsdomain"
+		resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) *
+		100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		dns_query_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM dns_query_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC LIMIT 100;
+
 	</select>
-	<select id="minddosdomain">
+	<select id="minddosdomain"
+		resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC LIMIT 100;
+
 	</select>
-	<select id="mindnssrc">
+	<select id="mindnssrc"
+		resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		dns_query_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM dns_query_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
+
 	</select>
-	<select id="minddossrc">
+	<select id="minddossrc"
+		resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count)
+		* 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count
+		FROM
+		ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
+
 	</select>
-	<select id="hourdnsdomain">
+	<select id="hourdnsdomain"
+		resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		dns_query_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM dns_query_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC LIMIT 100;
+
 	</select>
-	<select id="hourddosdomain">
+	<select id="hourddosdomain"
+		resultType="com.humanstar.crocheck.model.statistics.dto.domainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY domain ORDER BY count DESC LIMIT 100;
+
 	</select>
-	<select id="hourdnssrc">
+	<select id="hourdnssrc"
+		resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		dns_query_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM dns_query_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
+
 	</select>
-	<select id="hourddossrc">
+	<select id="hourddossrc"
+		resultType="com.humanstar.crocheck.model.statistics.dto.srcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / (
+		select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >=
+				date_trunc('second',(#{date_start}::TIMESTAMP
+				WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				and
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
+
 	</select>
 	<select id="daydomain">
 	</select>

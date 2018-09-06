@@ -18,5 +18,19 @@ public interface statisticsService {
 	public List<srcQueryVO> lastDDosSrc() throws Exception;
 	
 	public List<statApplianceVO> searchMinApplianceStat(searchTypeVO vo) throws Exception;
+	public List<statPacketVO> searchMinDnsPacket(searchTypeVO vo) throws Exception;
+	public List<statPacketVO> searchMinDDosPacket(searchTypeVO vo) throws Exception;
+	public List<domainQueryVO> searchMinDnsDomain(searchTypeVO vo) throws Exception;
+	public List<domainQueryVO> searchMinDDosDomain(searchTypeVO vo) throws Exception;
+	public List<srcQueryVO> searchMinDnsSrc(searchTypeVO vo) throws Exception;
+	public List<srcQueryVO> searchMinDDosSrc(searchTypeVO vo) throws Exception;
+	
 	public List<statApplianceVO> searchHourApplianceStat(searchTypeVO vo) throws Exception;
+	public List<statPacketVO> searchHourDnsPacket(searchTypeVO vo) throws Exception;
+	public List<statPacketVO> searchHourDDosPacket(searchTypeVO vo) throws Exception;
+	public List<domainQueryVO> searchHourDnsDomain(searchTypeVO vo) throws Exception;
+	public List<domainQueryVO> searchHourDDosDomain(searchTypeVO vo) throws Exception;
+	public List<srcQueryVO> searchHourDnsSrc(searchTypeVO vo) throws Exception;
+	public List<srcQueryVO> searchHourDDosSrc(searchTypeVO vo) throws Exception;
+	
 }
