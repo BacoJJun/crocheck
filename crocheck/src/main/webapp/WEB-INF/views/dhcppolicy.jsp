@@ -113,13 +113,21 @@
 								<div class="clearfix"></div>
 							</div>
 
-							<div class="col-md-6 col-sm-6 col-xs-6">
-								<table id="datatable" class="table table-striped table-bordered">
+							<div class="col-md-8 col-sm-6 col-xs-6">
+								<table id="datatable" class="table table-striped ">
+									<colgroup>
+										<col width="20%"></col>
+										<col width="15%"></col>
+										<col width="20%"></col>
+										<col width="*%"></col>
+										<col width="10%"></col>
+									</colgroup>
 									<thead>
 										<tr>
 											<th>대분류</th>
 											<th>소분류</th>
 											<th>프로토콜</th>
+											<th style="display: none;"></th>
 											<th>Host Address</th>
 											<th></th>
 										</tr>
@@ -128,9 +136,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6">
-								<table id="table-responsive"
-									class="table table-hover">
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<table id="table-responsive" class="table table-hover">
 									<thead>
 										<tr class="headings">
 											<th colspan="4">세부설정</th>
@@ -145,11 +152,10 @@
 									<tbody id="dhcp_sublist">
 									</tbody>
 								</table>
-								<table id="table-responsive"
-									class="table table-hover">
+								<table id="table-responsive" class="table table-hover">
 									<thead>
 										<tr class="headings">
-											<th colspan="4">임대 IP 내역 </th>
+											<th colspan="4">임대 IP 내역</th>
 										</tr>
 										<tr class="headings ">
 											<th class="column-title">IP</th>
@@ -158,7 +164,7 @@
 											<th class="column-title">임대시간</th>
 										</tr>
 									</thead>
-									<tbody id="dhcp_rentallist">
+									<tbody id="dhcp_rentlist">
 									</tbody>
 								</table>
 							</div>
@@ -208,8 +214,26 @@
 			<script src="js/moment.min.js"></script>
 			<script src="js/daterangepicker.js"></script>
 			<script src="js/echarts.min.js"></script>
-
+			<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+			<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+			<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+			<script
+				src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+			<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+			<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+			<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+			<script
+				src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+			<script
+				src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+			<script
+				src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+			<script
+				src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+			<script
+				src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 			<!-- Custom Theme Scripts -->
+			<script src="js/dhcppolicy.js"></script>
 			<script src="js/custom.js"></script>
 </body>
 </html>

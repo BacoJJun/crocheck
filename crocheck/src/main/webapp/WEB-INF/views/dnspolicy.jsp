@@ -53,9 +53,9 @@
 									<table class="table table-striped jambo_table bulk_action">
 										<thead>
 											<tr class="headings ">
-												<th class="column-title text-center">공격자 :</th>
+												<th class="column-title text-center">공격자 :<span id ="ddos_attacker"></span></th>
 												<th class="column-title" id="ddos_attacker"></th>
-												<th class="column-title text-center">횟수 :</th>
+												<th class="column-title text-center">횟수 : <span id="ddos_attack_count"></span></th>
 												<th class="column-title" id="ddos_count"></th>
 											</tr>
 										</thead>
@@ -64,22 +64,16 @@
 									</table>
 								</div>
 								<div class="table-bordered">
-									<table class="table table-bordered">
+									<table  class="table table-striped">
 										<thead>
 											<tr>
 												<th>IP주소</th>
 												<th>도메인</th>
 												<th>차단횟수</th>
-												<th>마지막 탐지된 시</th>
+												<th>마지막 탐지된 시간 </th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-											</tr>
+										<tbody id="ddos_block_list">
 										</tbody>
 									</table>
 								</div>
@@ -96,27 +90,29 @@
 								</h2>
 								<div class="clearfix"></div>
 							</div>
-							<div class="col-md-6  col-sm-12 col-xs-12">
-									<div class="radio">
-										<label> <input type="radio" class="flat" checked
-											name="dns_search" checked id="dns_lookup""> Lookup
-										</label> <label> <input type="radio" class="flat"
-											name="dns_search" id="dns_zone_search"> Zone search
-										</label>
-									</div>
-									<div class="input-group">
-										<input type="text" class="form-control" id="text-lookup"
-											placeholder="Input your finding address"> <span
-											class="input-group-btn">
-											<button type="button" class="btn btn-default" title="주소검색"
-												id="btn-lookup">
-												<span class="glyphicon glyphicon-search"></span>
-											</button>
-										</span>
-									</div>
+							<div class="col-md-3  col-sm-12 col-xs-12">
+								<div class="radio">
+									<label> <input type="radio" class="flat" checked
+										name="dns_search" checked id="dns_lookup" value="lookup">
+										Lookup
+									</label> <label> <input type="radio" class="flat"
+										name="dns_search" id="dns_zone_search" value="zone">
+										Zone search
+									</label>
+								</div>
+								<div class="input-group">
+									<input type="text" class="form-control" id="text-lookup"
+										placeholder="Input your finding address"> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default" title="검색"
+											id="btn-lookup">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+								</div>
 							</div>
-							<div class="col-md-6  col-sm-12 col-xs-12">
-									<div id="lookup-result"></div>
+							<div class="col-md-9  col-sm-12 col-xs-12">
+								<div id="lookup-result"></div>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -129,8 +125,14 @@
 								<div class="clearfix"></div>
 							</div>
 
-							<div class="col-md-6 col-sm-6 col-xs-6">
+							<div class="col-md-8 col-sm-12 col-xs-12">
 								<table id="datatable" class="table table-striped table-bordered">
+									<colgroup>
+										<col width="20%"></col>
+										<col width="20%"></col>
+										<col width="*"></col>
+										<col width="15%"></col>
+									</colgroup>
 									<thead>
 										<tr>
 											<th>Zone</th>
@@ -143,9 +145,21 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6">
-								<table id="table-responsive"
-									class="table table-striped jambo_table bulk_action">
+							<div class="col-md-4 col-sm-12 col-xs-12">
+								<div class="x_title">
+									<h2>
+										sub_domain : <span id="sub_domain_count"></span>
+									</h2>
+									<div class="clearfix"></div>
+								</div>
+								<table id="table" class="table table-striped" cellspacing="0"
+									width="100%">
+									<colgroup>
+										<col width="15%"></col>
+										<col width="15%"></col>
+										<col width="50%"></col>
+										<col width="20%"></col>
+									</colgroup>
 									<thead>
 										<tr class="headings ">
 											<th class="column-title">Type</th>
@@ -204,8 +218,26 @@
 			<script src="js/moment.min.js"></script>
 			<script src="js/daterangepicker.js"></script>
 			<script src="js/echarts.min.js"></script>
-
+			<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+			<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+			<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+			<script
+				src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+			<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+			<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+			<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+			<script
+				src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+			<script
+				src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+			<script
+				src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+			<script
+				src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+			<script
+				src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 			<!-- Custom Theme Scripts -->
+			<script src="js/dnspolicy.js"></script>
 			<script src="js/custom.js"></script>
 </body>
 </html>

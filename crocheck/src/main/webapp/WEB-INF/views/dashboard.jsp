@@ -23,7 +23,7 @@
 			</div>
 
 			<!--  top navigation -->
-<%@ include file ="top.jsp" %>
+			<%@ include file="top.jsp"%>
 			<!-- /top navigation -->
 
 			<!-- page content -->
@@ -109,7 +109,7 @@
 								<div class="row">
 									<div class="col-xs-4">
 										<div class="x_content">
-											<div id="echart_gauge_cpu" style="height: 150px;"></div>				
+											<div id="echart_gauge_cpu" style="height: 150px;"></div>
 										</div>
 									</div>
 									<div class="col-xs-4">
@@ -222,7 +222,30 @@
 			<script src="js/daterangepicker.js"></script>
 			<script src="js/echarts.min.js"></script>
 			<script src="js/jquery.easypiechart.min.js"></script>
-
+			<!-- Datatables -->
+			<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+			<script
+				src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+			<script
+				src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+			<script
+				src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+			<script
+				src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+			<script
+				src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+			<script
+				src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+			<script
+				src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+			<script
+				src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+			<script
+				src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+			<script
+				src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+			<script
+				src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 			<!-- Custom Theme Scripts -->
 			<script src="js/custom.js"></script>
 			<script src="js/sdnsdashboard.js"></script>

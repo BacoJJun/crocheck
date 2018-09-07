@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dnspolicy">
+	<select id="dnstable"
+		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select * from dns_record where type='SOA' order by id desc
+	</select>
+	<select id="subdnstable"
+		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select * from dns_record
+		<where>
+			<if test="zone != null">
+				zone = #{zone}
+			</if>
+		</where>
+	</select>
+	<select id="searchdnsdomain"
+		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select * from dns_record
+		<where>
+			<if test="zone !=null">
+				zone like '%' || #{zone} ||'%' or host like '%' || #{zone} || '%' or
+				data like '%' || #{zone} || '%'
+			</if>
+		</where>
+	</select>
+
+	<select id="ddosblockstatus" resultType="com.humanstar.crocheck.model.policy.dto.ddosBlockStatusVO">
+		SELECT src_ip, domain, count(src_ip) as count, to_char(max(created_at),
+		'YYYY-MM-DD HH24:MI:SS.MS') as created_at FROM ddos_block_status WHERE
+		created_at >= now() - interval '1 hour' GROUP BY src_ip, domain ORDER
+		BY count desc limit 5;
+	</select>
+</mapper>

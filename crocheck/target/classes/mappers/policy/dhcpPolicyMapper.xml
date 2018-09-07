@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dhcppolicy">
+	<select id="dhcptable"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO">
+		SELECT * FROM tb_dhcp order by category1, category2, start_ip
+	</select>
+	<select id="dhcpsubtable" resultType="com.humanstar.crocheck.model.policy.dto.dhcpSubVO">
+	SELECT * FROM tb_dhcp_sub
+	<where>
+		<if test="id != null">
+			mid = #{id}
+		</if>
+	</where>
+	order by id desc
+	</select>
+	<select id="dhcprenttable" resultType="com.humanstar.crocheck.model.policy.dto.dhcpRentVO">
+	SELECT ip,mac,host_name,mid,date_trunc('second',(rent_at::TIMESTAMP WITHOUT TIME ZONE)) as rent_at FROM tb_dhcp_rent_record
+	 	<where>
+		<if test="id != null">
+			mid = #{id}
+		</if>
+	</where>
+	ORDER BY rent_at desc
+	</select>
+	
+</mapper>
