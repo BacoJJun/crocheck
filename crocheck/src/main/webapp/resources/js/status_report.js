@@ -4,14 +4,15 @@ var limitCount = '';
 
 $(document).ready(function() {
 	base_view();
-
+//	baseQuery()
 });
-function baseAppliance() {
-	var appCpu = [];
-	var appMem = [];
-	var appDisk = [];
-	var appDate = [];
 
+function base_view() {
+	baseAppliance();
+	basePacket();
+	queryPieChart();
+}
+function baseQuery(){
 	$.ajax({
 		url : '/crocheck/reportBaseApp',
 		type : 'post',
@@ -19,13 +20,7 @@ function baseAppliance() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				for (var i = 0; i < result.applist.length; i++) {
-					appCpu[i] = result.applist[i].cpu_pct;
-					appMem[i] = result.applist[i].mem_pct;
-					appDisk[i] = result.applist[i].disk_vol1_pct;
-					appDate[i] = result.applist[i].hhmmss;
-				}
-				init_applianceChart(appCpu, appMem, appDisk, appDate);
+				
 			} else {
 				alert(result.errorMsg);
 			}
@@ -37,11 +32,7 @@ function baseAppliance() {
 		}
 	});
 }
-function base_view() {
-
-	baseAppliance();
-	basePacket();
-	
+function queryPieChart(){
 	if ($('#dns_domain_pie').length) {
 
 		var echartPie = echarts.init(document.getElementById('dns_domain_pie'),
@@ -51,12 +42,6 @@ function base_view() {
 			tooltip : {
 				trigger : 'item',
 				formatter : "{a} <br/>{b} : {c} ({d}%)"
-			},
-			legend : {
-				x : 'center',
-				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
 			},
 			toolbox : {
 				show : true,
@@ -98,6 +83,7 @@ function base_view() {
 					name : 'Search Engine'
 				} ]
 			} ]
+
 		});
 	}
 
@@ -361,6 +347,37 @@ function init_packetChart(appDnsPacket, appDDosPacket, appDate) {
 		});
 
 	}
+}
+function baseAppliance() {
+	var appCpu = [];
+	var appMem = [];
+	var appDisk = [];
+	var appDate = [];
+
+	$.ajax({
+		url : '/crocheck/reportBaseApp',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				for (var i = 0; i < result.applist.length; i++) {
+					appCpu[i] = result.applist[i].cpu_pct;
+					appMem[i] = result.applist[i].mem_pct;
+					appDisk[i] = result.applist[i].disk_vol1_pct;
+					appDate[i] = result.applist[i].hhmmss;
+				}
+				init_applianceChart(appCpu, appMem, appDisk, appDate);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
 }
 function init_applianceChart(appCpu, appMem, appDisk, appDate) {
 	if ($('#cpuChart').length) {
