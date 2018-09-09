@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="reportQuery">
+	<select id="basednsdomain"
+		resultType="com.humanstar.crocheck.model.report.dto.reportDomainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		dns_query_status WHERE ( created_at >= now() - interval '1 day') GROUP
+		BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage FROM
+		dns_query_status WHERE ( created_at >= now() - interval '1 day') GROUP
+		BY domain ORDER BY count DESC LIMIT 100;
+	</select>
+	<select id="baseddosdomain"
+		resultType="com.humanstar.crocheck.model.report.dto.reportDomainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select sum(total.count) from (SELECT sum(count) as count
+		FROM ddos_block_status WHERE ( created_at >= now() - interval '1 day')
+		GROUP BY domain ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM ddos_block_status WHERE ( created_at >= now() - interval '1 day')
+		GROUP BY domain ORDER BY count DESC LIMIT 100;
+
+	</select>
+	<select id="basednssrc"
+		resultType="com.humanstar.crocheck.model.report.dto.reportSrcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select sum(total.count) from (SELECT sum(count) as count
+		FROM dns_query_status WHERE ( created_at >= now() - interval '1 day')
+		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM dns_query_status WHERE ( created_at >= now() - interval '1 day')
+		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
+
+
+	</select>
+	<select id="baseddossrc"
+		resultType="com.humanstar.crocheck.model.report.dto.reportSrcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) * 100.0 / ( select
+		sum(total.count) from (SELECT sum(count) as count FROM
+		ddos_block_status WHERE ( created_at >= now() - interval '1 day')
+		GROUP BY src_ip ORDER BY count DESC ) total ) +0.05, 1) as percentage
+		FROM ddos_block_status WHERE ( created_at >= now() - interval '1 day')
+		GROUP BY src_ip ORDER BY count DESC LIMIT 100;
+
+	</select>
+</mapper>

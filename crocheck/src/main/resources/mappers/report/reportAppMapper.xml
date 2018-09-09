@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="reportApp">
+	<select id="basehour" resultType="com.humanstar.crocheck.model.report.dto.reportApplianceVO">
+		SELECT
+		max(cpu_total_pct) as cpu_pct,
+		max(mem_use_pct) as mem_pct,
+		max(disk_vol1_usage_pct) as disk_vol1_pct,
+		to_char(date_trunc('hour', hhmmss), 'dd hh24') as hhmmss
+		FROM
+		tb_usage_system_1min
+		where hhmmss >= now() - interval '1 day'
+		GROUP BY date_trunc('hour', hhmmss)
+		ORDER BY date_trunc('hour', hhmmss)
+		asc;
+
+	</select>
+
+</mapper>

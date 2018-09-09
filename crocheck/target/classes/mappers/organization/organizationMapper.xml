@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  다른 mapper와 중독되지 않도록 네임스페이스 기재  -->
+<mapper namespace="organization">
+	<select id="memberlist" resultType="com.humanstar.crocheck.model.organization.dto.memberVO">
+		select * from organization_members
+	</select>
+	<select id="postlist" resultType="com.humanstar.crocheck.model.organization.dto.postVO">
+		select * from organization
+	</select>
+	<select id="postmembers" resultType="com.humanstar.crocheck.model.organization.dto.memberVO">
+		select * from organization_members
+		<where>
+			<if test="organization_id != null">
+				organization_id = #{organization_id}
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -44,7 +44,7 @@
 				TIME ZONE)) > created_at
 			</if>
 		</where>
-		GROUP BY cr_at ORDER BY cr_at DESC) AS dns;
+		GROUP BY cr_at ORDER BY cr_at ASC) AS dns;
 	</select>
 	<select id="minddos"
 		resultType="com.humanstar.crocheck.model.statistics.dto.statPacketVO">
@@ -93,7 +93,7 @@
 				TIME ZONE)) > created_at
 			</if>
 		</where>
-		GROUP BY cr_at ORDER BY cr_at DESC) AS dns;
+		GROUP BY cr_at ORDER BY cr_at ASC) AS dns;
 	</select>
 	<select id="hourddos"
 		resultType="com.humanstar.crocheck.model.statistics.dto.statPacketVO">

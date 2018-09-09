@@ -58,239 +58,26 @@
 											<div class="clearfix"></div>
 										</div>
 										<div class="x_content">
-											<ul class="list-unstyled timeline">
-												<li>
-													<div class="block">
-														<div class="tags" >
-															<div class="btn btn-info btn-sm"> <i class="fa fa-plus">INSERT</i></div>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>Insert DNS Zone</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.31 00:00:00</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																zone : humanstar.co.kr / ip : 192.168.0.38
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<div class="btn btn-warning btn-sm"> <i class="fa fa-edit">UPDATE</i></div>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>UPDATE SUB_DOMAIN</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.23 09:45:22</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																zone : crocheck.co.kr / ip : 192./168.0.40
-																sub_domain : update.crocheck.co.kr / ip : 192.168.0.38
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<div class="btn btn-danger btn-sm"> <i class="fa fa-trash-o">DELTE</i></div>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>Delete DNS ZONE</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.20 16:23:11</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																Delete DNS ZONE : delete.co.kr / ip : 192.168.10.33
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>INSERT</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>Insert DNS Zone</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.31 00:00:00</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																zone : humanstar.co.kr / ip : 192.168.0.38
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>UPDATE</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>UPDATE SUB_DOMAIN</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.23 09:45:22</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																zone : crocheck.co.kr / ip : 192./168.0.40
-																sub_domain : update.crocheck.co.kr / ip : 192.168.0.38
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>DELETE</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>Delete DNS ZONE</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.20 16:23:11</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																Delete DNS ZONE : delete.co.kr / ip : 192.168.10.33
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>INSERT</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>Insert DNS Zone</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.31 00:00:00</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																zone : humanstar.co.kr / ip : 192.168.0.38
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>UPDATE</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>UPDATE SUB_DOMAIN</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.23 09:45:22</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																zone : crocheck.co.kr / ip : 192./168.0.40
-																sub_domain : update.crocheck.co.kr / ip : 192.168.0.38
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>DELETE</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>Delete DNS ZONE</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.20 16:23:11</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																Delete DNS ZONE : delete.co.kr / ip : 192.168.10.33
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>INSERT</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>Insert DNS Zone</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.31 00:00:00</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																zone : humanstar.co.kr / ip : 192.168.0.38
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>UPDATE</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>UPDATE SUB_DOMAIN</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.23 09:45:22</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																zone : crocheck.co.kr / ip : 192./168.0.40
-																sub_domain : update.crocheck.co.kr / ip : 192.168.0.38
-															</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="block">
-														<div class="tags">
-															<a href="" class="tag"> <span>DELETE</span>
-															</a>
-														</div>
-														<div class="block_content">
-															<h2 class="title">
-																<a>Delete DNS ZONE</a>
-															</h2>
-															<div class="byline">
-																<span>2018.08.20 16:23:11</span> by <a>Administrator</a>
-															</div>
-															<p class="excerpt">
-																Delete DNS ZONE : delete.co.kr / ip : 192.168.10.33
-															</p>
-														</div>
-													</div>
-												</li>
-											</ul>
+											<table id="datatable" class="table table-striped table-bordered">
+												<thead>
+													<tr>
+														<th> type </th>
+														<th> date </th>
+														<th> comment </th>
+														<th> user </th>
+														<th> ip </th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td> insert </td>
+														<td> 2018.09.06 </td>
+														<td> xxxxxx </td>
+														<td> administrator </td>
+														<td> 192.168.0.78 </td>
+													</tr>
+												</tbody>
+											</table>
 
 										</div>
 									</div>
@@ -392,7 +179,22 @@
 	<script src="js/moment.min.js"></script>
 	<script src="js/daterangepicker.js"></script>
 	<script src="js/echarts.min.js"></script>
-
+	<!-- datatable -->
+	<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script
+		src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 	<!-- Custom Theme Scripts -->
 
 	<script src="js/custom.js"></script>

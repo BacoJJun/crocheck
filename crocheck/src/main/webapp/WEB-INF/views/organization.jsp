@@ -60,59 +60,96 @@
 								<div class="x_content">
 
 									<!-- organization list -->
-									<div class="col-md-2 col-sm-12 col-xs-12">
-										<div class="panel-body">
-											<div class="x_title"> 
-												<h2 class="text-right"><small><a href="#" class="btn btn-info btn-xs"><i
-															class="fa fa-pencil"></i> </a><a href="#" class="btn btn-success btn-xs"><i class="fa fa-plus"></i></a></small></h2>
+
+									<div class="col-sm-2 col-md-2 affix-sidebar">
+										<div class="sidebar-nav">
+											<div class="navbar navbar-default" role="navigation">
+												<div
+													class="navbar-collapse collapse sidebar-navbar-collapse">
+													<ul class="nav navbar-nav" id="sidenav">
+														<li><a href="#" data-toggle="collapse"
+															data-target="#toggleDemo" data-parent="#sidenav01"
+															class="collapsed"> <span
+																class="glyphicon glyphicon-cloud"></span> Submenu 1 <span
+																class="fa fa-sort-down"></span>
+														</a>
+															<div class="collapse" id="toggleDemo"
+																style="height: 0px;">
+																<ul class="nav nav-list">
+																	<li><a href="#">Submenu1.1</a></li>
+																	<li><a href="#">Submenu1.2</a></li>
+																	<li><a href="#">Submenu1.3</a></li>
+																</ul>
+															</div></li>
+														<li class="active"><a href="#" data-toggle="collapse"
+															data-target="#toggleDemo2" data-parent="#sidenav01"
+															class="collapsed"> <span
+																class="glyphicon glyphicon-inbox"></span> Submenu 2 <span
+																class="caret pull-right"></span>
+														</a>
+															<div class="collapse" id="toggleDemo2"
+																style="height: 0px;">
+																<ul class="nav nav-list">
+																	<li><a href="#">Submenu2.1</a></li>
+																	<li><a href="#">Submenu2.2</a></li>
+																	<li class="active"><a href="#" data-toggle="collapse" data-target="#toggleDemo3" data-parent="#sidenav01" class="collapsed">Submenu2.3</a><div class="collapse" id="toggleDemo3"
+																style="height: 0px;">
+																<ul class="nav nav-list">
+																	<li><a href="#">Submenu2.1</a></li>
+																	<li><a href="#">Submenu2.2</a></li>
+																	</ul>
+																	</div>
+																	</li>
+																</ul>
+															</div></li>
+													</ul>
+												</div>
+												<!--/.nav-collapse -->
 											</div>
-											<div class="clearfix"></div>
-											<ul class="treeview">
-												<li><a href="#">휴먼스타 </a>
-													<ul>
-														<li><a href="#">본사 </a>
-															<ul>
-																<li><a href="#">경영지원팀 </a></li>
-																<li><a href="#">인프라운영팀 </a></li>
-																<li><a href="#">개발연구소 </a></li>
-															</ul></li>
-														<li><a href="#">메뉴 테스트  </a></li>
-													</ul></li>
-											</ul>
-											<!-- TREEVIEW CODE -->
 										</div>
 									</div>
 									<!-- organization list end -->
 									<!-- start project list -->
 									<div class="col-md-10 col-sm-12 col-xs-12">
-										<table id="datatable-responsive"
+										<table id="datatable"
 											class="table table-striped table-bordered dt-responsive nowrap"
 											cellspacing="0" width="100%">
+
+											<colgroup>
+												<col width="10%"></col>
+												<col width="7%"></col>
+												<col width="15%"></col>
+												<col width="12%"></col>
+												<col width="12%"></col>
+												<col width="15%"></col>
+												<col width="*%"></col>
+												<col width="10%"></col>
+											</colgroup>
 											<thead>
 												<tr>
-													<th style="width: 2%">#</th>
-													<th style="width: 20%">부서</th>
-													<th>직급</th>
+													<th>부서</th>
 													<th>이름</th>
 													<th>IP</th>
-													<th>인적사항</th>
-													<th style="width: 15%">수정</th>
+													<th>전화번호</th>
+													<th>휴대전화</th>
+													<th>E메일</th>
+													<th>기타</th>
+													<th>수정</th>
 												</tr>
 											</thead>
-											<tbody>
+											<tbody id="member_list">
 												<tr>
-													<td>1</td>
-													<td>휴먼스타/개발연구소</td>
-													<td>주임</td>
+													<td>개발연구소</td>
 													<td>이준석</td>
 													<td>192.168.0.78</td>
-													<td><i class="fa fa-phone"></i> 02-XXXX-XXXX <br>
-														<i class="fa fa-mobile-phone"></i> 010-XXXX-XXXX<br>
-														<i class="fa fa-envelope-o"></i> jslee@humanstar.co.kr</td>
+													<td>02-XXXX-XXXX</td>
+													<td>010-XXXX-XXXX</td>
+													<td>asjdfla@humanstar.co.kr</td>
+													<td>기타사항란</td>
 													<td><a href="#" class="btn btn-info btn-xs"><i
-															class="fa fa-pencil"></i> Edit </a> <a href="#"
+															class="fa fa-pencil"></i></a> <a href="#"
 														class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
-															Delete </a></td>
+													</a></td>
 												</tr>
 
 											</tbody>
@@ -170,9 +207,25 @@
 	<script src="js/moment.min.js"></script>
 	<script src="js/daterangepicker.js"></script>
 	<script src="js/echarts.min.js"></script>
-
+	<!-- datatable -->
+	<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script
+		src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/organization_menu.js"></script>
+	<script src="js/organization.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>

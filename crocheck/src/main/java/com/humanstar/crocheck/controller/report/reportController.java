@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.humanstar.crocheck.model.report.dto.dnsDomainCountVO;
-import com.humanstar.crocheck.model.report.dto.dnsSrcCountVO;
-import com.humanstar.crocheck.service.report.dnsDomainCountServiceImpl;
-import com.humanstar.crocheck.service.report.dnsSrcCountServiceImpl;
+import com.humanstar.crocheck.model.report.dto.reportApplianceVO;
+import com.humanstar.crocheck.model.report.dto.reportPacketVO;
+import com.humanstar.crocheck.model.searchtype.dto.searchTypeVO;
+import com.humanstar.crocheck.service.report.reportMainServiceImpl;
 
 @Controller
 public class reportController {
@@ -30,27 +30,25 @@ public class reportController {
 	public static final String SUCCESS_MESSAGE = "successMsg";
 	public static final String ERROR_MESSAGE = "errorMsg";
 
-	@Inject
-	dnsDomainCountServiceImpl dnsDomainCountService;
-	@Inject
-	dnsSrcCountServiceImpl dnsSrcCountService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * 
 	 * @throws Exception
 	 */
+	@Inject
+	reportMainServiceImpl reportMainService;
 
-	@RequestMapping(value = "/dnsDomainCount", method = RequestMethod.POST)
+	@RequestMapping(value = "/reportBaseApp", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> dnsDomainCount(@ModelAttribute dnsDomainCountVO vo) {
+	public Map<String, Object> reportBaseApp() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<dnsDomainCountVO> dnsDomainCountList = new ArrayList<dnsDomainCountVO>();
+		List<reportApplianceVO> applist = new ArrayList<reportApplianceVO>();
 
 
 		try {
-			dnsDomainCountList = dnsDomainCountService.dnsDomainCountList(vo);
+			applist = reportMainService.reportMainApp();
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -59,21 +57,20 @@ public class reportController {
 			logger.error(e.toString());
 
 		}
-		resultMap.put("dnsDomainCountList", dnsDomainCountList);
+		resultMap.put("applist", applist);
 
 		return resultMap;
 	}
-
-	@RequestMapping(value = "/dnsSrcCount", method = RequestMethod.POST)
+	@RequestMapping(value = "/reportBaseDnsPacket", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> dnsSrcCount(@ModelAttribute dnsSrcCountVO vo) {
+	public Map<String, Object> reportBaseDnsPacket() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<dnsSrcCountVO> dnsSrcCountList = new ArrayList<dnsSrcCountVO>();
+		List<reportPacketVO> dnsPacketList = new ArrayList<reportPacketVO>();
 
 
 		try {
-			dnsSrcCountList = dnsSrcCountService.dnsSrcCountList(vo);
+			dnsPacketList = reportMainService.reportMainDnsPacket();
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -82,9 +79,55 @@ public class reportController {
 			logger.error(e.toString());
 
 		}
-		resultMap.put("dnsSrcCountList", dnsSrcCountList);
+		resultMap.put("dnsPacketList", dnsPacketList);
 
-		
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/reportBaseDDosPacket", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportBaseDDosPacket() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<reportPacketVO> ddosPacketList = new ArrayList<reportPacketVO>();
+
+
+		try {
+			ddosPacketList = reportMainService.reportMainDDosPacket();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("ddosPacketList", ddosPacketList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/searchReportAppDays", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> searchReportAppDays(@ModelAttribute searchTypeVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+//		List<dnsDomainCountVO> dnsDomainCountList = new ArrayList<dnsDomainCountVO>();
+//
+//
+//		try {
+//			dnsDomainCountList = dnsDomainCountService.dnsDomainCountList(vo);
+//			resultMap.put(RESULT, RESULT_SUCCESS);
+//			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+//		} catch (Exception e) {
+//			resultMap.put(RESULT, RESULT_ERROR);
+//			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+//			logger.error(e.toString());
+//
+//		}
+//		resultMap.put("dnsDomainCountList", dnsDomainCountList);
+//
+		return resultMap;
+	}
+
 }
