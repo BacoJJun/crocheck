@@ -73,7 +73,12 @@ function subdhcptable(id){
 						var domain_html = '';
 						console.log(result.dhcpSubList);
 						for(var i =0; i<result.dhcpSubList.length;i++){
-							domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" value="'+result.dhcpTableList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" value="'+result.dhcpTableList[i].id+'"></button></td>';					
+							domain_html += '<tr>';
+							domain_html += '<td>' + result.dhcpSubList[i].type + '</td>';
+							domain_html += '<td>' + result.dhcpSubList[i].start_ip + '</td>';
+							domain_html += '<td>' + result.dhcpSubList[i].end_ip + '</td>';
+							domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" value="'+result.dhcpSubList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" value="'+result.dhcpSubList[i].id+'"></button></td>';					
+							domain_html += '</tr>'
 						}
 						dhcpsublist.innerHTML = domain_html;
 					} else {
@@ -103,7 +108,7 @@ function rentdhcptable(id){
 						var domain_html = '';
 						console.log(result.dhcpRentList);
 						for(var i =0; i<result.dhcpRentList.length;i++){
-								domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" value="'+result.dhcpTableList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" value="'+result.dhcpTableList[i].id+'"></button></td>';					
+								domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" value="'+result.dhcpRentList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" value="'+result.dhcpRentList[i].id+'"></button></td>';					
 						}
 						dhcprentlist.innerHTML = domain_html;
 					} else {
