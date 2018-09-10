@@ -4,32 +4,65 @@ var limitCount = '';
 
 $(document).ready(function() {
 	base_view();
-	
-	$("#fancy-checkbox-success").change(function(){
-		if ($('input:checkbox[name="check_dns_domain"]:checked')){
-			console.log("test");
-			$("#dns_domain").fadeIn("slow");
-		}
-		if (!$('input:checkbox[name="check_dns_domain"]:checked')){
-			console.log("test_2");
-			$("#dns_domain").fadeOut("slow");
-		}
-	})
-
-// listCheck();
+	listCheck();
 });
 function listCheck(){
-	if($("#check_dns_domain").is(":checked") ){
-		console.log("checkbox checked!");
-		if($("#dns_domain").css("display") == "none"){
-			jQuery('#dns_domain').show();
+	$("#check_dns_domain").change(function(){
+		if ($("#check_dns_domain").is(":checked")){
+			$("#dns_domain").fadeIn("slow");
 		}else{
-			jQuery('#dns_domain').hide();
+			$("#dns_domain").fadeOut("slow");
 		}
-	}else{
-		console.log("checkbox unchecked!!");
-		$("#dns_domain").fadeOut("slow");
-	}
+	});
+	$("#check_dns_client").change(function(){
+		if ($("#check_dns_client").is(":checked")){
+			$("#dns_client").fadeIn("slow");
+		}else{
+			$("#dns_client").fadeOut("slow");
+		}
+	});
+	$("#check_ddos_domain").change(function(){
+		if ($("#check_ddos_domain").is(":checked")){
+			$("#ddos_domain").fadeIn("slow");
+		}else{
+			$("#ddos_domain").fadeOut("slow");
+		}
+	});
+	$("#check_ddos_client").change(function(){
+		if ($("#check_ddos_client").is(":checked")){
+			$("#ddos_client").fadeIn("slow");
+		}else{
+			$("#ddos_client").fadeOut("slow");
+		}
+	});
+	$("#check_query_graph").change(function(){
+		if ($("#check_query_graph").is(":checked")){
+			$("#packet_graph").fadeIn("slow");
+		}else{
+			$("#packet_graph").fadeOut("slow");
+		}
+	});
+	$("#check_cpu_graph").change(function(){
+		if ($("#check_cpu_graph").is(":checked")){
+			$("#cpu_graph").fadeIn("slow");
+		}else{
+			$("#cpu_graph").fadeOut("slow");
+		}
+	});
+	$("#check_memroy_graph").change(function(){
+		if ($("#check_memroy_graph").is(":checked")){
+			$("#memroy_graph").fadeIn("slow");
+		}else{
+			$("#memroy_graph").fadeOut("slow");
+		}
+	});
+	$("#check_disk_graph").change(function(){
+		if ($("#check_disk_graph").is(":checked")){
+			$("#disk_graph").fadeIn("slow");
+		}else{
+			$("#disk_graph").fadeOut("slow");
+		}
+	});
 }
 function base_view() {
 	baseAppliance();

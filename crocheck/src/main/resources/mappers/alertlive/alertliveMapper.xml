@@ -21,7 +21,7 @@
 		result in (-1,-11,-2,-12)
 		group by domain, result2
 		order by
-		result2 ASC, count desc limit 5;
+		result2 ASC, count desc limit 6;
 	</select>
 	<select id="Departure"
 		resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDepartureVO">
@@ -41,18 +41,18 @@
 		result in (-1,-11,-2,-12)
 		group by departure, result2
 		order
-		by result2 ASC, count desc limit 5;
+		by result2 ASC, count desc limit 6;
 	</select>
 	<select id="dnsList" resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDnsDDosVO">
 		SELECT src_ip , domain , SUM(count) AS count FROM
 		dns_query_status WHERE
-		created_at >= now() - interval '1 hour' GROUP BY
+		created_at >= now() - interval '1 day' GROUP BY
 		src_ip , domain ORDER
-		BY count DESC LIMIT 5
+		BY count DESC LIMIT 6
 	</select>
 	<select id="ddosList" resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDnsDDosVO">
 		SELECT src_ip , domain , SUM(count) AS count FROM ddos_block_status WHERE
-		created_at >= now() - interval '1 hour' GROUP BY src_ip , domain ORDER
-		BY count DESC LIMIT 5
+		created_at >= now() - interval '1 day' GROUP BY src_ip , domain ORDER
+		BY count DESC LIMIT 6
 	</select>
 </mapper>

@@ -7,22 +7,11 @@
 <body class="nav-sm">
 	<div class="container body">
 		<div class="main_container">
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-					<div class="navbar nav_title" style="border: 0;">
-						<a href="/crocheck" class="site_title"> <span>CROCHECK
-								SDNS</span></a>
-					</div>
-
-					<div class="clearfix"></div>
-
-					<br />
 					<!-- sidebar menu -->
 					<%@ include file="side.jsp"%>
 					<!-- sidebar menu -->
 
-				</div>
-			</div>
+
 
 			<!--  top navigation -->
 			<%@ include file="top.jsp"%>
@@ -48,7 +37,7 @@
 								<!-- report view part -->
 								<div class="col-md-10" style="overflow-y: auto; height: 600px;">
 									<!--  dns domain start -->
-									<div id="dns_domain" class="row" >
+									<div id="dns_domain" class="row">
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
@@ -281,57 +270,50 @@
 											<div class="clearfix"></div>
 										</div>
 
-        <div class="[ form-group ]">
-            <input type="checkbox" name="check_dns_domain" id="fancy-checkbox-success" autocomplete="off" />
-            <div class="[ btn-group ]">
-                <label for="fancy-checkbox-success" class="[ btn btn-success ]">
-                    <span class="[ glyphicon glyphicon-ok ]"></span>
-                    <span> </span>
-                </label>
-                <label for="fancy-checkbox-success" class="[ btn btn-default active ]">
-                   DNS DOMAIN
-                </label>
-            </div>
-        </div>
+										<div class="checkbox">
+											<label> <input type="checkbox" id="check_dns_domain"
+												checked="checked"> DNS DOMAIN
+											</label>
+										</div>
 
 										<div class="checkbox">
-											<label> <input type="checkbox" class="flat"
-												id="check_dns_client" checked="checked"> DNS CLIENT
+											<label> <input type="checkbox" id="check_dns_client"
+												checked="checked"> DNS CLIENT
 											</label>
 										</div>
 										<div class="checkbox">
-											<label> <input type="checkbox" class="flat"
+											<label> <input type="checkbox" 
 												id="check_ddos_domain" checked="checked"> DDOS
 												DOMAIN
 											</label>
 										</div>
 										<div class="checkbox">
-											<label> <input type="checkbox" class="flat"
+											<label> <input type="checkbox" 
 												id="check_ddos_client" checked="checked"> DDOS
 												CLIENT
 											</label>
 										</div>
 										<div class="checkbox">
-											<label> <input type="checkbox" class="flat"
+											<label> <input type="checkbox" 
 												id="check_query_graph" checked="checked"> QUERY
 												GRAPH
 											</label>
 										</div>
 										<div class="checkbox">
-											<label> <input type="checkbox" class="flat"
+											<label> <input type="checkbox" 
 												id="check_cpu_graph" checked="checked"> CPU GRAPH
 											</label>
 										</div>
 
 										<div class="checkbox">
-											<label> <input type="checkbox" class="flat"
+											<label> <input type="checkbox" 
 												id="check_memroy_graph" checked="checked"> MEMORY
 												GRAPH
 											</label>
 										</div>
 
 										<div class="checkbox">
-											<label> <input type="checkbox" class="flat"
+											<label> <input type="checkbox" 
 												id="check_disk_graph" checked="checked"> DISK GRAPH
 											</label>
 										</div>

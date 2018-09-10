@@ -7,22 +7,9 @@
 <body class="nav-sm">
 	<div class="container body">
 		<div class="main_container">
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-					<div class="navbar nav_title" style="border: 0;">
-						<a href="/crocheck" class="site_title"> <span>CROCHECK
-								SDNS</span></a>
-					</div>
-
-					<div class="clearfix"></div>
-
-					<br />
-					<!-- sidebar menu -->
-					<%@ include file="side.jsp"%>
-					<!-- sidebar menu -->
-
-				</div>
-			</div>
+			<!-- sidebar menu -->
+			<%@ include file="side.jsp"%>
+			<!-- sidebar menu -->
 
 			<!--  top navigation -->
 			<%@ include file="top.jsp"%>
@@ -58,23 +45,24 @@
 											<div class="clearfix"></div>
 										</div>
 										<div class="x_content">
-											<table id="datatable" class="table table-striped table-bordered">
+											<table id="datatable"
+												class="table table-striped table-bordered">
 												<thead>
 													<tr>
-														<th> type </th>
-														<th> date </th>
-														<th> comment </th>
-														<th> user </th>
-														<th> ip </th>
+														<th>type</th>
+														<th>date</th>
+														<th>comment</th>
+														<th>user</th>
+														<th>ip</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<td> insert </td>
-														<td> 2018.09.06 </td>
-														<td> xxxxxx </td>
-														<td> administrator </td>
-														<td> 192.168.0.78 </td>
+														<td>insert</td>
+														<td>2018.09.06</td>
+														<td>xxxxxx</td>
+														<td>administrator</td>
+														<td>192.168.0.78</td>
 													</tr>
 												</tbody>
 											</table>
@@ -93,14 +81,15 @@
 										<div class="clearfix"></div>
 
 										<div class="radio" id="check_dns_domain_div">
-											<label> <input
-												type="radio" class="flat" id="check_dns_update" name="check_update"
-												checked="checked"> DNS UPDATE LIST
+											<label> <input type="radio" class="flat"
+												id="check_dns_update" name="check_update" checked="checked">
+												DNS UPDATE LIST
 											</label>
 										</div>
 										<div class="radio">
 											<label> <input type="radio" class="flat"
-												id="check_dhcp_update" name="check_update" > DHCP UPDATE LIST
+												id="check_dhcp_update" name="check_update"> DHCP
+												UPDATE LIST
 											</label>
 										</div>
 									</div>
@@ -124,7 +113,7 @@
 											<button type="button" class="btn btn-success">
 												<span>SUBMIT</span>
 											</button>
-											
+
 										</div>
 									</div>
 									<!-- report search end -->

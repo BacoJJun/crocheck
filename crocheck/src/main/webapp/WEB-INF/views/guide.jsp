@@ -7,22 +7,11 @@
 <body class="nav-sm">
 	<div class="container body">
 		<div class="main_container">
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-					<div class="navbar nav_title" style="border: 0;">
-						<a href="/crocheck" class="site_title"> <span>CROCHECK
-								SDNS</span></a>
-					</div>
 
-					<div class="clearfix"></div>
+			<!-- sidebar menu -->
+			<%@ include file="side.jsp"%>
+			<!-- sidebar menu -->
 
-					<br />
-					<!-- sidebar menu -->
-					<%@ include file="side.jsp"%>
-					<!-- sidebar menu -->
-
-				</div>
-			</div>
 
 			<!--  top navigation -->
 			<%@ include file="top.jsp"%>
@@ -117,7 +106,7 @@
 			<!--end  page content -->
 		</div>
 	</div>
-	</div>
+
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>

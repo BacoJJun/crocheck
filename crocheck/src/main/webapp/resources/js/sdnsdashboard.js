@@ -35,9 +35,9 @@ function getStatList() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				todayddosstat.innerText = result.ddosStatusList[0].totalcount;
+				nowddosstat.innerText = result.ddosStatusList[0].totalcount;
 				minddosstat.innerText = result.ddosStatusList[1].totalcount;
-				nowddosstat.innerText = result.ddosStatusList[2].totalcount;
+				todayddosstat.innerText = result.ddosStatusList[2].totalcount;
 			} else {
 				alert(result.errorMsg);
 			}

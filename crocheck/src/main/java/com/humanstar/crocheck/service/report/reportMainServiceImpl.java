@@ -40,7 +40,7 @@ public class reportMainServiceImpl implements reportMainService{
 	@Override
 	public List<reportPacketVO> reportMainDDosPacket() throws Exception {
 		// TODO Auto-generated method stub
-		return reportPacketDAO.mainReportDnsPacket();
+		return reportPacketDAO.mainReportDDosPacket();
 	}
 	@Override
 	public List<reportDomainQueryVO> reportMainDnsDomain() throws Exception {

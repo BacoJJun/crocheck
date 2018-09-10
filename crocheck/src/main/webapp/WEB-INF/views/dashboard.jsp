@@ -6,21 +6,11 @@
 <body class="nav-sm">
 	<div class="container body">
 		<div class="main_container">
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-					<div class="navbar nav_title" style="border: 0;">
-						<a href="/crocheck" class="site_title"> <span>CROCHECK
-								SDNS</span></a>
-					</div>
 
-					<div class="clearfix"></div>
+			<!-- sidebar menu -->
+			<%@ include file="side.jsp"%>
+			<!-- sidebar menu -->
 
-					<br />
-					<!-- sidebar menu -->
-					<%@ include file="side.jsp"%>
-					<!-- sidebar menu -->
-				</div>
-			</div>
 
 			<!--  top navigation -->
 			<%@ include file="top.jsp"%>
@@ -28,6 +18,7 @@
 
 			<!-- page content -->
 			<div class="right_col" role="main">
+			<div class="x_panel">
 				<!-- top tiles -->
 				<div class="row tile_count">
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -83,20 +74,6 @@
 									<div class="demo-container" style="height: 280px">
 										<!-- <div id="chart_plot_02_dns" class="demo-placeholder"></div> -->
 										<canvas id="mybarChart_dns" class="demo-placeholder"></canvas>
-									</div>
-									<div class="tiles">
-										<div class="col-md-4 tile">
-											<span>Yesterday Query Status</span>
-											<h2>231,809</h2>
-										</div>
-										<div class="col-md-4 tile">
-											<span>Yesterday Query Average</span>
-											<h2>$231,809</h2>
-										</div>
-										<div class="col-md-4 tile">
-											<span>Yesterday DDOS Status</span>
-											<h2>231,809</h2>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -183,71 +160,67 @@
 
 				</div>
 			</div>
-			<!-- jQuery -->
-			<script src="js/jquery.min.js"></script>
-			<!-- Bootstrap -->
-			<script src="js/bootstrap.min.js"></script>
-			<!-- FastClick -->
-			<script src="js/fastclick.js"></script>
-			<!-- NProgress -->
-			<script src="js/nprogress.js"></script>
-			<!-- Chart.js -->
-			<script src="js/Chart.min.js"></script>
-			<!-- gauge.js -->
-			<script src="js/gauge.min.js"></script>
-			<!-- bootstrap-progressbar -->
-			<script src="js/bootstrap-progressbar.min.js"></script>
-			<!-- iCheck -->
-			<script src="js/icheck.min.js"></script>
-			<!-- Skycons -->
-			<script src="js/skycons.js"></script>
-			<!-- Flot -->
-			<script src="js/jquery.flot.js"></script>
-			<script src="js/jquery.flot.pie.js"></script>
-			<script src="js/jquery.flot.time.js"></script>
-			<script src="js/jquery.flot.stack.js"></script>
-			<script src="js/jquery.flot.resize.js"></script>
-			<!-- Flot plugins -->
-			<script src="js/jquery.flot.orderBars.js"></script>
-			<script src="js/jquery.flot.spline.min.js"></script>
-			<script src="js/curvedLines.js"></script>
-			<!-- DateJS -->
-			<script src="js/date.js"></script>
-			<!-- JQVMap -->
-			<script src="js/jquery.vmap.js"></script>
-			<script src="js/jquery.vmap.world.js"></script>
-			<script src="js/jquery.vmap.sampledata.js"></script>
-			<!-- bootstrap-daterangepicker -->
-			<script src="js/moment.min.js"></script>
-			<script src="js/daterangepicker.js"></script>
-			<script src="js/echarts.min.js"></script>
-			<script src="js/jquery.easypiechart.min.js"></script>
-			<!-- Datatables -->
-			<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
-			<script
-				src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-			<script
-				src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-			<script
-				src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-			<script
-				src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
-			<script
-				src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
-			<script
-				src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
-			<script
-				src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-			<script
-				src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-			<script
-				src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-			<script
-				src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-			<script
-				src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-			<!-- Custom Theme Scripts -->
-			<script src="js/custom.js"></script>
-			<script src="js/sdnsdashboard.js"></script>
+			</div>
+		</div>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script src="js/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="js/nprogress.js"></script>
+	<!-- Chart.js -->
+	<script src="js/Chart.min.js"></script>
+	<!-- gauge.js -->
+	<script src="js/gauge.min.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="js/bootstrap-progressbar.min.js"></script>
+	<!-- iCheck -->
+	<script src="js/icheck.min.js"></script>
+	<!-- Skycons -->
+	<script src="js/skycons.js"></script>
+	<!-- Flot -->
+	<script src="js/jquery.flot.js"></script>
+	<script src="js/jquery.flot.pie.js"></script>
+	<script src="js/jquery.flot.time.js"></script>
+	<script src="js/jquery.flot.stack.js"></script>
+	<script src="js/jquery.flot.resize.js"></script>
+	<!-- Flot plugins -->
+	<script src="js/jquery.flot.orderBars.js"></script>
+	<script src="js/jquery.flot.spline.min.js"></script>
+	<script src="js/curvedLines.js"></script>
+	<!-- DateJS -->
+	<script src="js/date.js"></script>
+	<!-- JQVMap -->
+	<script src="js/jquery.vmap.js"></script>
+	<script src="js/jquery.vmap.world.js"></script>
+	<script src="js/jquery.vmap.sampledata.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="js/moment.min.js"></script>
+	<script src="js/daterangepicker.js"></script>
+	<script src="js/echarts.min.js"></script>
+	<script src="js/jquery.easypiechart.min.js"></script>
+	<!-- Datatables -->
+	<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script
+		src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="js/custom.js"></script>
+	<script src="js/sdnsdashboard.js"></script>
 </body>
 </html>
