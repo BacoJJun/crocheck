@@ -24,6 +24,7 @@
 
     <!-- Custom Theme Style -->
     <link href="css/custom.min.css" rel="stylesheet">
+    <link href="css/checkbox_custom.css" rel="stylesheet">
   </head>
   
   

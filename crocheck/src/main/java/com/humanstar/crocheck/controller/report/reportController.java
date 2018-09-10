@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.report.dto.reportApplianceVO;
+import com.humanstar.crocheck.model.report.dto.reportDomainQueryVO;
 import com.humanstar.crocheck.model.report.dto.reportPacketVO;
+import com.humanstar.crocheck.model.report.dto.reportSrcQueryVO;
 import com.humanstar.crocheck.model.searchtype.dto.searchTypeVO;
 import com.humanstar.crocheck.service.report.reportMainServiceImpl;
 
@@ -106,6 +108,99 @@ public class reportController {
 
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/reportBaseDnsDomain", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportBaseDnsDomain() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<reportDomainQueryVO> dnsDomainList = new ArrayList<reportDomainQueryVO>();
+
+
+		try {
+			dnsDomainList = reportMainService.reportMainDnsDomain();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("dnsDomainList", dnsDomainList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/reportBaseDDosDomain", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportBaseDDosDomain() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<reportDomainQueryVO> ddosDomainList = new ArrayList<reportDomainQueryVO>();
+
+
+		try {
+			ddosDomainList = reportMainService.reportMainDDosDomain();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("ddosDomainList", ddosDomainList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/reportBaseDnsSrc", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportBaseDnsSrc() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<reportSrcQueryVO> dnsSrcList = new ArrayList<reportSrcQueryVO>();
+
+
+		try {
+			dnsSrcList = reportMainService.reportMainDnsSrc();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("dnsSrcList", dnsSrcList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/reportBaseDDosSrc", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportBaseDDosSrc() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<reportSrcQueryVO> ddosSrcList = new ArrayList<reportSrcQueryVO>();
+
+
+		try {
+			ddosSrcList = reportMainService.reportMainDDosSrc();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("ddosSrcList", ddosSrcList);
+
+		return resultMap;
+	}
+	
 	
 	@RequestMapping(value = "/searchReportAppDays", method = RequestMethod.POST)
 	@ResponseBody

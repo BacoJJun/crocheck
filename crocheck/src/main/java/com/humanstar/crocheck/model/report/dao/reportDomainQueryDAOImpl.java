@@ -24,7 +24,7 @@ public class reportDomainQueryDAOImpl implements reportDomainQueryDAO{
 	@Override
 	public List<reportDomainQueryVO> reportMainDDosDomainQuery() throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.basednsdomain");
+		return SqlSession.selectList("reportQuery.baseddosdomain");
 	}
 
 }

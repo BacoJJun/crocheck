@@ -4,23 +4,56 @@ var limitCount = '';
 
 $(document).ready(function() {
 	base_view();
-//	baseQuery()
-});
+	
+	$("#fancy-checkbox-success").change(function(){
+		if ($('input:checkbox[name="check_dns_domain"]:checked')){
+			console.log("test");
+			$("#dns_domain").fadeIn("slow");
+		}
+		if (!$('input:checkbox[name="check_dns_domain"]:checked')){
+			console.log("test_2");
+			$("#dns_domain").fadeOut("slow");
+		}
+	})
 
+// listCheck();
+});
+function listCheck(){
+	if($("#check_dns_domain").is(":checked") ){
+		console.log("checkbox checked!");
+		if($("#dns_domain").css("display") == "none"){
+			jQuery('#dns_domain').show();
+		}else{
+			jQuery('#dns_domain').hide();
+		}
+	}else{
+		console.log("checkbox unchecked!!");
+		$("#dns_domain").fadeOut("slow");
+	}
+}
 function base_view() {
 	baseAppliance();
 	basePacket();
-	queryPieChart();
-}
+	baseQuery();
+};
+
 function baseQuery(){
+	var dnsdomainList = [];
+	var dnsdomainCount = [];
+	var dnsdomainPer = [];
 	$.ajax({
-		url : '/crocheck/reportBaseApp',
+		url : '/crocheck/reportBaseDnsDomain',
 		type : 'post',
 		dataType : 'json',
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				
+				for(var i =0; i<result.dnsDomainList.length; i++){
+					dnsdomainList[i] = result.dnsDomainList[i].domain;
+					dnsdomainCount[i] = result.dnsDomainList[i].count;
+					dnsdomainPer[i] = result.dnsDomainList[i].percentage;
+				}
+				dnsDomainList(dnsdomainList, dnsdomainCount, dnsdomainPer);
 			} else {
 				alert(result.errorMsg);
 			}
@@ -31,8 +64,91 @@ function baseQuery(){
 					+ request.responseText + "\n");
 		}
 	});
+	
+	 var ddosdomainList = [];
+	 var ddosdomainCount = [];
+	 var ddosdomainPer = [];
+	$.ajax({
+		url : '/crocheck/reportBaseDDosDomain',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				for(var i =0; i<result.ddosDomainList.length; i++){
+					ddosdomainList[i] = result.ddosDomainList[i].domain;
+					ddosdomainCount[i] = result.ddosDomainList[i].count;
+					ddosdomainPer[i] = result.ddosDomainList[i].percentage;
+				}
+				ddosDomainList(ddosdomainList, ddosdomainCount, ddosdomainPer);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+	var dnsSrcList = [];
+	var dnsSrcCount = [];
+	var dnsSrcPer = [];
+	
+	$.ajax({
+		url : '/crocheck/reportBaseDnsSrc',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+			for(var i =0; i<result.dnsSrcList.length;i++){
+				dnsSrcList[i] = result.dnsSrcList[i].src_ip;
+				dnsSrcCount[i] = result.dnsSrcList[i].count;
+				dnsSrcPer[i] = result.dnsSrcList[i].percentage;
+			}
+			dnsClientList(dnsSrcList, dnsSrcCount, dnsSrcPer);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	var ddosSrcList = [];
+	var ddosSrcCount = [];
+	var ddosSrcPer = [];	
+	$.ajax({
+		url : '/crocheck/reportBaseDDosSrc',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				for(var i =0; i<result.ddosSrcList.length;i++){
+					ddosSrcList[i] = result.ddosSrcList[i].src_ip;
+					ddosSrcCount[i] = result.ddosSrcList[i].count;
+					ddosSrcPer[i] = result.ddosSrcList[i].percentage;
+				}
+				ddosClientList(ddosSrcList, ddosSrcCount, ddosSrcPer);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
 }
-function queryPieChart(){
+
+function dnsDomainList(domainList, domainCount, domainPer){
 	if ($('#dns_domain_pie').length) {
 
 		var echartPie = echarts.init(document.getElementById('dns_domain_pie'),
@@ -67,28 +183,119 @@ function queryPieChart(){
 				radius : '55%',
 				center : [ '50%', '48%' ],
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : domainCount[0],
+					name : domainList[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : domainCount[1],
+					name : domainList[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : domainCount[2],
+					name : domainList[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : domainCount[3],
+					name : domainList[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : domainCount[4],
+					name : domainList[4]
 				} ]
 			} ]
 
 		});
 	}
+	var dnsDomainTable = document.getElementById("dnsDomaintableList");
+	
+	var domain_html ='';
+	var domain_length = '';
+	if(domainList.length < 7){
+		domain_length = domain.length;
+	}else{
+		domain_length = 7;
+	}
+	
+	for(var i = 0; i< domain_length;i++){
+		domain_html += '<tr>';
+		domain_html += '<td>' + domainList[i] + '</td>';
+		domain_html += '<td>' + domainCount[i] + '</td>';
+		domain_html += '<td>' + domainPer[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	dnsDomainTable.innerHTML = domain_html;
+}
+function ddosDomainList(domainList, domainCount, domainPer){
+	
+	if ($('#ddos_domain_pie').length) {
+		var echartPie = echarts.init(document.getElementById('ddos_domain_pie'),
+				theme);
 
+		echartPie.setOption({
+			tooltip : {
+				trigger : 'item',
+				formatter : "{a} <br/>{b} : {c} ({d}%)"
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					magicType : {
+						show : true,
+						type : [ 'pie', 'funnel' ],
+						option : {
+							funnel : {
+								x : '25%',
+								width : '50%',
+								funnelAlign : 'left',
+								max : 1548
+							}
+						}
+					}
+				}
+			},
+			calculable : true,
+			series : [ {
+				name : 'donut_title',
+				type : 'pie',
+				radius : '55%',
+				center : [ '50%', '48%' ],
+				data : [ {
+					value : domainCount[0],
+					name : domainList[0]
+				}, {
+					value : domainCount[1],
+					name : domainList[1]
+				}, {
+					value : domainCount[2],
+					name : domainList[2]
+				}, {
+					value : domainCount[3],
+					name : domainList[3]
+				}, {
+					value : domainCount[4],
+					name : domainList[4]
+				} ]
+			} ]
+
+		});
+	}
+	var dnsDomainTable = document.getElementById("ddosDomaintableList");
+	
+	var domain_html ='';
+	var domain_length = '';
+	if(domainList.length < 7){
+		domain_length = domain.length;
+	}else{
+		domain_length = 7;
+	}
+	
+	for(var i = 0; i< domain_length;i++){
+		domain_html += '<tr>';
+		domain_html += '<td>' + domainList[i] + '</td>';
+		domain_html += '<td>' + domainCount[i] + '</td>';
+		domain_html += '<td>' + domainPer[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	dnsDomainTable.innerHTML = domain_html;
+}
+function dnsClientList(srcList, srcCount, srcPer){
 	if ($('#dns_client_pie').length) {
-
 		var echartPie = echarts.init(document.getElementById('dns_client_pie'),
 				theme);
 
@@ -97,12 +304,6 @@ function queryPieChart(){
 				trigger : 'item',
 				formatter : "{a} <br/>{b} : {c} ({d}%)"
 			},
-			legend : {
-				x : 'center',
-				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
-			},
 			toolbox : {
 				show : true,
 				feature : {
@@ -127,143 +328,117 @@ function queryPieChart(){
 				radius : '55%',
 				center : [ '50%', '48%' ],
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : srcCount[0],
+					name : srcList[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : srcCount[1],
+					name : srcList[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : srcCount[2],
+					name : srcList[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : srcCount[3],
+					name : srcList[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : srcCount[4],
+					name : srcList[4]
 				} ]
 			} ]
+
 		});
 	}
-
-	if ($('#ddos_domain_pie').length) {
-
-		var echartPie = echarts.init(
-				document.getElementById('ddos_domain_pie'), theme);
-
-		echartPie.setOption({
-			tooltip : {
-				trigger : 'item',
-				formatter : "{a} <br/>{b} : {c} ({d}%)"
-			},
-			legend : {
-				x : 'center',
-				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
-			},
-			toolbox : {
-				show : true,
-				feature : {
-					magicType : {
-						show : true,
-						type : [ 'pie', 'funnel' ],
-						option : {
-							funnel : {
-								x : '25%',
-								width : '50%',
-								funnelAlign : 'left',
-								max : 1548
-							}
-						}
-					}
-				}
-			},
-			calculable : true,
-			series : [ {
-				name : 'donut_title',
-				type : 'pie',
-				radius : '55%',
-				center : [ '50%', '48%' ],
-				data : [ {
-					value : 335,
-					name : 'Direct Access'
-				}, {
-					value : 310,
-					name : 'E-mail Marketing'
-				}, {
-					value : 234,
-					name : 'Union Ad'
-				}, {
-					value : 135,
-					name : 'Video Ads'
-				}, {
-					value : 1548,
-					name : 'Search Engine'
-				} ]
-			} ]
-		});
+	var dnsClientTable = document.getElementById("dnsClienttableList");
+	
+	var domain_html ='';
+	var src_length = '';
+	if(srcList.length < 7){
+		src_length = srcList.length;
+	}else{
+		src_length = 7;
 	}
-
-	if ($('#ddos_client_pie').length) {
-
-		var echartPie = echarts.init(
-				document.getElementById('ddos_client_pie'), theme);
-
-		echartPie.setOption({
-			tooltip : {
-				trigger : 'item',
-				formatter : "{a} <br/>{b} : {c} ({d}%)"
-			},
-			legend : {
-				x : 'center',
-				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
-			},
-			toolbox : {
-				show : true,
-				feature : {
-					magicType : {
-						show : true,
-						type : [ 'pie', 'funnel' ],
-						option : {
-							funnel : {
-								x : '25%',
-								width : '50%',
-								funnelAlign : 'left',
-								max : 1548
-							}
-						}
-					}
-				}
-			},
-			calculable : true,
-			series : [ {
-				name : 'donut_title',
-				type : 'pie',
-				radius : '55%',
-				center : [ '50%', '48%' ],
-				data : [ {
-					value : 335,
-					name : 'Direct Access'
-				}, {
-					value : 310,
-					name : 'E-mail Marketing'
-				}, {
-					value : 234,
-					name : 'Union Ad'
-				}, {
-					value : 135,
-					name : 'Video Ads'
-				}, {
-					value : 1548,
-					name : 'Search Engine'
-				} ]
-			} ]
-		});
+	
+	for(var i = 0; i< src_length;i++){
+		domain_html += '<tr>';
+		domain_html += '<td>' + srcList[i] + '</td>';
+		domain_html += '<td>' + srcCount[i] + '</td>';
+		domain_html += '<td>' + srcPer[i] + '%</td>';
+		domain_html += '</tr>';
 	}
+	dnsClientTable.innerHTML = domain_html;
 }
+function ddosClientList(srcList, srcCount, srcPer){
+	if ($('#ddos_client_pie').length) {
+		var echartPie = echarts.init(document.getElementById('ddos_client_pie'),
+				theme);
+
+		echartPie.setOption({
+			tooltip : {
+				trigger : 'item',
+				formatter : "{a} <br/>{b} : {c} ({d}%)"
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					magicType : {
+						show : true,
+						type : [ 'pie', 'funnel' ],
+						option : {
+							funnel : {
+								x : '25%',
+								width : '50%',
+								funnelAlign : 'left',
+								max : 1548
+							}
+						}
+					}
+				}
+			},
+			calculable : true,
+			series : [ {
+				name : 'donut_title',
+				type : 'pie',
+				radius : '55%',
+				center : [ '50%', '48%' ],
+				data : [ {
+					value : srcCount[0],
+					name : srcList[0]
+				}, {
+					value : srcCount[1],
+					name : srcList[1]
+				}, {
+					value : srcCount[2],
+					name : srcList[2]
+				}, {
+					value : srcCount[3],
+					name : srcList[3]
+				}, {
+					value : srcCount[4],
+					name : srcList[4]
+				} ]
+			} ]
+
+		});
+	}
+	var ddosClientTable = document.getElementById("ddosClienttableList");
+	
+	var domain_html ='';
+	var src_length = '';
+	if(srcList.length < 7){
+		src_length = srcList.length;
+	}else{
+		src_length = 7;
+	}
+	
+	for(var i = 0; i< src_length;i++){
+		domain_html += '<tr>';
+		domain_html += '<td>' + srcList[i] + '</td>';
+		domain_html += '<td>' + srcCount[i] + '</td>';
+		domain_html += '<td>' + srcPer[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	ddosClientTable.innerHTML = domain_html;
+}
+
 function basePacket() {
 	var appDnsPacket = [];
 	var appDDosPacket = [];

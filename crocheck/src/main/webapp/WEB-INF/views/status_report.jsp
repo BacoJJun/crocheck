@@ -46,10 +46,9 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<!-- report view part -->
-								<div class="col-md-9" style="overflow-y: auto; height: 600px;">
-
+								<div class="col-md-10" style="overflow-y: auto; height: 600px;">
 									<!--  dns domain start -->
-									<div id="dns_domain" class="row" style="display:block">
+									<div id="dns_domain" class="row" >
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
@@ -58,59 +57,27 @@
 													</h2>
 												</div>
 												<div class="x_content ">
-													<div id="dns_domain_pie" style="height: 250px;"></div>
+													<div id="dns_domain_pie" style="height: 270px;"></div>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
-												<div class="x_title">
-													<h2>
-														Hover rows <small>Try hovering over the rows</small>
-													</h2>
-													<div class="clearfix"></div>
-												</div>
 												<div class="x_content">
 													<table class="table table-hover">
+														<colgroup>
+															<col width="60%">
+															<col width="20%">
+															<col width="20%">
+														</colgroup>
 														<thead>
 															<tr>
-																<th>#</th>
-																<th>First Name</th>
-																<th>Last Name</th>
-																<th>Username</th>
+																<th>Domain</th>
+																<th>Count</th>
+																<th>Percentage</th>
 															</tr>
 														</thead>
-														<tbody>
-															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td>Otto</td>
-																<td>@mdo</td>
-															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td>@fat</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
+														<tbody id="dnsDomaintableList">
 														</tbody>
 													</table>
 
@@ -130,59 +97,27 @@
 													</h2>
 												</div>
 												<div class="x_content ">
-													<div id="dns_client_pie" style="height: 250px;"></div>
+													<div id="dns_client_pie" style="height: 270px;"></div>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
-												<div class="x_title">
-													<h2>
-														Hover rows <small>Try hovering over the rows</small>
-													</h2>
-													<div class="clearfix"></div>
-												</div>
 												<div class="x_content">
 													<table class="table table-hover">
+														<colgroup>
+															<col width="60%">
+															<col width="20%">
+															<col width="20%">
+														</colgroup>
 														<thead>
 															<tr>
-																<th>#</th>
-																<th>First Name</th>
-																<th>Last Name</th>
-																<th>Username</th>
+																<th>Src_ip</th>
+																<th>Count</th>
+																<th>Percentage</th>
 															</tr>
 														</thead>
-														<tbody>
-															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td>Otto</td>
-																<td>@mdo</td>
-															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td>@fat</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
+														<tbody id="dnsClienttableList">
 														</tbody>
 													</table>
 
@@ -198,63 +133,31 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														DDOS DOMAIN<small>Donut graph</small>
+														DDOS Domain<small>Donut graph</small>
 													</h2>
 												</div>
 												<div class="x_content ">
-													<div id="ddos_domain_pie" style="height: 250px;"></div>
+													<div id="ddos_domain_pie" style="height: 270px;"></div>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
-												<div class="x_title">
-													<h2>
-														Hover rows <small>Try hovering over the rows</small>
-													</h2>
-													<div class="clearfix"></div>
-												</div>
 												<div class="x_content">
 													<table class="table table-hover">
+														<colgroup>
+															<col width="60%">
+															<col width="20%">
+															<col width="20%">
+														</colgroup>
 														<thead>
 															<tr>
-																<th>#</th>
-																<th>First Name</th>
-																<th>Last Name</th>
-																<th>Username</th>
+																<th>Src</th>
+																<th>Count</th>
+																<th>Percentage</th>
 															</tr>
 														</thead>
-														<tbody>
-															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td>Otto</td>
-																<td>@mdo</td>
-															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td>@fat</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
+														<tbody id="ddosDomaintableList">
 														</tbody>
 													</table>
 
@@ -274,60 +177,27 @@
 													</h2>
 												</div>
 												<div class="x_content ">
-													<div id="ddos_client_pie" style="height: 250px;"></div>
+													<div id="ddos_client_pie" style="height: 270px;"></div>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
-												<div class="x_title">
-													<h2>
-														Hover rows <small>Try hovering over the rows</small>
-													</h2>
-													</ul>
-													<div class="clearfix"></div>
-												</div>
 												<div class="x_content">
 													<table class="table table-hover">
+														<colgroup>
+															<col width="60%">
+															<col width="20%">
+															<col width="20%">
+														</colgroup>
 														<thead>
 															<tr>
-																<th>#</th>
-																<th>First Name</th>
-																<th>Last Name</th>
-																<th>Username</th>
+																<th>Src_ip</th>
+																<th>Count</th>
+																<th>Percentage</th>
 															</tr>
 														</thead>
-														<tbody>
-															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td>Otto</td>
-																<td>@mdo</td>
-															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td>@fat</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
+														<tbody id="ddosClienttableList">
 														</tbody>
 													</table>
 
@@ -404,18 +274,26 @@
 								<!-- report view part end -->
 
 								<!-- report check list -->
-								<div class="col-md-3">
+								<div class="col-md-2">
 									<div class="x_panel">
 										<div class="x_title">
 											<h2>체크 리스트</h2>
+											<div class="clearfix"></div>
 										</div>
-										<div class="clearfix"></div>
 
-										<div class="checkbox" id="check_dns_domain_div"  >
-											<label id="check_dns_domain_label"> <input type="checkbox" class="flat" id="check_dns_domain_checkbox"
-												checked="checked"> DNS DOMAIN
-											</label>
-										</div>
+        <div class="[ form-group ]">
+            <input type="checkbox" name="check_dns_domain" id="fancy-checkbox-success" autocomplete="off" />
+            <div class="[ btn-group ]">
+                <label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                    <span class="[ glyphicon glyphicon-ok ]"></span>
+                    <span> </span>
+                </label>
+                <label for="fancy-checkbox-success" class="[ btn btn-default active ]">
+                   DNS DOMAIN
+                </label>
+            </div>
+        </div>
+
 										<div class="checkbox">
 											<label> <input type="checkbox" class="flat"
 												id="check_dns_client" checked="checked"> DNS CLIENT
@@ -466,8 +344,9 @@
 											<h2>
 												검색조건 <small> </small>
 											</h2>
+											<div class="clearfix"></div>
 										</div>
-										<div class="clearfix"></div>
+
 										<div class="radio">
 											<label> <input type="radio" class="flat" checked
 												name="report_type" checked id="daily"> 일간
