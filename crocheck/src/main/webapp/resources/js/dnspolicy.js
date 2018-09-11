@@ -13,8 +13,18 @@ $(document)	.ready(function() {
 		table_loop();
 		dns_button_event();
 
+		buttonClickEvent();
 
 });
+function buttonClickEvent(){
+	var insertModal = new Example.Modal({
+		id : "modal"
+	})
+	$("#insertDomain").click(function(){
+		console.log("test");
+		insertModal.show();
+	});
+}
 function dns_button_event(){
 	$('#zonelist button').click(function(){
 		var dns_id =  $(this).attr('value');

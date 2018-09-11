@@ -1,61 +1,38 @@
-/**
- *  BootTree Treeview plugin for Bootstrap.
- *
- *  Based on BootSnipp TreeView Example by Sean Wessell
- *  URL:	http://bootsnipp.com/snippets/featured/bootstrap-30-treeview
- *
- *	Revised code by Leo "LeoV117" Myers
- *
- */
-$.fn.extend({
-	treeview:	function() {
-		return this.each(function() {
-			// Initialize the top levels;
-			var tree = $(this);
-			
-			tree.addClass('treeview-tree');
-			tree.find('li').each(function() {
-				var stick = $(this);
-			});
-			tree.find('li').has("ul").each(function () {
-				var branch = $(this); //li with children ul
-				
-				branch.prepend("<i class='tree-indicator glyphicon glyphicon-chevron-right'></i>");
-				branch.addClass('tree-branch');
-				branch.on('click', function (e) {
-					if (this == e.target) {
-						var icon = $(this).children('i:first');
-						
-						icon.toggleClass("glyphicon-chevron-down glyphicon-chevron-right");
-						$(this).children().children().toggle();
-					}
-				})
-				branch.children().children().toggle();
-				
-				/**
-				 *	The following snippet of code enables the treeview to
-				 *	function when a button, indicator or anchor is clicked.
-				 *
-				 *	It also prevents the default function of an anchor and
-				 *	a button from firing.
-				 */
-				branch.children('.tree-indicator, button, a').click(function(e) {
-					branch.click();
-					
-					e.preventDefault();
-				});
-			});
-		});
-	}
+$(document).ready(function () {
+    $('label.tree-toggler').click(function () {
+        $(this).parent().children('ul.tree').toggle(300);
+    });
 });
+function menulist(){
+	
+	$.ajax({
+		url : '/crocheck/postlist'
+			, type : 'post'
+			, dataType : 'json'
+			, async : false
+			, success : function(result){
+					if(result.result == 'success'){
+						listdraw(result.postList);
+					}else{
+						alert(result.errorMsg);
+					}
+			}
+			, error : function(request){
+				alert('error!'); 
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n");
+			}
+	});
+}
 
-/**
- *	The following snippet of code automatically converst
- *	any '.treeview' DOM elements into a treeview component.
- */
-$(window).on('load', function () {
-	$('.treeview').each(function () {
-		var tree = $(this);
-		tree.treeview();
-	})
-})
+function listdraw(data){
+	var menulist = document.getElementById("menuList");
+	
+	var domain_html = '';
+	
+	for( var i =0; i < data.length; i++){
+		if(data[i].flowcount == 0){
+			domain_html += 	'<li><a href="#" data-toggle="collapse" data-target="#firstMenu" data-parent="#sidenav01" class="collapsed">'+data.name+' <span class="fa fa-sort-down"></span></a>';
+		}
+		
+	}
+}

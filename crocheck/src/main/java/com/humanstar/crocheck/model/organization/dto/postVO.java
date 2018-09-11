@@ -8,8 +8,15 @@ public class postVO {
 	private String description;
 	private String created_at;
 	private String updated_at;
-	private int parent_id;
+	private String parent_id;
+	private int flowcount;
 	
+	public int getFlowcount() {
+		return flowcount;
+	}
+	public void setFlowcount(int flowcount) {
+		this.flowcount = flowcount;
+	}
 	public int getId() {
 		return id;
 	}
@@ -52,10 +59,10 @@ public class postVO {
 	public void setUpdated_at(String updated_at) {
 		this.updated_at = updated_at;
 	}
-	public int getParent_id() {
+	public String getParent_id() {
 		return parent_id;
 	}
-	public void setParent_id(int parent_id) {
+	public void setParent_id(String parent_id) {
 		this.parent_id = parent_id;
 	}
 	

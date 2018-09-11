@@ -53,51 +53,7 @@
 									<!-- organization list -->
 
 									<div class="col-sm-2 col-md-2 affix-sidebar">
-										<div class="sidebar-nav">
-											<div class="navbar navbar-default" role="navigation">
-												<div
-													class="navbar-collapse collapse sidebar-navbar-collapse">
-													<ul class="nav navbar-nav" id="sidenav">
-														<li><a href="#" data-toggle="collapse"
-															data-target="#toggleDemo" data-parent="#sidenav01"
-															class="collapsed"> <span
-																class="glyphicon glyphicon-cloud"></span> Submenu 1 <span
-																class="fa fa-sort-down"></span>
-														</a>
-															<div class="collapse" id="toggleDemo"
-																style="height: 0px;">
-																<ul class="nav nav-list">
-																	<li><a href="#">Submenu1.1</a></li>
-																	<li><a href="#">Submenu1.2</a></li>
-																	<li><a href="#">Submenu1.3</a></li>
-																</ul>
-															</div></li>
-														<li class="active"><a href="#" data-toggle="collapse"
-															data-target="#toggleDemo2" data-parent="#sidenav01"
-															class="collapsed"> <span
-																class="glyphicon glyphicon-inbox"></span> Submenu 2 <span
-																class="caret pull-right"></span>
-														</a>
-															<div class="collapse" id="toggleDemo2"
-																style="height: 0px;">
-																<ul class="nav nav-list">
-																	<li><a href="#">Submenu2.1</a></li>
-																	<li><a href="#">Submenu2.2</a></li>
-																	<li class="active"><a href="#" data-toggle="collapse" data-target="#toggleDemo3" data-parent="#sidenav01" class="collapsed">Submenu2.3</a><div class="collapse" id="toggleDemo3"
-																style="height: 0px;">
-																<ul class="nav nav-list">
-																	<li><a href="#">Submenu2.1</a></li>
-																	<li><a href="#">Submenu2.2</a></li>
-																	</ul>
-																	</div>
-																	</li>
-																</ul>
-															</div></li>
-													</ul>
-												</div>
-												<!--/.nav-collapse -->
-											</div>
-										</div>
+										<%@ include file="organization_menu.jsp" %>
 									</div>
 									<!-- organization list end -->
 									<!-- start project list -->

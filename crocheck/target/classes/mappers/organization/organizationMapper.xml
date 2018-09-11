@@ -9,7 +9,7 @@
 	</select>
 	<select id="postlist"
 		resultType="com.humanstar.crocheck.model.organization.dto.postVO">
-		select * from organizations order by flowcount asc;
+		select * from organizations order by flowcount asc
 	</select>
 	<select id="postmembers"
 		resultType="com.humanstar.crocheck.model.organization.dto.memberVO">

@@ -113,10 +113,20 @@
 						<!--  DNS Zone List start -->
 						<div class="x_panel">
 							<div class="x_title">
-								<H2>Domain</H2>
-								<div class="clearfix"></div>
+								<div class="col-md-10">
+									<H2>Domain</H2>
+								</div>
+							
+							<div class="col-md-2 text-right">
+								<button type="button" class="btn btn-success btn-xs" id="insertDomain" >
+									<i class="fa fa-plus"></i>DOMAIN
+								</button>
+								<button type="button" class="btn btn-defalut btn-xs" id="insertSubDomain">
+									<i class="fa fa-plus"></i>SUB_DOMAIN
+								</button>
 							</div>
-
+							<div class="clearfix"></div>
+							</div>
 							<div class="col-md-8 col-sm-12 col-xs-12">
 								<table id="datatable" class="table table-striped table-bordered">
 									<colgroup>
@@ -174,6 +184,26 @@
 		</div>
 	</div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- Bootstrap -->
@@ -228,6 +258,7 @@
 		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 	<!-- Custom Theme Scripts -->
+	<script src="js/Example.Modal.js"></script>
 	<script src="js/dnspolicy.js"></script>
 	<script src="js/custom.js"></script>
 </body>
