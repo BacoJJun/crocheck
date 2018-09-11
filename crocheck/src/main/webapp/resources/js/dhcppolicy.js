@@ -14,7 +14,6 @@ function dhcptable() {
 				success : function(result) {
 					if (result.result == 'success') {
 						var domain_html = '';
-						console.log(result.dhcpTableList);
 						for(var i =0; i<result.dhcpTableList.length;i++){
 							domain_html += '<tr >';
 							domain_html += '<td>' + result.dhcpTableList[i].category1 + '</td>';
@@ -22,7 +21,7 @@ function dhcptable() {
 							domain_html += '<td>' + result.dhcpTableList[i].protocol + '</td>';
 							domain_html += '<td style="display:none;">' + result.dhcpTableList[i].id + '</td>';
 							domain_html += '<td>' + result.dhcpTableList[i].start_ip +'/' + result.dhcpTableList[i].subnet_length + '</td>';
-							domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" value="'+result.dhcpTableList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" value="'+result.dhcpTableList[i].id+'"></button></td>';					
+							domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" data-toggle="modal" data-target="#dhcpUpdateModal" value="'+result.dhcpTableList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" data-toggle="modal" data-target="#dhcpDeleteModal" value="'+result.dhcpTableList[i].id+'"></button></td>';					
 						}
 						dhcp_zone.innerHTML = domain_html;
 					} else {
@@ -51,7 +50,6 @@ function table_click_event() {
 
 	onRowClick("datatable", function(row) {
 		var id = row.getElementsByTagName("td")[3].innerText;
-		console.log(id);
 		subdhcptable(id);
 		rentdhcptable(id);
 	});
@@ -71,13 +69,12 @@ function subdhcptable(id){
 				success : function(result) {
 					if (result.result == 'success') {
 						var domain_html = '';
-						console.log(result.dhcpSubList);
 						for(var i =0; i<result.dhcpSubList.length;i++){
 							domain_html += '<tr>';
 							domain_html += '<td>' + result.dhcpSubList[i].type + '</td>';
 							domain_html += '<td>' + result.dhcpSubList[i].start_ip + '</td>';
 							domain_html += '<td>' + result.dhcpSubList[i].end_ip + '</td>';
-							domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" value="'+result.dhcpSubList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" value="'+result.dhcpSubList[i].id+'"></button></td>';					
+							domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" data-toggle="modal" data-target="#subDhcpUpdateModal" value="'+result.dhcpSubList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" data-toggle="modal" data-target="#subDhcpDeleteModal" value="'+result.dhcpSubList[i].id+'"></button></td>';					
 							domain_html += '</tr>'
 						}
 						dhcpsublist.innerHTML = domain_html;
@@ -106,7 +103,6 @@ function rentdhcptable(id){
 				success : function(result) {
 					if (result.result == 'success') {
 						var domain_html = '';
-						console.log(result.dhcpRentList);
 						for(var i =0; i<result.dhcpRentList.length;i++){
 								domain_html += '<td><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dhcp_edit" value="'+result.dhcpRentList[i].id+'"></button> <button type="button" id="dhcp_delete" class="btn btn-danger btn-xs fa fa-trash" name="dhcp_delete" value="'+result.dhcpRentList[i].id+'"></button></td>';					
 						}

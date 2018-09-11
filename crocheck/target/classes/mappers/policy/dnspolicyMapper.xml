@@ -19,16 +19,32 @@
 		select * from dns_record
 		<where>
 			<if test="zone !=null">
-				zone like '%' || #{zone} ||'%' or host like '%' || #{zone} || '%' or
+				zone like '%' || #{zone} ||'%' or host like '%' ||
+				#{zone} || '%' or
 				data like '%' || #{zone} || '%'
 			</if>
 		</where>
 	</select>
 
-	<select id="ddosblockstatus" resultType="com.humanstar.crocheck.model.policy.dto.ddosBlockStatusVO">
-		SELECT src_ip, domain, count(src_ip) as count, to_char(max(created_at),
-		'YYYY-MM-DD HH24:MI:SS.MS') as created_at FROM ddos_block_status WHERE
-		created_at >= now() - interval '1 hour' GROUP BY src_ip, domain ORDER
+	<select id="ddosblockstatus"
+		resultType="com.humanstar.crocheck.model.policy.dto.ddosBlockStatusVO">
+		SELECT src_ip, domain, count(src_ip) as count,
+		to_char(max(created_at),
+		'YYYY-MM-DD HH24:MI:SS.MS') as created_at FROM
+		ddos_block_status WHERE
+		created_at >= now() - interval '1 hour' GROUP
+		BY src_ip, domain ORDER
 		BY count desc limit 5;
 	</select>
+	<insert id="dnsinsert">
+		insert into dns_record(zone, ttl, type, host, data,
+		primary_ns, resp_contact, serial, refresh, retry, expire, minimum,
+		comment, modified)
+		values(#{zone}, #{ttl}, #{type}, #{host}, #{data},
+		#{primary_ns}, #{resp_contact}, #{serial}, #{refresh}, #{retry},
+		#{expire}, #{minimum}, #{comment}, #{modified})
+	</insert>
+	<delete id="dnsdelete">
+		delete from dns_record where zone= #{zone}
+	</delete>
 </mapper>

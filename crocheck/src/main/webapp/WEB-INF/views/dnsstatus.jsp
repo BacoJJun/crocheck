@@ -54,7 +54,7 @@
 									class="btn btn-info fa fa-pause"></button>
 								<button id="play" type="button"
 									class="btn btn-warning fa fa-play"></button>
-								<table id="dnsdatatable"
+								<table id="datatable"
 									class="table table-striped table-bordered dt-responsive nowrap">
 									<thead>
 										<tr>

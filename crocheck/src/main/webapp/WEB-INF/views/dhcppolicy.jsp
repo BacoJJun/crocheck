@@ -98,7 +98,21 @@
 						<!--  DHCP List start -->
 						<div class="x_panel">
 							<div class="x_title">
-								<H2>DHCP</H2>
+								<div class="col-lg-9 col-md-9">
+									<H2>DHCP</H2>
+								</div>
+								<div class="col-md-3 text-right">
+									<button type="button" class="btn btn-success btn-xs"
+										id="insertDomain" data-toggle="modal"
+										data-target="#dhcpInsertModal">
+										<i class="fa fa-plus"></i>DHCP
+									</button>
+									<button type="button" class="btn btn-info btn-xs"
+										id="insertSubDomain" data-toggle="modal"
+										data-target="#subDhcpInsertModal">
+										<i class="fa fa-plus"></i>DHCP OPTION
+									</button>
+								</div>
 								<div class="clearfix"></div>
 							</div>
 
@@ -166,6 +180,265 @@
 
 		</div>
 	</div>
+
+
+	<!-- The Modal   -->
+	<!-- dns Insert Modal start -->
+
+	<div class="modal fade" id="dhcpInsertModal" tabindex="-1" role="dialog"
+		aria-labelledby="contactLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">
+						<i class="glyphicon glyphicon-remove"></i>
+					</button>
+					<h4 class="panel-title">
+						<span class="glyphicon glyphicon-info-sign"></span> INSERT DNS
+						ZONE
+					</h4>
+				</div>
+				<div class="modal-body" style="padding: 5px;">
+					<div class="row"></div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>zone : </span> <input class="form-control" name="subject"
+								placeholder="zone" id="dns_insert_zone" type="text" required
+								value="zone_name" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>ttl : </span> <input class="form-control" name="subject"
+								placeholder="ttl" id="dns_insert_ttl" type="text" required
+								value="3600" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>type : </span> <input class="form-control" name="subject"
+								placeholder="type" id="dns_insert_type" type="text" required
+								value="SOA" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>host : </span> <input class="form-control" name="subject"
+								placeholder="host" id="dns_insert_host" type="text" required
+								value="@" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>data : </span> <input class="form-control" name="subject"
+								placeholder="data" id="dns_insert_data" type="text" required
+								value="data_name" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>primary_ns : </span> <input class="form-control"
+								name="subject" placeholder="primary_ns"
+								id="dns_insert_primary_ns" type="text" required />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>resp_contact : </span> <input class="form-control"
+								name="subject" placeholder="resp_contact"
+								id="dns_insert_resp_contact" type="text" required
+								value="resp_contact" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>serial : </span> <input class="form-control" name="subject"
+								placeholder="serial" id="dns_insert_serial" type="text" required
+								value="20180104" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>refresh : </span> <input class="form-control"
+								name="subject" placeholder="refresh" id="dns_insert_refresh"
+								type="text" required value="14400" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>retry : </span> <input class="form-control" name="subject"
+								placeholder="retry" id="dns_insert_retry" type="text" required
+								value="3600" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>expire : </span> <input class="form-control" name="subject"
+								placeholder="dns_insert_expire" id="expire" type="text" required
+								value="604800" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>minimum : </span> <input class="form-control"
+								name="subject" placeholder="minimum" id="dns_insert_minimum"
+								type="text" required value="86400" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12"
+							style="padding-bottom: 10px;">
+							<span>modified : </span> <input class="form-control"
+								name="subject" placeholder="modified" id="dns_insert_modified"
+								type="text" required value="0" />
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<textarea style="resize: vertical;" class="form-control"
+									placeholder="comment" id="dns_insert_comment" rows="6"
+									name="comment" required>asjdlfkasjd</textarea>
+							</div>
+						</div>
+
+					</div>
+					<div class="panel-footer" style="margin-bottom: -14px;">
+						<input type="button" class="btn btn-success" id="insertdns"
+							value="INSERT" />
+						<!--<span class="glyphicon glyphicon-ok"></span>-->
+						<input type="reset" class="btn btn-danger" value="Clear" />
+						<!--<span class="glyphicon glyphicon-remove"></span>-->
+						<button style="float: right;" type="button"
+							class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- dns Insert Modal end -->
+
+	<!-- dns update Modal start -->
+	<div class="modal fade" id="dhcpUpdateModal" tabindex="-1" role="dialog"
+		aria-labelledby="voteLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="panel-title" id="voteLabel">
+						<span class="glyphicon glyphicon-arrow-right"></span> dns update
+						Modal
+					</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success btn-vote">Vote!</button>
+					<span class="btn btn-primary dropdown-results btn-results"
+						data-for=".results">View Results</span>
+					<button type="button" class="btn btn-default btn-close"
+						data-dismiss="modal">Close</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- dns update Modal end -->
+
+	<!-- dns Delete Modal start -->
+	<div class="modal fade" id="dhcpDeleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="voteLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="panel-title" id="voteLabel">
+						<span class="glyphicon glyphicon-arrow-right"></span> dns Delete
+						Modal
+					</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success btn-vote">Vote!</button>
+					<span class="btn btn-primary dropdown-results btn-results"
+						data-for=".results">View Results</span>
+					<button type="button" class="btn btn-default btn-close"
+						data-dismiss="modal">Close</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- dns Delete Modal end -->
+
+	<!-- subDomain Insert Modal start -->
+	<div class="modal fade" id="subDhcpInsertModal" tabindex="-1"
+		role="dialog" aria-labelledby="voteLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="panel-title" id="voteLabel">
+						<span class="glyphicon glyphicon-arrow-right"></span> Sub_Domain
+						Insert Modal
+					</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success btn-vote">Vote!</button>
+					<span class="btn btn-primary dropdown-results btn-results"
+						data-for=".results">View Results</span>
+					<button type="button" class="btn btn-default btn-close"
+						data-dismiss="modal">Close</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- subDomain Insert Modal end -->
+
+	<!-- subDomain update Modal start -->
+	<div class="modal fade" id="subDhcpUpdateModal" tabindex="-1"
+		role="dialog" aria-labelledby="voteLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="panel-title" id="voteLabel">
+						<span class="glyphicon glyphicon-arrow-right"></span> Sub_Domain
+						update Modal
+					</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success btn-vote">Vote!</button>
+					<span class="btn btn-primary dropdown-results btn-results"
+						data-for=".results">View Results</span>
+					<button type="button" class="btn btn-default btn-close"
+						data-dismiss="modal">Close</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- subDomain update Modal end -->
+
+	<!-- subDomain Insert Modal start -->
+	<div class="modal fade" id="subDhcpDeleteModal" tabindex="-1"
+		role="dialog" aria-labelledby="voteLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="panel-title" id="voteLabel">
+						<span class="glyphicon glyphicon-arrow-right"></span> Sub_Domain
+						Delete Modal
+					</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success btn-vote">Vote!</button>
+					<span class="btn btn-primary dropdown-results btn-results"
+						data-for=".results">View Results</span>
+					<button type="button" class="btn btn-default btn-close"
+						data-dismiss="modal">Close</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- subDomain Delete Modal end -->
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>

@@ -17,6 +17,7 @@ public class dnspolicyVO {
 	private int minimun;
 	private String content;
 	private int modified;
+	
 	public int getId() {
 		return id;
 	}

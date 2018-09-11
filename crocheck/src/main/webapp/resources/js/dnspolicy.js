@@ -1,41 +1,49 @@
-$(document)	.ready(function() {
-		dnstable();
-		table_click_event();
+$(document)
+		.ready(
+				function() {
+					dnstable();
+					table_click_event();
 
-		$('#btn-lookup').click(	function() {
-				if ($('input:radio[name="dns_search"]:checked').val() == 'lookup') {
-						console.log("lookup");
-				} else if ($('input:radio[name="dns_search"]:checked').val() == 'zone') {
-						console.log("zone");
-						searhdnsdomain();
-				}
-		});
-		table_loop();
-		dns_button_event();
+					$('#btn-lookup')
+							.click(
+									function() {
+										if ($(
+												'input:radio[name="dns_search"]:checked')
+												.val() == 'lookup') {
+										} else if ($(
+												'input:radio[name="dns_search"]:checked')
+												.val() == 'zone') {
+											searhdnsdomain();
+										}
+									});
+					table_loop();
+					dns_button_event();
 
-		buttonClickEvent();
+					buttonClickEvent();
 
-});
-function buttonClickEvent(){
-	var insertModal = new Example.Modal({
-		id : "modal"
-	})
-	$("#insertDomain").click(function(){
+				});
+function buttonClickEvent() {
+	$("#insertDomain").click(function() {
 		console.log("test");
-		insertModal.show();
 	});
+	$("#insertdns").click(function() {
+		console.log("insert test");
+		var zone_name = document.getElementById("dns_insert_zone").value;
+		console.log(zone_name);
+	});
+
 }
-function dns_button_event(){
-	$('#zonelist button').click(function(){
-		var dns_id =  $(this).attr('value');
+function dns_button_event() {
+	$('#zonelist button').click(function() {
+		var dns_id = $(this).attr('value');
 		var dns_type = $(this).attr('name');
 		console.log(dns_type);
 		console.log(dns_id);
 	});
 }
-function sub_button_event(){
+function sub_button_event() {
 	console.log("test start");
-	$('#sublist button').click(function(){
+	$('#sublist button').click(function() {
 		var sub_id = $(this).attr('value');
 		var sub_type = $(this).attr('name');
 		console.log(sub_type);
@@ -104,7 +112,7 @@ function searhdnsdomain() {
 				success : function(result) {
 					if (result.result == 'success') {
 						var domain_html = '';
-						domain_html += '<table id="datatable-fixed-header" class="table table-striped table-bordered">';
+						domain_html += '<table id="datatable" class="table table-striped table-bordered">';
 						domain_html += '<colgroup><col width="15%"></col><col width="10%"></col><col width="30%"></col><col width="*"></col><col width="10%"></col></colgroup>'
 						domain_html += '<thead><tr><th>Zone</th><th>Type</th><th>Host</th><th>Data</th><th></th></thead><tbody>';
 						for (var i = 0; i < result.dnsTableList.length; i++) {
@@ -121,8 +129,13 @@ function searhdnsdomain() {
 							} else {
 								domain_html += '<td></td>';
 							}
-							domain_html += '<td><button class="btn btn-success btn-xs fa fa-edit"></button> <i class="btn btn-danger btn-xs fa fa-trash"></i></td>';
+							domain_html += '<td></button><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dns_edit" data-toggle="modal" data-target="#dnsUpdateModal" value="'
+									+ result.dnsTableList[i].id
+									+ '"></button> <button type="button" id="dns_delete" class="btn btn-danger btn-xs fa fa-trash" name="dns_delete" data-toggle="modal" data-target="#dnsDeleteModal" value="'
+									+ result.dnsTableList[i].id
+									+ '"></button></td>';
 							domain_html += '</tr>';
+							console.log("aaa");
 						}
 						domain_html += '</tbody></table>';
 						result_table.innerHTML = domain_html;
@@ -148,7 +161,6 @@ function dnstable() {
 				success : function(result) {
 					if (result.result == 'success') {
 						var domain_html = '';
-						console.log(result.dnsTableList);
 						for (var i = 0; i < result.dnsTableList.length; i++) {
 							domain_html += '<tr>';
 							domain_html += '<td>' + result.dnsTableList[i].zone
@@ -163,7 +175,13 @@ function dnstable() {
 							} else {
 								domain_html += '<td></td>';
 							}
-							domain_html += '<td><button type="button"  class="btn btn-info btn-xs fa fa-copy" name="dns_copy" value="'+result.dnsTableList[i].id+'"></button><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dns_edit" value="'+result.dnsTableList[i].id+'"></button> <button type="button" id="dns_delete" class="btn btn-danger btn-xs fa fa-trash" name="dns_delete" value="'+result.dnsTableList[i].id+'"></button></td>';
+							domain_html += '<td><button type="button"  class="btn btn-info btn-xs fa fa-copy" name="dns_copy" data-toggle="modal" data-target="#dnsCopyModal" value="'
+									+ result.dnsTableList[i].id
+									+ '"></button><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dns_edit" data-toggle="modal" data-target="#dnsUpdateModal" value="'
+									+ result.dnsTableList[i].id
+									+ '"></button> <button type="button" id="dns_delete" class="btn btn-danger btn-xs fa fa-trash" name="dns_delete" data-toggle="modal" data-target="#dnsDeleteModal" value="'
+									+ result.dnsTableList[i].id
+									+ '"></button></td>';
 							domain_html += '</tr>';
 						}
 						dns_zone.innerHTML = domain_html;
@@ -189,7 +207,8 @@ function table_click_event() {
 				};
 			}(table.rows[i]);
 		}
-	};
+	}
+	;
 
 	onRowClick("datatable", function(row) {
 		var zone_name = row.getElementsByTagName("td")[0].innerHTML;
@@ -225,7 +244,10 @@ function subDnstable(zone_name) {
 							} else {
 								domain_html += '<td></td>';
 							}
-							domain_html += '<td><button type="button"  id="sub_edit" class="btn btn-success btn-xs fa fa-edit" name="sub_edit" value="'+result.dnsTableList[i].id+'"></button> <button type="button"  class="btn btn-danger btn-xs fa fa-trash" name="sub_delete" value="'+result.dnsTableList[i].id+'"></td>';
+							domain_html += '<td><button type="button"  id="sub_edit" class="btn btn-success btn-xs fa fa-edit" name="sub_edit" data-toggle="modal" data-target="#subDomainUpdateModal" value="'
+									+ result.dnsTableList[i].id
+									+ '"></button> <button type="button"  class="btn btn-danger btn-xs fa fa-trash" data-toggle="modal" data-target="#subDomainDeleteModal" name="sub_delete" value="'
+									+ result.dnsTableList[i].id + '"></td>';
 							domain_html += '</tr>';
 						}
 						sub_domain.innerHTML = domain_html;

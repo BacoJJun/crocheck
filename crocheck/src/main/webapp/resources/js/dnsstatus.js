@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$("#reservation-time").value = new Date();
 	
 	initDnsLoop();
-	DataTables();
+
 	$("#submit").click(function() {
 		clearTimeout(loopdns);
 		SearchdnsList();
@@ -70,31 +70,6 @@ function SearchdnsList() {
 	});
 
 }
-
-function DataTables() {
-
-	if (typeof ($.fn.DataTable) === 'undefined') {
-		return;
-	}
-
-	TableManageButtons = function() {
-		"use strict";
-		return {
-			init : function() {
-				handleDataTableButtons();
-			}
-		};
-	}();
-	var handleDataTableButtons = function() {
-		if ($("#dnsdatatable").length) {
-			 $("#dnsdatatable").DataTable({
-				destory : true,
-				reponsive : true
-			});
-		}
-	};	
-	TableManageButtons.init();
-};
 function getDnsList() {
 	var show_dns = document.getElementById("show_dns_list");
 
