@@ -1,6 +1,7 @@
 package com.humanstar.crocheck.model.policy.dto;
 
 public class dnspolicyVO {
+
 	private int id;
 	private String zone;
 	private int ttl;
@@ -15,7 +16,7 @@ public class dnspolicyVO {
 	private int retry;
 	private int expire;
 	private int minimun;
-	private String content;
+	private String comment;
 	private int modified;
 	
 	public int getId() {
@@ -102,11 +103,11 @@ public class dnspolicyVO {
 	public void setMinimun(int minimun) {
 		this.minimun = minimun;
 	}
-	public String getContent() {
-		return content;
+	public String getComment() {
+		return comment;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setConmment(String comment) {
+		this.comment = comment;
 	}
 	public int getModified() {
 		return modified;
@@ -115,5 +116,11 @@ public class dnspolicyVO {
 		this.modified = modified;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "dnspolicyVO [id=" + id + ", zone=" + zone + ", ttl=" + ttl + ", type=" + type + ", host=" + host
+				+ ", mx_priority=" + mx_priority + ", data=" + data + ", primary_ns=" + primary_ns + ", resp_contact="
+				+ resp_contact + ", serial=" + serial + ", refresh=" + refresh + ", retry=" + retry + ", expire="
+				+ expire + ", minimun=" + minimun + ", comment=" + comment + ", modified=" + modified + "]";
+	}
 }

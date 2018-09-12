@@ -23,33 +23,251 @@ $(document)
 
 				});
 function buttonClickEvent() {
-	$("#insertDomain").click(function() {
-		console.log("test");
-	});
 	$("#insertdns").click(function() {
-		console.log("insert test");
-		var zone_name = document.getElementById("dns_insert_zone").value;
-		console.log(zone_name);
+		insertdnszone();
+	});
+	$("#insertSubDomainBtn").click(function(){
+		zonelistdraw();
+	});
+	$("#insertsubdomain").click(function(){
+		subdomaininsert();
 	});
 
 }
 function dns_button_event() {
 	$('#zonelist button').click(function() {
-		var dns_id = $(this).attr('value');
+		var dns_value = $(this).attr('value');
 		var dns_type = $(this).attr('name');
 		console.log(dns_type);
-		console.log(dns_id);
+		console.log(dns_value);
+		if(dns_type == "dns_edit"){
+			dnsupdate(dns_value);
+		}else if(dns_type=="dns_delete"){
+//			dnsdelete(dns_value);
+		}
+		
 	});
 }
 function sub_button_event() {
-	console.log("test start");
 	$('#sublist button').click(function() {
 		var sub_id = $(this).attr('value');
 		var sub_type = $(this).attr('name');
 		console.log(sub_type);
 		console.log(sub_id);
+		if(sub_type=="sub_edit"){
+			subdomainupdate(sub_id);
+		}
 	});
 }
+function insertdnszone(){
+	var zone = document.getElementById("dns_insert_zone").value;
+	var type =$('input:radio[name="dns_insert_type"]:checked').val();
+	var host = '@';
+	var data = document.getElementById("dns_insert_data").value;
+	var ttl = document.getElementById("dns_insert_ttl").value;
+	var primaryns = document.getElementById("dns_insert_primaryns").value;
+	var resp_contact = document.getElementById("dns_insert_resp_contact").value;
+	var serial = document.getElementById("dns_insert_serial").value;
+	var refresh = document.getElementById("dns_insert_refresh").value;
+	var retry = document.getElementById("dns_insert_retry").value;
+	var expire = document.getElementById("dns_insert_expire").value;
+	var minimum = document.getElementById("dns_insert_minimum").value;
+	var comment = document.getElementById("dns_insert_comment").value;
+	
+	$
+	.ajax({
+		url : '/crocheck/insertdns',
+		data : {
+			"zone" : zone,
+			"type" : type,
+			"host" : host,
+			"data" : data,
+			"ttl" : ttl,
+			"primary_ns" : primaryns,
+			"resp_contact" : resp_contact,
+			"serial" : serial,
+			"refresh" : refresh,
+			"retry" : retry,
+			"expire" : expire,
+			"minimun" : minimum,
+			"comment" : comment
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+					alert("success");
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+}
+function subdomainupdate(sub_id){
+	var modaltitle =   document.getElementById("subdomain_zone_name");
+	var zone = document.getElementById("subdomain_update_zone");
+	var type = $('input:radio[name="subdomain_zone_type_check"]:checked');
+	var host = document.getElementById("subdomain_update_host");
+	var data = document.getElementById("subdomain_update_data");
+	var comment = document.getElementById("subdomain_update_comment");
+	$
+	.ajax({
+		url : '/crocheck/catchDnsDomain',
+		data : {
+			"id" : sub_id
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				console.log(result.dnsTableList);
+				modaltitle.innerText = result.dnsTableList[0].zone + '  설정';
+				zone.value = result.dnsTableList[0].zone;
+				$('input:radio[name="subdomain_zone_type_check"][value=' + result.dnsTableList[0].type + ']').prop('checked',  true);
+				host.value =  result.dnsTableList[0].host;
+				data.value =  result.dnsTableList[0].data;
+				comment.value = result.dnsTableList[0].comment;
+
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+}
+function dnsupdate(dns_id){
+	var modaltitle =   document.getElementById("update_zone_name");
+	var zone = document.getElementById("dns_update_zone");
+	var type = document.getElementById("dns_update_type");
+	var host =document.getElementById("dns_update_host");
+	var data = document.getElementById("dns_update_data");
+	var ttl = document.getElementById("dns_update_ttl");
+	var primaryns = document.getElementById("dns_update_primaryns");
+	var resp_contact = document.getElementById("dns_update_resp_contact");
+	var serial = document.getElementById("dns_update_serial");
+	var refresh = document.getElementById("dns_update_refresh");
+	var retry = document.getElementById("dns_update_retry");
+	var expire = document.getElementById("dns_update_expire");
+	var minimum = document.getElementById("dns_update_minimum");
+	var comment = document.getElementById("dns_update_comment");
+	
+	$
+	.ajax({
+		url : '/crocheck/catchDnsDomain',
+		data : {
+			"id" : dns_id
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				console.log(result.dnsTableList);
+				modaltitle.innerText = result.dnsTableList[0].zone + '  설정';
+				zone.value = result.dnsTableList[0].zone;
+				type.value = result.dnsTableList[0].type;
+				host.value =  result.dnsTableList[0].host;
+				data.value =  result.dnsTableList[0].data;
+				ttl.value =  result.dnsTableList[0].ttl;
+				primaryns.value =  result.dnsTableList[0].primary_ns;
+				resp_contact.value =  result.dnsTableList[0].resp_contact;
+				serial.value =  result.dnsTableList[0].serial;
+				refresh.value =  result.dnsTableList[0].refresh;
+				retry.value =  result.dnsTableList[0].retry;
+				expire.value =  result.dnsTableList[0].expire;
+				minimum.value =  result.dnsTableList[0].minimun;
+				comment.value = result.dnsTableList[0].comment;
+
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+function dnsdelete(dns_value){
+	$
+	.ajax({
+		url : '/crocheck/deletedns',
+		data : {
+			"zone" : dns_value
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				alert("delete success");
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+function subdomaininsert(){
+	var zone = document.getElementById("subdomain_insert_zone").value;
+	var type =$('input:radio[name="zone_type_check"]:checked').val();
+	var host =document.getElementById("subdomain_insert_host").value;
+	var data = document.getElementById("subdomain_insert_data").value;
+	var comment = document.getElementById("subdomain_insert_comment").value;
+	
+	console.log(zone);
+	console.log(type);
+	console.log(host);
+	console.log(data);
+	console.log(comment);
+}
+function zonelistdraw(){
+	var subdomainzonelist = document.getElementById("subdomain_zonelist");
+	$
+	.ajax({
+		url : '/crocheck/dnszonelist',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+					var zonelist_html = '';
+					zonelist_html += '<select id="subdomain_insert_zone" class="form-control" required>';
+					for(var i =0; i<result.zonelist.length;i++){
+						zonelist_html +='<option value="'+result.zonelist[i].zone +'">' + result.zonelist[i].zone +'</option>';
+					}
+					zonelist_html += '</select>';
+					subdomainzonelist.innerHTML = zonelist_html;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+
 function table_loop() {
 	init_ddos_block_table();
 	setTimeout(table_loop, 1000);
@@ -170,7 +388,7 @@ function dnstable() {
 									+ '</td>';
 							if (result.dnsTableList[i].comment != null) {
 								domain_html += '<td>'
-										+ result.dnsTableList[i].coment
+										+ result.dnsTableList[i].comment
 										+ '</td>';
 							} else {
 								domain_html += '<td></td>';
@@ -180,7 +398,7 @@ function dnstable() {
 									+ '"></button><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dns_edit" data-toggle="modal" data-target="#dnsUpdateModal" value="'
 									+ result.dnsTableList[i].id
 									+ '"></button> <button type="button" id="dns_delete" class="btn btn-danger btn-xs fa fa-trash" name="dns_delete" data-toggle="modal" data-target="#dnsDeleteModal" value="'
-									+ result.dnsTableList[i].id
+									+ result.dnsTableList[i].zone
 									+ '"></button></td>';
 							domain_html += '</tr>';
 						}
@@ -219,6 +437,7 @@ function table_click_event() {
 function subDnstable(zone_name) {
 	var sub_domain = document.getElementById("sublist");
 	var sub_count = document.getElementById("sub_domain_count");
+
 	$
 			.ajax({
 				url : '/crocheck/subDnsList',

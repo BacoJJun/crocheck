@@ -36,7 +36,7 @@ public class policyController {
 	
 	@Inject
 	dnspolicyServiceImpl dnspolicyService;
-	@Inject
+	@Inject 
 	ddosBlockServiceImpl ddosBlockService;
 	@Inject 
 	dhcpPolicyServiceImpl dhcpPolicyService;
@@ -59,6 +59,27 @@ public class policyController {
 
 		}
 		resultMap.put("dnsTableList", dnsTableList);
+
+		return resultMap; 
+	}
+	@RequestMapping(value = "/dnszonelist", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dnszonelist() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<dnspolicyVO> zonelist = new ArrayList<dnspolicyVO>();
+
+		try {
+			zonelist = dnspolicyService.zonelist();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("zonelist", zonelist);
 
 		return resultMap; 
 	}
@@ -93,6 +114,28 @@ public class policyController {
 
 		try {
 			dnsTableList = dnspolicyService.searchDnsDomain(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("dnsTableList", dnsTableList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/catchDnsDomain", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> catchDnsDomain(@ModelAttribute  dnspolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<dnspolicyVO> dnsTableList = new ArrayList<dnspolicyVO>();
+
+		try {
+			dnsTableList = dnspolicyService.catchDnsDomain(vo);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -178,8 +221,6 @@ public class policyController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<dhcpRentVO> dhcpRentList = new ArrayList<dhcpRentVO>();
 
-		logger.info(vo.toString());
-		
 		try {
 			dhcpRentList = dhcpPolicyService.dhcpRentList(vo);
 			resultMap.put(RESULT, RESULT_SUCCESS);
@@ -194,4 +235,122 @@ public class policyController {
 
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/insertdns", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertdns(@ModelAttribute  dnspolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		logger.info(vo.toString());
+		
+		try {
+			dnspolicyService.insertdns(vo);;
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	@RequestMapping(value = "/updatedns", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updatedns(@ModelAttribute  dnspolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			dnspolicyService.updatedns(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	@RequestMapping(value = "/deletedns", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deletedns(@ModelAttribute  dnspolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			dnspolicyService.delete(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	@RequestMapping(value = "/insertsubdomain", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertsubdomain(@ModelAttribute  dnspolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			dnspolicyService.insertsubdomain(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	@RequestMapping(value = "/updatesubdomain", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updatesubdomain(@ModelAttribute  dnspolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			dnspolicyService.updatesubdomain(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	@RequestMapping(value = "/deletesubdomain", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deletesubdomain(@ModelAttribute  dnspolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			dnspolicyService.deletesubdomain(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	
 }

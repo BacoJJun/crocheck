@@ -11,8 +11,14 @@
 		<where>
 			<if test="zone != null">
 				zone = #{zone}
+				and type != 'SOA'
 			</if>
 		</where>
+	</select>
+
+	<select id="dnscatch"
+		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select * from dns_record where id=#{id}
 	</select>
 	<select id="searchdnsdomain"
 		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
@@ -26,6 +32,11 @@
 		</where>
 	</select>
 
+	<select id="zonelist"
+		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select distinct(zone) from dns_record
+	</select>
+
 	<select id="ddosblockstatus"
 		resultType="com.humanstar.crocheck.model.policy.dto.ddosBlockStatusVO">
 		SELECT src_ip, domain, count(src_ip) as count,
@@ -37,14 +48,53 @@
 		BY count desc limit 5;
 	</select>
 	<insert id="dnsinsert">
-		insert into dns_record(zone, ttl, type, host, data,
-		primary_ns, resp_contact, serial, refresh, retry, expire, minimum,
-		comment, modified)
-		values(#{zone}, #{ttl}, #{type}, #{host}, #{data},
-		#{primary_ns}, #{resp_contact}, #{serial}, #{refresh}, #{retry},
-		#{expire}, #{minimum}, #{comment}, #{modified})
+		insert into dns_record(zone, ttl, type, host, data,	primary_ns,resp_contact, serial, refresh, retry, expire, minimum,comment,modified)
+		values(#{zone}, #{ttl}, #{type}, 	#{host}, #{data},	#{primary_ns}, #{resp_contact}, #{serial}, #{refresh},#{retry},	#{expire},	#{minimum},#{comment},'1')
 	</insert>
+	<update id="dnsupdate">
+		update dns_record
+		set
+		zone =#{zone},
+		ttl =#{ttl},
+		type= #{type},
+		host = #{host},
+		data = #{data},
+		primary_ns = #{primary_ns},
+		resp_contact = #{resp_contact},
+		serial = #{serial},
+		refresh =#{refresh},
+		retry =#{retry},
+		expire = #{expire},
+		minimum = #{minimun},
+		comment = #{comment},
+		modified= #{modified}
+		where id = #{id}
+	</update>
+
+	<insert id="subdomaininsert">
+		INSERT INTO dns_record(zone, type, host, data, ttl, mx_priority, comment,
+		modified)
+		values(#{zone}, #{type}, #{host}, #{data}, #{ttl}, #{mx_priority}, #{comment},
+		#{modified})
+	</insert>
+
+	<update id="subdomainupdate">
+		update dns_record
+		set
+		zone =#{zone},
+		ttl =#{ttl},
+		type= #{type},
+		host = #{host},
+		data = #{data},
+		mx_priority = #{mx_priority},
+		comment = #{comment},
+		modified= #{modified}
+		where id = #{id}
+	</update>
 	<delete id="dnsdelete">
-		delete from dns_record where zone= #{zone}
+		delete from dns_record where zone = #{zone}
+	</delete>
+	<delete id="subdomaindelete">
+	 delete from dns_record where id = #{id}
 	</delete>
 </mapper>
