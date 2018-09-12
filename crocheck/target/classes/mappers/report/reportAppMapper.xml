@@ -3,19 +3,47 @@
 
 <!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
 <mapper namespace="reportApp">
-	<select id="basehour" resultType="com.humanstar.crocheck.model.report.dto.reportApplianceVO">
+	<select id="basehour"
+		resultType="com.humanstar.crocheck.model.report.dto.reportApplianceVO">
 		SELECT
 		max(cpu_total_pct) as cpu_pct,
-		max(mem_use_pct) as mem_pct,
+		max(mem_use_pct) as
+		mem_pct,
 		max(disk_vol1_usage_pct) as disk_vol1_pct,
 		to_char(date_trunc('hour', hhmmss), 'dd hh24') as hhmmss
 		FROM
 		tb_usage_system_1min
 		where hhmmss >= now() - interval '1 day'
-		GROUP BY date_trunc('hour', hhmmss)
+		GROUP BY
+		date_trunc('hour', hhmmss)
 		ORDER BY date_trunc('hour', hhmmss)
 		asc;
 
 	</select>
 
+	<select id="daysApp"
+		resultType="com.humanstar.crocheck.model.report.dto.reportApplianceVO">
+		SELECT max(cpu_total_pct) as cpu_total_pct, max(mem_use_pct) as mem_use_pct,
+		max(disk_vol1_usage_pct) as disk_vol1_usage_pct, date_trunc('hour',
+		hhmmss) as hhmmss FROM tb_usage_system_1min WHERE hhmmss >= date
+		#{date_start} AND date #{date_end} + interval '1 day' >= hhmmss GROUP
+		BY date_trunc('hour', hhmmss) ORDER BY hhmmss asc;
+	</select>
+	<select id="weeksApp"
+		resultType="com.humanstar.crocheck.model.report.dto.reportApplianceVO">
+		SELECT max(to_char(date_trunc('hour', hhmmss), 'mm dd')) as hhmmss,
+		max(cpu_total_pct) as cpu_total_pct, max(mem_use_pct) as mem_use_pct,
+		max(disk_vol1_usage_pct) as disk_vol1_usage_pct FROM
+		tb_usage_system_1day WHERE hhmmss >= date #{date_start} AND date
+		#{date_end} + interval '1 day' GROUP BY hhmmss order by hhmmss asc;
+	</select>
+
+	<select id="monthApp"
+		resultType="com.humanstar.crocheck.model.report.dto.reportApplianceVO">
+		SELECT max(cpu_total_pct) as cpu_total_pct, max(mem_use_pct) as mem_use_pct,
+		max(disk_vol1_usage_pct) as disk_vol1_usage_pct, date_trunc('days',
+		hhmmss) as hhmmss FROM tb_usage_system_1day WHERE hhmmss >= date
+		#{date_start} AND date #{date_end} + interval '1 day' group by hhmmss
+		ORDER BY hhmmss asc;
+	</select>
 </mapper>

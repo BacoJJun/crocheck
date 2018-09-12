@@ -20,10 +20,6 @@ $(document)
 												.val() == 'hour') {
 
 											init_hourAjax("hour");
-										} else if ($(
-												'input:radio[name="check_time"]:checked')
-												.val() == 'day') {
-											console.log('day');
 										}
 									})
 				});

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.humanstar.crocheck.model.report.dto.reportDomainQueryVO;
+import com.humanstar.crocheck.model.searchtype.dto.searchTypeVO;
 
 @Repository
 public class reportDomainQueryDAOImpl implements reportDomainQueryDAO{
@@ -25,6 +26,42 @@ public class reportDomainQueryDAOImpl implements reportDomainQueryDAO{
 	public List<reportDomainQueryVO> reportMainDDosDomainQuery() throws Exception {
 		// TODO Auto-generated method stub
 		return SqlSession.selectList("reportQuery.baseddosdomain");
+	}
+
+	@Override
+	public List<reportDomainQueryVO> dailyMainDnsDoaminQuery(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("reportQuery.dailydns");
+	}
+
+	@Override
+	public List<reportDomainQueryVO> dailyMainDDosDomainQuery(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("reportQuery.dailyddos");
+	}
+
+	@Override
+	public List<reportDomainQueryVO> weeklyMainDnsDoaminQuery(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("reportQuery.weekdns");
+	}
+
+	@Override
+	public List<reportDomainQueryVO> weeklyMainDDosDomainQuery(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("reportQuery.weekddos");
+	}
+
+	@Override
+	public List<reportDomainQueryVO> monthlyMainDnsDoaminQuery(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("reportQuery.monthdns");
+	}
+
+	@Override
+	public List<reportDomainQueryVO> monthlyMainDDosDomainQuery(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("reportQuery.monthddos");
 	}
 
 }

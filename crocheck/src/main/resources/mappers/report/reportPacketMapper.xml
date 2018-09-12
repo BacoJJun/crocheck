@@ -31,5 +31,85 @@
 		ASC)
 		AS ddos
 	</select>
+	<select id="dailydns" resultType="com.humanstar.crocheck.model.report.dto.reportPacketVO">
+		SELECT count, cr_at AS created_at FROM (SELECT
+		SUM(count) AS count,
+		DATE_TRUNC('hour', created_at) AS cr_at FROM
+		dns_stat_10sec_all WHERE
+		created_at >=
+		date_trunc('second',(#{date_start}::TIMESTAMP
+		WITHOUT
+		TIME ZONE)) AND
+		DATE date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+		TIME ZONE)) + INTERVAL
+		'1 day' >= created_at GROUP BY cr_at ORDER BY cr_at
+		ASC)
+		AS dns;
+	</select>
+	<select id="dailyddos" resultType="com.humanstar.crocheck.model.report.dto.reportPacketVO">
+		SELECT count, cr_at AS created_at FROM (SELECT
+		SUM(count) AS count,
+		DATE_TRUNC('hour', created_at) AS cr_at FROM
+		ddos_stat_10sec_all WHERE
+		created_at >=
+		date_trunc('second',(#{date_start}::TIMESTAMP
+		WITHOUT
+		TIME ZONE)) AND
+		DATE date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+		TIME ZONE)) + INTERVAL
+		'1 day' >= created_at GROUP BY cr_at ORDER BY cr_at ASC)
+		AS ddos;
+	</select>
+	<select id="weekdns"
+		resultType="com.humanstar.crocheck.model.report.dto.reportPacketVO">
+		SELECT COALESCE(SUM(count),0) AS count, EXTRACT('week' FROM
+		days) AS
+		created_at FROM GENERATE_SERIES(#{date_start}, DATE
+		#{date_end} +
+		INTERVAL '0 day','1 day'::INTERVAL) AS days LEFT JOIN (
+		SELECT
+		DATE_TRUNC('day',created_at) AS cr_at, SUM(count) AS count FROM
+		dns_stat_1day_distinct WHERE created_at >= #{date_start} AND DATE
+		#{date_end} >= created_at GROUP BY cr_at ) AS dns_stat ON
+		DATE_TRUNC('day',cr_at) = days GROUP BY created_at ORDER BY created_at
+		asc;
 
+	</select>
+	<select id="weekddos"
+		resultType="com.humanstar.crocheck.model.report.dto.reportPacketVO">
+		SELECT COALESCE(SUM(count),0) AS count, EXTRACT('week' FROM
+		days) AS
+		created_at FROM GENERATE_SERIES(#{date_start}, DATE
+		#{date_end} +
+		INTERVAL '0 day','1 day'::INTERVAL) AS days LEFT JOIN (
+		SELECT
+		DATE_TRUNC('day',created_at) AS cr_at, SUM(count) AS count FROM
+		ddos_stat_1day_distinct WHERE created_at >= #{date_start} AND DATE
+		#{date_end} >= created_at GROUP BY cr_at ) AS ddos_stat ON
+		DATE_TRUNC('day',cr_at) = days GROUP BY created_at ORDER BY created_at
+		asc;
+
+
+	</select>
+	<select id="monthdns"
+		resultType="com.humanstar.crocheck.model.report.dto.reportPacketVO">
+		SELECT COALESCE(count,0) AS count, days AS created_at FROM
+		GENERATE_SERIES('2018-8-1', DATE '2018-8-31' + INTERVAL '0 day','1
+		day'::INTERVAL) AS days LEFT JOIN ( SELECT
+		DATE_TRUNC('day',created_at) AS cr_at, SUM(count) AS count FROM
+		dns_stat_1day_distinct WHERE created_at >= #{date_start} AND DATE
+		#{date_end} >= created_at GROUP BY cr_at ) AS dns_stat ON
+		DATE_TRUNC('day',cr_at) = days ORDER BY days asc;
+
+	</select>
+	<select id="monthddos"
+		resultType="com.humanstar.crocheck.model.report.dto.reportPacketVO">
+		SELECT COALESCE(count,0) AS count, days AS created_at FROM
+		GENERATE_SERIES('2018-8-1', DATE '2018-8-31' + INTERVAL '0 day','1
+		day'::INTERVAL) AS days LEFT JOIN ( SELECT
+		DATE_TRUNC('day',created_at) AS cr_at, SUM(count) AS count FROM
+		ddos_stat_1day_distinct WHERE created_at >= #{date_start} AND DATE
+		#{date_end} >= created_at GROUP BY cr_at ) AS ddos_stat ON
+		DATE_TRUNC('day',cr_at) = days ORDER BY days asc;
+	</select>
 </mapper>

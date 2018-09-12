@@ -5,6 +5,28 @@ var limitCount = '';
 $(document).ready(function() {
 	base_view();
 	listCheck();
+	$('#search_stat').click(function() {
+				if ($(
+						'input:radio[name="report_type"]:checked')
+						.val() == 'daily') {
+					console.log("daily");
+					days_view();
+
+				} else if ($(
+						'input:radio[name="report_type"]:checked')
+						.val() == 'weekly') {
+					console.log("weekly");
+					var result = $('input:radio[name="report_count_type"]:checked').val() ;
+					console.log(result);
+				} else if ($(
+						'input:radio[name="report_type"]:checked')
+						.val() == 'monthly') {
+					console.log("monthly");
+					var result = $('input:radio[name="report_count_type"]:checked').val() ;
+					console.log(result);
+
+				}
+			});
 });
 function listCheck(){
 	$("#check_dns_domain").change(function(){
@@ -69,6 +91,11 @@ function base_view() {
 	basePacket();
 	baseQuery();
 };
+function days_view(){
+//	daysAppliance();
+//	daysPacket();
+	daysQuery();
+}
 
 function baseQuery(){
 	var dnsdomainList = [];
@@ -168,6 +195,140 @@ function baseQuery(){
 					ddosSrcPer[i] = result.ddosSrcList[i].percentage;
 				}
 				ddosClientList(ddosSrcList, ddosSrcCount, ddosSrcPer);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+}
+function daysQuery(){
+	var arrDate = $("#reservation-time").val().split("-");
+	var start_date = arrDate[0];
+	var end_date = arrDate[1];
+	
+	var dnsdomainList = [];
+	var dnsdomainCount = [];
+	var dnsdomainPer = [];
+	$.ajax({
+		url : '/crocheck/reportdayDnsDomain',
+		data : {
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				console.log(result.dnsDomainList);
+//				for(var i =0; i<result.dnsDomainList.length; i++){
+//					dnsdomainList[i] = result.dnsDomainList[i].domain;
+//					dnsdomainCount[i] = result.dnsDomainList[i].count;
+//					dnsdomainPer[i] = result.dnsDomainList[i].percentage;
+//				}
+//				dnsDomainList(dnsdomainList, dnsdomainCount, dnsdomainPer);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+	 var ddosdomainList = [];
+	 var ddosdomainCount = [];
+	 var ddosdomainPer = [];
+	$.ajax({
+		url : '/crocheck/reportdayDDosDomain',
+		data : {
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				console.log(result.ddosDomainList);
+//				for(var i =0; i<result.ddosDomainList.length; i++){
+//					ddosdomainList[i] = result.ddosDomainList[i].domain;
+//					ddosdomainCount[i] = result.ddosDomainList[i].count;
+//					ddosdomainPer[i] = result.ddosDomainList[i].percentage;
+//				}
+//				ddosDomainList(ddosdomainList, ddosdomainCount, ddosdomainPer);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+	var dnsSrcList = [];
+	var dnsSrcCount = [];
+	var dnsSrcPer = [];
+	
+	$.ajax({
+		url : '/crocheck/reportdayDnsSrc',
+		data : {
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				console.log(result.dnsSrcList);
+//			for(var i =0; i<result.dnsSrcList.length;i++){
+//				dnsSrcList[i] = result.dnsSrcList[i].src_ip;
+//				dnsSrcCount[i] = result.dnsSrcList[i].count;
+//				dnsSrcPer[i] = result.dnsSrcList[i].percentage;
+//			}
+//			dnsClientList(dnsSrcList, dnsSrcCount, dnsSrcPer);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	var ddosSrcList = [];
+	var ddosSrcCount = [];
+	var ddosSrcPer = [];	
+	$.ajax({
+		url : '/crocheck/reportdayDDosSrc',
+		data : {
+			"date_start" : start_date,
+			"date_end" : end_date
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				console.log(result.ddosSrcList);
+//				for(var i =0; i<result.ddosSrcList.length;i++){
+//					ddosSrcList[i] = result.ddosSrcList[i].src_ip;
+//					ddosSrcCount[i] = result.ddosSrcList[i].count;
+//					ddosSrcPer[i] = result.ddosSrcList[i].percentage;
+//				}
+//				ddosClientList(ddosSrcList, ddosSrcCount, ddosSrcPer);
 			} else {
 				alert(result.errorMsg);
 			}

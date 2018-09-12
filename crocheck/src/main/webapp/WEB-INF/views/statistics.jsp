@@ -28,9 +28,7 @@
 								name="check_time" value="min"></input>Minutes
 							</label> <label> <input type="radio" class="flat"
 								name="check_time" value="hour"></input>Hours
-							</label> <label> <input type="radio" class="flat"
-								name="check_time" value="day"></input>Days
-							</label>
+							</label> 
 						</form>
 					</div>
 					<div class="col-md-3">

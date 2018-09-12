@@ -331,25 +331,26 @@
 
 										<div class="radio">
 											<label> <input type="radio" class="flat" checked
-												name="report_type" checked id="daily"> 일간
+												name="report_type" checked value="daily"> 일간
 											</label> <label> <input type="radio" class="flat"
-												name="report_type" id="weekly"> 주간
+												name="report_type" value="weekly"> 주간
 											</label> <label> <input type="radio" class="flat"
-												name="report_type" id="monthly"> 월간
+												name="report_type" value="monthly"> 월간
 											</label>
 										</div>
 										<div class="clearfix"></div>
-										<div id="reportrange" class="pull-right"
-											style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-											<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> <span></span>
-											<b class="caret"></b>
+										<div class="input-prepend input-group">
+											<span class="add-on input-group-addon"><i
+												class="glyphicon glyphicon-calendar fa fa-calendar"></i></span> <input
+												type="text" name="reservation-times" id="reservation-time"
+												class="form-control" value="" />
 										</div>
 										<div class="clearfix"></div>
 										<div class="radio">
 											<label> <input type="radio" class="flat" checked
-												name="report_count_type" checked id="all"> 전체
+												name="report_count_type" checked value="all"> 전체
 											</label> <label> <input type="radio" class="flat"
-												name="report_count_type" id="unit"> 선택
+												name="report_count_type" value="unit"> 선택
 											</label>
 										</div>
 										<div>
@@ -359,7 +360,7 @@
 										</div>
 										<div class="clearfix"></div>
 										<div>
-											<button type="button" class="btn btn-success">
+											<button type="button" class="btn btn-success" id="search_stat">
 												<span>SUBMIT</span>
 											</button>
 										</div>
