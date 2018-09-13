@@ -24,26 +24,13 @@
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Donut Graph</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
+									<h2>
+										CPU<small>Usage</small>
+									</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-
-									<div id="echart_donut" style="height: 350px;"></div>
-
+									<div id="cpu_donut" style="height: 350px;"></div>
 								</div>
 							</div>
 						</div>
@@ -55,7 +42,7 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
-										Bar Charts <small>Sessions</small>
+										Bar graph <small>Sessions</small>
 									</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
@@ -73,7 +60,7 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<div id="graph_bar" style="width: 100%; height: 280px;"></div>
+									<canvas id="memorygraph"></canvas>
 								</div>
 							</div>
 						</div>
@@ -102,7 +89,7 @@
 								</div>
 								<div class="x_content">
 
-									<div id="echart_bar_horizontal" style="height: 370px;"></div>
+									<div id="disk_bar_horizontal" style="height: 370px;"></div>
 
 								</div>
 							</div>
@@ -132,14 +119,14 @@
 								</div>
 								<div class="x_content">
 
-									<div id="echart_line" style="height: 350px;"></div>
+									<div id="network_line" style="height: 350px;"></div>
 
 								</div>
 							</div>
 						</div>
 						<!-- NETWORK CHART END -->
-						</div>
-						<div class="row">
+					</div>
+					<div class="row">
 						<!-- QUERY CHART  -->
 						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 							<div class="x_panel">
@@ -162,7 +149,7 @@
 								</div>
 								<div class="x_content">
 
-									<div id="echart_line" style="height: 350px;"></div>
+									<div id="packet_line" style="height: 350px;"></div>
 
 								</div>
 							</div>
@@ -292,7 +279,7 @@
 	<script src="js/fullscreen.js"></script>
 
 	<!-- Custom Theme Scripts -->
+	<script src="js/dashboard_old.js"></script>
 	<script src="js/custom.js"></script>
-	<script src="js/sdnsdashboard.js"></script>
 </body>
 </html>

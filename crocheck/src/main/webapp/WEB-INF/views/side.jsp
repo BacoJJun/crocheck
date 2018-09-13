@@ -23,6 +23,7 @@
 				<ul class="nav child_menu">
 					<li><a href="/crocheck/dnsstatus">DNS-STATUS</a></li>
 					<li><a href="/crocheck/statistics">ANALYSIS</a></li>
+					<li><a href="/crocheck/compare">COMPARE</a></li>
 				</ul></li>
 			<li><a><i class="fa fa-edit"></i> Policy <span
 					class="fa fa-chevron-down"></span></a>

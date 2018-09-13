@@ -93,7 +93,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-4">
 							<div class="x_panel tile fixed_height_320 overflow_hidden">
 								<div class="x_title">
-									<h2>DNS Query</h2>
+									<h2>DNS DOMAIN</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -131,7 +131,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<div class="x_panel tile fixed_height_350 overflow_hidden">
 								<div class="x_title">
-									<h2>DDos Client List</h2>
+									<h2>DNS Client List</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="ddos_progress">
@@ -156,7 +156,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-4">
 							<div class="x_panel tile fixed_height_320 overflow_hidden">
 								<div class="x_title">
-									<h2>DNS Client</h2>
+									<h2>DDOS DOMAIN</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -194,7 +194,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>DDos Client List</h2>
+									<h2>DDOS Client List</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="ddos_progress">

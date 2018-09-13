@@ -70,6 +70,10 @@ public class HomeController {
 	public String statistics(Locale locale, Model model) throws Exception {
 		return "statistics";
 	}
+	@RequestMapping(value = "/compare", method = RequestMethod.GET)
+	public String compare(Locale locale, Model model) throws Exception {
+		return "compare";
+	}
 	@RequestMapping(value = "/dnsstatus", method = RequestMethod.GET)
 	public String dnsstatus(Locale locale, Model model) throws Exception {
 		return "dnsstatus";

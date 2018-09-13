@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="compare">
+	<select id="packetdnscompare"
+		resultType="com.humanstar.crocheck.model.compare.dto.comparePacketVO">
+		SELECT count, cr_at AS created_at FROM (SELECT
+		SUM(count) AS
+		count,
+		DATE_TRUNC('hour', created_at) AS cr_at FROM
+		dns_stat_10sec_all
+		WHERE
+		( created_at BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY cr_at ORDER BY cr_at
+		ASC)
+		AS dns;
+	</select>
+	<select id="packetddoscompare"
+		resultType="com.humanstar.crocheck.model.compare.dto.comparePacketVO">
+		SELECT count, cr_at AS created_at FROM (SELECT
+		SUM(count) AS
+		count,
+		DATE_TRUNC('hour', created_at) AS cr_at FROM
+		ddos_stat_10sec_all
+		WHERE
+		( created_at BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY cr_at ORDER BY cr_at ASC)
+		AS ddos;
+	</select>
+	<select id="dnsdomaincompare"
+		resultType="com.humanstar.crocheck.model.compare.dto.compareDomainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select sum(total.count) from (SELECT sum(count) as count
+		FROM dns_stat_1day_distinct WHERE ( created_at BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY domain ORDER BY count DESC ) total ) +0.05, 1)
+		as percentage FROM
+		dns_stat_1day_distinct WHERE ( created_at BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY domain ORDER BY count DESC LIMIT
+		100;
+
+	</select>
+	<select id="ddosdomaincompare"
+		resultType="com.humanstar.crocheck.model.compare.dto.compareDomainQueryVO">
+		SELECT domain, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select sum(total.count) from (SELECT sum(count) as count
+		FROM ddos_stat_1day_distinct WHERE ( created_at BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY domain ORDER BY count DESC ) total ) +0.05,
+		1) as percentage FROM
+		ddos_stat_1day_distinct WHERE ( created_at
+		BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY domain ORDER BY count
+		DESC LIMIT 100;
+
+	</select>
+	<select id="dnssrccompare"
+		resultType="com.humanstar.crocheck.model.compare.dto.compareSrcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select sum(total.count) from (SELECT sum(count) as count
+		FROM dns_stat_1day_distinct WHERE ( created_at BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY src_ip ORDER BY count DESC ) total ) +0.05, 1)
+		as percentage FROM
+		dns_stat_1day_distinct WHERE ( created_at BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY src_ip ORDER BY count DESC LIMIT
+		100
+	</select>
+	<select id="ddossrccompare"
+		resultType="com.humanstar.crocheck.model.compare.dto.compareSrcQueryVO">
+		SELECT src_ip, sum(count) as count, TRUNC( sum(count) *
+		100.0 / ( select sum(total.count) from (SELECT sum(count) as count
+		FROM ddos_stat_1day_distinct WHERE ( created_at BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY src_ip ORDER BY count DESC ) total ) +0.05,
+		1) as percentage FROM
+		ddos_stat_1day_distinct WHERE ( created_at
+		BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE))+ interval '1 day') GROUP
+		BY src_ip ORDER BY count
+		DESC LIMIT 100
+	</select>
+</mapper>
