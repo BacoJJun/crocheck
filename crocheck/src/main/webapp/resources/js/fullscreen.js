@@ -22,7 +22,6 @@ $(function() {
 	});
 	// open in fullscreen
 	$('#requestfullscreen_top').click(function() {
-		console.log("fullscreen?");
 		$('#fullscreen').fullscreen();
 		return false;
 	});

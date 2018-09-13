@@ -18,4 +18,7 @@ public interface dnspolicyService {
 	public void insertsubdomain(dnspolicyVO vo) throws Exception;
 	public void updatesubdomain(dnspolicyVO vo) throws Exception;
 	public void deletesubdomain(dnspolicyVO vo) throws Exception;
+	
+	public List<dnspolicyVO> idsearchDns(dnspolicyVO vo) throws Exception;
+	public List<dnspolicyVO> zonesearchDns(dnspolicyVO vo) throws Exception;
 }

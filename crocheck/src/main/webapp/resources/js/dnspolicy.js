@@ -16,7 +16,7 @@ $(document)
 											searhdnsdomain();
 										}
 									});
-					table_loop();
+					//table_loop();
 					dns_button_event();
 
 					buttonClickEvent();
@@ -26,12 +26,19 @@ function buttonClickEvent() {
 	$("#insertdns").click(function() {
 		insertdnszone();
 	});
+	$("#updatedns").click(function() {
+		updatednszone();
+	});
 	$("#insertSubDomainBtn").click(function(){
 		zonelistdraw();
 	});
 	$("#insertsubdomain").click(function(){
 		subdomaininsert();
 	});
+	$("#updatesubdomain").click(function(){
+		updatesubdomain();
+	});
+
 
 }
 function dns_button_event() {
@@ -57,7 +64,63 @@ function sub_button_event() {
 		if(sub_type=="sub_edit"){
 			subdomainupdate(sub_id);
 		}
+		if(sub_type=="sub_delete"){
+			subdomaindeletebuttonevent(sub_id);
+		}
 	});
+}
+
+function updatednszone(){
+	var zone = document.getElementById("dns_update_zone").value;
+	var type =$('input:radio[name="dns_insert_type"]:checked').val();
+	var host = document.getElementById("dns_update_host").value;
+	var data = document.getElementById("dns_update_data").value;
+	var ttl = document.getElementById("dns_update_ttl").value;
+	var primaryns = document.getElementById("dns_update_primaryns").value;
+	var resp_contact = document.getElementById("dns_update_resp_contact").value;
+	var serial = document.getElementById("dns_update_serial").value;
+	var refresh = document.getElementById("dns_update_refresh").value;
+	var retry = document.getElementById("dns_update_retry").value;
+	var expire = document.getElementById("dns_update_expire").value;
+	var minimum = document.getElementById("dns_update_minimum").value;
+	var comment = document.getElementById("dns_update_comment").value;
+	
+	$
+	.ajax({
+		url : '/crocheck/updatedns',
+		data : {
+			"zone" : zone,
+			"type" : type,
+			"host" : host,
+			"data" : data,
+			"ttl" : ttl,
+			"primary_ns" : primaryns,
+			"resp_contact" : resp_contact,
+			"serial" : serial,
+			"refresh" : refresh,
+			"retry" : retry,
+			"expire" : expire,
+			"minimum" : minimum,
+			"comment" : comment
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				sleep(1000);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+	location.reload();
 }
 function insertdnszone(){
 	var zone = document.getElementById("dns_insert_zone").value;
@@ -89,7 +152,7 @@ function insertdnszone(){
 			"refresh" : refresh,
 			"retry" : retry,
 			"expire" : expire,
-			"minimun" : minimum,
+			"minimum" : minimum,
 			"comment" : comment
 		},
 		type : 'post',
@@ -110,6 +173,41 @@ function insertdnszone(){
 	});
 	
 	location.reload();
+}
+function updatesubdomain(){
+	var zone = document.getElementById("subdomain_update_zone").value;
+	var type = $('input:radio[name="subdomain_zone_type_check"]:checked').val();
+	var host = document.getElementById("subdomain_update_host").value;
+	var data = document.getElementById("subdomain_update_data").value;
+	var comment = document.getElementById("subdomain_update_comment").value;
+	$
+	.ajax({
+		url : '/crocheck/updatesubdomain',
+		data : {
+			"zone" : zone,
+			"type" : type,
+			"host" : host,
+			"data" : data,
+			"comment" : comment
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+					sleep(1000);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	location.reload();
+	
 }
 function subdomainupdate(sub_id){
 	var modaltitle =   document.getElementById("subdomain_zone_name");
@@ -189,8 +287,8 @@ function dnsupdate(dns_id){
 				refresh.value =  result.dnsTableList[0].refresh;
 				retry.value =  result.dnsTableList[0].retry;
 				expire.value =  result.dnsTableList[0].expire;
-				minimum.value =  result.dnsTableList[0].minimun;
-				comment.value = result.dnsTableList[0].comment;
+				minimum.value =  result.dnsTableList[0].minimum;
+				comment.innerText = result.dnsTableList[0].comment;
 
 			} else {
 				alert(result.errorMsg);
@@ -203,12 +301,42 @@ function dnsupdate(dns_id){
 		}
 	});
 }
+function subdomaindeletebuttonevent(sub_id){
+	$("#deletesubdomain").click(function(){
+		subdomaindelete(sub_id);
+	})
+
+}
 function dnsdeletebuttonevent(dns_value){
 	$("#deletednszone").click(function(){
-		console.log(dns_value);
 		dnsdelete(dns_value);
 	})
 
+}
+function subdomaindelete(sub_id){
+	$
+	.ajax({
+		url : '/crocheck/deletesubdomain',
+		data : {
+			"id" : sub_id
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				sleep(1000);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	location.reload();
 }
 function dnsdelete(dns_value){
 		$
@@ -242,11 +370,33 @@ function subdomaininsert(){
 	var data = document.getElementById("subdomain_insert_data").value;
 	var comment = document.getElementById("subdomain_insert_comment").value;
 	
-	console.log(zone);
-	console.log(type);
-	console.log(host);
-	console.log(data);
-	console.log(comment);
+	$
+	.ajax({
+		url : '/crocheck/insertsubdomain',
+		data : {
+			"zone" : zone,
+			"type" : type,
+			"host" : host,
+			"data" : data,
+			"comment" : comment
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				sleep(1000);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	location.reload();
 }
 function zonelistdraw(){
 	var subdomainzonelist = document.getElementById("subdomain_zonelist");

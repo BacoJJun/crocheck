@@ -62,6 +62,10 @@ public class HomeController {
 	public String dashboard(Locale locale, Model model) throws Exception {
 		return "dashboard";
 	}	
+	@RequestMapping(value = "/dashboard2", method = RequestMethod.GET)
+	public String dashboard2(Locale locale, Model model) throws Exception {
+		return "dashboard_old";
+	}	
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
 	public String statistics(Locale locale, Model model) throws Exception {
 		return "statistics";

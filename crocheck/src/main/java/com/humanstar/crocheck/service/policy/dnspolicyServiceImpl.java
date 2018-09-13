@@ -50,7 +50,6 @@ public class dnspolicyServiceImpl implements dnspolicyService{
 
 	@Override
 	public void insertdns(dnspolicyVO vo) throws Exception {
-		logger.info(vo.toString());
 		dnspolicyDAO.insertdns(vo);
 		
 	}
@@ -83,5 +82,17 @@ public class dnspolicyServiceImpl implements dnspolicyService{
 	public void deletesubdomain(dnspolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		dnspolicyDAO.deletesubdomain(vo);	}
+
+	@Override
+	public List<dnspolicyVO> idsearchDns(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dnspolicyDAO.idsearchDns(vo);
+	}
+
+	@Override
+	public List<dnspolicyVO> zonesearchDns(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dnspolicyDAO.zonesearhDns(vo);
+	}
 }
 

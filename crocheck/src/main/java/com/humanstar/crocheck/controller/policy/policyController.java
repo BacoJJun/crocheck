@@ -249,11 +249,11 @@ public class policyController {
 		changeValueVO changeVO = new changeValueVO();
 		
 		changeVO.setChange_type("dns");
-		changeVO.setQuery_type("insert");
+		changeVO.setQuery_type("zone insert");
 		changeVO.setTitle("insert : " + vo.getZone());
 		changeVO.setComment("insert : " + vo.toString());
 		changeVO.setChange_user("Administrator");
-		changeVO.setUser_ip(request.getRemoteAddr());
+		changeVO.setUser_ip(" ");
 		logger.info(request.getRemoteAddr());
 		
 				
@@ -278,15 +278,17 @@ public class policyController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		changeValueVO changeVO = new changeValueVO();
 		List<dnspolicyVO> dnsList = new ArrayList<dnspolicyVO>();
-		
-		changeVO.setChange_type("dns");
-		changeVO.setQuery_type("update");
-		changeVO.setTitle("update : " + vo.getZone());
-		changeVO.setComment("after : " + vo.toString() + "before : " );
-		changeVO.setChange_user("Administrator");
-		changeVO.setUser_ip(request.getRemoteAddr());	
-		
+	
 		try {
+			dnsList = dnspolicyService.zonesearchDns(vo);
+			vo.setId(dnsList.get(0).getId());
+			changeVO.setChange_type("dns");
+			changeVO.setQuery_type("zone update");
+			changeVO.setTitle("update : " + vo.getZone());
+			changeVO.setComment("after : " + vo.toString() + "before : " + dnsList.get(0).toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");	
+			
 			dnspolicyService.updatedns(vo);
 			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
@@ -300,6 +302,7 @@ public class policyController {
 
 		return resultMap;
 	}
+	
 	@RequestMapping(value = "/deletedns", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> deletedns(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {
@@ -310,9 +313,9 @@ public class policyController {
 		
 		
 		try {
-			dnsList = dnspolicyService.zonelist();
+			dnsList = dnspolicyService.zonesearchDns(vo);
 			changeVO.setChange_type("dns");
-			changeVO.setQuery_type("delete");
+			changeVO.setQuery_type("zone delete");
 			changeVO.setTitle("delete : " + vo.getZone());
 			String zonelist = "";
 			for(int i =0;i<dnsList.size();i++) {
@@ -320,7 +323,7 @@ public class policyController {
 			}
 			changeVO.setComment("delete : " + zonelist);
 			changeVO.setChange_user("Administrator");
-			changeVO.setUser_ip(request.getRemoteAddr());
+			changeVO.setUser_ip(" ");
 			
 			dnspolicyService.delete(vo);
 			changeValueService.insertChangeValue(changeVO);
@@ -336,12 +339,21 @@ public class policyController {
 	}
 	@RequestMapping(value = "/insertsubdomain", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> insertsubdomain(@ModelAttribute  dnspolicyVO vo) {
+	public Map<String, Object> insertsubdomain(@ModelAttribute  dnspolicyVO vo,HttpServletRequest request) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		
+		changeVO.setChange_type("dns");
+		changeVO.setQuery_type("sub_domain insert");
+		changeVO.setTitle("insert : " + vo.getZone());
+		changeVO.setComment("insert : " + vo.toString());
+		changeVO.setChange_user("Administrator");
+		changeVO.setUser_ip(request.getRemoteAddr());
 		
 		try {
 			dnspolicyService.insertsubdomain(vo);
+			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -358,9 +370,22 @@ public class policyController {
 	public Map<String, Object> updatesubdomain(@ModelAttribute  dnspolicyVO vo) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		List<dnspolicyVO> dnsList = new ArrayList<dnspolicyVO>();
 		
 		try {
+			dnsList = dnspolicyService.zonesearchDns(vo);
+			vo.setId(dnsList.get(0).getId());
+			changeVO.setChange_type("dns");
+			changeVO.setQuery_type("sub_domain update");
+			changeVO.setTitle("update : " + vo.getZone());
+			changeVO.setComment("after : " + vo.toString() + "before : " + dnsList.get(0).toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");	
+
 			dnspolicyService.updatesubdomain(vo);
+			changeValueService.insertChangeValue(changeVO);
+			
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -374,12 +399,24 @@ public class policyController {
 	}
 	@RequestMapping(value = "/deletesubdomain", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> deletesubdomain(@ModelAttribute  dnspolicyVO vo) {
+	public Map<String, Object> deletesubdomain(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		List<dnspolicyVO> dnsList = new ArrayList<dnspolicyVO>();
+		
 		
 		try {
+			dnsList = dnspolicyService.idsearchDns(vo);
+			changeVO.setChange_type("dns");
+			changeVO.setQuery_type("sub_domain delete");
+			changeVO.setTitle("delete : " + vo.getZone());
+			changeVO.setComment("delete : " + dnsList.get(0).toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+
 			dnspolicyService.deletesubdomain(vo);
+			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {

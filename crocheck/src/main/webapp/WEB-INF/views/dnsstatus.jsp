@@ -22,51 +22,68 @@
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="x_panel">
 							<div class="x_title">
-								<h2> 
+								<h2>
 									DNS <small>dns</small>
 								</h2>
 								<div class="clearfix"></div>
 							</div>
 							<div class="x_content">
-								<div class="col-md-5">
-									<form class="form-horizontal">
-										<fieldset>
-											<div class="control-group">
-												<div class="controls">
-													<div class="input-prepend input-group">
-														<span class="add-on input-group-addon"><i
-															class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-														<input type="text" name="reservation-time"
-															id="reservation-time" class="form-control" />
-													</div>
-												</div>
-											</div>
-										</fieldset>
-										<input type="hidden" name="date_start" id="date_start" /> <input
-											type="hidden" name="date_end" id="date_end" />
+								<div class="col-md-6">
 
-									</form>
+									<div class="control-group">
+										<div class="controls">
+											<div class="input-prepend input-group">
+												<span class="add-on input-group-addon"><i
+													class="glyphicon glyphicon-calendar fa fa-calendar"></i></span> <input
+													type="text" name="reservation-time" id="reservation-time"
+													class="form-control" />
+											</div>
+										</div>
+									</div>
 
 								</div>
-								<button id="submit" type="button"
-									class="btn btn-success fa fa-search"></button>
-								<button id="pause" type="button"
-									class="btn btn-info fa fa-pause"></button>
-								<button id="play" type="button"
-									class="btn btn-warning fa fa-play"></button>
-								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap">
-									<thead>
-										<tr>
-											<th>Client</th>
-											<th>Domain</th>
-											<th>Server IP</th>
-											<th>Query Time</th>
-										</tr>
-									</thead>
-									<tbody id="show_dns_list">
-									</tbody>
-								</table>
+								<div class="col-md-6">
+									<button id="submit" type="button"
+										class="btn btn-success fa fa-search"></button>
+									<button id="pause" type="button"
+										class="btn btn-info fa fa-pause"></button>
+									<button id="play" type="button"
+										class="btn btn-warning fa fa-play"></button>
+								</div>
+								<div class="col-lg-12 col-md-12">
+									<div id="refreshtable">
+										<table id="datatable"
+											class="table table-striped table-bordered">
+											<thead>
+												<tr>
+													<th>Client</th>
+													<th>Domain</th>
+													<th>Server IP</th>
+													<th>Query Time</th>
+												</tr>
+											</thead>
+											<tbody id="show_dns_list">
+											</tbody>
+										</table>
+										<div class="clearfix"></div>
+									</div>
+									<div id="searchtable">
+										<table id="searchdatatable"
+											class="table table-striped table-bordered">
+											<thead>
+												<tr>
+													<th>Client</th>
+													<th>Domain</th>
+													<th>Server IP</th>
+													<th>Query Time</th>
+												</tr>
+											</thead>
+											<tbody id="search_dns_list">
+											</tbody>
+										</table>
+										<div class="clearfix"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -134,8 +151,7 @@
 	<script src="js/pdfmake/build/pdfmake.min.js"></script>
 
 	<!-- Custom Theme Scripts -->
-		<script src="js/custom.js"></script>
 	<script src="js/dnsstatus.js"></script>
-
+	<script src="js/custom.js"></script>
 </body>
 </html>

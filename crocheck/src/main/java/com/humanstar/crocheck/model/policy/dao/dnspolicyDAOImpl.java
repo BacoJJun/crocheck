@@ -76,13 +76,13 @@ public class dnspolicyDAOImpl implements dnspolicyDAO{
 
 	@Override
 	public void updatesubdomain(dnspolicyVO vo) throws Exception {
-		SqlSession.update("dnspolicyu.subdomainupdate", vo);
+		SqlSession.update("dnspolicy.subdomainupdate", vo);
 		
 	}
 
 	@Override
 	public void deletesubdomain(dnspolicyVO vo) throws Exception {
-		SqlSession.delete("dnspolicy.dnsdelete", vo);
+		SqlSession.delete("dnspolicy.subdomaindelete", vo);
 		
 	}
 

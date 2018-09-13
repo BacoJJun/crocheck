@@ -48,11 +48,11 @@
 											<table id="datatable"
 												class="table table-striped table-bordered">
 												<colgroup>
-													<col width="15%"/>
-													<col width="*"/>
-													<col width="10%"/>
-													<col width="10%"/>
-													<col width="15%"/>
+													<col width="15%" />
+													<col width="*" />
+													<col width="10%" />
+													<col width="10%" />
+													<col width="30%" />
 												</colgroup>
 												<thead>
 													<tr>
@@ -77,8 +77,9 @@
 									<div class="x_panel">
 										<div class="x_title">
 											<h2>체크 리스트</h2>
+												<div class="clearfix"></div>
 										</div>
-										<div class="clearfix"></div>
+									
 
 										<div class="radio" id="check_dns_domain_div">
 											<label> <input type="radio" class="flat"
@@ -101,6 +102,7 @@
 											<h2>
 												검색조건 <small> </small>
 											</h2>
+											<div class="clearfix"></div>
 										</div>
 										<div class="clearfix"></div>
 										<div id="reportrange" class="pull-right"
@@ -186,7 +188,7 @@
 	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 	<!-- Custom Theme Scripts -->
 
-	<script src="js/custom.js"></script>
 	<script src="js/update_report.js"></script>
+	<script src="js/custom.js"></script>
 </body>
 </html>

@@ -231,14 +231,10 @@
 	<script src="js/bootstrap.min.js"></script>
 	<!-- FastClick -->
 	<script src="js/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="js/nprogress.js"></script>
 	<!-- Chart.js -->
 	<script src="js/Chart.min.js"></script>
 	<!-- gauge.js -->
 	<script src="js/gauge.min.js"></script>
-	<!-- bootstrap-progressbar -->
-	<script src="js/bootstrap-progressbar.min.js"></script>
 	<!-- iCheck -->
 	<script src="js/icheck.min.js"></script>
 	<!-- Skycons -->
@@ -263,6 +259,10 @@
 	<script src="js/moment.min.js"></script>
 	<script src="js/daterangepicker.js"></script>
 	<script src="js/echarts.min.js"></script>
+		<!-- NProgress -->
+	<script src="js/nprogress.js"></script>
+		<!-- bootstrap-progressbar -->
+	<script src="js/bootstrap-progressbar.min.js"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script src="js/statistics.js"></script>

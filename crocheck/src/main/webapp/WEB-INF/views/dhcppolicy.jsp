@@ -478,6 +478,7 @@
 	<script src="js/moment.min.js"></script>
 	<script src="js/daterangepicker.js"></script>
 	<script src="js/echarts.min.js"></script>
+	<!-- datatable -->
 	<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -497,6 +498,5 @@
 	
 	<script src="js/dhcppolicy.js"></script>
 	<script src="js/custom.js"></script>
-	
 </body>
 </html>

@@ -16,6 +16,7 @@
 					class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
 					<li><a href="/crocheck">Dashboard</a></li>
+					<li><a href="/crocheck/dashboard2">Dashboard2</a></li>
 				</ul></li>
 			<li><a><i class="fa fa-bar-chart-o"></i> Statistics <span
 					class="fa fa-chevron-down"></span></a>

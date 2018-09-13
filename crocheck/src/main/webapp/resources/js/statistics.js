@@ -985,15 +985,13 @@ function init_dnssrc_progress(data) {
 	var show_dns_src = document.getElementById("dnsQuerySrcList");
 	var domain_html = '';
 	for (i = 0; i < max_value; i++) {
-		domain_html += "<tr>";
-		domain_html += "<td>" + src_data[i] + "</td>"
-		domain_html += "<td><div class='progress'><div class='progress-bar progress-bar-success'	data-transitiongoal='"
-				+ per_data[i].toFixed(1)
-				+ "'>"
-				+ count_data[i]
-				+ "</div></div></td>";
-		domain_html += "<td>" + per_data[i] +"%</td>";
-		domain_html += "</tr>";
+		domain_html += '<tr>';
+		domain_html += '<td>' + src_data[i] + '</td>';
+		domain_html += '<td><div class="progress progress_sm">';
+		domain_html += '<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>';
+		domain_html += '</div></td>';
+		domain_html += '<td>' + per_data[i] + '%</td>';
+		domain_html += '</tr>';
 	}
 	show_dns_src.innerHTML = domain_html;
 }
@@ -1009,13 +1007,13 @@ function init_ddossrc_progress(data) {
 		for (; i < max_value; i++) {
 			src_data[i] = data[i].src_ip;
 			count_data[i] = data[i].count;
-			per_data[i] = data[i].percentage;
+			per_data[i] = data[i].percentage.toFixed(0);
 		}
 	} else {
 		for (; i < max_value; i++) {
 			src_data[i] = data[i].src_ip;
 			count_data[i] = data[i].count;
-			per_data[i] = data[i].percentage;
+			per_data[i] = data[i].percentage.toFixed(0);
 		}
 		count_data[max_value] = 0;
 		per_data[max_value] = 0;
@@ -1028,13 +1026,13 @@ function init_ddossrc_progress(data) {
 	var show_ddos_src = document.getElementById("ddosQuerySrcList");
 	var domain_html = '';
 	for (i = 0; i < max_value; i++) {
-		domain_html += "<tr>";
-		domain_html += "<td>" + src_data[i] + "</td>";
-		domain_html += "<td><div class='progress'>";
-		domain_html += "<div class='progress-bar progress-bar-success' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:'"
-	domain_html += per_data[i] + ";'>" + count_data[i] + "</div></div></td>";
-		domain_html += "<td>" + per_data[i] + "%</td>";
-		domain_html += "</tr>";
+		domain_html += '<tr>';
+		domain_html += '<td>' + src_data[i] + '</td>';
+		domain_html += '<td><div class="progress progress_sm">';
+		domain_html += '<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>';
+		domain_html += '</div></td>';
+		domain_html += '<td>' + per_data[i] + '%</td>';
+		domain_html += '</tr>';
 	}
 	show_ddos_src.innerHTML = domain_html;
 }

@@ -489,7 +489,7 @@
 								</div>
 							</div>
 							<div class="panel-footer" style="margin-bottom: -14px;">
-								<input type="button" class="btn btn-info" id="insertdns"
+								<input type="button" class="btn btn-info" id="updatedns"
 									value="UPDATE" />
 								<button style="float: right;" type="button"
 									class="btn btn-default btn-close" data-dismiss="modal">Close</button>
@@ -697,11 +697,11 @@
 	</div>
 	<!-- subDomain update Modal end -->
 
-	<!-- subDomain Insert Modal start -->
+	<!-- subDomain Delete Modal start -->
 	<div class="modal fade" id="subDomainDeleteModal" tabindex="-1"
 		role="dialog" aria-labelledby="voteLabel" aria-hidden="true">
 		<div class="modal-dialog">
-			<div class="panel panel-primary">
+			<div class="panel panel-danger">
 				<div class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">×</button>
@@ -712,9 +712,7 @@
 				</div>
 				<div class="modal-body"></div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-success btn-vote">Vote!</button>
-					<span class="btn btn-primary dropdown-results btn-results"
-						data-for=".results">View Results</span>
+					<button type="button" class="btn btn-danger btn-close" id="deletesubdomain" value="DELETE">DELETE</button>
 					<button type="button" class="btn btn-default btn-close"
 						data-dismiss="modal">Close</button>
 
@@ -780,8 +778,8 @@
 
 	
 	<!-- Custom Theme Scripts -->
-		<script src="js/custom.js"></script>
 	<script src="js/dnspolicy.js"></script>
+	<script src="js/custom.js"></script>
 
 
 </body>

@@ -32,7 +32,7 @@ function SearchdnsList() {
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 
-	var show_dns = document.getElementById("show_dns_list");
+	var show_dns = document.getElementById("search_dns_list");
 
 	$.ajax({
 		url : '/crocheck/dnsSearchList',
@@ -68,6 +68,9 @@ function SearchdnsList() {
 					+ request.responseText + "\n");
 		}
 	});
+	$('#searchdatatable').dataTable();
+	$("#searchtable").show();
+	$("#refreshtable").hide();
 
 }
 function getDnsList() {
@@ -103,4 +106,7 @@ function getDnsList() {
 					+ request.responseText + "\n");
 		}
 	});
+	$("#searchtable").hide();
+	$("#refreshtable").show();
+	
 };
