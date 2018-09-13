@@ -58,7 +58,9 @@
 	</a> <a href="/crocheck/guide" data-toggle="tooltip" data-placement="top"
 		title="Guide"> <span class="glyphicon glyphicon-book"
 		aria-hidden="true"></span>
-	</a> <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+	</a> <a href="#" class="requestfullscreen" data-toggle="tooltip" data-placement="top" id="requestfullscreen" title="FullScreen">
+		<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+	</a><a href="#" class="exitfullscreen" data-toggle="tooltip" data-placement="top" id="exitfullscreen" title="FullScreen"  style="display: none">
 		<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
 	</a><a data-toggle="tooltip" data-placement="top" title="Logout"
 		href="login.html"> <span class="glyphicon glyphicon-off"

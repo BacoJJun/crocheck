@@ -19,7 +19,7 @@
 			<!-- /top navigation -->
 
 			<!-- page content -->
-			<div class="right_col" role="main">
+			<div class="right_col" role="main" style="min-height: 1200px;">
 				<div class="row "> 
 
 					<div class="x_panel">
@@ -314,14 +314,14 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<textarea style="resize: vertical;" class="form-control"
 										placeholder="comment" id="dns_insert_comment" rows="6"
-										name="comment" required>asjdlfkasjd</textarea>
+										name="comment" required>Comment</textarea>
 								</div>
 							</div>
 							<div class="panel-footer" style="margin-bottom: -14px;">
 								<input type="button" class="btn btn-success" id="insertdns"
 									value="INSERT" />
 								<!--<span class="glyphicon glyphicon-ok"></span>-->
-								<input type="reset" class="btn btn-danger" value="Clear" />
+								<input type="reset" class="btn btn-danger btn-close" value="Clear" />
 								<!--<span class="glyphicon glyphicon-remove"></span>-->
 								<button style="float: right;" type="button"
 									class="btn btn-default btn-close" data-dismiss="modal">Close</button>
@@ -777,9 +777,12 @@
 	<script
 		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+	
 	<!-- Custom Theme Scripts -->
 		<script src="js/custom.js"></script>
 	<script src="js/dnspolicy.js"></script>
+
 
 </body>
 </html>

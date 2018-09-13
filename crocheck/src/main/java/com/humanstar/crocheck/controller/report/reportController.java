@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.humanstar.crocheck.model.change.dto.changeValueVO;
 import com.humanstar.crocheck.model.report.dto.reportApplianceVO;
 import com.humanstar.crocheck.model.report.dto.reportDomainQueryVO;
 import com.humanstar.crocheck.model.report.dto.reportPacketVO;
 import com.humanstar.crocheck.model.report.dto.reportSrcQueryVO;
 import com.humanstar.crocheck.model.searchtype.dto.searchTypeVO;
+import com.humanstar.crocheck.service.change.changeValueServiceImpl;
 import com.humanstar.crocheck.service.report.reportMainServiceImpl;
 
 @Controller
@@ -40,6 +42,8 @@ public class reportController {
 	 */
 	@Inject
 	reportMainServiceImpl reportMainService;
+	@Inject
+	changeValueServiceImpl changeValueService;
 
 	@RequestMapping(value = "/reportBaseApp", method = RequestMethod.POST)
 	@ResponseBody
@@ -678,6 +682,25 @@ public class reportController {
 		}
 		resultMap.put("ddosSrcList", ddosSrcList);
 
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/reportChangeValueList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportChangeValueList(){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<changeValueVO> changeValueList = new ArrayList<changeValueVO>();
+		
+		try{
+			changeValueList = changeValueService.changeValueList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		}catch(Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+		}
+		resultMap.put("changeValueList", changeValueList);
+		
 		return resultMap;
 	}
 

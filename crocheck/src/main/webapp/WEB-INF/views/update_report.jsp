@@ -47,23 +47,23 @@
 										<div class="x_content">
 											<table id="datatable"
 												class="table table-striped table-bordered">
+												<colgroup>
+													<col width="15%"/>
+													<col width="*"/>
+													<col width="10%"/>
+													<col width="10%"/>
+													<col width="15%"/>
+												</colgroup>
 												<thead>
 													<tr>
 														<th>type</th>
-														<th>date</th>
-														<th>comment</th>
+														<th>title</th>
 														<th>user</th>
 														<th>ip</th>
+														<th>date</th>
 													</tr>
 												</thead>
-												<tbody>
-													<tr>
-														<td>insert</td>
-														<td>2018.09.06</td>
-														<td>xxxxxx</td>
-														<td>administrator</td>
-														<td>192.168.0.78</td>
-													</tr>
+												<tbody id="changeValueList">
 												</tbody>
 											</table>
 
@@ -187,5 +187,6 @@
 	<!-- Custom Theme Scripts -->
 
 	<script src="js/custom.js"></script>
+	<script src="js/update_report.js"></script>
 </body>
 </html>

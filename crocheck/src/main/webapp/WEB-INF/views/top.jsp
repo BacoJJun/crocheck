@@ -12,7 +12,7 @@
 								class=" fa fa-angle-down"></span>
 						</a>
 							<ul class="dropdown-menu dropdown-usermenu pull-right">
-							<li><a  onclick="goFullscreen('player'); return false">Full Screen Mode</a></li>
+							<li><a href="#" id="requestfullscreen_top" class="requestfullscreen">Full Screen Mode</a><a href="#" id="exitfullscreen_top" class="exitfullscreen" style="display: none">Browser Screen Mode</a></li>
 								<li><a href="/crocheck/setting">Settings</a></li>
 								<li><a href="/crocheck/guide"> <span>guide</span>
 								</a></li>		

@@ -47,16 +47,30 @@
 		BY src_ip, domain ORDER
 		BY count desc limit 5;
 	</select>
+	<select id="idsearchdns"
+		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select * from dns_record where id = #{id}
+	</select>
+	<select id="zonesearhdns"
+		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select * from dns_record where zone = #{zone}
+	</select>
+	
 	<insert id="dnsinsert">
-		insert into dns_record(zone, ttl, type, host, data,	primary_ns,resp_contact, serial, refresh, retry, expire, minimum,comment,modified)
-		values(#{zone}, #{ttl}, #{type}, 	#{host}, #{data},	#{primary_ns}, #{resp_contact}, #{serial}, #{refresh},#{retry},	#{expire},	#{minimum},#{comment},'1')
+		insert into dns_record(zone, ttl, type, host, data,
+		primary_ns,resp_contact, serial, refresh, retry, expire,
+		minimum,comment,modified)
+		values(#{zone}, #{ttl}, #{type}, #{host},
+		#{data}, #{primary_ns}, #{resp_contact}, #{serial},
+		#{refresh},#{retry}, #{expire}, #{minimum},#{comment},'1')
 	</insert>
 	<update id="dnsupdate">
 		update dns_record
 		set
 		zone =#{zone},
 		ttl =#{ttl},
-		type= #{type},
+		type=
+		#{type},
 		host = #{host},
 		data = #{data},
 		primary_ns = #{primary_ns},
@@ -65,16 +79,19 @@
 		refresh =#{refresh},
 		retry =#{retry},
 		expire = #{expire},
-		minimum = #{minimun},
-		comment = #{comment},
+		minimum = #{minimum},
+		comment =
+		#{comment},
 		modified= #{modified}
 		where id = #{id}
 	</update>
 
 	<insert id="subdomaininsert">
-		INSERT INTO dns_record(zone, type, host, data, ttl, mx_priority, comment,
+		INSERT INTO dns_record(zone, type, host, data, ttl,
+		mx_priority, comment,
 		modified)
-		values(#{zone}, #{type}, #{host}, #{data}, #{ttl}, #{mx_priority}, #{comment},
+		values(#{zone}, #{type}, #{host},
+		#{data}, #{ttl}, #{mx_priority}, #{comment},
 		#{modified})
 	</insert>
 
@@ -83,7 +100,8 @@
 		set
 		zone =#{zone},
 		ttl =#{ttl},
-		type= #{type},
+		type=
+		#{type},
 		host = #{host},
 		data = #{data},
 		mx_priority = #{mx_priority},
@@ -95,6 +113,6 @@
 		delete from dns_record where zone = #{zone}
 	</delete>
 	<delete id="subdomaindelete">
-	 delete from dns_record where id = #{id}
+		delete from dns_record where id = #{id}
 	</delete>
 </mapper>

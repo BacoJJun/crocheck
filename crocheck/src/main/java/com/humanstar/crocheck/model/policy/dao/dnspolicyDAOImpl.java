@@ -52,38 +52,50 @@ public class dnspolicyDAOImpl implements dnspolicyDAO{
 	@Override
 	public void insertdns(dnspolicyVO vo) throws Exception {
 		logger.info(vo.toString());
-		SqlSession.insert("dnspolicy.dnsinsert");
+		SqlSession.insert("dnspolicy.dnsinsert", vo);
 		
 	}
 
 	@Override
 	public void updatedns(dnspolicyVO vo) throws Exception {
-		SqlSession.update("dnspolicy.dnsupdate");
+		SqlSession.update("dnspolicy.dnsupdate", vo);
 		
 	}
 
 	@Override
 	public void delete(dnspolicyVO vo) throws Exception {
-		SqlSession.delete("dnspolicy.dnsdelete");
+		SqlSession.delete("dnspolicy.dnsdelete", vo);
 		
 	}
 
 	@Override
 	public void insertsubdomain(dnspolicyVO vo) throws Exception {
-		SqlSession.insert("dnspolicy.subdomaininsert");
+		SqlSession.insert("dnspolicy.subdomaininsert", vo);
 		
 	}
 
 	@Override
 	public void updatesubdomain(dnspolicyVO vo) throws Exception {
-		SqlSession.update("dnspolicyu.subdomainupdate");
+		SqlSession.update("dnspolicyu.subdomainupdate", vo);
 		
 	}
 
 	@Override
 	public void deletesubdomain(dnspolicyVO vo) throws Exception {
-		SqlSession.delete("dnspolicy.dnsdelete");
+		SqlSession.delete("dnspolicy.dnsdelete", vo);
 		
+	}
+
+	@Override
+	public List<dnspolicyVO> idsearchDns(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("dnspolicy.idsearchdns", vo);
+	}
+
+	@Override
+	public List<dnspolicyVO> zonesearhDns(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("dnspolicy.zonesearchdns", vo);
 	}
 
 }

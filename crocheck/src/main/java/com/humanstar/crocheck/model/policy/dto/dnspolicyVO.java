@@ -15,7 +15,7 @@ public class dnspolicyVO {
 	private int refresh;
 	private int retry;
 	private int expire;
-	private int minimun;
+	private int minimum;
 	private String comment;
 	private int modified;
 	
@@ -97,11 +97,11 @@ public class dnspolicyVO {
 	public void setExpire(int expire) {
 		this.expire = expire;
 	}
-	public int getMinimun() {
-		return minimun;
+	public int getMinimum() {
+		return minimum;
 	}
-	public void setMinimun(int minimun) {
-		this.minimun = minimun;
+	public void setMinimum(int minimum) {
+		this.minimum = minimum;
 	}
 	public String getComment() {
 		return comment;
@@ -121,6 +121,6 @@ public class dnspolicyVO {
 		return "dnspolicyVO [id=" + id + ", zone=" + zone + ", ttl=" + ttl + ", type=" + type + ", host=" + host
 				+ ", mx_priority=" + mx_priority + ", data=" + data + ", primary_ns=" + primary_ns + ", resp_contact="
 				+ resp_contact + ", serial=" + serial + ", refresh=" + refresh + ", retry=" + retry + ", expire="
-				+ expire + ", minimun=" + minimun + ", comment=" + comment + ", modified=" + modified + "]";
+				+ expire + ", minimum=" + minimum + ", comment=" + comment + ", modified=" + modified + "]";
 	}
 }

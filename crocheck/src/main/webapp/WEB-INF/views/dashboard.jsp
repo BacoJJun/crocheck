@@ -4,7 +4,7 @@
 <%@ include file="header.jsp"%>
 
 <body class="nav-sm">
-	<div class="container body">
+	<div class="container body" id="fullscreen" >
 		<div class="main_container">
 
 			<!-- sidebar menu -->
@@ -17,48 +17,42 @@
 			<!-- /top navigation -->
 
 			<!-- page content -->
-			<div class="right_col" role="main">
+			<div class="right_col" role="main"  style="height:100%" >
 			<div class="x_panel">
 				<!-- top tiles -->
 				<div class="row tile_count">
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 						<span class="count_top">Total Query</span>
-						<div class="count" id="todayquerystat"></div>
-						<span class="count_bottom"><i class="green">4% </i> From
-							yesterday</span>
+						<div class="count text-right" id="todayquerystat"></div>
+						<span class="count_bottom"></span>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 						<span class="count_top">Last 1 Hours Query</span>
-						<div class="count" id="minquerystat"></div>
-						<span class="count_bottom"><i class="green"><i
-								class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+						<div class="count text-right" id="minquerystat"></div>
+						<span class="count_bottom"></span>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 						<span class="count_top"><i class="fa fa-check"></i> Now
 							Query</span>
-						<div class="count green" id="nowquerystat"></div>
-						<span class="count_bottom"><i class="green"><i
-								class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+						<div class="count green text-right" id="nowquerystat"></div>
+						<span class="count_bottom"></span>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 						<span class="count_top"><i class="fa fa-user"></i> Today
 							DDOS</span>
-						<div class="count" id="todayddosstat"></div>
-						<span class="count_bottom"><i class="red"><i
-								class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+						<div class="count text-right" id="todayddosstat"></div>
+						<span class="count_bottom"></span>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 						<span class="count_top"><i class="fa fa-user"></i> Last 1
 							Hours DDOS</span>
-						<div class="count" id="minddosstat"></div>
-						<span class="count_bottom"><i class="green"><i
-								class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+						<div class="count text-right" id="minddosstat"></div>
+						<span class="count_bottom"></span>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 						<span class="count_top"><i class="fa fa-user"></i> Now DDOS</span>
-						<div class="count" id="nowddosstat"></div>
-						<span class="count_bottom"><i class="green"><i
-								class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+						<div class="count red text-right" id="nowddosstat"></div>
+						<span class="count_bottom"></span>
 					</div>
 					<!-- /top tiles -->
 
@@ -81,22 +75,23 @@
 						<div class="x_panel">
 							<div class="panel panel-body">
 								<div class="x_title">
-									<h4>Appliance Status</h4>
+									<h2>Appliance Status</h2>
+									<div class="clearfix"></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-4">
 										<div class="x_content">
-											<div id="echart_gauge_cpu" style="height: 150px;"></div>
+											<div id="echart_gauge_cpu" style="height: 200px;"></div>
 										</div>
 									</div>
 									<div class="col-xs-4">
 										<div class="x_content">
-											<div id="echart_gauge_memory" style="height: 150px;"></div>
+											<div id="echart_gauge_memory" style="height: 200px;"></div>
 										</div>
 									</div>
 									<div class="col-xs-4">
 										<div class="x_content">
-											<div id="echart_gauge_disk" style="height: 150px;"></div>
+											<div id="echart_gauge_disk" style="height: 200px;"></div>
 										</div>
 									</div>
 									<div class="clearfix"></div>
@@ -219,6 +214,9 @@
 	<script
 		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="js/jquery.fullscreen.min.js"></script>
+		<script src="js/fullscreen.js"></script>
+		
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.js"></script>
 	<script src="js/sdnsdashboard.js"></script>

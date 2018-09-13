@@ -43,7 +43,7 @@ function dns_button_event() {
 		if(dns_type == "dns_edit"){
 			dnsupdate(dns_value);
 		}else if(dns_type=="dns_delete"){
-//			dnsdelete(dns_value);
+			dnsdeletebuttonevent(dns_value);
 		}
 		
 	});
@@ -97,7 +97,7 @@ function insertdnszone(){
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					alert("success");
+				sleep(1000);
 			} else {
 				alert(result.errorMsg);
 			}
@@ -109,6 +109,7 @@ function insertdnszone(){
 		}
 	});
 	
+	location.reload();
 }
 function subdomainupdate(sub_id){
 	var modaltitle =   document.getElementById("subdomain_zone_name");
@@ -202,29 +203,37 @@ function dnsupdate(dns_id){
 		}
 	});
 }
+function dnsdeletebuttonevent(dns_value){
+	$("#deletednszone").click(function(){
+		console.log(dns_value);
+		dnsdelete(dns_value);
+	})
+
+}
 function dnsdelete(dns_value){
-	$
-	.ajax({
-		url : '/crocheck/deletedns',
-		data : {
-			"zone" : dns_value
-		},
-		type : 'post',
-		dataType : 'json',
-		async : false,
-		success : function(result) {
-			if (result.result == 'success') {
-				alert("delete success");
-			} else {
-				alert(result.errorMsg);
+		$
+		.ajax({
+			url : '/crocheck/deletedns',
+			data : {
+				"zone" : dns_value
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					sleep(1000);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
 			}
-		},
-		error : function(request) {
-			alert('error!');
-			alert("code:" + request.status + "\n" + "message:"
-					+ request.responseText + "\n");
-		}
-	});
+		});
+		location.reload();
 }
 function subdomaininsert(){
 	var zone = document.getElementById("subdomain_insert_zone").value;

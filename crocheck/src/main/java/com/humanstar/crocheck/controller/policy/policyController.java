@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.humanstar.crocheck.model.change.dto.changeValueVO;
 import com.humanstar.crocheck.model.policy.dto.ddosBlockStatusVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpRentVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpSubVO;
 import com.humanstar.crocheck.model.policy.dto.dnspolicyVO;
+import com.humanstar.crocheck.service.change.changeValueServiceImpl;
 import com.humanstar.crocheck.service.policy.ddosBlockServiceImpl;
 import com.humanstar.crocheck.service.policy.dhcpPolicyServiceImpl;
 import com.humanstar.crocheck.service.policy.dnspolicyServiceImpl;
@@ -40,6 +43,8 @@ public class policyController {
 	ddosBlockServiceImpl ddosBlockService;
 	@Inject 
 	dhcpPolicyServiceImpl dhcpPolicyService;
+	@Inject
+	changeValueServiceImpl changeValueService;
 		
 	@RequestMapping(value = "/dnsTableList", method = RequestMethod.POST)
 	@ResponseBody
@@ -238,14 +243,23 @@ public class policyController {
 	
 	@RequestMapping(value = "/insertdns", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> insertdns(@ModelAttribute  dnspolicyVO vo) {
+	public Map<String, Object> insertdns(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
 		
-		logger.info(vo.toString());
+		changeVO.setChange_type("dns");
+		changeVO.setQuery_type("insert");
+		changeVO.setTitle("insert : " + vo.getZone());
+		changeVO.setComment("insert : " + vo.toString());
+		changeVO.setChange_user("Administrator");
+		changeVO.setUser_ip(request.getRemoteAddr());
+		logger.info(request.getRemoteAddr());
 		
+				
 		try {
-			dnspolicyService.insertdns(vo);;
+			dnspolicyService.insertdns(vo);
+			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -259,12 +273,22 @@ public class policyController {
 	}
 	@RequestMapping(value = "/updatedns", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updatedns(@ModelAttribute  dnspolicyVO vo) {
+	public Map<String, Object> updatedns(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		List<dnspolicyVO> dnsList = new ArrayList<dnspolicyVO>();
+		
+		changeVO.setChange_type("dns");
+		changeVO.setQuery_type("update");
+		changeVO.setTitle("update : " + vo.getZone());
+		changeVO.setComment("after : " + vo.toString() + "before : " );
+		changeVO.setChange_user("Administrator");
+		changeVO.setUser_ip(request.getRemoteAddr());	
 		
 		try {
 			dnspolicyService.updatedns(vo);
+			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -278,12 +302,28 @@ public class policyController {
 	}
 	@RequestMapping(value = "/deletedns", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> deletedns(@ModelAttribute  dnspolicyVO vo) {
+	public Map<String, Object> deletedns(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		List<dnspolicyVO> dnsList = new ArrayList<dnspolicyVO>();
+		
 		
 		try {
+			dnsList = dnspolicyService.zonelist();
+			changeVO.setChange_type("dns");
+			changeVO.setQuery_type("delete");
+			changeVO.setTitle("delete : " + vo.getZone());
+			String zonelist = "";
+			for(int i =0;i<dnsList.size();i++) {
+				zonelist += dnsList.toString();
+			}
+			changeVO.setComment("delete : " + zonelist);
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(request.getRemoteAddr());
+			
 			dnspolicyService.delete(vo);
+			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -292,7 +332,6 @@ public class policyController {
 			logger.error(e.toString());
 
 		}
-
 		return resultMap;
 	}
 	@RequestMapping(value = "/insertsubdomain", method = RequestMethod.POST)
