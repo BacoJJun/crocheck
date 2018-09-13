@@ -31,37 +31,37 @@ public class reportPacketDAOImpl implements reportPacketDAO{
 	@Override
 	public List<reportPacketVO> dailyReportDnsPacket(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportPacket.daysdnsdomain");
+		return SqlSession.selectList("reportPacket.dailydns",vo);
 	}
 
 	@Override
 	public List<reportPacketVO> dailyReportDDosPacket(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportPacket.daysddosdomain");
+		return SqlSession.selectList("reportPacket.dailyddos", vo);
 	}
 
 	@Override
 	public List<reportPacketVO> weeklyReportDnsPacket(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportPacket.weeksdnsdomain");
+		return SqlSession.selectList("reportPacket.weekdns", vo);
 	}
 
 	@Override
 	public List<reportPacketVO> weeklyReportDDosPacket(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportPacket.weeksddosdomain");
+		return SqlSession.selectList("reportPacket.weekddos", vo);
 	}
 
 	@Override
 	public List<reportPacketVO> monthlyReportDnsPacket(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportPacket.monthdnsdomain");
+		return SqlSession.selectList("reportPacket.monthdns", vo);
 	}
 
 	@Override
 	public List<reportPacketVO> monthlyReportDDosPacket(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportPacket.monthddosdomain");
+		return SqlSession.selectList("reportPacket.monthddos", vo);
 	}
 
 }

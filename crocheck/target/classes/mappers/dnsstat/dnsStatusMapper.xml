@@ -17,27 +17,16 @@
 		created_at desc
 		limit 1)
 	</select>
-	<!-- <select id="ddosstat" resultType="com.humanstar.crocheck.model.dashboard.dto.dnsStatVO"> 
-		(select sum(count) as totalcount from ddos_stat_10sec_all where created_at>=current_date) 
-		union all (select sum(count) as totalcount from ddos_stat_10sec_all where 
-		created_at>=(now() - interval '1 hour' )) union all (select count as totalcount 
-		from ddos_stat_10sec_all order by created_at desc limit 1) </select> -->
 	<select id="ddosstat"
 		resultType="com.humanstar.crocheck.model.dashboard.dto.dnsStatVO">
-		(SELECT count as totalcount  FROM (SELECT SUM(count)
-		AS count, DATE_TRUNC('min', created_at) AS cr_at
-		FROM ddos_stat_10sec_all WHERE created_at > now() - interval '1 min' GROUP
-		BY cr_at ORDER BY cr_at desc limit 1) AS ddos)
+		(select count(*) as totalcount from ddos_block_status where created_at >=
+		now() - interval '1 min')
 		union all
-		(SELECT count as totalcount  FROM (SELECT SUM(count) AS
-		count, DATE_TRUNC('hour', created_at) AS cr_at
-		FROM ddos_stat_10sec_all WHERE created_at > now() - interval '1 hour'
-		GROUP BY cr_at ORDER BY cr_at desc limit 1) AS ddos)
+		(select count(*) as totalcount from ddos_block_status where created_at >=
+		now() - interval '1 hour')
 		union all
-		(SELECT count as totalcount FROM (SELECT SUM(count) AS count,
-		DATE_TRUNC('day', created_at) AS cr_at
-		FROM ddos_stat_10sec_all WHERE created_at > now() - interval '1 day' GROUP
-		BY cr_at ORDER BY cr_at desc limit 1) AS ddos);
+		(select count(*) as totalcount from ddos_block_status where created_at >=
+		now() - interval '1 day')
 	</select>
 	<select id="dnsnowlist"
 		resultType="com.humanstar.crocheck.model.status.dto.dnsListVO">

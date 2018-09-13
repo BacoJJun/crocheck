@@ -25,19 +25,19 @@ public class reportAppDAOImpl implements reportAppDAO{
 	@Override
 	public List<reportApplianceVO> dailyReportApp(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportApp.daysApp");
+		return SqlSession.selectList("reportApp.daysApp", vo);
 	}
 
 	@Override
 	public List<reportApplianceVO> weeklyReportApp(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportApp.weeksApp");
+		return SqlSession.selectList("reportApp.weeksApp", vo);
 	}
 
 	@Override
 	public List<reportApplianceVO> monthlyReportApp(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportApp.monthApp");
+		return SqlSession.selectList("reportApp.monthApp", vo);
 	}
 
 }

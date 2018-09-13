@@ -6,14 +6,14 @@ $(document).ready(function() {
 
 function charLoop() {
 	// getSystemInfo();
-	getDnsList();
-	getDDosList();
+	getStatList();
+	init_echarts();
 	setTimeout(charLoop, 1000);
 };
 function statLoop() {
-	getStatList();
-	init_echarts();
-	setTimeout(statLoop, 5000);
+	getDnsList();
+	getDDosList();
+	setTimeout(statLoop, 3000);
 }
 function initLoop() {
 	getDnsTodayGraph();

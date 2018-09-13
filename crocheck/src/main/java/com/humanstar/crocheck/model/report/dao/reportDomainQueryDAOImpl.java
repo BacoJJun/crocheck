@@ -31,37 +31,37 @@ public class reportDomainQueryDAOImpl implements reportDomainQueryDAO{
 	@Override
 	public List<reportDomainQueryVO> dailyMainDnsDoaminQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.dailydns");
+		return SqlSession.selectList("reportQuery.daysdnsdomain", vo);
 	}
 
 	@Override
 	public List<reportDomainQueryVO> dailyMainDDosDomainQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.dailyddos");
+		return SqlSession.selectList("reportQuery.daysddosdomain", vo);
 	}
 
 	@Override
 	public List<reportDomainQueryVO> weeklyMainDnsDoaminQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.weekdns");
+		return SqlSession.selectList("reportQuery.weeksdnsdomain", vo);
 	}
 
 	@Override
 	public List<reportDomainQueryVO> weeklyMainDDosDomainQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.weekddos");
+		return SqlSession.selectList("reportQuery.weeksddosdomain", vo);
 	}
 
 	@Override
 	public List<reportDomainQueryVO> monthlyMainDnsDoaminQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.monthdns");
+		return SqlSession.selectList("reportQuery.monthdnsdomain", vo);
 	}
 
 	@Override
 	public List<reportDomainQueryVO> monthlyMainDDosDomainQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.monthddos");
+		return SqlSession.selectList("reportQuery.monthddosdomain", vo );
 	}
 
 }

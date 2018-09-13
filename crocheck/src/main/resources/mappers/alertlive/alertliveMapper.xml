@@ -46,13 +46,13 @@
 	<select id="dnsList" resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDnsDDosVO">
 		SELECT src_ip , domain , SUM(count) AS count FROM
 		dns_query_status WHERE
-		created_at >= now() - interval '1 day' GROUP BY
+		created_at >= now() - interval '1 hour' GROUP BY
 		src_ip , domain ORDER
 		BY count DESC LIMIT 6
 	</select>
 	<select id="ddosList" resultType="com.humanstar.crocheck.model.dashboard.dto.alertLiveDnsDDosVO">
 		SELECT src_ip , domain , SUM(count) AS count FROM ddos_block_status WHERE
-		created_at >= now() - interval '1 day' GROUP BY src_ip , domain ORDER
+		created_at >= now() - interval '1 hour' GROUP BY src_ip , domain ORDER
 		BY count DESC LIMIT 6
 	</select>
 </mapper>

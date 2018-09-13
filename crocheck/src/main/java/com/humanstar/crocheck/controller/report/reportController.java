@@ -436,7 +436,7 @@ public class reportController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<reportDomainQueryVO> dnsDomainList = new ArrayList<reportDomainQueryVO>();
 
-
+	
 		try {
 			dnsDomainList = reportMainService.weeklyMainDnsDomain(vo);
 			resultMap.put(RESULT, RESULT_SUCCESS);
@@ -484,7 +484,7 @@ public class reportController {
 
 
 		try {
-			dnsSrcList = reportMainService.weeklyMainDDosSrc(vo);
+			dnsSrcList = reportMainService.weeklyMainDnsSrc(vo);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {

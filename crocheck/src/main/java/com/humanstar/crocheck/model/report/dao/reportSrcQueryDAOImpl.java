@@ -31,37 +31,37 @@ public class reportSrcQueryDAOImpl implements reportSrcQueryDAO{
 	@Override
 	public List<reportSrcQueryVO> dailyMainDnsSrcQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.daysdnssrc");
+		return SqlSession.selectList("reportQuery.daysdnssrc",vo);
 	}
 
 	@Override
 	public List<reportSrcQueryVO> dailyMainDDosSrcQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.daysddossrc");
+		return SqlSession.selectList("reportQuery.daysddossrc", vo);
 	}
 
 	@Override
 	public List<reportSrcQueryVO> weeklyMainDnsSrcQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.weeksdnsdomain");
+		return SqlSession.selectList("reportQuery.weeksdnssrc", vo);
 	}
 
 	@Override
 	public List<reportSrcQueryVO> weeklyMainDDosSrcQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.weeksddosdomain");
+		return SqlSession.selectList("reportQuery.weeksddossrc", vo);
 	}
 
 	@Override
 	public List<reportSrcQueryVO> monthlyMainDnsSrcQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.monthdnssrc");
+		return SqlSession.selectList("reportQuery.monthdnssrc", vo);
 	}
 
 	@Override
 	public List<reportSrcQueryVO> monthlyMainDDosSrcQuery(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("reportQuery.monthddossrc");
+		return SqlSession.selectList("reportQuery.monthddossrc", vo);
 	}
 	
 }
