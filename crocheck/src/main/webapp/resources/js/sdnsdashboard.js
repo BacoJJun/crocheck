@@ -7,10 +7,10 @@ $(document).ready(function() {
 function charLoop() {
 	// getSystemInfo();
 	getStatList();
-	init_echarts();
 	setTimeout(charLoop, 1000);
 };
 function statLoop() {
+	init_echarts();
 	getDnsList();
 	getDDosList();
 	setTimeout(statLoop, 3000);

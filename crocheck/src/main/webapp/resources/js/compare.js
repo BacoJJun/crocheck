@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
 	$("#comparequery").hide();
 	$("#comparednsdomain").hide();
 	$("#comparednsclient").hide();
@@ -19,9 +18,9 @@ function buttonClickEvent() {
 							$("#comparednsclient").hide();
 							$("#compareddosdomain").hide();
 							$("#compareddosclient").hide();
-							
+
 							comparequery();
-							
+
 						} else if ($('input:radio[name="search_type"]:checked')
 								.val() == 'dnsdomain') {
 							console.log("dnsdomain");
@@ -39,7 +38,7 @@ function buttonClickEvent() {
 							$("#comparednsclient").show();
 							$("#compareddosdomain").hide();
 							$("#compareddosclient").hide();
-							
+
 							comparednsclient();
 						} else if ($('input:radio[name="search_type"]:checked')
 								.val() == 'ddosdomain') {
@@ -65,8 +64,11 @@ function buttonClickEvent() {
 function comparednsdomain() {
 	var first_date = $("#single_cal2").val();
 	var second_date = $("#single_cal3").val();
-	$
-	.ajax({
+
+	var first_domain = [];
+	var first_count = [];
+	var first_pct = [];
+	$.ajax({
 		url : '/crocheck/comparednsdomain',
 		data : {
 			"date_start" : first_date
@@ -76,8 +78,13 @@ function comparednsdomain() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.domainList);
-				} else {
+				console.log(result.domainList);
+				for (var i = 0; i < result.domainList.length; i++) {
+					first_domain[i] = result.domainList[i].domain;
+					first_count[i] = result.domainList[i].count;
+					first_pct[i] = result.domainList[i].percentage;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -87,9 +94,12 @@ function comparednsdomain() {
 					+ request.responseText + "\n");
 		}
 	});
-	
-	$
-	.ajax({
+
+	var second_domain = [];
+	var second_count = [];
+	var second_pct = [];
+
+	$.ajax({
 		url : '/crocheck/comparednsdomain',
 		data : {
 			"date_start" : second_date,
@@ -99,8 +109,13 @@ function comparednsdomain() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.domainList);
-				} else {
+				console.log(result.domainList);
+				for (var i = 0; i < result.domainList.length; i++) {
+					second_domain[i] = result.domainList[i].domain;
+					second_count[i] = result.domainList[i].count;
+					second_pct[i] = result.domainList[i].percentage;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -123,8 +138,7 @@ function comparednsdomain() {
 			legend : {
 				x : 'center',
 				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
+				data : first_domain
 			},
 			toolbox : {
 				show : true,
@@ -148,25 +162,51 @@ function comparednsdomain() {
 				type : 'pie',
 				radius : '55%',
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : first_count[0],
+					name : first_domain[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : first_count[1],
+					name : first_domain[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : first_count[2],
+					name : first_domain[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : first_count[3],
+					name : first_domain[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : first_count[4],
+					name : first_domain[4]
+				}, {
+					value : first_count[5],
+					name : first_domain[5]
+				}, {
+					value : first_count[6],
+					name : first_domain[6]
+				}, {
+					value : first_count[7],
+					name : first_domain[7]
+				}, {
+					value : first_count[8],
+					name : first_domain[8]
+				}, {
+					value : first_count[9],
+					name : first_domain[9]
 				} ]
 			} ]
 		});
 	}
-	
+	var dnsdomainfirst = document.getElementById("dnsdomainfirstlist");
+	var domain_html = '';
+	for (var i = 0; i < first_domain.length; i++) {
+		domain_html += '<tr>';
+		domain_html += '<td>' + (i + 1) + '</td>';
+		domain_html += '<td>' + first_domain[i] + '</td>';
+		domain_html += '<td>' + first_count[i] + '</td>';
+		domain_html += '<td>' + first_pct[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	dnsdomainfirst.innerHTML = domain_html;
+
 	if ($('#dnsdomainseconddonut').length) {
 
 		var echartPie = echarts.init(document
@@ -180,8 +220,7 @@ function comparednsdomain() {
 			legend : {
 				x : 'center',
 				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
+				data : second_domain
 			},
 			toolbox : {
 				show : true,
@@ -206,30 +245,65 @@ function comparednsdomain() {
 				radius : '55%',
 				center : [ '50%', '48%' ],
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : second_count[0],
+					name : second_domain[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : second_count[1],
+					name : second_domain[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : second_count[2],
+					name : second_domain[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : second_count[3],
+					name : second_domain[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : second_count[4],
+					name : second_domain[4]
+				}, {
+					value : second_count[5],
+					name : second_domain[5]
+				}, {
+					value : second_count[6],
+					name : second_domain[6]
+				}, {
+					value : second_count[7],
+					name : second_domain[7]
+				}, {
+					value : second_count[8],
+					name : second_domain[8]
+				}, {
+					value : second_count[9],
+					name : second_domain[9]
 				} ]
 			} ]
 		});
 	}
+	var dnsdomainsecond = document.getElementById("dnsdomainsecondlist");
+	domain_html = '';
+	for (var i = 0; i < second_domain.length; i++) {
+		domain_html += '<tr>';
+		domain_html += '<td>' + (i + 1) + '</td>';
+		domain_html += '<td>' + second_domain[i] + '</td>';
+		domain_html += '<td>' + second_count[i] + '</td>';
+		domain_html += '<td>' + second_pct[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	dnsdomainsecond.innerHTML = domain_html;
+
 }
+
+
+
+
 function comparednsclient() {
 	var first_date = $("#single_cal2").val();
 	var second_date = $("#single_cal3").val();
-	$
-	.ajax({
+	
+	var first_src = [];
+	var first_count = [];
+	var first_pct = [];
+	
+	$.ajax({
 		url : '/crocheck/comparednsclient',
 		data : {
 			"date_start" : first_date
@@ -239,8 +313,13 @@ function comparednsclient() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.srcList);
-				} else {
+				console.log(result.srcList);
+				for (var i = 0; i < result.srcList.length; i++) {
+					first_src[i] = result.srcList[i].src_ip;
+					first_count[i] = result.srcList[i].count;
+					first_pct[i] = result.srcList[i].percentage;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -250,9 +329,13 @@ function comparednsclient() {
 					+ request.responseText + "\n");
 		}
 	});
+
 	
-	$
-	.ajax({
+	var second_src = [];
+	var second_count = [];
+	var second_pct = [];
+	
+	$.ajax({
 		url : '/crocheck/comparednsclient',
 		data : {
 			"date_start" : second_date,
@@ -262,8 +345,13 @@ function comparednsclient() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.srcList);
-				} else {
+				console.log(result.srcList);
+				for (var i = 0; i < result.srcList.length; i++) {
+					second_src[i] = result.srcList[i].src_ip;
+					second_count[i] = result.srcList[i].count;
+					second_pct[i] = result.srcList[i].percentage;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -273,7 +361,7 @@ function comparednsclient() {
 					+ request.responseText + "\n");
 		}
 	});
-	
+
 	if ($('#dnsclientfirstdonut').length) {
 
 		var echartPie = echarts.init(document
@@ -287,8 +375,7 @@ function comparednsclient() {
 			legend : {
 				x : 'center',
 				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
+				data : first_src
 			},
 			toolbox : {
 				show : true,
@@ -312,24 +399,51 @@ function comparednsclient() {
 				type : 'pie',
 				radius : '55%',
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value :first_count[0],
+					name :first_src[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value :first_count[1],
+					name :first_src[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value :first_count[2],
+					name :first_src[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value :first_count[3],
+					name :first_src[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value :first_count[4],
+					name :first_src[4]
+				}, {
+					value :first_count[5],
+					name :first_src[5]
+				}, {
+					value :first_count[6],
+					name :first_src[6]
+				}, {
+					value :first_count[7],
+					name :first_src[7]
+				}, {
+					value :first_count[8],
+					name :first_src[8]
+				}, {
+					value :first_count[9],
+					name :first_src[9]
 				} ]
 			} ]
 		});
 	}
+
+	var dnsclientfirst = document.getElementById("dnsclientfirstlist");
+	var domain_html = '';
+	for (var i = 0; i < first_src.length; i++) {
+		domain_html += '<tr>';
+		domain_html += '<td>' + (i + 1) + '</td>';
+		domain_html += '<td>' + first_src[i] + '</td>';
+		domain_html += '<td>' + first_count[i] + '</td>';
+		domain_html += '<td>' + first_pct[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	dnsclientfirst.innerHTML = domain_html;
 	
 	if ($('#dnsclientseconddonut').length) {
 
@@ -344,8 +458,7 @@ function comparednsclient() {
 			legend : {
 				x : 'center',
 				y : 'bottom',
-				data : [ 'Direct Access', 'E-mail Marketing', 'Union Ad',
-						'Video Ads', 'Search Engine' ]
+				data : second_src
 			},
 			toolbox : {
 				show : true,
@@ -370,31 +483,63 @@ function comparednsclient() {
 				radius : '55%',
 				center : [ '50%', '48%' ],
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : second_count[0],
+					name : second_src[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : second_count[1],
+					name : second_src[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : second_count[2],
+					name : second_src[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : second_count[3],
+					name : second_src[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : second_count[4],
+					name : second_src[4]
+				}, {
+					value : second_count[5],
+					name : second_src[5]
+				}, {
+					value : second_count[6],
+					name : second_src[6]
+				}, {
+					value : second_count[7],
+					name : second_src[7]
+				}, {
+					value : second_count[8],
+					name : second_src[8]
+				}, {
+					value : second_count[9],
+					name : second_src[9]
 				} ]
 			} ]
 		});
 	}
+	var dnsclientsecond = document.getElementById("dnsclientsecondlist");
+	var domain_html = '';
+	for (var i = 0; i < second_src.length; i++) {
+		domain_html += '<tr>';
+		domain_html += '<td>' + (i + 1) + '</td>';
+		domain_html += '<td>' + second_src[i] + '</td>';
+		domain_html += '<td>' + second_count[i] + '</td>';
+		domain_html += '<td>' + second_pct[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	dnsclientsecond.innerHTML = domain_html;
+	
 }
 
 function compareddosdomain() {
 	var first_date = $("#single_cal2").val();
 	var second_date = $("#single_cal3").val();
-	$
-	.ajax({
+	
+	var first_domain = [];
+	var first_count = [];
+	var first_pct = [];
+	
+	
+	$.ajax({
 		url : '/crocheck/compareddosdomain',
 		data : {
 			"date_start" : first_date
@@ -404,8 +549,12 @@ function compareddosdomain() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.domainList);
-				} else {
+				for (var i = 0; i < result.domainList.length; i++) {
+					first_domain[i] = result.domainList[i].domain;
+					first_count[i] = result.domainList[i].count;
+					first_pct[i] = result.domainList[i].percentage;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -415,9 +564,13 @@ function compareddosdomain() {
 					+ request.responseText + "\n");
 		}
 	});
+
+	var second_domain = [];
+	var second_count = [];
+	var second_pct = [];
 	
-	$
-	.ajax({
+	
+	$.ajax({
 		url : '/crocheck/compareddosdomain',
 		data : {
 			"date_start" : second_date,
@@ -427,8 +580,12 @@ function compareddosdomain() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.domainList);
-				} else {
+				for (var i = 0; i < result.domainList.length; i++) {
+					second_domain[i] = result.domainList[i].domain;
+					second_count[i] = result.domainList[i].count;
+					second_pct[i] = result.domainList[i].percentage;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -438,7 +595,7 @@ function compareddosdomain() {
 					+ request.responseText + "\n");
 		}
 	});
-	
+
 	if ($('#ddosdomainfirstdonut').length) {
 
 		var echartPie = echarts.init(document
@@ -477,24 +634,52 @@ function compareddosdomain() {
 				type : 'pie',
 				radius : '55%',
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : first_count[0],
+					name : first_domain[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : first_count[1],
+					name : first_domain[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : first_count[2],
+					name : first_domain[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : first_count[3],
+					name : first_domain[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : first_count[4],
+					name : first_domain[4]
+				}, {
+					value : first_count[5],
+					name : first_domain[5]
+				}, {
+					value : first_count[6],
+					name : first_domain[6]
+				}, {
+					value : first_count[7],
+					name : first_domain[7]
+				}, {
+					value : first_count[8],
+					name : first_domain[8]
+				}, {
+					value : first_count[9],
+					name : first_domain[9]
 				} ]
 			} ]
 		});
 	}
+
+	var ddosdomainfirst = document.getElementById("ddosdomainfirstlist");
+	var domain_html = '';
+	for (var i = 0; i < first_domain.length; i++) {
+		domain_html += '<tr>';
+		domain_html += '<td>' + (i + 1) + '</td>';
+		domain_html += '<td>' + first_domain[i] + '</td>';
+		domain_html += '<td>' + first_count[i] + '</td>';
+		domain_html += '<td>' + first_pct[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	ddosdomainfirst.innerHTML = domain_html;
+	
 	
 	if ($('#ddosdomainseconddonut').length) {
 
@@ -535,31 +720,62 @@ function compareddosdomain() {
 				radius : '55%',
 				center : [ '50%', '48%' ],
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : second_count[0],
+					name : second_domain[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : second_count[1],
+					name : second_domain[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : second_count[2],
+					name : second_domain[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : second_count[3],
+					name : second_domain[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : second_count[4],
+					name : second_domain[4]
+				}, {
+					value : second_count[5],
+					name : second_domain[5]
+				}, {
+					value : second_count[6],
+					name : second_domain[6]
+				}, {
+					value : second_count[7],
+					name : second_domain[7]
+				}, {
+					value : second_count[8],
+					name : second_domain[8]
+				}, {
+					value : second_count[9],
+					name : second_domain[9]
 				} ]
 			} ]
 		});
 	}
+	var ddosdomainsecond = document.getElementById("ddosdomainsecondlist");
+	domain_html = '';
+	for (var i = 0; i < second_domain.length; i++) {
+		domain_html += '<tr>';
+		domain_html += '<td>' + (i + 1) + '</td>';
+		domain_html += '<td>' + second_domain[i] + '</td>';
+		domain_html += '<td>' + second_count[i] + '</td>';
+		domain_html += '<td>' + second_pct[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	ddosdomainsecond.innerHTML = domain_html;
+
 }
 
 function compareddosclient() {
 	var first_date = $("#single_cal2").val();
 	var second_date = $("#single_cal3").val();
-	$
-	.ajax({
+	
+	var first_src= [];
+	var first_count = [];
+	var first_pct = [];
+	
+	$.ajax({
 		url : '/crocheck/compareddosclient',
 		data : {
 			"date_start" : first_date
@@ -569,8 +785,12 @@ function compareddosclient() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.srcList);
-				} else {
+				for (var i = 0; i < result.srcList.length; i++) {
+					first_src[i] = result.srcList[i].domain;
+					first_count[i] = result.srcList[i].count;
+					first_pct[i] = result.srcList[i].percentage;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -580,9 +800,12 @@ function compareddosclient() {
 					+ request.responseText + "\n");
 		}
 	});
+
+	var second_src = [];
+	var second_count = [];
+	var second_pct = [];
 	
-	$
-	.ajax({
+	$.ajax({
 		url : '/crocheck/compareddosclient',
 		data : {
 			"date_start" : second_date,
@@ -592,8 +815,13 @@ function compareddosclient() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.srcList);
-				} else {
+				console.log(result.srcList);
+				for (var i = 0; i < result.srcList.length; i++) {
+					second_src[i] = result.srcList[i].domain;
+					second_count[i] = result.srcList[i].count;
+					second_pct[i] = result.srcList[i].percentage;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -641,24 +869,51 @@ function compareddosclient() {
 				type : 'pie',
 				radius : '55%',
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : first_count[0],
+					name : first_src[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : first_count[1],
+					name : first_src[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : first_count[2],
+					name : first_src[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : first_count[3],
+					name : first_src[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : first_count[4],
+					name : first_src[4]
+				}, {
+					value : first_count[5],
+					name : first_src[5]
+				}, {
+					value : first_count[6],
+					name : first_src[6]
+				}, {
+					value : first_count[7],
+					name : first_src[7]
+				}, {
+					value : first_count[8],
+					name : first_src[8]
+				}, {
+					value : first_count[9],
+					name : first_src[9]
 				} ]
 			} ]
 		});
 	}
+	var ddosclientnfirst = document.getElementById("ddosclientnfirstlist");
+	var domain_html = '';
+	for (var i = 0; i < first_src.length; i++) {
+		domain_html += '<tr>';
+		domain_html += '<td>' + (i + 1) + '</td>';
+		domain_html += '<td>' + first_src[i] + '</td>';
+		domain_html += '<td>' + first_count[i] + '</td>';
+		domain_html += '<td>' + first_pct[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	ddosclientnfirst.innerHTML = domain_html;
+	
 	
 	if ($('#ddosclientseconddonut').length) {
 
@@ -699,30 +954,63 @@ function compareddosclient() {
 				radius : '55%',
 				center : [ '50%', '48%' ],
 				data : [ {
-					value : 335,
-					name : 'Direct Access'
+					value : second_count[0],
+					name : second_src[0]
 				}, {
-					value : 310,
-					name : 'E-mail Marketing'
+					value : second_count[1],
+					name : second_src[1]
 				}, {
-					value : 234,
-					name : 'Union Ad'
+					value : second_count[2],
+					name : second_src[2]
 				}, {
-					value : 135,
-					name : 'Video Ads'
+					value : second_count[3],
+					name : second_src[3]
 				}, {
-					value : 1548,
-					name : 'Search Engine'
+					value : second_count[4],
+					name : second_src[4]
+				}, {
+					value : second_count[5],
+					name : second_src[5]
+				}, {
+					value : second_count[6],
+					name : second_src[6]
+				}, {
+					value : second_count[7],
+					name : second_src[7]
+				}, {
+					value : second_count[8],
+					name : second_src[8]
+				}, {
+					value : second_count[9],
+					name : second_src[9]
 				} ]
 			} ]
 		});
 	}
+	var ddosclientsecond = document.getElementById("ddosclientsecondlist");
+	domain_html = '';
+	for (var i = 0; i < second_src.length; i++) {
+		domain_html += '<tr>';
+		domain_html += '<td>' + (i + 1) + '</td>';
+		domain_html += '<td>' + second_src[i] + '</td>';
+		domain_html += '<td>' + second_count[i] + '</td>';
+		domain_html += '<td>' + second_pct[i] + '%</td>';
+		domain_html += '</tr>';
+	}
+	ddosclientsecond.innerHTML = domain_html;
 }
 function comparequery() {
 	var first_date = $("#single_cal2").val();
 	var second_date = $("#single_cal3").val();
-	$
-	.ajax({
+	
+	var querydate = [];
+	var dnsqueryfirst = [];
+	var ddosqueryfirst = [];
+	var dnsquerysecond = [];
+	var ddosquerysecond = [];
+	
+	
+	$.ajax({
 		url : '/crocheck/comparednsquery',
 		data : {
 			"date_start" : first_date
@@ -732,8 +1020,11 @@ function comparequery() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.queryList);
-				} else {
+				for(var i =0;i<result.queryList.length; i++){
+					dnsqueryfirst[i] = result.queryList[i].count;
+					querydate[i] = i;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -743,9 +1034,8 @@ function comparequery() {
 					+ request.responseText + "\n");
 		}
 	});
-	
-	$
-	.ajax({
+
+	$.ajax({
 		url : '/crocheck/comparednsquery',
 		data : {
 			"date_start" : second_date,
@@ -755,8 +1045,10 @@ function comparequery() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.queryList);
-				} else {
+				for(var i =0; i< result.queryList.length; i++){
+					dnsquerysecond[i] = result.queryList[i].count;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -766,8 +1058,7 @@ function comparequery() {
 					+ request.responseText + "\n");
 		}
 	});
-	$
-	.ajax({
+	$.ajax({
 		url : '/crocheck/compareddosquery',
 		data : {
 			"date_start" : first_date
@@ -777,8 +1068,10 @@ function comparequery() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.queryList);
-				} else {
+				for(var i =0; i<result.queryList.length; i++){
+					ddosqueryfirst[i] = result.queryList[i].count;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -788,9 +1081,8 @@ function comparequery() {
 					+ request.responseText + "\n");
 		}
 	});
-	
-	$
-	.ajax({
+
+	$.ajax({
 		url : '/crocheck/compareddosquery',
 		data : {
 			"date_start" : second_date,
@@ -800,8 +1092,10 @@ function comparequery() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					console.log(result.queryList);
-				} else {
+				for(var i =0; i<result.queryList.length;i++){
+					ddosquerysecond[i] = result.queryList[i].count;
+				}
+			} else {
 				alert(result.errorMsg);
 			}
 		},
@@ -811,59 +1105,33 @@ function comparequery() {
 					+ request.responseText + "\n");
 		}
 	});
-	
+
 	if ($('#comparequeryline').length) {
 
+		
 		var echartLine = echarts.init(document
 				.getElementById('comparequeryline'), theme);
 
 		echartLine.setOption({
-			title : {
-				text : 'Line Graph',
-				subtext : 'Subtitle'
-			},
 			tooltip : {
 				trigger : 'axis'
 			},
 			legend : {
 				x : 220,
 				y : 40,
-				data : [ 'Intent', 'Pre-order', 'Deal' ]
-			},
-			toolbox : {
-				show : true,
-				feature : {
-					magicType : {
-						show : true,
-						title : {
-							line : 'Line',
-							bar : 'Bar',
-							stack : 'Stack',
-							tiled : 'Tiled'
-						},
-						type : [ 'line', 'bar', 'stack', 'tiled' ]
-					},
-					restore : {
-						show : true,
-						title : "Restore"
-					},
-					saveAsImage : {
-						show : true,
-						title : "Save Image"
-					}
-				}
+				data : [ first_date+'-dns', second_date+'-dns', first_date+'-ddos', second_date+'-ddos' ]
 			},
 			calculable : true,
 			xAxis : [ {
 				type : 'category',
 				boundaryGap : false,
-				data : [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
+				data : querydate
 			} ],
 			yAxis : [ {
 				type : 'value'
 			} ],
 			series : [ {
-				name : 'Deal',
+				name : first_date+'-dns',
 				type : 'line',
 				smooth : true,
 				itemStyle : {
@@ -873,9 +1141,9 @@ function comparequery() {
 						}
 					}
 				},
-				data : [ 10, 12, 21, 54, 260, 830, 710 ]
+				data : dnsqueryfirst
 			}, {
-				name : 'Pre-order',
+				name : second_date+'-dns',
 				type : 'line',
 				smooth : true,
 				itemStyle : {
@@ -885,9 +1153,9 @@ function comparequery() {
 						}
 					}
 				},
-				data : [ 30, 182, 434, 791, 390, 30, 10 ]
+				data : dnsquerysecond
 			}, {
-				name : 'Intent',
+				name : first_date + '-ddos',
 				type : 'line',
 				smooth : true,
 				itemStyle : {
@@ -897,12 +1165,24 @@ function comparequery() {
 						}
 					}
 				},
-				data : [ 1320, 1132, 601, 234, 120, 90, 20 ]
-			} ]
+				data : ddosqueryfirst
+			}, {
+				name : second_date + '-ddos',
+				type : 'line',
+				smooth : true,
+				itemStyle : {
+					normal : {
+						areaStyle : {
+							type : 'default'
+						}
+					}
+				},
+				data : ddosquerysecond
+			}  ]
 		});
 
 	}
-	
+
 }
 var theme = {
 	color : [ '#26B99A', '#34495E', '#BDC3C7', '#3498DB', '#9B59B6', '#8abb6f',

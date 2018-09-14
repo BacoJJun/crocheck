@@ -28,7 +28,7 @@
 								name="check_time" value="min"></input>Minutes
 							</label> <label> <input type="radio" class="flat"
 								name="check_time" value="hour"></input>Hours
-							</label> 
+							</label>
 						</form>
 					</div>
 					<div class="col-md-3">
@@ -44,9 +44,10 @@
 										</div>
 									</div>
 								</div>
+
 							</fieldset>
 						</form>
-
+						<div class="clearfix"></div>
 					</div>
 					<button type="button" class="btn btn-success" id="search_stat">SUBMIT</button>
 				</div>
@@ -65,6 +66,7 @@
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="clearfix"></div>
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>DNS QUERY</h2>
@@ -73,18 +75,19 @@
 								<div class="x_content">
 									<canvas id="lineChart-dns"></canvas>
 								</div>
+								
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-12 col-sm-12">
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>Appliance Status</h2>
-
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
 									<canvas id="lineChart-app"></canvas>
 								</div>
+								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
@@ -259,9 +262,9 @@
 	<script src="js/moment.min.js"></script>
 	<script src="js/daterangepicker.js"></script>
 	<script src="js/echarts.min.js"></script>
-		<!-- NProgress -->
+	<!-- NProgress -->
 	<script src="js/nprogress.js"></script>
-		<!-- bootstrap-progressbar -->
+	<!-- bootstrap-progressbar -->
 	<script src="js/bootstrap-progressbar.min.js"></script>
 
 	<!-- Custom Theme Scripts -->
