@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="alertList">
+	<select id="baseList"
+		resultType="com.humanstar.crocheck.model.alert.dto.alertVO">
+		select * from tb_alert_table
+	</select>
+	<update id="alertupdate">
+		update tb_alert_table set
+		cpu_warning = #{cpu_warning},
+		cpu_critical=#{cpu_critical},
+		memory_warning=#{memory_warning},
+		memory_critical=#{memory_critical},
+		disk_warning = #{disk_warning},
+		disk_critical= #{disk_critical},
+		dns_warning = #{dns_warning},
+		dns_critical = #{dns_critical},
+		ddos_warning = #{ddos_warning},
+		ddos_critical = #{ddos_critical}
+		where seq_no = '1';
+	</update>
+	
+	<select id="nowstat" resultType="com.humanstar.crocheck.model.alert.dto.alertNowVO">
+	select (system.cpu_sys_pct + system.cpu_user_pct + system.cpu_iowait_pct) as cpu_pct,
+		system.mem_use_pct as mem_pct,
+		system.disk_vol1_usage_pct as disk_pct , dns.totalcount as dns_count, ddos.totalcount as ddos_count from (select count(*) as totalcount from dns_query_status where created_at >=
+		now() - interval '1 min') dns, (select count(*) as totalcount from ddos_block_status where created_at >=
+		now() - interval '1 min') ddos, tb_usage_system as system order by hhmmss desc limit 1 
+	</select>
+</mapper>

@@ -82,4 +82,59 @@
 		dns.src_ip =
 		host(org.ip)::varchar
 	</select>
+	<select id="ddosnowlist">
+	SELECT
+		ddos.type, ddos.src_ip, ddos.domain, ddos.count,
+		ddos.server_ip,
+		date_trunc('second',(ddos.created_at::TIMESTAMP WITHOUT
+		TIME ZONE)) as
+		cr_at, org.ip, org.post, org.name, org.phone, mobile,
+		org.email,
+		org.etc from
+		(SELECT type, src_ip, domain, count, src_ip as server_ip,
+		created_at
+		FROM
+		ddos_block_status where created_at >=now() - interval '1
+		min' order
+		by
+		created_at desc limit 10) ddos
+		LEFT OUTER JOIN
+		organization_members
+		org ON ddos.src_ip =
+		host(org.ip)::varchar;
+	</select>
+		<select id="searchddos">
+	SELECT
+		ddos.type, ddos.src_ip, ddos.domain, ddos.count,
+		ddos.server_ip,
+		date_trunc('second',(ddos.created_at::TIMESTAMP WITHOUT
+		TIME ZONE)) as
+		cr_at, org.ip, org.post, org.name, org.phone, mobile,
+		org.email,
+		org.etc from
+		(SELECT type, src_ip, domain, count, src_ip as server_ip,
+		created_at
+		FROM
+		ddos_block_status
+		<where>
+			<if test="date_start != null">
+				created_at >= date_trunc('second',(
+				#{date_start}::TIMESTAMP WITHOUT
+				TIME ZONE))
+			</if>
+			<if test="date_end != null">
+				AND
+				date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT
+				TIME ZONE)) > created_at
+			</if>
+		</where>
+
+		order
+		by
+		created_at desc limit 10) ddos
+		LEFT OUTER JOIN
+		organization_members
+		org ON ddos.src_ip =
+		host(org.ip)::varchar;
+	</select>
 </mapper>

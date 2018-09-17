@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="alertMessage">
+	<select id="messageList"
+		resultType="com.humanstar.crocheck.model.alert.dto.alertVO">
+		select * from tb_alert_message order by created_at desc
+	</select>
+
+	<insert id="insertMessage">
+	insert into tb_alert_message(message, view_check)
+	values(#{message}, '1')
+	</insert>
+	
+	<select id="dashboardalert">
+	select * from tb_alert_message where view_check ='1' order by created_at desc
+	</select>
+	
+	<update id="alertcheck">
+		update tb_alert_message set view_check='0' where seq_id= #{seq_id}
+	</update>
+</mapper>

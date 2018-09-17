@@ -88,7 +88,10 @@ public class HomeController {
 	public String dhcppolicy(Locale locale, Model model) throws Exception {
 		return "dhcppolicy";
 	}
-	
+	@RequestMapping(value = "/alertList", method = RequestMethod.GET)
+	public String alertList(Locale locale, Model model) throws Exception {
+		return "alertList";
+	}
 	@RequestMapping(value = "/policy", method = RequestMethod.GET)
 	public String policy(Locale locale, Model model) throws Exception {
 		return "policy";
