@@ -4,20 +4,24 @@
 <!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
 <mapper namespace="alertMessage">
 	<select id="messageList"
-		resultType="com.humanstar.crocheck.model.alert.dto.alertVO">
-		select * from tb_alert_message order by created_at desc
+		resultType="com.humanstar.crocheck.model.alertmessage.dto.alertMessageVO">
+		select rank() over (order by seq_no desc ) as seq_no , message, view_check, created_at from tb_alert_message ;
 	</select>
 
 	<insert id="insertMessage">
 	insert into tb_alert_message(message, view_check)
-	values(#{message}, '1')
+	values(#{message}, 1)
 	</insert>
 	
-	<select id="dashboardalert">
-	select * from tb_alert_message where view_check ='1' order by created_at desc
+	<select id="dashboardalert" resultType="com.humanstar.crocheck.model.alertmessage.dto.alertMessageVO">
+	select * from tb_alert_message where view_check ='1' order by created_at desc 
 	</select>
 	
 	<update id="alertcheck">
-		update tb_alert_message set view_check='0' where seq_id= #{seq_id}
+		update tb_alert_message set view_check='0' where seq_no= #{seq_no}
+	</update>
+	
+	<update id="allread">
+	update tb_alert_message set view_check='0' where view_check='1'
 	</update>
 </mapper>

@@ -1,9 +1,9 @@
 $(document).ready(function() {
-	alertList();
+	alertValueList();
 	button_event();
 });
 
-function alertList() {
+function alertValueList() {
 	var cpu_warning = document.getElementById("cpu_warning");
 	var cpu_critical = document.getElementById("cpu_critical");
 	var memory_warning = document.getElementById("memory_warning");
@@ -57,7 +57,7 @@ function button_event(){
 		var ddos_critical = document.getElementById("ddos_critical").value;
 		
 		$.ajax({
-			url : '/crocheck/updatealert',
+			url : '/crocheck/updatealertvalue',
 			data : {
 				"cpu_warning" : cpu_warning,
 				"cpu_critical" : cpu_critical,

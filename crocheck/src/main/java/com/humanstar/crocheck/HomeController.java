@@ -66,6 +66,10 @@ public class HomeController {
 	public String dashboard2(Locale locale, Model model) throws Exception {
 		return "dashboard_old";
 	}	
+	@RequestMapping(value = "/dashboard3", method = RequestMethod.GET)
+	public String dashboard3(Locale locale, Model model) throws Exception {
+		return "dashboard3";
+	}	
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
 	public String statistics(Locale locale, Model model) throws Exception {
 		return "statistics";
@@ -92,9 +96,9 @@ public class HomeController {
 	public String alertList(Locale locale, Model model) throws Exception {
 		return "alertList";
 	}
-	@RequestMapping(value = "/policy", method = RequestMethod.GET)
-	public String policy(Locale locale, Model model) throws Exception {
-		return "policy";
+	@RequestMapping(value = "/engine", method = RequestMethod.GET)
+	public String engine(Locale locale, Model model) throws Exception {
+		return "engine";
 	}
 	
 	@RequestMapping(value = "/organization", method = RequestMethod.GET)

@@ -497,6 +497,7 @@
 	<!-- Custom Theme Scripts -->
 	
 	<script src="js/dhcppolicy.js"></script>
+		<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>

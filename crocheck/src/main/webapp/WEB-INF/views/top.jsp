@@ -23,38 +23,29 @@
 						<li role="presentation" class="dropdown"><a
 							href="javascript:;" class="dropdown-toggle info-number"
 							data-toggle="dropdown" aria-expanded="false"> <i
-								class="fa fa-bell-o"></i> <span class="badge bg-green">6</span>
+								class="fa fa-bell-o"></i> <span class="badge bg-green" id="alertCount"></span>
 						</a>
-							<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
+						
+							<ul id="alertMenu" class="dropdown-menu list-unstyled msg_list"
 								role="menu">
-								<li><a> <span class="image"></span> <span> <span>John
-												Smith</span> <span class="time">3 mins ago</span>
-									</span> <span class="message"> Film festivals used to be
-											do-or-die moments for movie makers. They were where... </span>
-								</a></li>
-								<li><a> <span class="image"></span> <span> <span>John
-												Smith</span> <span class="time">3 mins ago</span>
-									</span> <span class="message"> Film festivals used to be
-											do-or-die moments for movie makers. They were where... </span>
-								</a></li>
-								<li><a> <span class="image"></span> <span> <span>John
-												Smith</span> <span class="time">3 mins ago</span>
-									</span> <span class="message"> Film festivals used to be
-											do-or-die moments for movie makers. They were where... </span>
-								</a></li>
-								<li><a> <span class="image"></span> <span> <span>John
-												Smith</span> <span class="time">3 mins ago</span>
-									</span> <span class="message"> Film festivals used to be
-											do-or-die moments for movie makers. They were where... </span>
-								</a></li>
+								<div id="alertList">
+								</div>
 								<li>
+								<div class="col-lg-4 col-md-4">
+									<div class="text-center">
+										<span id="allread"><a><strong>all read</strong></a></span>
+									</div>
+								</div>
+								<div class="col-lg-8 col-md-8">
 									<div class="text-center">
 										<a href="/crocheck/alert_notice"> <strong>See All Alerts</strong> <i
 											class="fa fa-angle-right"></i>
 										</a>
 									</div>
+									</div>
 								</li>
-							</ul></li>
+							</ul>
+							</li> 
 					</ul>
 					</nav>
 				</div>

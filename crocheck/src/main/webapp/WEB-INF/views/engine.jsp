@@ -43,19 +43,20 @@
 											<h2>
 												DNS <small> </small>
 											</h2>
- 
+
 											<div class="clearfix"></div>
 										</div>
 										<div class="radio">
-											<label> <input type="radio" class="flat" checked
-												name="check_dns" checked id="check_dns_start""> 작동
-											</label> <label> <input type="radio" class="flat"
-												name="check_dns" id="check_dns_stop"> 정지
+											<label> <input type="radio" checked name="check_dns"
+												checked id="check_dns_start" value="true"> 작동
+											</label> <label> <input type="radio" name="check_dns"
+												id="check_dns_stop" value="false"> 정지
 											</label>
 										</div>
 										<p>DNS 작동 여부를 결정합니다.</p>
 										<div class="controls">
-											<button type="button" class="btn btn-success btn-sm">적용</button>
+											<button type="button" class="btn btn-success btn-sm"
+												id="dns_submit">적용</button>
 										</div>
 									</div>
 								</div>
@@ -69,15 +70,16 @@
 											<div class="clearfix"></div>
 										</div>
 										<div class="radio">
-											<label> <input type="radio" class="flat" checked
-												name="check_dhcp" checked id="check_dhcp_start""> 작동
-											</label> <label> <input type="radio" class="flat"
-												name="check_dhcp" id=""check_dhcp_stop""> 정지
+											<label> <input type="radio" checked name="check_dhcp"
+												checked id="check_dhcp_start" value="true"> 작동
+											</label> <label> <input type="radio" name="check_dhcp"
+												id="check_dhcp_stop" value="false"> 정지
 											</label>
 										</div>
 										<p>DHCP 작동 여부를 결정합니다.</p>
 										<div class="controls">
-											<button type="button" class="btn btn-sm btn-success">적용</button>
+											<button type="button" class="btn btn-sm btn-success"
+												id="dhcp_submit">적용</button>
 										</div>
 									</div>
 								</div>
@@ -91,15 +93,16 @@
 											<div class="clearfix"></div>
 										</div>
 										<div class="radio">
-											<label> <input type="radio" class="flat" checked
-												name="check_ntp" id="check_ntp_start""> 작동
-											</label> <label> <input type="radio" class="flat"
-												name="check_ntp" id="check_ntp_stop"> 정지
+											<label> <input type="radio" checked name="check_ntp"
+												id="check_ntp_start" value="true"> 작동
+											</label> <label> <input type="radio" name="check_ntp"
+												id="check_ntp_stop" value="false"> 정지
 											</label>
 										</div>
 										<p>NTP 작동 여부를 결정합니다.</p>
 										<div class="controls">
-											<button type="button" class="btn btn-success btn-sm">적용</button>
+											<button type="button" class="btn btn-success btn-sm"
+												id="ntp_submit">적용</button>
 										</div>
 									</div>
 								</div>
@@ -125,35 +128,15 @@
 													<tr class="headings ">
 														<th class="column-title">SERVER NAME</th>
 														<th class="column-title">비고</th>
-														<th class="column-title">
-															<ul class="nav navbar-right panel_toolbox">
-																<li><a><i class="fa fa-plus"></i></a></li>
-																<li><a><i class="fa fa-question"></i></a></li>
-															</ul>
+														<th class="column-title text-right">
+															<button type="button" class="btn btn-xs fa fa-plus"
+																data-toggle="modal" data-target="#ntpInsertModal"></button>
+															<button type="button" class="btn btn-xs fa fa-question"
+																id="status_ntp"></button>
 														</th>
 													</tr>
 												</thead>
-												<tbody id="ntpllist">
-													<tr>
-														<td>time1.google.com</td>
-														<td></td>
-														<td>
-															<ul class="nav navbar-right panel_toolbox">
-																<li><a><i class="fa fa-edit"></i></a></li>
-																<li><a><i class="fa fa-trash"></i></a></li>
-															</ul>
-														</td>
-													</tr>
-													<tr>
-														<td>time2.google.com</td>
-														<td></td>
-														<td>
-															<ul class="nav navbar-right panel_toolbox">
-																<li><a><i class="fa fa-edit"></i></a></li>
-																<li><a><i class="fa fa-trash"></i></a></li>
-															</ul>
-														</td>
-													</tr>
+												<tbody id="ntplist">
 												</tbody>
 											</table>
 										</div>
@@ -213,11 +196,11 @@
 											<div class="form-group">
 												<div class="col-md-1">
 													<label class="string optional control-label full-width"
-														for="dns_pri_ns">Primary DNS</label>
+														for="dhcp_primary_dns">Primary DNS</label>
 												</div>
 												<div class="col-md-3">
 													<input class="string optional form-control input-sm"
-														type="text" name="dhcp[pri_dns]" id="dhcp_pri_dns"
+														type="text" name="dhcp[pri_dns]" id="dhcp_primary_dns"
 														value="192.168.0.205" /> <span id="pri-dns-help"
 														class="help-block">Primary_DNS를 설정합니다.</span>
 												</div>
@@ -231,9 +214,10 @@
 												</div>
 												<div class="col-md-3">
 													<input class="string optional form-control input-sm"
-														type="text" name="dhcp[second_dns]" id="dhcp_second_dns"
-														value="192.168.0.201" /> <span id="second-dns-help"
-														class="help-block"> Secondary_DNS를 설정합니다.</span>
+														type="text" name="dhcp[second_dns]"
+														id="dhcp_secondary_dns" value="192.168.0.201" /> <span
+														id="second-dns-help" class="help-block">
+														Secondary_DNS를 설정합니다.</span>
 												</div>
 											</div>
 											<div class="col-md-1"></div>
@@ -258,47 +242,115 @@
 
 	</div>
 
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="js/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="js/nprogress.js"></script>
-	<!-- Chart.js -->
-	<script src="js/Chart.min.js"></script>
-	<!-- gauge.js -->
-	<script src="js/gauge.min.js"></script>
-	<!-- bootstrap-progressbar -->
-	<script src="js/bootstrap-progressbar.min.js"></script>
-	<!-- iCheck -->
-	<script src="js/icheck.min.js"></script>
-	<!-- Skycons -->
-	<script src="js/skycons.js"></script>
-	<!-- Flot -->
-	<script src="js/jquery.flot.js"></script>
-	<script src="js/jquery.flot.pie.js"></script>
-	<script src="js/jquery.flot.time.js"></script>
-	<script src="js/jquery.flot.stack.js"></script>
-	<script src="js/jquery.flot.resize.js"></script>
-	<!-- Flot plugins -->
-	<script src="js/jquery.flot.orderBars.js"></script>
-	<script src="js/jquery.flot.spline.min.js"></script>
-	<script src="js/curvedLines.js"></script>
-	<!-- DateJS -->
-	<script src="js/date.js"></script>
-	<!-- JQVMap -->
-	<script src="js/jquery.vmap.js"></script>
-	<script src="js/jquery.vmap.world.js"></script>
-	<script src="js/jquery.vmap.sampledata.js"></script>
-	<!-- bootstrap-daterangepicker -->
-	<script src="js/moment.min.js"></script>
-	<script src="js/daterangepicker.js"></script>
-	<script src="js/echarts.min.js"></script>
+	<!--ntp insert Modal start -->
+	<div id="ntpInsertModal" class="modal fade in">
+		<div class="modal-dialog">
+			<div class="modal-content">
 
-	<!-- Custom Theme Scripts -->
-	<script src="js/statistics.js"></script>
-	<script src="js/custom.js"></script>
+				<div class="modal-header">
+					<a class="btn btn-default" data-dismiss="modal"><span
+						class="glyphicon glyphicon-remove"></span></a>
+					<h4 class="modal-title">Insert NTP Server</h4>
+				</div>
+				<div class="modal-body">
+					<div class="x_panel">
+						<form class="form-horizontal form-label-left">
+							<div class="form-group">
+								<label
+									class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">NTP
+									SERVER</label>
+								<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+									<input class="form-control" name="subject"
+										placeholder="NTP_SERVER" id="insert_ntp_server" type="text"
+										required value="" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label
+									class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">비고
+								</label>
+								<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+									<input class="form-control" name="subject" placeholder="ETC"
+										id="insert_ntp_etc" type="text" required value="" />
+								</div>
+							</div>
+					</div>
+
+					<div class="modal-footer">
+						<div class="btn-group">
+							<button class="btn btn-danger" data-dismiss="modal">
+								<span class="glyphicon glyphicon-remove"></span> Cancel
+							</button>
+							<button class="btn btn-primary" id="insert_ntp">
+								<span class="glyphicon glyphicon-check"></span> Save
+							</button>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dalog -->
+		</div>
+		<!-- /.modal -->
+		<!-- ntp insert Modal end -->
+		<!-- jQuery -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="js/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="js/nprogress.js"></script>
+		<!-- Chart.js -->
+		<script src="js/Chart.min.js"></script>
+		<!-- gauge.js -->
+		<script src="js/gauge.min.js"></script>
+		<!-- bootstrap-progressbar -->
+		<script src="js/bootstrap-progressbar.min.js"></script>
+		<!-- iCheck -->
+		<script src="js/icheck.min.js"></script>
+		<!-- Skycons -->
+		<script src="js/skycons.js"></script>
+		<!-- Flot -->
+		<script src="js/jquery.flot.js"></script>
+		<script src="js/jquery.flot.pie.js"></script>
+		<script src="js/jquery.flot.time.js"></script>
+		<script src="js/jquery.flot.stack.js"></script>
+		<script src="js/jquery.flot.resize.js"></script>
+		<!-- Flot plugins -->
+		<script src="js/jquery.flot.orderBars.js"></script>
+		<script src="js/jquery.flot.spline.min.js"></script>
+		<script src="js/curvedLines.js"></script>
+		<!-- DateJS -->
+		<script src="js/date.js"></script>
+		<!-- JQVMap -->
+		<script src="js/jquery.vmap.js"></script>
+		<script src="js/jquery.vmap.world.js"></script>
+		<script src="js/jquery.vmap.sampledata.js"></script>
+		<!-- bootstrap-daterangepicker -->
+		<script src="js/moment.min.js"></script>
+		<script src="js/daterangepicker.js"></script>
+		<script src="js/echarts.min.js"></script>
+		<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script
+			src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script
+			src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script
+			src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+		<!-- Custom Theme Scripts -->
+		<script src="js/engine.js"></script>
+		<script src="js/alert.js"></script>
+		<script src="js/custom.js"></script>
 </body>
 </html>

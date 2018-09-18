@@ -173,6 +173,7 @@
 	<!-- Custom Theme Scripts -->
 	<script src="js/organization_menu.js"></script>
 	<script src="js/organization.js"></script>
-	<script src="js/custom.js"></script>
+	<script src="js/alert.js"></script>
+		<script src="js/custom.js"></script>
 </body>
 </html>

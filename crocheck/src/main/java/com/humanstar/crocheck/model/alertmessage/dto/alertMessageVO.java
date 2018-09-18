@@ -3,7 +3,7 @@ package com.humanstar.crocheck.model.alertmessage.dto;
 public class alertMessageVO {
 	private int seq_no;
 	private String message;
-	private int vew_check;
+	private int view_check;
 	private String created_at;
 	
 	public int getSeq_no() {
@@ -18,11 +18,11 @@ public class alertMessageVO {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public int getVew_check() {
-		return vew_check;
+	public int getView_check() {
+		return view_check;
 	}
-	public void setVew_check(int vew_check) {
-		this.vew_check = vew_check;
+	public void setView_check(int view_check) {
+		this.view_check = view_check;
 	}
 	public String getCreated_at() {
 		return created_at;

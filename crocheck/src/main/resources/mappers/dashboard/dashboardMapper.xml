@@ -36,17 +36,23 @@
 	</select>
 	<select id="networkStatus"
 		resultType="com.humanstar.crocheck.model.dashboard.dto.networkStatusVO">
-		(SELECT 1 as ph_type, id, result, count as count, date_part('epoch',
+		(SELECT 1 as ph_type, id, result, count as count,
+		date_part('epoch',
 		created_at) as created_at, created_at as date FROM
 		alert_stat_10sec_ratio WHERE
-		created_at = (SELECT created_at FROM alert_stat_10sec_ratio order by id desc
-		limit 1) ORDER BY created_at, ph_type)
+		created_at = (SELECT created_at FROM
+		alert_stat_10sec_ratio order by id desc
+		limit 1) ORDER BY created_at,
+		ph_type)
 		union all
-		(SELECT 2 as ph_type, id, result, count as count, date_part('epoch',
+		(SELECT 2 as ph_type, id, result, count as count,
+		date_part('epoch',
 		created_at) as created_at, created_at as date FROM
 		harmful_stat_10sec_ratio WHERE
-		created_at = (SELECT created_at FROM alert_stat_10sec_ratio order by id desc
-		limit 1) ORDER BY created_at, ph_type );
+		created_at = (SELECT created_at FROM
+		alert_stat_10sec_ratio order by id desc
+		limit 1) ORDER BY created_at,
+		ph_type );
 
 	</select>
 	<select id="pharmingDomainList"
@@ -88,5 +94,10 @@
 		group by departure, result2
 		order
 		by result2 ASC, count desc limit 5;
+	</select>
+	<select id="zonecount" resultType="com.humanstar.crocheck.model.dashboard.dto.zoneCountVO">
+		select zone.count as zone_count, sub.count as sub_count from (select
+		count(*) as count from dns_record where type='SOA') zone, (select
+		count(*) as count from dns_record where type !='SOA' ) sub
 	</select>
 </mapper>

@@ -16,7 +16,7 @@ $(document)
 											searhdnsdomain();
 										}
 									});
-					//table_loop();
+					table_loop();
 					dns_button_event();
 
 					buttonClickEvent();

@@ -27,4 +27,22 @@ public class alertMessageServiceImpl implements alertMessageService{
 		alertMessageDAO.insertMessage(vo);
 	}
 
+	@Override
+	public List<alertMessageVO> dashboardalert() throws Exception {
+		// TODO Auto-generated method stub
+		return alertMessageDAO.dashboardalert();
+	}
+
+	@Override
+	public void updateMessage(alertMessageVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		alertMessageDAO.updateMessage(vo);
+	}
+
+	@Override
+	public void updateAllReadMessage() throws Exception {
+		// TODO Auto-generated method stub
+		alertMessageDAO.updateAllReadMessage();
+	}
+
 }

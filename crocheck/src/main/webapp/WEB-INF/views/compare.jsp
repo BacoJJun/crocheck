@@ -379,6 +379,7 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="js/compare.js"></script>
+		<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>

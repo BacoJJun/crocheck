@@ -26,6 +26,7 @@ import com.humanstar.crocheck.model.dashboard.dto.nowPharmingVO;
 import com.humanstar.crocheck.model.dashboard.dto.todayDnsVO;
 import com.humanstar.crocheck.model.dashboard.dto.todayPacketVO;
 import com.humanstar.crocheck.model.dashboard.dto.yesterdayPacketVO;
+import com.humanstar.crocheck.model.dashboard.dto.zoneCountVO;
 import com.humanstar.crocheck.service.appliance.applianceServiceImpl;
 import com.humanstar.crocheck.service.dashboard.alertLiveDnsDDosServiceImpl;
 import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;
@@ -36,6 +37,7 @@ import com.humanstar.crocheck.service.dashboard.pharmingServiceImpl;
 import com.humanstar.crocheck.service.dashboard.todayDnsServiceImpl;
 import com.humanstar.crocheck.service.dashboard.todayPacketServiceImpl;
 import com.humanstar.crocheck.service.dashboard.yesterdayPacketServiceImpl;
+import com.humanstar.crocheck.service.dashboard.zoneCountServiceImpl;
 
 /**
  * Handles requests for the application home page.
@@ -71,6 +73,8 @@ public class dashboardController {
 	todayDnsServiceImpl todayDnsService;
 	@Inject
 	dnsStatServiceImpl dnsStatService;
+	@Inject
+	zoneCountServiceImpl zoneCountService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -107,7 +111,6 @@ public class dashboardController {
 	public Map<String, Object> AlertLiveDomain() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<alertLiveDomainVO> pharmingDomainList = new ArrayList<alertLiveDomainVO>();
 
 		try {
@@ -130,7 +133,6 @@ public class dashboardController {
 	public Map<String, Object> AlertLiveDeparture() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<alertLiveDepartureVO> pharmingDepartureList = new ArrayList<alertLiveDepartureVO>();
 
 		try {
@@ -152,7 +154,6 @@ public class dashboardController {
 	public Map<String, Object> AlertLiveDns() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<alertLiveDnsDDosVO> alertLiveDnsList = new ArrayList<alertLiveDnsDDosVO>();
 
 		try {
@@ -174,7 +175,6 @@ public class dashboardController {
 	public Map<String, Object> AlertLiveDDos() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<alertLiveDnsDDosVO> alertLiveDDosList = new ArrayList<alertLiveDnsDDosVO>();
 
 		try {
@@ -196,7 +196,6 @@ public class dashboardController {
 	public Map<String, Object> nowPharmingList() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<nowPharmingVO> nowPharmingList = new ArrayList<nowPharmingVO>();
 
 		try {
@@ -219,7 +218,6 @@ public class dashboardController {
 	public Map<String, Object> dayPharmingList() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<dayPharmingVO> dayPharmingList = new ArrayList<dayPharmingVO>();
 
 		try {
@@ -242,7 +240,6 @@ public class dashboardController {
 	public Map<String, Object> yesterdayPacketList() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<yesterdayPacketVO> yesterdaypacketList = new ArrayList<yesterdayPacketVO>();
 
 		try {
@@ -266,7 +263,6 @@ public class dashboardController {
 	public Map<String, Object> dayPacketList() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<todayPacketVO> daypacketList = new ArrayList<todayPacketVO>();
 
 		try {
@@ -290,7 +286,6 @@ public class dashboardController {
 	public Map<String, Object> applianceStatus() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<applianceStatusVO> applianceStatusList = new ArrayList<applianceStatusVO>();
 
 		try {
@@ -314,7 +309,6 @@ public class dashboardController {
 	public Map<String, Object> networkStatus() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<networkStatusVO> neworkStatus = new ArrayList<networkStatusVO>();
 
 		try {
@@ -339,7 +333,6 @@ public class dashboardController {
 	public Map<String, Object> todayDns() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<todayDnsVO> todayDnsList = new ArrayList<todayDnsVO>();
 
 		try {
@@ -363,7 +356,6 @@ public class dashboardController {
 	public Map<String, Object> yesterdayDns() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<todayDnsVO> yesterDnsList = new ArrayList<todayDnsVO>();
 
 		try {
@@ -388,7 +380,6 @@ public class dashboardController {
 	public Map<String, Object> dnsStat() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<dnsStatVO> dnsStatusList = new ArrayList<dnsStatVO>();
 
 		try {
@@ -413,7 +404,6 @@ public class dashboardController {
 	public Map<String, Object> ddosStat() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> condition = new HashMap<String, Object>();
 		List<dnsStatVO> ddosStatusList = new ArrayList<dnsStatVO>();
 
 		try {
@@ -428,6 +418,29 @@ public class dashboardController {
 		}
 
 		resultMap.put("ddosStatusList", ddosStatusList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/zoneCount", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> zoneCount() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		zoneCountVO zoneCount = new zoneCountVO();
+
+		try {
+			zoneCount =zoneCountService.zoneCount();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());;
+		}
+
+		resultMap.put("zoneCount", zoneCount);
 
 		return resultMap;
 	}

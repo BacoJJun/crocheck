@@ -1,6 +1,8 @@
 package com.humanstar.crocheck.controller.alert;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.alert.dto.alertVO;
+import com.humanstar.crocheck.model.alertmessage.dto.alertMessageVO;
 import com.humanstar.crocheck.service.alert.alertListServiceImpl;
+import com.humanstar.crocheck.service.alertmessage.alertMessageServiceImpl;
 
 @Controller
 public class alertController {
@@ -28,10 +32,13 @@ public class alertController {
 	
 	@Inject
 	alertListServiceImpl alertListService;
+	@Inject
+	alertMessageServiceImpl alertMessageService;
 	
-	@RequestMapping(value = "/updatealert", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/updatealertvalue", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updatealert(@ModelAttribute  alertVO vo) {
+	public Map<String, Object> updatealertvalue(@ModelAttribute  alertVO vo) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
@@ -48,6 +55,48 @@ public class alertController {
 
 		return resultMap;
 	}
+	
+	
+	@RequestMapping(value = "/updatealert", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updatealert(@ModelAttribute  alertMessageVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			alertMessageService.updateMessage(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/updateallread", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateallread() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			alertMessageService.updateAllReadMessage();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	
 	
 	@RequestMapping(value = "/alertList", method = RequestMethod.POST)
 	@ResponseBody
@@ -70,5 +119,50 @@ public class alertController {
 
 		return resultMap;
 	}
+	@RequestMapping(value = "/alertMessageview", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> alertMessageview() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<alertMessageVO> alertMessageList =  new ArrayList<alertMessageVO>();
+
+		try {
+			alertMessageList = alertMessageService.alertMessageList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("alertMessageList", alertMessageList);
+
+		return resultMap;
+	}
+	
+	
+	@RequestMapping(value = "/alertMessageList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> alertMessageList() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<alertMessageVO> alertMessageList =  new ArrayList<alertMessageVO>();
+
+		try {
+			alertMessageList = alertMessageService.dashboardalert();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("alertMessageList", alertMessageList);
+
+		return resultMap;
+	}
+	
 	
 }

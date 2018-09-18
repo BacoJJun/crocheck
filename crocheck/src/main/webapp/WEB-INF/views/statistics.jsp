@@ -269,6 +269,7 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="js/statistics.js"></script>
+		<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>

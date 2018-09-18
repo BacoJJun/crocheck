@@ -4,7 +4,7 @@
 <%@ include file="header.jsp"%>
 
 <body class="nav-sm">
-	<div class="container body" id="fullscreen" >
+	<div class="container body" id="fullscreen">
 		<div class="main_container">
 
 			<!-- sidebar menu -->
@@ -17,148 +17,164 @@
 			<!-- /top navigation -->
 
 			<!-- page content -->
-			<div class="right_col" role="main"  style="height:100%" >
-			<div class="x_panel">
-				<!-- top tiles -->
-				<div class="row tile_count">
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top">Total Query</span>
-						<div class="count text-right" id="todayquerystat"></div>
-						<span class="count_bottom"></span>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top">Last 1 Hours Query</span>
-						<div class="count text-right" id="minquerystat"></div>
-						<span class="count_bottom"></span>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top"><i class="fa fa-check"></i> Now
-							Query</span>
-						<div class="count green text-right" id="nowquerystat"></div>
-						<span class="count_bottom"></span>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top"><i class="fa fa-user"></i> Today
-							DDOS</span>
-						<div class="count text-right" id="todayddosstat"></div>
-						<span class="count_bottom"></span>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top"><i class="fa fa-user"></i> Last 1
-							Hours DDOS</span>
-						<div class="count text-right" id="minddosstat"></div>
-						<span class="count_bottom"></span>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top"><i class="fa fa-user"></i> Now DDOS</span>
-						<div class="count red text-right" id="nowddosstat"></div>
-						<span class="count_bottom"></span>
-					</div>
-					<!-- /top tiles -->
+			<div class="right_col" role="main" style="height: 100%">
+				<div class="x_panel">
+					<!-- top tiles -->
+					<div class="row tile_count">
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top">Total Query</span>
+							<div class="count text-right" id="todayquerystat"></div>
+							<span class="count_bottom"></span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top">Last 1 Hours Query</span>
+							<div class="count text-right" id="minquerystat"></div>
+							<span class="count_bottom"></span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-check"></i> Now
+								Query</span>
+							<div class="count green text-right" id="nowquerystat"></div>
+							<span class="count_bottom"></span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-user"></i> Today
+								DDOS</span>
+							<div class="count text-right" id="todayddosstat"></div>
+							<span class="count_bottom"></span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-user"></i> Last 1
+								Hours DDOS</span>
+							<div class="count text-right" id="minddosstat"></div>
+							<span class="count_bottom"></span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-user"></i> Now
+								DDOS</span>
+							<div class="count red text-right" id="nowddosstat"></div>
+							<span class="count_bottom"></span>
+						</div>
+						<!-- /top tiles -->
 
-					<!--  main graph  left 2/3-->
-					<div class="col-md-6">
-						<div class="x_panel">
-							<div class="x_title">
-								<h2>Today Query graph</h2>
-								<div class="clearfix"></div>
-							</div>
-							<div class="x_content">
-								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="demo-container" style="height: 280px">
-										<!-- <div id="chart_plot_02_dns" class="demo-placeholder"></div> -->
-										<canvas id="mybarChart_dns" class="demo-placeholder"></canvas>
+						<!--  main graph  left 2/3-->
+						<div class="col-md-6">
+							<div class="x_panel">
+								<div class="col-lg-6 col-md-6">
+									<div class="x_title">
+										<h2 id="zone_count"></h2>
+										<div class="clearfix"></div>
 									</div>
 								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="x_title">
+										<h2  id="sub_domain_count"></h2>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+
 							</div>
-						</div>
-						<div class="x_panel">
-							<div class="panel panel-body">
+							<div class="x_panel">
+								<div class="panel panel-body">
+									<div class="x_title">
+										<h2>Appliance Status</h2>
+										<div class="clearfix"></div>
+									</div>
+									<div class="row">
+										<div class="col-xs-4">
+											<div class="x_content">
+												<div id="echart_gauge_cpu" style="height: 150px;"></div>
+											</div>
+										</div>
+										<div class="col-xs-4">
+											<div class="x_content">
+												<div id="echart_gauge_memory" style="height: 150px;"></div>
+											</div>
+										</div>
+										<div class="col-xs-4">
+											<div class="x_content">
+												<div id="echart_gauge_disk" style="height: 150px;"></div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="x_panel">
 								<div class="x_title">
-									<h2>Appliance Status</h2>
+									<h2>Today Query graph</h2>
 									<div class="clearfix"></div>
 								</div>
-								<div class="row">
-									<div class="col-xs-4">
-										<div class="x_content">
-											<div id="echart_gauge_cpu" style="height: 200px;"></div>
+								<div class="x_content">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="demo-container" style="height: 245px">
+											<!-- <div id="chart_plot_02_dns" class="demo-placeholder"></div> -->
+											<canvas id="mybarChart_dns" class="demo-placeholder"></canvas>
 										</div>
 									</div>
-									<div class="col-xs-4">
-										<div class="x_content">
-											<div id="echart_gauge_memory" style="height: 200px;"></div>
-										</div>
-									</div>
-									<div class="col-xs-4">
-										<div class="x_content">
-											<div id="echart_gauge_disk" style="height: 200px;"></div>
-										</div>
-									</div>
+								</div>
+							</div>
+
+						</div>
+						<!--  end main graph  left 2/3-->
+
+						<!--  main table right 1/3 -->
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>
+										DNS <small>Top Query List</small>
+									</h2>
 									<div class="clearfix"></div>
 								</div>
+								<div class="x_content">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Client</th>
+												<th>Domain</th>
+												<th>Count</th>
+											</tr>
+										</thead>
+										<tbody id="show_dns">
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>
+										DDOS <small>Top List</small>
+									</h2>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Source IP</th>
+												<th>Domain</th>
+												<th>Count</th>
+											</tr>
+										</thead>
+										<tbody id="show_ddos">
+										</tbody>
+									</table>
 
+								</div>
 							</div>
 						</div>
+						<!--  end main table  -->
+						<!-- /page content -->
+
 					</div>
-					<!--  end main graph  left 2/3-->
-
-					<!--  main table right 1/3 -->
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="x_panel">
-							<div class="x_title">
-								<h2>
-									DNS <small>Top Query List</small>
-								</h2>
-								<div class="clearfix"></div>
-							</div>
-							<div class="x_content">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Client</th>
-											<th>Domain</th>
-											<th>Count</th>
-										</tr>
-									</thead>
-									<tbody id="show_dns">
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="x_panel">
-							<div class="x_title">
-								<h2>
-									DDOS <small>Top List</small>
-								</h2>
-								<div class="clearfix"></div>
-							</div>
-							<div class="x_content">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Source IP</th>
-											<th>Domain</th>
-											<th>Count</th>
-										</tr>
-									</thead>
-									<tbody id="show_ddos">
-									</tbody>
-								</table>
-
-							</div>
-						</div>
-					</div>
-					<!--  end main table  -->
-					<!-- /page content -->
-
 				</div>
-			</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- Bootstrap -->
@@ -214,11 +230,12 @@
 	<script
 		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-		<script src="js/jquery.fullscreen.min.js"></script>
-		<script src="js/fullscreen.js"></script>
-		
+	<script src="js/jquery.fullscreen.min.js"></script>
+	<script src="js/fullscreen.js"></script>
+
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.js"></script>
+	<script src="js/alert.js"></script>
 	<script src="js/sdnsdashboard.js"></script>
 </body>
 </html>

@@ -148,7 +148,7 @@
 	<script src="js/echarts.min.js"></script>
 
 	<!-- Custom Theme Scripts -->
-
+	<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>

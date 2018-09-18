@@ -17,8 +17,34 @@ function statLoop() {
 }
 function initLoop() {
 	getDnsTodayGraph();
+	zoneCount();
 	setTimeout(initLoop, 60000);
 }
+function zoneCount(){
+	var zone = document.getElementById("zone_count");
+	var sub_domain = document.getElementById("sub_domain_count");
+	
+	$.ajax({
+		url : '/crocheck/zoneCount',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zone.innerText = "ZONE : " + result.zoneCount.zone_count;
+				sub_domain.innerText = "SUB_DOMAIN : " +result.zoneCount.sub_count;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+
 
 function getStatList() {
 	var todayquerystat = document.getElementById("todayquerystat");

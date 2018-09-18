@@ -779,6 +779,7 @@
 	
 	<!-- Custom Theme Scripts -->
 	<script src="js/dnspolicy.js"></script>
+		<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 
 

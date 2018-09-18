@@ -28,7 +28,7 @@ public class alertScheduler {
 	
 	
 	// 5분마다 check 
-	@Scheduled(cron="0 */12 * * * *")
+	@Scheduled(cron="0 * * * * *")
 	public void alertCheck() {
 		alertVO alertList = new alertVO();
 		alertNowVO alertNowList = new alertNowVO();

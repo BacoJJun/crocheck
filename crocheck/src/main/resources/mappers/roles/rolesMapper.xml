@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="roles">
+	<select id="basicroles"
+		resultType="com.humanstar.crocheck.model.engine.dto.rolesVO">
+		select * from roles where id='1'
+	</select>
+	<select id="ntpserver"
+		resultType="com.humanstar.crocheck.model.engine.dto.ntpVO">
+		select * from tb_ntp_server
+	</select>
+	<select id="dhcproles"
+		resultType="com.humanstar.crocheck.model.engine.dto.rolesDhcpVO">
+		select * from roles_dhcp
+	</select>
+
+	<update id="updatednsroles">
+		update roles set
+		domain = #{domain}
+		where id='1'
+	</update>
+	<update id="updatentproles">
+		update roles set
+		ntp = #{ntp}
+		where id='1'
+	</update>
+
+	<insert id="insertntp">
+		insert into tb_ntp_server(ntp_server, etc,
+		created_at, responsed_at)
+		values(#{ntp_server}, #{etc}, now(), '')
+	</insert>
+	<delete id="deletentp">
+		delete tb_ntp_server where ntp_server = #{ntp_server}
+	</delete>
+
+	<update id="updatedhcproles">
+		update roles_dhcp
+		set
+		day = #{day},
+		hour = #{hour},
+		min = #{min},
+		created_at = #{created_at},
+		updated_at = #{updated_at},
+		primary_dns = #{primary_dns},
+		secondary_dns
+		= #{secondary_dns}
+
+		where dhcp ='true'
+	</update>
+	<update id="updatedhcp">
+		update roles_dhcp set dhcp= #{dhcp};
+	</update>
+</mapper>
