@@ -30,10 +30,10 @@
 	<insert id="insertntp">
 		insert into tb_ntp_server(ntp_server, etc,
 		created_at, responsed_at)
-		values(#{ntp_server}, #{etc}, now(), '')
+		values(#{ntp_server}, #{etc}, now(), null)
 	</insert>
 	<delete id="deletentp">
-		delete tb_ntp_server where ntp_server = #{ntp_server}
+		delete from tb_ntp_server where ntp_server = #{ntp_server}
 	</delete>
 
 	<update id="updatedhcproles">

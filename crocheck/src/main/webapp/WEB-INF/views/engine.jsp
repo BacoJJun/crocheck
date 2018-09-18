@@ -274,6 +274,7 @@
 										id="insert_ntp_etc" type="text" required value="" />
 								</div>
 							</div>
+							</form>
 					</div>
 
 					<div class="modal-footer">

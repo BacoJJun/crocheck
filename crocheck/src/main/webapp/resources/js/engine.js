@@ -19,16 +19,68 @@ function button_event_list() {
 	});
 	
 	$('#insert_ntp').click(function() {
-		var ntp = $("#insert_ntp_server").val();
-		var etc = $("#insert_ntp_etc").val();
-		console.log(ntp + "" + etc);
+			insert_ntp_server();
+	});
+	
+	$('#ntplist button').click(function(){
+		var ntp_server = $(this).attr('value');
+		delete_ntp_server(ntp_server);
 	});
 
+}
+function delete_ntp_server(ntp_server){
+	$.ajax({
+		url : '/crocheck/deletentp',
+		data : {
+			"ntp_server" : ntp_server
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				sleep(1000);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	location.reload();
+	
 }
 function insert_ntp_server(){
 	var ntp = $("#insert_ntp_server").val();
 	var etc = $("#insert_ntp_etc").val();
-	console.log(ntp + "" + etc);
+	
+	$.ajax({
+		url : '/crocheck/insertntp',
+		data : {
+			"ntp_server" : ntp,
+			"etc" : etc
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				sleep(1000);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	location.reload();
+	
 }
 function update_dns_roles(check_value) {
 	$.ajax({
@@ -157,10 +209,7 @@ function view_ntp() {
 									+ '</td>';
 							ntptable += '<td>' + result.ntplist[i].etc
 									+ '</td>';
-							ntptable += '<td class="text-right"><button type="button" class="btn btn-xs fa fa-edit" id="edit_ntp" value="'
-									+ result.ntplist[i].ntp_server
-									+ '"></button>';
-							ntptable += '<button type="button" class="btn btn-xs fa fa-trash" id="delete_ntp" value="'
+							ntptable += '<td class="text-right"><button type="button" class="btn btn-xs fa fa-trash" id="delete_ntp" value="'
 									+ result.ntplist[i].ntp_server
 									+ '"></i></td>';
 							ntptable += '</tr>';
