@@ -117,7 +117,7 @@
 									<H2>Domain</H2>
 								</div>
 
-								<div class="col-md-3 text-right">
+								<div class="col-md-3 text-right" >
 									<button type="button" class="btn btn-success btn-xs"
 										id="insertDomainBtn" data-toggle="modal"
 										data-target="#dnsInsertModal">
@@ -151,7 +151,7 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="col-md-4 col-sm-12 col-xs-12">
+							<div class="col-md-4 col-sm-12 col-xs-12" style="overflow-y: auto; height: 550px;">
 								<div class="x_title">
 									<h2>
 										sub_domain : <span id="sub_domain_count"></span>
