@@ -22,26 +22,8 @@
 					<tr>
 						<td><span class="glyphicon glyphicon-file text-info"></span><a
 							data-toggle="collapse" data-parent="#accordion"
-							href="#collapseTwo">Newsletters</a></td>
-					</tr>
-					<tr>
-						<td><span class="glyphicon glyphicon-comment text-success"></span><a
-							href="http://www.jquery2dotnet.com">Comments</a> <span
-							class="badge">42</span></td>
-					</tr>
-				</table>
-			</div>
-
-	</div>
-
-		<div class="panel">
-			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion"
-					href="#collapseTwo"><span class="glyphicon glyphicon-th">
-				</span>Modules</a>
-			</h4>
-		</div>
-		<div id="collapseTwo" class="panel-collapse collapse">
+							href="#collapseTwo">Newsletters</a>
+							<div id="collapseTwo" class="panel-collapse collapse">
 			<div class="panel-body">
 				<table class="table">
 					<tr>
@@ -60,6 +42,26 @@
 				</table>
 			</div>
 		</div>
+							</td>
+					</tr>
+					<tr>
+						<td><span class="glyphicon glyphicon-comment text-success"></span><a
+							href="http://www.jquery2dotnet.com">Comments</a> <span
+							class="badge">42</span></td>
+					</tr>
+				</table>
+			</div>
+
+	</div>
+
+		<div class="panel">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion"
+					href="#collapseTwo"><span class="glyphicon glyphicon-th">
+				</span>Modules</a>
+			</h4>
+		</div>
+		
 
 		<div class="panel">
 			<h4 class="panel-title">

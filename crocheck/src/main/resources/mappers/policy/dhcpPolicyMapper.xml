@@ -4,24 +4,115 @@
 <mapper namespace="dhcppolicy">
 	<select id="dhcptable"
 		resultType="com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO">
-		SELECT * FROM tb_dhcp order by category1, category2, start_ip
+		SELECT * FROM tb_dhcp order by category1, category2,
+		start_ip
 	</select>
-	<select id="dhcpsubtable" resultType="com.humanstar.crocheck.model.policy.dto.dhcpSubVO">
-	SELECT * FROM tb_dhcp_sub
-	<where>
-		<if test="id != null">
-			mid = #{id}
-		</if>
-	</where>
-	order by id desc
+	<insert id="insertdhcp">
+		INSERT INTO tb_dhcp(protocol, start_ip, end_ip, dns1, dns2, day, hour, min,
+		created_at, category1, category2, ip_count, subnet, gateway,
+		subnet_length)
+		values(#{protocol}, #{start_ip}, #{end_ip}, #{dns1}, #{dns2}, #{day}, #{hour}, #{min},
+		#{created_at}, #{category1}, #{category2}, #{ip_count}, #{subnet},
+		#{gateway}, #{subnet_length})
+	</insert>
+	<update id="updatedhcp">
+		UPDATE tb_dhcp SET
+		protocol= #{protocal}
+		,start_ip= #{start_ip}
+		,end_ip= #{end_ip}
+		,day=#{day}
+		,hour=#{hour}
+		,min=#{min}
+		,dns1=#{dns1}
+		,dns2=#{dns2}
+		,category1=#{category1}
+		,category2=#{category2}
+		,ip_count=#{ip_count}
+		,subnet=#{subnet}
+		,subnet_length=#{subnet_length}
+		,gateway=#{gateway}
+		WHERE id=#{id}
+
+	</update>
+	<delete id="deletedhcp">
+		delete from tb_dhcp where id=#{id}
+	</delete>
+	<select id="dhcpsubtable"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpSubVO">
+		SELECT * FROM tb_dhcp_sub
+		<where>
+			<if test="id != null">
+				mid = #{id}
+			</if>
+		</where>
+		order by id desc
 	</select>
-	<select id="dhcprenttable" resultType="com.humanstar.crocheck.model.policy.dto.dhcpRentVO">
-	SELECT ip,mac,host_name,mid,date_trunc('second',(rent_at::TIMESTAMP WITHOUT TIME ZONE)) as rent_at FROM tb_dhcp_rent_record
-	 	<where>
+	<select id="dhcprenttable"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpRentVO">
+		SELECT ip,mac,host_name,mid,date_trunc('second',(rent_at::TIMESTAMP
+		WITHOUT TIME ZONE)) as rent_at FROM tb_dhcp_rent_record
+		<where>
+			<if test="id != null">
+				mid = #{id}
+			</if>
+		</where>
+		ORDER BY rent_at desc
+	</select>
+	<select id="dhcpcount"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpCountVO">
+		select
+		total.total_count,
+		sub1.exception_count,
+		sub2.hold_count,
+		rent.rent_count
+		from
+		(select coalesce(sum(ip_count),0) as total_count
+		from tb_dhcp
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+		</where>
+		) total,
+		(select COALESCE(sum(ip_count),0) as exception_count from
+		tb_dhcp_sub where
+		type=1
 		<if test="id != null">
-			mid = #{id}
+			and mid = #{id}
 		</if>
-	</where>
-	ORDER BY rent_at desc
+		) sub1,
+		(select COALESCE(sum(ip_count),0) as hold_count from
+		tb_dhcp_sub where type=2
+		<if test="id != null">
+			and mid = #{id}
+		</if>
+		) sub2,
+		(SELECT COALESCE(count(distinct(ip)),0) as rent_count from
+		tb_dhcp_rent_record
+		<where>
+			<if test="id != null">
+				and mid = #{id}
+			</if>
+		</where>
+		) rent
+		group by total.total_count, sub1.exception_count,
+		sub2.hold_count,
+		rent.rent_count
+	</select>
+	<select id="category" resultType="com.humanstar.crocheck.model.policy.dto.dhcpCategoryVO">
+		select distinct(category1) as category from tb_dhcp
+	</select>
+	<select id="category_group" resultType="com.humanstar.crocheck.model.policy.dto.dhcpCategoryVO">
+		select distinct(category2) as category from tb_dhcp
+	</select>
+	
+	<select id="selectdhcp" resultType="com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO">
+		select * from tb_dhcp where id = #{id}
+	</select>
+	<select id="selectsubdhcp" resultType="com.humanstar.crocheck.model.policy.dto.dhcpSubVO">
+		select * from tb_dhcp_sub where id= #{id}
 	</select>
 </mapper>
+
+
+

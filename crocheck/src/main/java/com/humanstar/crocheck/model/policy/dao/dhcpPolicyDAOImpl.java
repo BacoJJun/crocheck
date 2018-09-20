@@ -34,5 +34,23 @@ public class dhcpPolicyDAOImpl implements dhcpPolicyDAO{
 		// TODO Auto-generated method stub
 		return SqlSession.selectList("dhcppolicy.dhcprenttable",vo);
 	}
+
+	@Override
+	public void insertDhcp(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.selectList("dhcppolicy.insertdhcp",vo);
+	}
+
+	@Override
+	public void updateDhcp(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.selectList("dhcppolicy.updatedhcp",vo);
+	}
+
+	@Override
+	public void deleteDhcp(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.selectList("dhcppolicy.deletedhcp",vo);
+	}
 	
 }

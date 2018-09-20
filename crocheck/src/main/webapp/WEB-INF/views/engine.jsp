@@ -274,7 +274,7 @@
 										id="insert_ntp_etc" type="text" required value="" />
 								</div>
 							</div>
-							</form>
+						</form>
 					</div>
 
 					<div class="modal-footer">
@@ -293,65 +293,66 @@
 			</div>
 			<!-- /.modal-dalog -->
 		</div>
-		<!-- /.modal -->
-		<!-- ntp insert Modal end -->
-		<!-- jQuery -->
-		<script src="js/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="js/bootstrap.min.js"></script>
-		<!-- FastClick -->
-		<script src="js/fastclick.js"></script>
-		<!-- NProgress -->
-		<script src="js/nprogress.js"></script>
-		<!-- Chart.js -->
-		<script src="js/Chart.min.js"></script>
-		<!-- gauge.js -->
-		<script src="js/gauge.min.js"></script>
-		<!-- bootstrap-progressbar -->
-		<script src="js/bootstrap-progressbar.min.js"></script>
-		<!-- iCheck -->
-		<script src="js/icheck.min.js"></script>
-		<!-- Skycons -->
-		<script src="js/skycons.js"></script>
-		<!-- Flot -->
-		<script src="js/jquery.flot.js"></script>
-		<script src="js/jquery.flot.pie.js"></script>
-		<script src="js/jquery.flot.time.js"></script>
-		<script src="js/jquery.flot.stack.js"></script>
-		<script src="js/jquery.flot.resize.js"></script>
-		<!-- Flot plugins -->
-		<script src="js/jquery.flot.orderBars.js"></script>
-		<script src="js/jquery.flot.spline.min.js"></script>
-		<script src="js/curvedLines.js"></script>
-		<!-- DateJS -->
-		<script src="js/date.js"></script>
-		<!-- JQVMap -->
-		<script src="js/jquery.vmap.js"></script>
-		<script src="js/jquery.vmap.world.js"></script>
-		<script src="js/jquery.vmap.sampledata.js"></script>
-		<!-- bootstrap-daterangepicker -->
-		<script src="js/moment.min.js"></script>
-		<script src="js/daterangepicker.js"></script>
-		<script src="js/echarts.min.js"></script>
-		<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-		<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
-		<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
-		<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	</div>
+	<!-- /.modal -->
+	<!-- ntp insert Modal end -->
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script src="js/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="js/nprogress.js"></script>
+	<!-- Chart.js -->
+	<script src="js/Chart.min.js"></script>
+	<!-- gauge.js -->
+	<script src="js/gauge.min.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="js/bootstrap-progressbar.min.js"></script>
+	<!-- iCheck -->
+	<script src="js/icheck.min.js"></script>
+	<!-- Skycons -->
+	<script src="js/skycons.js"></script>
+	<!-- Flot -->
+	<script src="js/jquery.flot.js"></script>
+	<script src="js/jquery.flot.pie.js"></script>
+	<script src="js/jquery.flot.time.js"></script>
+	<script src="js/jquery.flot.stack.js"></script>
+	<script src="js/jquery.flot.resize.js"></script>
+	<!-- Flot plugins -->
+	<script src="js/jquery.flot.orderBars.js"></script>
+	<script src="js/jquery.flot.spline.min.js"></script>
+	<script src="js/curvedLines.js"></script>
+	<!-- DateJS -->
+	<script src="js/date.js"></script>
+	<!-- JQVMap -->
+	<script src="js/jquery.vmap.js"></script>
+	<script src="js/jquery.vmap.world.js"></script>
+	<script src="js/jquery.vmap.sampledata.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="js/moment.min.js"></script>
+	<script src="js/daterangepicker.js"></script>
+	<script src="js/echarts.min.js"></script>
+	<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script
+		src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 
-		<!-- Custom Theme Scripts -->
-		<script src="js/engine.js"></script>
-		<script src="js/alert.js"></script>
-		<script src="js/custom.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="js/engine.js"></script>
+	<script src="js/alert.js"></script>
+	<script src="js/custom.js"></script>
 </body>
 </html>

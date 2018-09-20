@@ -18,12 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.change.dto.changeValueVO;
 import com.humanstar.crocheck.model.policy.dto.ddosBlockStatusVO;
+import com.humanstar.crocheck.model.policy.dto.dhcpCategoryVO;
+import com.humanstar.crocheck.model.policy.dto.dhcpCountVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpRentVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpSubVO;
 import com.humanstar.crocheck.model.policy.dto.dnspolicyVO;
 import com.humanstar.crocheck.service.change.changeValueServiceImpl;
 import com.humanstar.crocheck.service.policy.ddosBlockServiceImpl;
+import com.humanstar.crocheck.service.policy.dhcpCategoryServiceImpl;
+import com.humanstar.crocheck.service.policy.dhcpCountServiceImpl;
 import com.humanstar.crocheck.service.policy.dhcpPolicyServiceImpl;
 import com.humanstar.crocheck.service.policy.dnspolicyServiceImpl;
 
@@ -44,8 +48,12 @@ public class policyController {
 	@Inject 
 	dhcpPolicyServiceImpl dhcpPolicyService;
 	@Inject
+	dhcpCategoryServiceImpl dhcpCategoryService;
+	@Inject
 	changeValueServiceImpl changeValueService;
-		
+	@Inject
+	dhcpCountServiceImpl dhcpCountService;
+	
 	@RequestMapping(value = "/dnsTableList", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> dnsTableList() {
@@ -176,6 +184,48 @@ public class policyController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value = "/dhcpcategory", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpcategory() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<dhcpCategoryVO> categoryList = new ArrayList<dhcpCategoryVO>();
+
+		try {
+			categoryList = dhcpCategoryService.categoryList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("categoryList", categoryList);
+
+		return resultMap; 
+	}
+	@RequestMapping(value = "/dhcpcategorygroup", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpcategorygroup() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<dhcpCategoryVO> categoryGroupList = new ArrayList<dhcpCategoryVO>();
+
+		try {
+			categoryGroupList = dhcpCategoryService.categoryGroupList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("categoryGroupList", categoryGroupList);
+
+		return resultMap; 
+	}
 	@RequestMapping(value = "/dhcpTableList", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> dhcpTableList() {
@@ -197,6 +247,7 @@ public class policyController {
 
 		return resultMap; 
 	}
+		
 	
 	@RequestMapping(value = "/subdhcpList", method = RequestMethod.POST)
 	@ResponseBody
@@ -237,6 +288,50 @@ public class policyController {
 
 		}
 		resultMap.put("dhcpRentList", dhcpRentList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/dhcpcount", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpcount() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		dhcpCountVO dhcpCountValue = new dhcpCountVO();
+		
+		try {
+			dhcpCountValue = dhcpCountService.dhcoCountValue();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("dhcpCountValue", dhcpCountValue);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/dhcpsubcount", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpsubcount(@ModelAttribute  dhcpPolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		dhcpCountVO dhcpCountValue = new dhcpCountVO();
+		
+		try {
+			dhcpCountValue = dhcpCountService.dhcpsubCountValue(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("dhcpCountValue", dhcpCountValue);
 
 		return resultMap;
 	}
@@ -428,5 +523,62 @@ public class policyController {
 
 		return resultMap;
 	}
+	@RequestMapping(value = "/dhcpinsert", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpinsert(@ModelAttribute  dhcpPolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			dhcpPolicyService.insertDhcp(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}
+
+	@RequestMapping(value = "/dhcpupdate", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpupdate(@ModelAttribute  dhcpPolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			dhcpPolicyService.updateDhcp(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/dhcpdelete", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpdelete(@ModelAttribute  dhcpPolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			dhcpPolicyService.deleteDhcp(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}
+	
 	
 }

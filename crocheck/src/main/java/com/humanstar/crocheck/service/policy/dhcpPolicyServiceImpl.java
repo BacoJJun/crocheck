@@ -34,6 +34,24 @@ public class dhcpPolicyServiceImpl implements dhcpPolicyService{
 		// TODO Auto-generated method stub
 		return dhcpPolicyDAO.dhcpRentList(vo);
 	}
+
+	@Override
+	public void insertDhcp(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dhcpPolicyDAO.insertDhcp(vo);
+	}
+
+	@Override
+	public void updateDhcp(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dhcpPolicyDAO.updateDhcp(vo);
+	}
+
+	@Override
+	public void deleteDhcp(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dhcpPolicyDAO.deleteDhcp(vo);
+	}
 	
 	
 }
