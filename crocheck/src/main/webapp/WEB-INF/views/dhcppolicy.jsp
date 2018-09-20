@@ -203,7 +203,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=""
 											id="insert_dhcp_category1" type="text" required value="" />
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
@@ -218,7 +218,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_category2" type="text" required value="" />
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
@@ -246,7 +246,7 @@
 									Address </label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_host" type="text" required value="" />
 									</div>
 								</div>
@@ -257,7 +257,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs12">
-										<input class="number" name="subject" placeholder="ETC"
+										<input class="number" name="subject" placeholder=" "
 											id="insert_dhcp_subnet_length" type="text" required value="24" />
 									</div>
 									<div class="col-lg-9 col-md-9 col-sm-9 col-xs12"></div>
@@ -269,7 +269,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_subnet" type="text" required value="255.255.255.0" />
 									</div>
 								</div>
@@ -280,7 +280,7 @@
 									Address </label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_broadcast" type="text" required value="" />
 									</div>
 								</div>
@@ -291,7 +291,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_gateway" type="text" required value="" />
 									</div>
 								</div>
@@ -302,15 +302,15 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_day" type="text" required value="" />
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_hour" type="text" required value="" />
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_min" type="text" required value="" />
 									</div>
 								</div>
@@ -321,7 +321,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_dns1" type="text" required value="" />
 									</div>
 								</div>
@@ -332,7 +332,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="insert_dhcp_dns2" type="text" required value="" />
 									</div>
 								</div>
@@ -379,7 +379,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_category1" type="text" required value="" />
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
@@ -394,7 +394,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_category2" type="text" required value="" />
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
@@ -422,7 +422,7 @@
 									Address </label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_host" type="text" required value="" />
 									</div>
 								</div>
@@ -433,7 +433,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs12">
-										<input class="number" name="subject" placeholder="ETC"
+										<input class="number" name="subject" placeholder=" "
 											id="update_dhcp_subnet_length" type="text" required value="24" />
 									</div>
 									<div class="col-lg-9 col-md-9 col-sm-9 col-xs12"></div>
@@ -445,7 +445,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_subnet" type="text" required value="255.255.255.0" />
 									</div>
 								</div>
@@ -456,7 +456,7 @@
 									Address </label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_broadcast" type="text" required value="" />
 									</div>
 								</div>
@@ -467,7 +467,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_gateway" type="text" required value="" />
 									</div>
 								</div>
@@ -478,15 +478,15 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_day" type="text" required value="" />
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_hour" type="text" required value="" />
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_min" type="text" required value="" />
 									</div>
 								</div>
@@ -497,7 +497,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_dns1" type="text" required value="" />
 									</div>
 								</div>
@@ -508,7 +508,7 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
+										<input class="form-control" name="subject" placeholder=" "
 											id="update_dhcp_dns2" type="text" required value="" />
 									</div>
 								</div>
@@ -624,8 +624,8 @@
 								</label>
 									<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<input class="form-control" name="subject" placeholder="ETC"
-											id="insert_ntp_etc" type="text" required value="" />
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_ntp_ " type="text" required value="" />
 											</div>
 									</div>
 							</div>
@@ -635,8 +635,8 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
-											id="insert_ntp_etc" type="text" required value="" />
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_ntp_ " type="text" required value="" />
 									</div>
 								</div>
 							</div>
@@ -646,8 +646,8 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
-											id="insert_ntp_etc" type="text" disable value="" />
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_ntp_ " type="text" disable value="" />
 									</div>
 								</div>
 							</div>
@@ -721,8 +721,8 @@
 								</label>
 									<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<input class="form-control" name="subject" placeholder="ETC"
-											id="insert_ntp_etc" type="text" required value="" />
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_ntp_ " type="text" required value="" />
 											</div>
 									</div>
 							</div>
@@ -732,8 +732,8 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
-											id="insert_ntp_etc" type="text" required value="" />
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_ntp_ " type="text" required value="" />
 									</div>
 								</div>
 							</div>
@@ -743,8 +743,8 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
-											id="insert_ntp_etc" type="text" disable value="" />
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_ntp_ " type="text" disable value="" />
 									</div>
 								</div>
 							</div>

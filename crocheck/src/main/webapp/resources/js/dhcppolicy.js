@@ -178,7 +178,25 @@ function category() {
 					+ request.responseText + "\n");
 		}
 	});
-
+	
+	$('#dhcp_category').click(function(){
+		var insert_dhcp_category = document.getElementById("insert_dhcp_category1");
+		insert_dhcp_category.value = $(this).val();
+	});
+	$('#dhcp_category_group').click(function(){
+		var insert_dhcp_category = document.getElementById("insert_dhcp_category2");
+		insert_dhcp_category.value = $(this).val();
+	});
+		
+	$('#dhcp_update_category').click(function(){
+		var insert_dhcp_category = document.getElementById("update_dhcp_category1");
+		insert_dhcp_category.value = $(this).val();
+	});
+	$('#dhcp_update_category_group').click(function(){
+		var insert_dhcp_category = document.getElementById("update_dhcp_category2");
+		insert_dhcp_category.value = $(this).val();
+	});
+	
 }
 function table_click_event() {
 	function onRowClick(tableId, callback) {
@@ -219,7 +237,7 @@ function button_click_event() {
 }
 function insert_button_click_event(){
 	$('#insert_dhcp').click(function(){
-		console.log("insert");
+		
 	});
 	$('#insert_sub_dhcp').click(function(){
 		console.log("insert sub");
