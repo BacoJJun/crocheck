@@ -57,8 +57,9 @@
 									</div>
 									<!-- organization list end -->
 									<!-- start project list -->
+									<div id="base_table">
 									<div class="col-md-10 col-sm-12 col-xs-12">
-										<table id="datatable"
+										<table id="member_datatable"
 											class="table table-striped table-bordered dt-responsive nowrap"
 											cellspacing="0" width="100%">
 
@@ -85,22 +86,43 @@
 												</tr>
 											</thead>
 											<tbody id="member_list">
-												<tr>
-													<td>개발연구소</td>
-													<td>이준석</td>
-													<td>192.168.0.78</td>
-													<td>02-XXXX-XXXX</td>
-													<td>010-XXXX-XXXX</td>
-													<td>asjdfla@humanstar.co.kr</td>
-													<td>기타사항란</td>
-													<td><a href="#" class="btn btn-info btn-xs"><i
-															class="fa fa-pencil"></i></a> <a href="#"
-														class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
-													</a></td>
-												</tr>
-
 											</tbody>
 										</table>
+									</div>
+									</div>
+									
+									<div id="search_table">
+									<div class="col-md-10 col-sm-12 col-xs-12">
+										<table id="post_datatable"
+											class="table table-striped table-bordered dt-responsive nowrap"
+											cellspacing="0" width="100%">
+
+											<colgroup>
+												<col width="10%"></col>
+												<col width="7%"></col>
+												<col width="15%"></col>
+												<col width="12%"></col>
+												<col width="12%"></col>
+												<col width="15%"></col>
+												<col width="*%"></col>
+												<col width="10%"></col>
+											</colgroup>
+											<thead>
+												<tr>
+													<th>부서</th>
+													<th>이름</th>
+													<th>IP</th>
+													<th>전화번호</th>
+													<th>휴대전화</th>
+													<th>E메일</th>
+													<th>기타</th>
+													<th>수정</th>
+												</tr>
+											</thead>
+											<tbody id="post_member_list">
+											</tbody>
+										</table>
+									</div>
 									</div>
 									<!-- end project list -->
 
@@ -156,6 +178,8 @@
 	<script src="js/echarts.min.js"></script>
 	<!-- datatable -->
 	<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="js/datatables.net/js/fnReloadAjax.js"></script>
+	
 	<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 	<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
