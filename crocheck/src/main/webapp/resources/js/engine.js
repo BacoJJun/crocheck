@@ -30,7 +30,7 @@ function button_event_list() {
 }
 function delete_ntp_server(ntp_server){
 	$.ajax({
-		url : '/crocheck/deletentp',
+		url : '/deletentp',
 		data : {
 			"ntp_server" : ntp_server
 		},
@@ -58,7 +58,7 @@ function insert_ntp_server(){
 	var etc = $("#insert_ntp_etc").val();
 	
 	$.ajax({
-		url : '/crocheck/insertntp',
+		url : '/insertntp',
 		data : {
 			"ntp_server" : ntp,
 			"etc" : etc
@@ -84,7 +84,7 @@ function insert_ntp_server(){
 }
 function update_dns_roles(check_value) {
 	$.ajax({
-		url : '/crocheck/updateDnsRoles',
+		url : '/updateDnsRoles',
 		data : {
 			"domain" : check_value
 		},
@@ -108,7 +108,7 @@ function update_dns_roles(check_value) {
 }
 function update_ntp_roles(check_value) {
 	$.ajax({
-		url : '/crocheck/updateNtpRoles',
+		url : '/updateNtpRoles',
 		data : {
 			"ntp" : check_value
 		},
@@ -133,7 +133,7 @@ function update_ntp_roles(check_value) {
 
 function update_dhcp_roles(check_value) {
 	$.ajax({
-		url : '/crocheck/updatedhcp',
+		url : '/updatedhcp',
 		data : {
 			"dhcp" : check_value
 		},
@@ -158,7 +158,7 @@ function update_dhcp_roles(check_value) {
 
 function view_roles() {
 	$.ajax({
-		url : '/crocheck/basicrolse',
+		url : '/basicrolse',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -194,7 +194,7 @@ function view_ntp() {
 	var ntp_list = document.getElementById("ntplist");
 	$
 			.ajax({
-				url : '/crocheck/ntplist',
+				url : '/ntplist',
 				type : 'post',
 				dataType : 'json',
 				async : false,
@@ -234,7 +234,7 @@ function view_dhcp() {
 	var dhcp_secondary_dns = document.getElementById("dhcp_secondary_dns");
 
 	$.ajax({
-		url : '/crocheck/basicDhcpRoles',
+		url : '/basicDhcpRoles',
 		type : 'post',
 		dataType : 'json',
 		async : false,

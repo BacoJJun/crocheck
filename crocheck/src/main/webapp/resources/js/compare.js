@@ -69,7 +69,7 @@ function comparednsdomain() {
 	var first_count = [];
 	var first_pct = [];
 	$.ajax({
-		url : '/crocheck/comparednsdomain',
+		url : '/comparednsdomain',
 		data : {
 			"date_start" : first_date
 		},
@@ -100,7 +100,7 @@ function comparednsdomain() {
 	var second_pct = [];
 
 	$.ajax({
-		url : '/crocheck/comparednsdomain',
+		url : '/comparednsdomain',
 		data : {
 			"date_start" : second_date,
 		},
@@ -304,7 +304,7 @@ function comparednsclient() {
 	var first_pct = [];
 	
 	$.ajax({
-		url : '/crocheck/comparednsclient',
+		url : '/comparednsclient',
 		data : {
 			"date_start" : first_date
 		},
@@ -336,7 +336,7 @@ function comparednsclient() {
 	var second_pct = [];
 	
 	$.ajax({
-		url : '/crocheck/comparednsclient',
+		url : '/comparednsclient',
 		data : {
 			"date_start" : second_date,
 		},
@@ -540,7 +540,7 @@ function compareddosdomain() {
 	
 	
 	$.ajax({
-		url : '/crocheck/compareddosdomain',
+		url : '/compareddosdomain',
 		data : {
 			"date_start" : first_date
 		},
@@ -571,7 +571,7 @@ function compareddosdomain() {
 	
 	
 	$.ajax({
-		url : '/crocheck/compareddosdomain',
+		url : '/compareddosdomain',
 		data : {
 			"date_start" : second_date,
 		},
@@ -776,7 +776,7 @@ function compareddosclient() {
 	var first_pct = [];
 	
 	$.ajax({
-		url : '/crocheck/compareddosclient',
+		url : '/compareddosclient',
 		data : {
 			"date_start" : first_date
 		},
@@ -806,7 +806,7 @@ function compareddosclient() {
 	var second_pct = [];
 	
 	$.ajax({
-		url : '/crocheck/compareddosclient',
+		url : '/compareddosclient',
 		data : {
 			"date_start" : second_date,
 		},
@@ -1011,7 +1011,7 @@ function comparequery() {
 	
 	
 	$.ajax({
-		url : '/crocheck/comparednsquery',
+		url : '/comparednsquery',
 		data : {
 			"date_start" : first_date
 		},
@@ -1036,7 +1036,7 @@ function comparequery() {
 	});
 
 	$.ajax({
-		url : '/crocheck/comparednsquery',
+		url : '/comparednsquery',
 		data : {
 			"date_start" : second_date,
 		},
@@ -1059,7 +1059,7 @@ function comparequery() {
 		}
 	});
 	$.ajax({
-		url : '/crocheck/compareddosquery',
+		url : '/compareddosquery',
 		data : {
 			"date_start" : first_date
 		},
@@ -1083,7 +1083,7 @@ function comparequery() {
 	});
 
 	$.ajax({
-		url : '/crocheck/compareddosquery',
+		url : '/compareddosquery',
 		data : {
 			"date_start" : second_date,
 		},

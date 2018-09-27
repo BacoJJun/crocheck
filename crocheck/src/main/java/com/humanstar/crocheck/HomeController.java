@@ -45,6 +45,14 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
 	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String basedashboard(Locale locale, Model model) throws Exception {
+		return "dashboard";
+	}	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public String dashboard(Locale locale, Model model) throws Exception {
+		return "dashboard";
+	}	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
 		return "home";
@@ -58,10 +66,6 @@ public class HomeController {
 	public String chart(Locale locale, Model model) throws Exception {
 		return "chart";
 	}
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String dashboard(Locale locale, Model model) throws Exception {
-		return "dashboard";
-	}	
 	@RequestMapping(value = "/dashboard2", method = RequestMethod.GET)
 	public String dashboard2(Locale locale, Model model) throws Exception {
 		return "dashboard_old";

@@ -25,7 +25,7 @@ function zoneCount(){
 	var sub_domain = document.getElementById("sub_domain_count");
 	
 	$.ajax({
-		url : '/crocheck/zoneCount',
+		url : '/zoneCount',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -55,7 +55,7 @@ function getStatList() {
 	var nowddosstat = document.getElementById("nowddosstat");
 
 	$.ajax({
-		url : '/crocheck/ddosStat',
+		url : '/ddosStat',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -75,7 +75,7 @@ function getStatList() {
 		}
 	});
 	$.ajax({
-		url : '/crocheck/dnsStat',
+		url : '/dnsStat',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -99,7 +99,7 @@ function getDnsList() {
 	var show_dns = document.getElementById("show_dns");
 
 	$.ajax({
-		url : '/crocheck/alertLiveDns',
+		url : '/alertLiveDns',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -137,7 +137,7 @@ function getDDosList() {
 	var show_ddos = document.getElementById("show_ddos");
 
 	$.ajax({
-		url : '/crocheck/alertLiveDDos',
+		url : '/alertLiveDDos',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -175,7 +175,7 @@ function getDDosList() {
 function getDnsTodayGraph() {
 	var dns_data = [];
 	var jsonData = $.ajax({
-		url : '/crocheck/todayDns',
+		url : '/todayDns',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -197,7 +197,7 @@ function getDnsTodayGraph() {
 
 	var yesterday_dns_data = [];
 	var jsonData = $.ajax({
-		url : '/crocheck/yesterdayDns',
+		url : '/yesterdayDns',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -265,7 +265,7 @@ function init_echarts() {
 
 	var jsonData = $
 			.ajax({
-				url : '/crocheck/SystemStatus',
+				url : '/SystemStatus',
 				type : 'post',
 				dataType : 'json',
 				async : false,

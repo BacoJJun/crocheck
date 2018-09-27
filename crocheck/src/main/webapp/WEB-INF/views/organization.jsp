@@ -8,12 +8,10 @@
 	<div class="container body">
 		<div class="main_container">
 
-					
-					<!-- sidebar menu -->
-					<%@ include file="side.jsp"%>
-					<!-- sidebar menu -->
 
-
+			<!-- sidebar menu -->
+			<%@ include file="side.jsp"%>
+			<!-- sidebar menu -->
 
 			<!--  top navigation -->
 			<%@ include file="top.jsp"%>
@@ -21,7 +19,7 @@
 
 			<!-- page content -->
 			<div class="right_col" role="main">
-				<div class="">
+				<div class="row">
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
@@ -29,16 +27,9 @@
 							</h3>
 						</div>
 
-						<div class="title_right">
-							<div
-								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Search for..."> <span
-										class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
-								</div>
+						<div class="title_right text-right">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
+									<button class="btn btn-defalut " type="button">+</button>
 							</div>
 						</div>
 					</div>
@@ -53,76 +44,43 @@
 									<!-- organization list -->
 
 									<div class="col-sm-2 col-md-2 affix-sidebar">
-										<%@ include file="organization_menu.jsp" %>
+										<%@ include file="organization_menu.jsp"%>
 									</div>
 									<!-- organization list end -->
 									<!-- start project list -->
-									<div id="base_table">
-									<div class="col-md-10 col-sm-12 col-xs-12">
-										<table id="member_datatable"
-											class="table table-striped table-bordered dt-responsive nowrap"
-											cellspacing="0" width="100%">
 
-											<colgroup>
-												<col width="10%"></col>
-												<col width="7%"></col>
-												<col width="15%"></col>
-												<col width="12%"></col>
-												<col width="12%"></col>
-												<col width="15%"></col>
-												<col width="*%"></col>
-												<col width="10%"></col>
-											</colgroup>
-											<thead>
-												<tr>
-													<th>부서</th>
-													<th>이름</th>
-													<th>IP</th>
-													<th>전화번호</th>
-													<th>휴대전화</th>
-													<th>E메일</th>
-													<th>기타</th>
-													<th>수정</th>
-												</tr>
-											</thead>
-											<tbody id="member_list">
-											</tbody>
-										</table>
-									</div>
-									</div>
-									
-									<div id="search_table">
-									<div class="col-md-10 col-sm-12 col-xs-12">
-										<table id="post_datatable"
-											class="table table-striped table-bordered dt-responsive nowrap"
-											cellspacing="0" width="100%">
+									<div id="datatables">
+										<div class="col-md-10 col-sm-12 col-xs-12">
+											<table id="member_datatable"
+												class="table table-striped table-bordered dt-responsive nowrap"
+												cellspacing="0" width="100%">
 
-											<colgroup>
-												<col width="10%"></col>
-												<col width="7%"></col>
-												<col width="15%"></col>
-												<col width="12%"></col>
-												<col width="12%"></col>
-												<col width="15%"></col>
-												<col width="*%"></col>
-												<col width="10%"></col>
-											</colgroup>
-											<thead>
-												<tr>
-													<th>부서</th>
-													<th>이름</th>
-													<th>IP</th>
-													<th>전화번호</th>
-													<th>휴대전화</th>
-													<th>E메일</th>
-													<th>기타</th>
-													<th>수정</th>
-												</tr>
-											</thead>
-											<tbody id="post_member_list">
-											</tbody>
-										</table>
-									</div>
+												<colgroup>
+													<col width="10%"></col>
+													<col width="7%"></col>
+													<col width="15%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="15%"></col>
+													<col width="*%"></col>
+													<col width="10%"></col>
+												</colgroup>
+												<thead>
+													<tr>
+														<th>부서</th>
+														<th>이름</th>
+														<th>IP</th>
+														<th>전화번호</th>
+														<th>휴대전화</th>
+														<th>E메일</th>
+														<th>기타</th>
+														<th>수정</th>
+													</tr>
+												</thead>
+												<tbody id="member_list">
+												</tbody>
+											</table>
+										</div>
 									</div>
 									<!-- end project list -->
 
@@ -177,9 +135,10 @@
 	<script src="js/daterangepicker.js"></script>
 	<script src="js/echarts.min.js"></script>
 	<!-- datatable -->
+
 	<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="js/datatables.net/js/fnReloadAjax.js"></script>
-	
+
 	<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 	<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
@@ -194,10 +153,11 @@
 	<script
 		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	
 	<!-- Custom Theme Scripts -->
 	<script src="js/organization_menu.js"></script>
 	<script src="js/organization.js"></script>
 	<script src="js/alert.js"></script>
-		<script src="js/custom.js"></script>
+	<script src="js/custom.js"></script>
 </body>
 </html>

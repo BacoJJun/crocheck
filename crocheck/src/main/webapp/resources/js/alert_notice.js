@@ -4,7 +4,7 @@ $(document).ready(function() {
 function alertMessagetable(){
 	var messageList = document.getElementById("alertMessageListtable");
 	$.ajax({
-		url : '/crocheck/alertMessageview',
+		url : '/alertMessageview',
 		type : 'post',
 		dataType : 'json',
 		async : false,

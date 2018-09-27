@@ -371,7 +371,7 @@ function getDnsList() {
 	var show_dns = document.getElementById("show_dns");
 
 	$.ajax({
-		url : '/crocheck/alertLiveDns',
+		url : '/alertLiveDns',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -409,7 +409,7 @@ function getDDosList() {
 	var show_ddos = document.getElementById("show_ddos");
 
 	$.ajax({
-		url : '/crocheck/alertLiveDDos',
+		url : '/alertLiveDDos',
 		type : 'post',
 		dataType : 'json',
 		async : false,

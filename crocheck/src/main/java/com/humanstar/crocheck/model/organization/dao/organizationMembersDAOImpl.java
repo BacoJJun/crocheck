@@ -31,7 +31,13 @@ public class organizationMembersDAOImpl implements organizationMembersDAO{
 	@Override
 	public List<memberVO> postMemberList(memberVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("organization.postmembers");
+		return SqlSession.selectList("organization.postmembers",vo);
+	}
+
+	@Override
+	public postVO postSearchList(postVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectOne("organization.postsearchlist", vo);
 	}
 
 }

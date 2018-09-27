@@ -3,7 +3,7 @@
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title" style="border: 0;">
-			<a href="/crocheck" class="site_title"> <span>CROCHECK
+			<a href="/dashboard" class="site_title"> <span>CROCHECK
 					SDNS</span></a>
 		</div>
 
@@ -16,36 +16,36 @@
 					<li><a><i class="fa fa-home"></i> Home <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="/crocheck">Dashboard</a></li>
-							<li><a href="/crocheck/dashboard2">Dashboard2</a></li>
-							<li><a href="/crocheck/dashboard3">Dashboard3</a></li>
+							<li><a href=" /dashboard">Dashboard</a></li>
+							<li><a href=" /dashboard2">Dashboard2</a></li>
+							<li><a href=" /dashboard3">Dashboard3</a></li>
 						</ul></li>
 					<li><a><i class="fa fa-bar-chart-o"></i> Statistics <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="/crocheck/dnsstatus">DNS-STATUS</a></li>
-							<li><a href="/crocheck/statistics">ANALYSIS</a></li>
-							<li><a href="/crocheck/compare">COMPARE</a></li>
+							<li><a href=" /dnsstatus">DNS-STATUS</a></li>
+							<li><a href=" /statistics">ANALYSIS</a></li>
+							<li><a href=" /compare">COMPARE</a></li>
 						</ul></li>
 					<li><a><i class="fa fa-edit"></i> Policy <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="/crocheck/dnspolicy">DNS</a></li>
-							<li><a href="/crocheck/dhcppolicy">DHCP</a></li>
-							<li><a href="/crocheck/alertList">ALERT</a></li>
-							<li><a href="/crocheck/engine">ENGINE</a></li>
+							<li><a href=" /dnspolicy">DNS</a></li>
+							<li><a href=" /dhcppolicy">DHCP</a></li>
+							<li><a href=" /alertList">ALERT</a></li>
+							<li><a href=" /engine">ENGINE</a></li>
 						</ul></li>
 					<li><a><i class="fa fa-sitemap"></i>Organiziton<span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="/crocheck/organization">ORGANIZATION</a></li>
+							<li><a href=" /organization">ORGANIZATION</a></li>
 						</ul></li>
 
 					<li><a><i class="fa fa-clone"></i>Report <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="/crocheck/status_report">STATUS</a></li>
-							<li><a href="/crocheck/update_report">UPDATE</a></li>
+							<li><a href=" /status_report">STATUS</a></li>
+							<li><a href=" /update_report">UPDATE</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -57,10 +57,10 @@
 
 		</div>
 		<div class="sidebar-footer hidden-small">
-			<a href="/crocheck/setting" data-toggle="tooltip"
+			<a href=" /setting" data-toggle="tooltip"
 				data-placement="top" title="Settings"> <span
 				class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-			</a> <a href="/crocheck/guide" data-toggle="tooltip" data-placement="top"
+			</a> <a href=" /guide" data-toggle="tooltip" data-placement="top"
 				title="Guide"> <span class="glyphicon glyphicon-book"
 				aria-hidden="true"></span>
 			</a> <a href="#" class="requestfullscreen" data-toggle="tooltip"

@@ -87,7 +87,7 @@ function updatednszone(){
 	
 	$
 	.ajax({
-		url : '/crocheck/updatedns',
+		url : '/updatedns',
 		data : {
 			"zone" : zone,
 			"type" : type,
@@ -139,7 +139,7 @@ function insertdnszone(){
 	
 	$
 	.ajax({
-		url : '/crocheck/insertdns',
+		url : '/insertdns',
 		data : {
 			"zone" : zone,
 			"type" : type,
@@ -182,7 +182,7 @@ function updatesubdomain(){
 	var comment = document.getElementById("subdomain_update_comment").value;
 	$
 	.ajax({
-		url : '/crocheck/updatesubdomain',
+		url : '/updatesubdomain',
 		data : {
 			"zone" : zone,
 			"type" : type,
@@ -218,7 +218,7 @@ function subdomainupdate(sub_id){
 	var comment = document.getElementById("subdomain_update_comment");
 	$
 	.ajax({
-		url : '/crocheck/catchDnsDomain',
+		url : '/catchDnsDomain',
 		data : {
 			"id" : sub_id
 		},
@@ -265,7 +265,7 @@ function dnsupdate(dns_id){
 	
 	$
 	.ajax({
-		url : '/crocheck/catchDnsDomain',
+		url : '/catchDnsDomain',
 		data : {
 			"id" : dns_id
 		},
@@ -316,7 +316,7 @@ function dnsdeletebuttonevent(dns_value){
 function subdomaindelete(sub_id){
 	$
 	.ajax({
-		url : '/crocheck/deletesubdomain',
+		url : '/deletesubdomain',
 		data : {
 			"id" : sub_id
 		},
@@ -341,7 +341,7 @@ function subdomaindelete(sub_id){
 function dnsdelete(dns_value){
 		$
 		.ajax({
-			url : '/crocheck/deletedns',
+			url : '/deletedns',
 			data : {
 				"zone" : dns_value
 			},
@@ -372,7 +372,7 @@ function subdomaininsert(){
 	
 	$
 	.ajax({
-		url : '/crocheck/insertsubdomain',
+		url : '/insertsubdomain',
 		data : {
 			"zone" : zone,
 			"type" : type,
@@ -402,7 +402,7 @@ function zonelistdraw(){
 	var subdomainzonelist = document.getElementById("subdomain_zonelist");
 	$
 	.ajax({
-		url : '/crocheck/dnszonelist',
+		url : '/dnszonelist',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -437,7 +437,7 @@ function init_ddos_block_table() {
 	var ddos_attack_count = document.getElementById("ddos_attack_count");
 	$
 			.ajax({
-				url : '/crocheck/ddosBlockStatus',
+				url : '/ddosBlockStatus',
 				type : 'post',
 				dataType : 'json',
 				async : false,
@@ -479,7 +479,7 @@ function searhdnsdomain() {
 	var result_table = document.getElementById("lookup-result");
 	$
 			.ajax({
-				url : '/crocheck/searchDnsDomain',
+				url : '/searchDnsDomain',
 				data : {
 					"zone" : search_text
 				},
@@ -531,7 +531,7 @@ function dnstable() {
 	var dns_zone = document.getElementById("zonelist");
 	$
 			.ajax({
-				url : '/crocheck/dnsTableList',
+				url : '/dnsTableList',
 				type : 'post',
 				dataType : 'json',
 				async : false,
@@ -599,7 +599,7 @@ function subDnstable(zone_name) {
 
 	$
 			.ajax({
-				url : '/crocheck/subDnsList',
+				url : '/subDnsList',
 				data : {
 					"zone" : zone_name
 				},

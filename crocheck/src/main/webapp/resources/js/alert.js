@@ -18,7 +18,7 @@ function alert_click_event(){
 }
 function readalertMessage(alertNo){
 	$.ajax({
-		url : '/crocheck/updatealert',
+		url : ' /updatealert',
 		data : {
 			"seq_no" : alertNo
 		},
@@ -41,7 +41,7 @@ function readalertMessage(alertNo){
 }
 function readallMessage(){
 	$.ajax({
-		url : '/crocheck/updateallread',
+		url : ' /updateallread',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -70,7 +70,7 @@ function alertList(){
 	var List = document.getElementById("alertList");
 	
 	$.ajax({
-		url : '/crocheck/alertMessageList',
+		url : ' /alertMessageList',
 		type : 'post',
 		dataType : 'json',
 		async : false,

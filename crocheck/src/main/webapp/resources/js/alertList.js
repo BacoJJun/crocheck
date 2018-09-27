@@ -16,7 +16,7 @@ function alertValueList() {
 	var ddos_critical = document.getElementById("ddos_critical");
 
 	$.ajax({
-		url : '/crocheck/alertList',
+		url : '/alertList',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -57,7 +57,7 @@ function button_event(){
 		var ddos_critical = document.getElementById("ddos_critical").value;
 		
 		$.ajax({
-			url : '/crocheck/updatealertvalue',
+			url : '/updatealertvalue',
 			data : {
 				"cpu_warning" : cpu_warning,
 				"cpu_critical" : cpu_critical,

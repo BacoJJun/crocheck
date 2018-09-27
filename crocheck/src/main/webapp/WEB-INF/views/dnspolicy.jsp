@@ -136,6 +136,8 @@
 									<colgroup>
 										<col width="20%"></col>
 										<col width="20%"></col>
+										
+										
 										<col width="*"></col>
 										<col width="15%"></col>
 									</colgroup>

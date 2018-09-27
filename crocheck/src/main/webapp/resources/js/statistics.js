@@ -29,7 +29,7 @@ function searchDataPacket(start_date, end_date, search_type) {
 	var dns_date = [];
 
 	$.ajax({
-		url : '/crocheck/searchPacketDns',
+		url : '/searchPacketDns',
 		data : {
 			"type" : search_type,
 			"date_start" : start_date,
@@ -58,7 +58,7 @@ function searchDataPacket(start_date, end_date, search_type) {
 	var ddos_date = [];
 
 	$.ajax({
-		url : '/crocheck/searchPacketDDos',
+		url : '/searchPacketDDos',
 		data : {
 			"type" : search_type,
 			"date_start" : start_date,
@@ -91,7 +91,7 @@ function lastDatePacket() {
 	var dns_date = [];
 
 	$.ajax({
-		url : '/crocheck/statLastPacketDns',
+		url : '/statLastPacketDns',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -115,7 +115,7 @@ function lastDatePacket() {
 	var ddos_date = [];
 
 	$.ajax({
-		url : '/crocheck/statLastPacketDDos',
+		url : '/statLastPacketDDos',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -141,7 +141,7 @@ function lastDatePacket() {
 
 function lastDatednsDomain() {
 	$.ajax({
-		url : '/crocheck/statlastdnsdomain',
+		url : '/statlastdnsdomain',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -161,7 +161,7 @@ function lastDatednsDomain() {
 }
 function searchdnsDomain(start_date, end_date, search_type) {
 	$.ajax({
-		url : '/crocheck/searchdnsdomain',
+		url : '/searchdnsdomain',
 		data : {
 			"type" : search_type,
 			"date_start" : start_date,
@@ -186,7 +186,7 @@ function searchdnsDomain(start_date, end_date, search_type) {
 }
 function lastDateddosDomain() {
 	$.ajax({
-		url : '/crocheck/statlastddosdomain',
+		url : '/statlastddosdomain',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -206,7 +206,7 @@ function lastDateddosDomain() {
 }
 function searchddosDomain(start_date, end_date, search_type) {
 	$.ajax({
-		url : '/crocheck/searchddosdomain',
+		url : '/searchddosdomain',
 		data : {
 			"type" : search_type,
 			"date_start" : start_date,
@@ -231,7 +231,7 @@ function searchddosDomain(start_date, end_date, search_type) {
 }
 function lastDatednsSrc() {
 	$.ajax({
-		url : '/crocheck/statlastdnssrc',
+		url : '/statlastdnssrc',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -251,7 +251,7 @@ function lastDatednsSrc() {
 }
 function searchdnsSrc(start_date, end_date, search_type) {
 	$.ajax({
-		url : '/crocheck/searchdnssrc',
+		url : '/searchdnssrc',
 		data : {
 			"type" : search_type,
 			"date_start" : start_date,
@@ -276,7 +276,7 @@ function searchdnsSrc(start_date, end_date, search_type) {
 }
 function lastDateddosSrc() {
 	$.ajax({
-		url : '/crocheck/statlastddossrc',
+		url : '/statlastddossrc',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -296,7 +296,7 @@ function lastDateddosSrc() {
 }
 function searchddosSrc(start_date, end_date, search_type) {
 	$.ajax({
-		url : '/crocheck/searchddossrc',
+		url : '/searchddossrc',
 		data : {
 			"type" : search_type,
 			"date_start" : start_date,
@@ -324,7 +324,7 @@ function lastDateApp() {
 	var appMem = [];
 	var appDate = [];
 	$.ajax({
-		url : '/crocheck/statLastApp',
+		url : '/statLastApp',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -353,7 +353,7 @@ function searchApp(start_date, end_date, search_type) {
 	var appMem = [];
 	var appDate = [];
 	$.ajax({
-		url : '/crocheck/searchApp',
+		url : '/searchApp',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date,

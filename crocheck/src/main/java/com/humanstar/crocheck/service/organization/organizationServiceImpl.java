@@ -34,4 +34,10 @@ public class organizationServiceImpl implements organizationService{
 		return organizationMembersDAO.postList();
 	}
 
+	@Override
+	public postVO postSearchList(postVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return organizationMembersDAO.postSearchList(vo);
+	}
+
 }

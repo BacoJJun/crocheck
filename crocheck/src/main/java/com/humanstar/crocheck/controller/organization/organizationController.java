@@ -98,4 +98,26 @@ public class organizationController {
 
 		return resultMap; 
 	}
+	
+	@RequestMapping(value = "/postsearchlist", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> postsearchlist(@ModelAttribute postVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		postVO postSearchList = new postVO();
+
+		try {
+			postSearchList = organizationService.postSearchList(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("postSearchList", postSearchList);
+
+		return resultMap; 
+	}
 }

@@ -112,7 +112,7 @@ function baseQuery(){
 	var dnsdomainCount = [];
 	var dnsdomainPer = [];
 	$.ajax({
-		url : '/crocheck/reportBaseDnsDomain',
+		url : '/reportBaseDnsDomain',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -139,7 +139,7 @@ function baseQuery(){
 	 var ddosdomainCount = [];
 	 var ddosdomainPer = [];
 	$.ajax({
-		url : '/crocheck/reportBaseDDosDomain',
+		url : '/reportBaseDDosDomain',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -167,7 +167,7 @@ function baseQuery(){
 	var dnsSrcPer = [];
 	
 	$.ajax({
-		url : '/crocheck/reportBaseDnsSrc',
+		url : '/reportBaseDnsSrc',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -193,7 +193,7 @@ function baseQuery(){
 	var ddosSrcCount = [];
 	var ddosSrcPer = [];	
 	$.ajax({
-		url : '/crocheck/reportBaseDDosSrc',
+		url : '/reportBaseDDosSrc',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -226,7 +226,7 @@ function monthQuery(){
 	var dnsdomainCount = [];
 	var dnsdomainPer = [];
 	$.ajax({
-		url : '/crocheck/reportmonthDnsDomain',
+		url : '/reportmonthDnsDomain',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -257,7 +257,7 @@ function monthQuery(){
 	 var ddosdomainCount = [];
 	 var ddosdomainPer = [];
 	$.ajax({
-		url : '/crocheck/reportmonthDDosDomain',
+		url : '/reportmonthDDosDomain',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -289,7 +289,7 @@ function monthQuery(){
 	var dnsSrcPer = [];
 	
 	$.ajax({
-		url : '/crocheck/reportmonthDnsSrc',
+		url : '/reportmonthDnsSrc',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -319,7 +319,7 @@ function monthQuery(){
 	var ddosSrcCount = [];
 	var ddosSrcPer = [];	
 	$.ajax({
-		url : '/crocheck/reportmonthDDosSrc',
+		url : '/reportmonthDDosSrc',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -359,7 +359,7 @@ function weekQuery(){
 	var dnsdomainCount = [];
 	var dnsdomainPer = [];
 	$.ajax({
-		url : '/crocheck/reportweekDnsDomain',
+		url : '/reportweekDnsDomain',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -392,7 +392,7 @@ function weekQuery(){
 	 var ddosdomainPer = [];
 		console.log(start_date + "/" + end_date);
 	$.ajax({
-		url : '/crocheck/reportweekDDosDomain',
+		url : '/reportweekDDosDomain',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -425,7 +425,7 @@ function weekQuery(){
 	var dnsSrcPer = [];
 	console.log(start_date + "/" + end_date);
 	$.ajax({
-		url : '/crocheck/reportweekDnsSrc',
+		url : '/reportweekDnsSrc',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -458,7 +458,7 @@ function weekQuery(){
 	var ddosSrcPer = [];	
 	console.log(start_date+ "/" + end_date);
 	$.ajax({
-		url : '/crocheck/reportweekDDosSrc',
+		url : '/reportweekDDosSrc',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -497,7 +497,7 @@ function daysQuery(){
 	var dnsdomainCount = [];
 	var dnsdomainPer = [];
 	$.ajax({
-		url : '/crocheck/reportdayDnsDomain',
+		url : '/reportdayDnsDomain',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -528,7 +528,7 @@ function daysQuery(){
 	 var ddosdomainCount = [];
 	 var ddosdomainPer = [];
 	$.ajax({
-		url : '/crocheck/reportdayDDosDomain',
+		url : '/reportdayDDosDomain',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -561,7 +561,7 @@ function daysQuery(){
 	var dnsSrcPer = [];
 	
 	$.ajax({
-		url : '/crocheck/reportdayDnsSrc',
+		url : '/reportdayDnsSrc',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -592,7 +592,7 @@ function daysQuery(){
 	var ddosSrcCount = [];
 	var ddosSrcPer = [];	
 	$.ajax({
-		url : '/crocheck/reportdayDDosSrc',
+		url : '/reportdayDDosSrc',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -921,7 +921,7 @@ function monthPacket() {
 	var appDate = [];
 
 	$.ajax({
-		url : '/crocheck/reportmonthDnsPacket',
+		url : '/reportmonthDnsPacket',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -947,7 +947,7 @@ function monthPacket() {
 	});
 
 	$.ajax({
-		url : '/crocheck/reportmonthDDosPacket',
+		url : '/reportmonthDDosPacket',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -983,7 +983,7 @@ function weekPacket() {
 	var appDate = [];
 
 	$.ajax({
-		url : '/crocheck/reportweekDnsPacket',
+		url : '/reportweekDnsPacket',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -1009,7 +1009,7 @@ function weekPacket() {
 	});
 
 	$.ajax({
-		url : '/crocheck/reportweekDDosPacket',
+		url : '/reportweekDDosPacket',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -1045,7 +1045,7 @@ function daysPacket() {
 	var appDate = [];
 
 	$.ajax({
-		url : '/crocheck/reportdayDnsPacket',
+		url : '/reportdayDnsPacket',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -1071,7 +1071,7 @@ function daysPacket() {
 	});
 
 	$.ajax({
-		url : '/crocheck/reportdayDDosPacket',
+		url : '/reportdayDDosPacket',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -1104,7 +1104,7 @@ function basePacket() {
 	var appDate = [];
 
 	$.ajax({
-		url : '/crocheck/reportBaseDnsPacket',
+		url : '/reportBaseDnsPacket',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -1126,7 +1126,7 @@ function basePacket() {
 	});
 
 	$.ajax({
-		url : '/crocheck/reportBaseDDosPacket',
+		url : '/reportBaseDDosPacket',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -1194,7 +1194,7 @@ function monthAppliance() {
 	var appDate = [];
 
 	$.ajax({
-		url : '/crocheck/reportmonthApp',
+		url : '/reportmonthApp',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -1232,7 +1232,7 @@ function weekAppliance() {
 	var appDate = [];
 
 	$.ajax({
-		url : '/crocheck/reportweekApp',
+		url : '/reportweekApp',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -1270,7 +1270,7 @@ function daysAppliance() {
 	var appDate = [];
 
 	$.ajax({
-		url : '/crocheck/reportdayApp',
+		url : '/reportdayApp',
 		data : {
 			"date_start" : start_date,
 			"date_end" : end_date
@@ -1305,7 +1305,7 @@ function baseAppliance() {
 	var appDate = [];
 
 	$.ajax({
-		url : '/crocheck/reportBaseApp',
+		url : '/reportBaseApp',
 		type : 'post',
 		dataType : 'json',
 		async : false,

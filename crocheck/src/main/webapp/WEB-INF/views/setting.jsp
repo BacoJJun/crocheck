@@ -7,9 +7,9 @@
 <body class="nav-sm">
 	<div class="container body">
 		<div class="main_container">
-					<!-- sidebar menu -->
-					<%@ include file="side.jsp"%>
-					<!-- sidebar menu -->
+			<!-- sidebar menu -->
+			<%@ include file="side.jsp"%>
+			<!-- sidebar menu -->
 
 			<!--  top navigation -->
 			<%@ include file="top.jsp"%>
@@ -21,240 +21,105 @@
 					<!--  Policy setting start -->
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>
-								정책관리 <small>Policy Setting </small>
-							</h2>
-
+							<h2>System Management</h2>
 							<div class="clearfix"></div>
 						</div>
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>
-										엔진 작동 <small> </small>
-									</h2>
-
-									<div class="clearfix"></div>
+						<div class="row panel">
+							<div class="row">
+								<div class="col-lg-1 col-md-1"></div>
+								<div class="col-lg-2 col-md-2">
+									<span><strong>장비이름</strong></span>
 								</div>
-								<div class="col-md-4">
-									<div class="x_panel">
-										<div class="x_title">
-											<h2>
-												DNS <small> </small>
-											</h2>
-
-											<div class="clearfix"></div>
-										</div>
-										<div class="radio">
-											<label> <input type="radio" class="flat" checked
-												name="check_dns" checked id="check_dns_start""> 작동
-											</label> <label> <input type="radio" class="flat"
-												name="check_dns" id="check_dns_stop"> 정지
-											</label>
-										</div>
-										<p>DNS 작동 여부를 결정합니다.</p>
-										<div class="controls">
-											<button type="button" class="btn btn-success btn-sm">적용</button>
-										</div>
-									</div>
+								<div class="col-lg-6 col-md-6">
+									<span><strong>CroCheck SDNS 3.0</strong></span>
 								</div>
-								<div class="col-md-4">
-									<div class="x_panel">
-										<div class="x_title">
-											<h2>
-												DHCP <small> </small>
-											</h2>
-
-											<div class="clearfix"></div>
-										</div>
-										<div class="radio">
-											<label> <input type="radio" class="flat" checked
-												name="check_dhcp" checked id="check_dhcp_start""> 작동
-											</label> <label> <input type="radio" class="flat"
-												name="check_dhcp" id=""check_dhcp_stop""> 정지
-											</label>
-										</div>
-										<p>DHCP 작동 여부를 결정합니다.</p>
-										<div class="controls">
-											<button type="button" class="btn btn-sm btn-success">적용</button>
-										</div>
-									</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="row">
+								<div class="col-lg-1 col-md-1"></div>
+								<div class="col-lg-2 col-md-2">
+									<span><strong>라이센스</strong> </span>
 								</div>
-								<div class="col-md-4">
-									<div class="x_panel">
-										<div class="x_title">
-											<h2>
-												NTP <small>시간 동기화 서버 </small>
-											</h2>
-
-											<div class="clearfix"></div>
-										</div>
-										<div class="radio">
-											<label> <input type="radio" class="flat" checked
-												name="check_ntp" id="check_ntp_start""> 작동
-											</label> <label> <input type="radio" class="flat"
-												name="check_ntp" id="check_ntp_stop"> 정지
-											</label>
-										</div>
-										<p>NTP 작동 여부를 결정합니다.</p>
-										<div class="controls">
-											<button type="button" class="btn btn-success btn-sm">적용</button>
-										</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="table">
+										<table class="table">
+											<thead id="license_view">
+											</thead>
+										</table>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!--  Policy setting end -->
-
-
-						<!--  NTP setting start -->
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>
-										NTP <small> network time protocal</small>
-									</h2>
-									<div class="clearfix"></div>
+							<div class="row">
+								<div class="col-lg-1 col-md-1"></div>
+								<div class="col-lg-2 col-md-2">
+									<span><strong>접속 허용 IP 목록 </strong></span>
 								</div>
-								<div>
-									<div class="col-md-12 col-sm-12 col-xs-12">
-										<div class="col-md-6 col-sm-8 col-xs-8">
-											<table id="table-responsive"
-												class="table  table-hover">
-												<thead>
-													<tr class="headings ">
-														<th class="column-title">SERVER NAME</th>
-														<th class="column-title">비고</th>
-														<th class="column-title">
-															<ul class="nav navbar-right panel_toolbox">
-																<li><a><i class="fa fa-plus"></i></a></li>
-																<li><a><i class="fa fa-question"></i></a></li>
-															</ul>
-														</th>
-													</tr>
-												</thead>
-												<tbody id="ntpllist">
-													<tr>
-														<td>time1.google.com</td>
-														<td></td>
-														<td>
-															<ul class="nav navbar-right panel_toolbox">
-																<li><a><i class="fa fa-edit"></i></a></li>
-																<li><a><i class="fa fa-trash"></i></a></li>
-															</ul>
-														</td>
-													</tr>
-													<tr>
-														<td>time2.google.com</td>
-														<td></td>
-														<td>
-															<ul class="nav navbar-right panel_toolbox">
-																<li><a><i class="fa fa-edit"></i></a></li>
-																<li><a><i class="fa fa-trash"></i></a></li>
-															</ul>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="table" >
+										<table class="table" id="accesslistTable">
+											<colgroup>
+												<col width="45%"></col>
+												<col width="45%"></col>
+												<col width="10%"></col>
+											</colgroup>
+											<thead>
+												<tr>
+													<th>IP</th>
+													<th>사용자 이름</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody id="access_list"></tbody>
+										</table>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!--  NTP setting end -->
-
-
-						<!--  DHCP Rental start -->
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>
-										DHCP <small> Dynamic Host Configuration Protocol</small>
-									</h2>
-
-									<div class="clearfix"></div>
+							<div class="row">
+								<div class="col-lg-1 col-md-1"></div>
+								<div class="col-lg-2 col-md-2">
+									<span><strong>관리자 E-mail 목록 </strong> </span>
 								</div>
-								<div>
-									<div class="section" id="dhcp-set">
-										<div class="col-md-1"></div>
-										<form class="simple_form form-horizontal" id="dhcp-set-form"
-											action="/roles/1" accept-charset="UTF-8" method="post">
-											<input name="utf8" type="hidden" value="&#x2713;" /> <input
-												type="hidden" name="_method" value="patch" /><input
-												type="hidden" name="authenticity_token"
-												value="BIA7PzVo3PwxLVpqvYrmbCovcBfvOK8OnWN41Js95Y+R3Eu5AKOhz1jhnJWecP4g5HRN8cWd7eU2oWH/t6vTnw==" />
-											<input type="hidden" name="action" value="dhcp-set-update">
-											<div class="form-group">
-												<div class="col-md-1">
-													<label class=" optional control-label full-width"
-														for="lease_time">임대시간</label>
-												</div>
-												<div class="col-md-1">
-													<input
-														class="numeric integer optional form-control input-sm"
-														type="number" step="1" name="dhcp[day]" id="dhcp_day" />
-													<span id="day-help" class="help-block">일</span>
-												</div>
-												<div class="col-md-1">
-													<input
-														class="numeric integer optional form-control input-sm"
-														type="number" step="1" name="dhcp[hour]" id="dhcp_hour" />
-													<span id="hour-help" class="help-block">시간</span>
-												</div>
-												<div class="col-md-1">
-													<input
-														class="numeric integer optional form-control input-sm"
-														value="1" type="number" step="1" name="dhcp[min]"
-														id="dhcp_min" /> <span id="min-help" class="help-block">분</span>
-												</div>
-											</div>
-
-											<div class="col-md-1"></div>
-											<div class="form-group">
-												<div class="col-md-1">
-													<label class="string optional control-label full-width"
-														for="dns_pri_ns">Primary DNS</label>
-												</div>
-												<div class="col-md-3">
-													<input class="string optional form-control input-sm"
-														type="text" name="dhcp[pri_dns]" id="dhcp_pri_dns"
-														value="192.168.0.205" /> <span id="pri-dns-help"
-														class="help-block">Primary_DNS를 설정합니다.</span>
-												</div>
-											</div>
-
-											<div class="col-md-1"></div>
-											<div class="form-group">
-												<div class="col-md-1">
-													<label class="string optional control-label full-width"
-														for="dhcp_second_dns">Secondary DNS</label>
-												</div>
-												<div class="col-md-3">
-													<input class="string optional form-control input-sm"
-														type="text" name="dhcp[second_dns]" id="dhcp_second_dns"
-														value="192.168.0.201" /> <span id="second-dns-help"
-														class="help-block"> Secondary_DNS를 설정합니다.</span>
-												</div>
-											</div>
-											<div class="col-md-1"></div>
-											<div class="col-md-3">
-												<input type="submit" name="commit" value="적용"
-													data-disable-with="설정 저장중.." class="btn btn-success btn-sm" />
-											</div>
-
-										</form>
+								<div class="col-lg-6 col-md-6">
+									<div class="table">
+										<table class="table" id="operatorlistTable">
+											<colgroup>
+												<col width="25%"></col>
+												<col width="25%"></col>
+												<col width="20%"></col>
+												<col width="20%"></col>
+												<col width="10%"></col>
+											</colgroup>
+											<thead>
+												<tr>
+													<th>E-mail</th>
+													<th>휴대폰 번호</th>
+													<th>사용자 이름</th>
+													<th>메일 발송</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody id="operator_list">
+											</tbody>
+										</table>
 									</div>
 								</div>
 							</div>
+							<div class="row">
+								<div class="col-lg-1 col-md-1"></div>
+								<div class="col-lg-2 col-md-2">
+									<span><strong>비밀번호 관리 </strong></span>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<button type="button" class="btn btn-info" id="password_change">관리자
+										비밀번호 변경</button>
+								</div>
+							</div>
 						</div>
-
-						<!-- DHCP Rental end -->
 					</div>
-				</div>
-				<!--end  page content -->
+					<!--end  page content -->
 
+				</div>
 			</div>
-		</div>
 		</div>
 
 		<!-- jQuery -->
@@ -275,6 +140,8 @@
 		<script src="js/icheck.min.js"></script>
 		<!-- Skycons -->
 		<script src="js/skycons.js"></script>
+		<!-- switch -->
+		<script src="js/switchery.min.js"></script>
 		<!-- Flot -->
 		<script src="js/jquery.flot.js"></script>
 		<script src="js/jquery.flot.pie.js"></script>
@@ -295,10 +162,25 @@
 		<script src="js/moment.min.js"></script>
 		<script src="js/daterangepicker.js"></script>
 		<script src="js/echarts.min.js"></script>
+		<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="js/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="js/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="js/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script
+			src="js/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="js/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script
+			src="js/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script
+			src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 
 		<!-- Custom Theme Scripts -->
-		<script src="js/statistics.js"></script>
-			<script src="js/alert.js"></script>
+		<script src="js/setting.js"></script>
+		<script src="js/alert.js"></script> 
 		<script src="js/custom.js"></script>
 </body>
 </html>

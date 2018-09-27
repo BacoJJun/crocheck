@@ -2,7 +2,7 @@ var loopdns = '';
 
 $(document).ready(function() {
 	$("#reservation-time").value = new Date();
-	
+
 	initDnsLoop();
 
 	$("#submit").click(function() {
@@ -27,15 +27,40 @@ function initDnsLoop() {
 	loopdns = setTimeout(initDnsLoop, 3000);
 
 }
+function div_draw() {
+	var searchtable = document.getElementById("searchtable");
+	searchtable.innerHTML = '';
+
+	var div_html = '';
+
+	div_html += '<table id="searchdatatable"';
+	div_html += 'class="table table-striped table-bordered">';
+	div_html += '<thead>';
+	div_html += '<tr>';
+	div_html += '<th>Client</th>';
+	div_html += '<th>Domain</th>';
+	div_html += '<th>Server IP</th>';
+	div_html += '<th>Query Time</th>';
+	div_html += '</tr>';
+	div_html += '</thead>';
+	div_html += '<tbody id="search_dns_list">';
+	div_html += '</tbody>';
+	div_html += '</table>';
+	div_html += '<div class="clearfix"></div>';
+	
+	searchtable.innerHTML = div_html;
+	
+}
 function SearchdnsList() {
 	var arrDate = $("#reservation-time").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 
+	div_draw();
 	var show_dns = document.getElementById("search_dns_list");
 
 	$.ajax({
-		url : '/crocheck/dnsSearchList',
+		url : '/dnsSearchList',
 		type : 'post',
 		data : {
 			"date_start" : start_date,
@@ -45,6 +70,7 @@ function SearchdnsList() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				console.log(result.dnssearchlist);
 				var domain_html = ' ';
 				for (var i = 0; i < result.dnssearchlist.length; i++) {
 					domain_html += '<tr>';
@@ -77,7 +103,7 @@ function getDnsList() {
 	var show_dns = document.getElementById("show_dns_list");
 
 	$.ajax({
-		url : '/crocheck/dnsNowList',
+		url : '/dnsNowList',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -108,5 +134,5 @@ function getDnsList() {
 	});
 	$("#searchtable").hide();
 	$("#refreshtable").show();
-	
+
 };

@@ -44,7 +44,7 @@ function getSystemInfo(){
  
     
 	$.ajax({
-		url : '/crocheck/SystemStatus'
+		url : '/SystemStatus'
 			, type : 'post'
 			, dataType : 'json'
 			, async : false
@@ -79,7 +79,7 @@ function getPharmingNowCount(){
 	var hourPharmingList = document.getElementById("hourPharmingList");
 	
 	$.ajax({
-		url : '/crocheck/nowPharmingList'
+		url : '/nowPharmingList'
 			, type : 'post'
 			, dataType : 'json'
 			, async : false
@@ -102,7 +102,7 @@ function getPharmingDayCount(){
 	var yesterdayPharmingList = document.getElementById("yesterdayPharmingList");
 	
 	$.ajax({
-		url : '/crocheck/dayPharmingList'
+		url : '/dayPharmingList'
 			, type : 'post'
 			, dataType : 'json'
 			, async : false
@@ -124,7 +124,7 @@ function getPharmingDayCount(){
 		var show_Domain = document.getElementById("show_domain");
 
 		$.ajax({
-			url : '/crocheck/alertLiveDomain'
+			url : '/alertLiveDomain'
 				, type : 'post'
 				, dataType : 'json'
 				, async : false
@@ -152,7 +152,7 @@ function getPharmingDayCount(){
 		var show_Departure = document.getElementById("show_departure");
 
 		$.ajax({
-			url : '/crocheck/alertLiveDeparture'
+			url : '/alertLiveDeparture'
 				, type : 'post'
 				, dataType : 'json'
 				, async : false
@@ -199,7 +199,7 @@ function getPharmingDayCount(){
 			});
 	        var y_data=[];
 			$.ajax({
-				url : '/crocheck/yesterdayPacketList'
+				url : '/yesterdayPacketList'
 					, type : 'post'
 					, dataType : 'json'
 					, async : false

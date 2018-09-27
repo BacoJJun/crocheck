@@ -14,6 +14,8 @@
     <link href="css/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="css/green.css" rel="stylesheet">
+    <!--  Switch -->
+        <link href="css/switchery.min.css" rel="stylesheet">
 	
     <!-- bootstrap-progressbar -->
     <link href="css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">

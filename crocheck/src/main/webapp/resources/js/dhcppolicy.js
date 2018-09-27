@@ -14,7 +14,7 @@ function dhcpcount() {
 	var total_not_rent_count = document.getElementById("total_not_rent_count");
 	$
 			.ajax({
-				url : '/crocheck/dhcpcount',
+				url : '/dhcpcount',
 				type : 'post',
 				dataType : 'json',
 				async : false,
@@ -46,7 +46,7 @@ function dhcpsubcount(id) {
 	var sub_not_rent_count = document.getElementById("sub_not_rent_count");
 	$
 			.ajax({
-				url : '/crocheck/dhcpsubcount',
+				url : '/dhcpsubcount',
 				data : {
 					"id" : id
 				},
@@ -76,7 +76,7 @@ function dhcptable() {
 	var dhcp_zone = document.getElementById("dhcplist");
 	$
 			.ajax({
-				url : '/crocheck/dhcpTableList',
+				url : '/dhcpTableList',
 				type : 'post',
 				dataType : 'json',
 				async : false,
@@ -126,7 +126,7 @@ function category() {
 	var selectUpdateGroup = document
 			.getElementById("dhcp_update_category_group");
 	$.ajax({
-		url : '/crocheck/dhcpcategory',
+		url : '/dhcpcategory',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -152,7 +152,7 @@ function category() {
 		}
 	});
 	$.ajax({
-		url : '/crocheck/dhcpcategorygroup',
+		url : '/dhcpcategorygroup',
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -247,7 +247,7 @@ function subdhcptable(id) {
 	var dhcpsublist = document.getElementById("dhcp_sublist");
 	$
 			.ajax({
-				url : '/crocheck/subdhcpList',
+				url : '/subdhcpList',
 				data : {
 					"id" : id
 				},
@@ -290,7 +290,7 @@ function rentdhcptable(id) {
 	var dhcprentlist = document.getElementById("dhcp_rentlist");
 	$
 			.ajax({
-				url : '/crocheck/rentdhcpList',
+				url : '/rentdhcpList',
 				data : {
 					"id" : id
 				},

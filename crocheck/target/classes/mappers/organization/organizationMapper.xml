@@ -20,4 +20,7 @@
 			</if>
 		</where>
 	</select>
+	<select id="postsearchlist" resultType="com.humanstar.crocheck.model.organization.dto.postVO">
+	select * from organizations where id = #{id}	
+	</select>
 </mapper>

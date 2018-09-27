@@ -8,7 +8,7 @@ function changevaluelist(){
 	
 	$
 	.ajax({
-		url : '/crocheck/reportChangeValueList',
+		url : '/reportChangeValueList',
 		type : 'post',
 		dataType : 'json',
 		async : false,
