@@ -38,7 +38,7 @@
 								</div>
 								<div class="col-lg-8 col-md-8">
 									<div class="text-center">
-										<a href="/crocheck/alert_notice"> <strong>See All Alerts</strong> <i
+										<a href="/alert_notice"> <strong>See All Alerts</strong> <i
 											class="fa fa-angle-right"></i>
 										</a>
 									</div>

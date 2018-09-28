@@ -20,5 +20,15 @@ public class accessorsDAOImpl implements accessorsDAO{
 		// TODO Auto-generated method stub
 		return SqlSession.selectList("setting.accessors");
 	}
+	@Override
+	public accessorsVO searchAccess(accessorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectOne("setting.searchacessor", vo);
+	}
+	@Override
+	public void deleteAccess(accessorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.delete("setting.deleteaccess", vo);
+	}
 
 }

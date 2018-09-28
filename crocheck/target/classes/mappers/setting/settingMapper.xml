@@ -11,8 +11,20 @@
 		resultType="com.humanstar.crocheck.model.setting.dto.operatorsVO">
 		select * from operators
 	</select>
+	<select id="searchoperator" resultType="com.humanstar.crocheck.model.setting.dto.operatorsVO">
+		select * from operators where id = #{id}
+	</select>
+	<delete  id="deleteoperator">
+		delete from operators where id = #{id}
+	</delete>
 	<select id="accessors"
 		resultType="com.humanstar.crocheck.model.setting.dto.accessorsVO">
 		select * from accessors order by id asc
 	</select>
+	<select id="searchacessor"	resultType="com.humanstar.crocheck.model.setting.dto.accessorsVO">
+		select * from accessors where id = #{id}
+	</select>
+	<delete id="deleteaccess">
+		delete from accessors where id = #{id}
+	</delete>
 </mapper>

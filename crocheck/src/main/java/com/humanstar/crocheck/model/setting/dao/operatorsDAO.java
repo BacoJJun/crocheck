@@ -6,4 +6,6 @@ import com.humanstar.crocheck.model.setting.dto.operatorsVO;
 
 public interface operatorsDAO {
 	public List<operatorsVO> operatorList() throws Exception;
+	public operatorsVO searchOperator(operatorsVO vo) throws Exception;
+	public void deleteOperator(operatorsVO vo) throws Exception;
 }

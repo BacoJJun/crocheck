@@ -25,5 +25,19 @@ public class operatorsDAOImpl implements operatorsDAO{
 		logger.info("DAO call");
 		return SqlSession.selectList("setting.operators");
 	}
+	
+	@Override
+	public operatorsVO searchOperator(operatorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectOne("setting.searchoperator",vo);
+	}
+	
+	@Override
+	public void deleteOperator(operatorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.delete("setting.deleteoperator", vo);
+	}
+
+
 
 }

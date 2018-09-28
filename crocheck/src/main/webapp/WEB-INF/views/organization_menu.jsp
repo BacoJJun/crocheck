@@ -5,8 +5,8 @@
 	<div class="panel">
 		<div class="col-lg-6 col-md-6"></div>
 		<div class="col-lg-6 col-md-6 text-right">
-			<button type="button" class="btn btn-default btn-xs fa fa-edit"
-				id="dep_edit" data-toggle="modal" data-target="#editdepart">EDIT</button>
+			<button type="button" class="btn btn-primary btn-xs fa fa-pencil"
+				id="dep_edit" data-toggle="modal" data-target="#editdepart"></button>
 		</div>
 	</div>
 	<div class="panel ">
