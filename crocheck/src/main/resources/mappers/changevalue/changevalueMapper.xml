@@ -4,18 +4,36 @@
 <!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
 <mapper namespace="changevalue">
 	<select id="changevaluelist" resultType="com.humanstar.crocheck.model.change.dto.changeValueVO">
-	select * from tb_change_value order by created_at desc
+	select seq_no, change_type, query_type, title, comment, change_user, user_ip, created_at
+	from tb_change_value order by created_at desc
 	</select>
-	<select id="seachvaluelist" resultType="com.humanstar.crocheck.model.change.dto.changeValueVO">
-	select * from tb_change_value 
+	<select id="searchdnslist" resultType="com.humanstar.crocheck.model.change.dto.changeValueVO">
+	select seq_no, change_type, query_type, title, comment, change_user, user_ip, created_at from tb_change_value 
 	where 
-	created_at >= #{date_start} 
+	( created_at
+		BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT TIME ZONE)))
 	and
-	#{date_end} > created_at
+	change_type = 'dns'
+	order by created_at desc
+	</select>
+	<select id="searchdhcplist" resultType="com.humanstar.crocheck.model.change.dto.changeValueVO">
+	select rank() over (order by seq_no desc ) as seq_no, change_type, query_type, title, comment, change_user, user_ip, created_at from tb_change_value 
+	where 
+	( created_at
+		BETWEEN
+		date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND
+		date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT TIME ZONE)))
+	and 
+	change_type = 'dhcp'
 	order by created_at desc
 	</select>
 	<insert id="insertchangevalue">
 		insert into tb_change_value(change_type, query_type, title, comment, change_user, user_ip)
 values(#{change_type}, #{query_type}, #{title}, #{comment}, #{change_user}, #{user_ip})
 	</insert>
+	<select id="selectOneValue" resultType="com.humanstar.crocheck.model.change.dto.changeValueVO">
+		select * from tb_change_value where seq_no = #{seq_no}
+	</select>
 </mapper>

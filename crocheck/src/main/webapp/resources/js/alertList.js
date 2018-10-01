@@ -29,7 +29,7 @@ function alertValueList() {
 				disk_warning.value = result.alertList.disk_warning;
 				disk_critical.value = result.alertList.disk_critical;
 				dns_warning.value = result.alertList.dns_warning;
-				dns_critical.value = result.alertList.dns_warning;
+				dns_critical.value = result.alertList.dns_critical;
 				ddos_warning.value = result.alertList.ddos_warning;
 				ddos_critical.value = result.alertList.ddos_critical;
 			} else {

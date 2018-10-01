@@ -23,15 +23,28 @@ public class changeValueServiceImpl implements changeValueService{
 	}
 
 	@Override
-	public List<changeValueVO> searchChangeValueList(searchTypeVO vo) throws Exception {
+	public List<changeValueVO> searchChangeDnsList(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return changeValueDAO.searchChangeValueList(vo);
+		return changeValueDAO.searchChangeDnsList(vo);
 	}
+	
+	@Override
+	public List<changeValueVO> searchChangeDhcpList(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return changeValueDAO.searchChangeDhcpList(vo);
+	}
+
 
 	@Override
 	public void insertChangeValue(changeValueVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		changeValueDAO.insertChangeValue(vo);
+	}
+
+	@Override
+	public changeValueVO selectOneValue(changeValueVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return changeValueDAO.selectOneValue(vo);
 	}
 
 }

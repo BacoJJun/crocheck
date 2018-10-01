@@ -1813,15 +1813,16 @@ function init_daterangepicker() {
 	var cb = function(start, end, label) {
 		 console.log(start.toISOString(), end.toISOString(), label);
 		$('#reportrange span').html(
-				start.format('YYYY-MM-DD') + ' - '
-						+ end.format('YYYY-MM-DD'));
+				start.format('YYYY.MM.DD') + '-'
+						+ end.format('YYYY.MM.DD'));
+		
 	};
 
 	var optionSet1 = {
 		startDate : moment().subtract(29, 'days'),
 		endDate : moment(),
-		minDate : '2018-01-01',
-		maxDate : '2021-12-31',
+		minDate : '2018.01.01',
+		maxDate : '2021.12.31',
 		dateLimit : {
 			days : 60
 		},
@@ -1844,7 +1845,7 @@ function init_daterangepicker() {
 		buttonClasses : [ 'btn btn-default' ],
 		applyClass : 'btn-small btn-primary',
 		cancelClass : 'btn-small',
-		format : 'YYYY-MM-DD',
+		format : 'YYYY.MM.DD',
 		separator : ' to ',
 		locale : {
 			applyLabel : 'Submit',
@@ -1861,8 +1862,8 @@ function init_daterangepicker() {
 	};
 
 	$('#reportrange span').html(
-			moment().subtract(29, 'days').format('YYYY-MM-DD') + ' - '
-					+ moment().format('YYYY-MM-DD'));
+			moment().subtract(29, 'days').format('YYYY.MM.DD') + '-'
+					+ moment().format('YYYY.MM.DD'));
 	$('#reportrange').daterangepicker(optionSet1, cb);
 	$('#reportrange').on('show.daterangepicker', function() {
 		// console.log("show event fired");
@@ -1900,8 +1901,8 @@ function init_daterangepicker_right() {
 	var cb = function(start, end, label) {
 		// console.log(start.toISOString(), end.toISOString(), label);
 		$('#reportrange_right span').html(
-				start.format('YYYY-MM-DD') + ' - '
-						+ end.format('YYYY-MM-DD'));
+				start.format('YYYY.MM.DD') + ' - '
+						+ end.format('YYYY.MM.DD'));
 	};
 
 	var optionSet1 = {
@@ -1948,8 +1949,8 @@ function init_daterangepicker_right() {
 	};
 
 	$('#reportrange_right span').html(
-			moment().subtract(29, 'days').format('YYYY-MM-DD') + ' - '
-					+ moment().format('YYYY-MM-DD'));
+			moment().subtract(29, 'days').format('YYYY.MM.DD') + '-'
+					+ moment().format('YYYY.MM.DD'));
 
 	$('#reportrange_right').daterangepicker(optionSet1, cb);
 

@@ -23,15 +23,27 @@ public class changeValueDAOImpl implements changeValueDAO{
 	}
 
 	@Override
-	public List<changeValueVO> searchChangeValueList(searchTypeVO vo) throws Exception {
+	public List<changeValueVO> searchChangeDnsList(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return  SqlSession.selectList("changevalue.seachvaluelist", vo);
+		return  SqlSession.selectList("changevalue.searchdnslist", vo);
+	}
+	
+	@Override
+	public List<changeValueVO> searchChangeDhcpList(searchTypeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return  SqlSession.selectList("changevalue.searchdhcplist", vo);
 	}
 
 	@Override
 	public void insertChangeValue(changeValueVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		SqlSession.insert("changevalue.insertchangevalue", vo);
+	}
+
+	@Override
+	public changeValueVO selectOneValue(changeValueVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectOne("changevalue.selectOneValue", vo);
 	}
 
 }

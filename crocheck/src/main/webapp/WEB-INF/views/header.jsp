@@ -29,5 +29,6 @@
 <link href="css/custom.min.css" rel="stylesheet">
 <link href="css/checkbox_custom.css" rel="stylesheet">
 <link href="css/analysis.css" rel="stylesheet">
+<link href="css/c3.css" rel="stylesheet">
 </head>
 

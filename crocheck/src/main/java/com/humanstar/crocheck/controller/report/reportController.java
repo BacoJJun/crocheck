@@ -685,6 +685,44 @@ public class reportController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value="/reportChangednsSearchList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportChangednsSearchList(@ModelAttribute searchTypeVO vo){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<changeValueVO> changeValueList = new ArrayList<changeValueVO>();
+		
+		try{
+			changeValueList = changeValueService.searchChangeDnsList(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		}catch(Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+		}
+		resultMap.put("changeValueList", changeValueList);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/reportChangedhcpSearchList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportChangedhcpSearchList(@ModelAttribute searchTypeVO vo){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<changeValueVO> changeValueList = new ArrayList<changeValueVO>();
+		
+		try{
+			changeValueList = changeValueService.searchChangeDhcpList(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		}catch(Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+		}
+		resultMap.put("changeValueList", changeValueList);
+		
+		return resultMap;
+	}
+	
 	@RequestMapping(value="/reportChangeValueList", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> reportChangeValueList(){
@@ -704,4 +742,22 @@ public class reportController {
 		return resultMap;
 	}
 
+	@RequestMapping(value="/reportselectonevalue", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reportselectonevalue(@ModelAttribute changeValueVO vo){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeValue = new changeValueVO();
+		
+		try{
+			changeValue = changeValueService.selectOneValue(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		}catch(Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+		}
+		resultMap.put("changeValue", changeValue);
+		
+		return resultMap;
+	}
 }

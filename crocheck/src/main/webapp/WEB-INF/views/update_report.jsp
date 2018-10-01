@@ -18,7 +18,6 @@
 			<!-- page content -->
 			<div class="right_col" role="main">
 				<div class="row ">
-
 					<!--  Report start -->
 					<div class="x_panel">
 						<div class="x_title">
@@ -31,95 +30,88 @@
 
 						<!--  page part -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<!-- report view part -->
-								<div class="col-md-9" style="overflow-y: auto; height: 600px;">
+							<!-- report view part -->
+							<div class="col-lg-9 col-md-9" style="overflow-y: auto; height: 600px;" id="changereportmain">
 
-									<!--  update liststart -->
-									<div class="x_panel">
-										<div class="x_title">
-											<h2>
-												DNS update list <small></small>
-											</h2>
+								<!--  update liststart -->
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											DNS update list <small></small>
+										</h2>
 
-											<div class="clearfix"></div>
-										</div>
-										<div class="x_content">
-											<table id="datatable"
-												class="table table-striped table-bordered">
-												<colgroup>
-													<col width="15%" />
-													<col width="*" />
-													<col width="10%" />
-													<col width="10%" />
-													<col width="30%" />
-												</colgroup>
-												<thead>
-													<tr>
-														<th>type</th>
-														<th>title</th>
-														<th>user</th>
-														<th>ip</th>
-														<th>date</th>
-													</tr>
-												</thead>
-												<tbody id="changeValueList">
-												</tbody>
-											</table>
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
+										<table id="changeValuedatatable"
+											class="table table-striped table-bordered">
+											<colgroup>
+												<col width="5%" />
+												<col width="15%" />
+												<col width="*" />
+												<col width="10%" />
+												<col width="10%" />
+												<col width="30%" />
+											</colgroup>
+											<thead>
+												<tr>
+													<th>No</th>
+													<th>type</th>
+													<th>title</th>
+													<th>user</th>
+													<th>ip</th>
+													<th>date</th>
+												</tr>
+											</thead>
+											<tbody id="changeValueList">
+											</tbody>
+										</table>
 
-										</div>
 									</div>
 								</div>
-								<!-- update list end -->
+							</div>
+							<!-- update list end -->
 
-								<!-- report check list -->
-								<div class="col-md-3">
-									<div class="x_panel">
-										<div class="x_title">
-											<h2>체크 리스트</h2>
-												<div class="clearfix"></div>
-										</div>
-									
+							<!-- report search list -->
+							<div class="col-lg-3 col-md-3">
+								<div class="x_panel">
+									<div class="x_title">
 
+										<h2>검색 조건</h2>
+
+
+										<div class="clearfix"></div>
+									</div>
+
+									<div class="col-lg-6 col-md-6">
 										<div class="radio" id="check_dns_domain_div">
-											<label> <input type="radio" class="flat"
-												id="check_dns_update" name="check_update" checked="checked">
-												DNS UPDATE LIST
+											<label> <input type="radio" id="check_dns_update"
+												name="check_change_type" checked="checked" value="dns"> DNS
 											</label>
 										</div>
+									</div>
+									<div class="col-lg-6 col-md-6">
 										<div class="radio">
-											<label> <input type="radio" class="flat"
-												id="check_dhcp_update" name="check_update"> DHCP
-												UPDATE LIST
+											<label> <input type="radio" id="check_dhcp_update"
+												name="check_change_type" value="dhcp">DHCP
 											</label>
 										</div>
 									</div>
-									<!-- report check list -->
-
-									<!-- report search start -->
-									<div class="x_panel">
-										<div class="x_title">
-											<h2>
-												검색조건 <small> </small>
-											</h2>
-											<div class="clearfix"></div>
-										</div>
-										<div class="clearfix"></div>
-										<div id="reportrange" class="pull-right"
-											style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-											<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> <span></span>
-											<b class="caret"></b>
-										</div>
-										<div class="clearfix"></div>
-										<div class="text-right">
-											<button type="button" class="btn btn-success">
-												<span>SUBMIT</span>
-											</button>
-
+									<div class="col-lg-10 col-md-10">
+										<div class="input-prepend input-group">
+											<span class="add-on input-group-addon"><i
+												class="glyphicon glyphicon-calendar fa fa-calendar"></i></span> <input
+												type="text" name="reservation-times" id="reservation-time"
+												class="form-control" value="" />
 										</div>
 									</div>
-									<!-- report search end -->
+									<div class="col-lg-2 col-md-2">
+										<button type="button" class="btn btn-success fa fa-search"
+											id="change_value_search"></button>
+									</div>
 								</div>
+								<!-- report search list -->
+
 								<!-- report check list end -->
 							</div>
 						</div>
@@ -132,6 +124,35 @@
 		</div>
 	</div>
 
+<!-- change value detail Modal start -->
+	<div id="changeValueDetailModal" class="modal fade in">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<a class="btn btn-default" data-dismiss="modal"><span
+						class="glyphicon glyphicon-remove"></span></a>
+					<h4 class="modal-title">상세 정보 </h4>
+				</div>
+				<div class="modal-body">
+						 <textarea id="changeValueDetailView" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
+					<div class="modal-footer">
+						<div class="btn-group">
+							<button class="btn btn-default" data-dismiss="modal">
+								<span class="glyphicon glyphicon-remove"></span> Close
+							</button>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dalog -->
+		</div>
+	</div>
+	<!-- /.modal -->
+	<!--change value detail Modal end -->
+	
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- Bootstrap -->
@@ -189,7 +210,7 @@
 	<!-- Custom Theme Scripts -->
 
 	<script src="js/update_report.js"></script>
-		<script src="js/alert.js"></script>
+	<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>
