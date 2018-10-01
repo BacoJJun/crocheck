@@ -76,7 +76,7 @@
 								</h2>
 								<div class="clearfix"></div>
 							</div>
-							<div class="col-md-6  col-sm-12 col-xs-12">
+							<div class="col-lg-3 col-md-3  col-sm-12 col-xs-12">
 								<div class="input-group">
 									<input type="text" class="form-control" id="text-lookup"
 										placeholder="Input your finding address"> <span
@@ -88,7 +88,7 @@
 									</span>
 								</div>
 							</div>
-							<div class="col-md-6  col-sm-12 col-xs-12">
+							<div class="col-lg-9 col-md-9  col-sm-12 col-xs-12">
 								<div id="dhcp-lookup-result"></div>
 							</div>
 						</div>
@@ -151,6 +151,7 @@
 											<th class="column-title">시작 IP</th>
 											<th class="column-title">종료 IP</th>
 											<th class="column-title">MAC</th>
+											<th class="column-title"></th>
 										</tr>
 									</thead>
 									<tbody id="dhcp_sublist">
@@ -233,7 +234,8 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<select id="insert_dhcp_protocal" class="form-control" required>
+										<select id="insert_dhcp_protocal" class="form-control"
+											required>
 											<option value="ipv4">ipv4</option>
 										</select>
 									</div>
@@ -258,7 +260,8 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs12">
 										<input class="number" name="subject" placeholder=" "
-											id="insert_dhcp_subnet_length" type="text" required value="24" />
+											id="insert_dhcp_subnet_length" type="text" required
+											value="24" />
 									</div>
 									<div class="col-lg-9 col-md-9 col-sm-9 col-xs12"></div>
 								</div>
@@ -270,7 +273,8 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
 										<input class="form-control" name="subject" placeholder=" "
-											id="insert_dhcp_subnet" type="text" required value="255.255.255.0" />
+											id="insert_dhcp_subnet" type="text" required
+											value="255.255.255.0" />
 									</div>
 								</div>
 							</div>
@@ -298,7 +302,7 @@
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">임대시간 
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">임대시간
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
@@ -345,7 +349,7 @@
 							<button class="btn btn-danger" data-dismiss="modal">
 								<span class="glyphicon glyphicon-remove"></span> Cancel
 							</button>
-							<button class="btn btn-primary" id="insert_dhcp">
+							<button class="btn btn-success" id="insert_dhcp">
 								<span class="glyphicon glyphicon-check"></span> Save
 							</button>
 						</div>
@@ -359,7 +363,7 @@
 	</div>
 	<!-- /.modal -->
 	<!-- dhcp insert Modal end -->
-	
+
 	<!--dhcp edit Modal start -->
 	<div id="dhcpeditModal" class="modal fade in">
 		<div class="modal-dialog">
@@ -368,7 +372,7 @@
 				<div class="modal-header">
 					<a class="btn btn-default" data-dismiss="modal"><span
 						class="glyphicon glyphicon-remove"></span></a>
-					<h4 class="modal-title">DHCP INSERT</h4>
+					<h4 class="modal-title">DHCP EDIT</h4>
 				</div>
 				<div class="modal-body">
 					<div class="x_panel">
@@ -383,7 +387,8 @@
 											id="update_dhcp_category1" type="text" required value="" />
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<select id="dhcp_update_category" class="form-control" required>
+										<select id="dhcp_update_category" class="form-control"
+											required>
 										</select>
 									</div>
 								</div>
@@ -398,7 +403,8 @@
 											id="update_dhcp_category2" type="text" required value="" />
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<select id="dhcp_update_category_group" class="form-control" required>
+										<select id="dhcp_update_category_group" class="form-control"
+											required>
 										</select>
 									</div>
 								</div>
@@ -409,7 +415,8 @@
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<select id="update_dhcp_protocal" class="form-control" required>
+										<select id="update_dhcp_protocol" class="form-control"
+											required>
 											<option value="ipv4">ipv4</option>
 										</select>
 									</div>
@@ -434,7 +441,8 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs12">
 										<input class="number" name="subject" placeholder=" "
-											id="update_dhcp_subnet_length" type="text" required value="24" />
+											id="update_dhcp_subnet_length" type="text" required
+											value="24" />
 									</div>
 									<div class="col-lg-9 col-md-9 col-sm-9 col-xs12"></div>
 								</div>
@@ -446,7 +454,8 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
 										<input class="form-control" name="subject" placeholder=" "
-											id="update_dhcp_subnet" type="text" required value="255.255.255.0" />
+											id="update_dhcp_subnet" type="text" required
+											value="255.255.255.0" />
 									</div>
 								</div>
 							</div>
@@ -474,7 +483,7 @@
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">임대시간 
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">임대시간
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
@@ -521,7 +530,7 @@
 							<button class="btn btn-danger" data-dismiss="modal">
 								<span class="glyphicon glyphicon-remove"></span> Cancel
 							</button>
-							<button class="btn btn-primary" id="update_dhcp">
+							<button class="btn btn-primary" id="update_dhcp" value="">
 								<span class="glyphicon glyphicon-check"></span> Save
 							</button>
 						</div>
@@ -535,7 +544,7 @@
 	</div>
 	<!-- /.modal -->
 	<!-- dhcp edit Modal end -->
-	
+
 	<!--dhcp delete Modal start -->
 	<div id="dhcpDeleteModal" class="modal fade in">
 		<div class="modal-dialog">
@@ -552,6 +561,7 @@
 							<div class="form-group">
 								<label
 									class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<span id="delete_dhcp_name"></span>
 								</label>
 							</div>
 						</form>
@@ -561,7 +571,7 @@
 							<button class="btn btn-default" data-dismiss="modal">
 								<span class="glyphicon glyphicon-remove"></span> Cancel
 							</button>
-							<button class="btn btn-danger" id="delete_dhcp">
+							<button class="btn btn-danger" id="delete_dhcp" value="">
 								<span class="glyphicon glyphicon-check"></span> Delete
 							</button>
 						</div>
@@ -591,52 +601,50 @@
 						<form class="form-horizontal form-label-left">
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">DHCP </label>
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">DHCP
+								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-																			<select id="heard" class="form-control" required>
-											<option value="">Choose..</option>
-											<option value="press">Press</option>
-											<option value="net">Internet</option>
-											<option value="mouth">Word of mouth</option>
+										<select id="insert_subdhcp_title" class="form-control"
+											required>
 										</select>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">종류 
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">종류
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
-																				<select id="heard" class="form-control" required>
-											<option value="">Choose..</option>
-											<option value="press">Press</option>
-											<option value="net">Internet</option>
-											<option value="mouth">Word of mouth</option>
+										<select id="insert_subdhcp_selectType" class="form-control"
+											required>
+											<option value="1">예외</option>
+											<option value="2">고정</option>
+											<option value="3">범위</option>
 										</select>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">시작 IP
-								</label>
-									<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">시작
+									IP </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<input class="form-control" name="subject" placeholder=" "
-											id="insert_ntp_ " type="text" required value="" />
-											</div>
+											id="insert_subdhcp_startip" type="text" required value="" />
 									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">끝 IP
-								</label>
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">끝
+									IP </label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
 										<input class="form-control" name="subject" placeholder=" "
-											id="insert_ntp_ " type="text" required value="" />
+											id="insert_subdhcp_endip" type="text" required value="" />
 									</div>
 								</div>
 							</div>
@@ -647,7 +655,7 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
 										<input class="form-control" name="subject" placeholder=" "
-											id="insert_ntp_ " type="text" disable value="" />
+											id="insert_subdhcp_mac" type="text" disable value="" />
 									</div>
 								</div>
 							</div>
@@ -671,8 +679,8 @@
 			<!-- /.modal-dalog -->
 		</div>
 	</div>
-	<!-- /.modal -->
 	<!-- sub insert Modal end -->
+
 	<!--sub edit Modal start -->
 	<div id="subUpdateModal" class="modal fade in">
 		<div class="modal-dialog">
@@ -688,52 +696,51 @@
 						<form class="form-horizontal form-label-left">
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">DHCP </label>
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">DHCP
+								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
-																			<select id="heard" class="form-control" required>
-											<option value="">Choose..</option>
-											<option value="press">Press</option>
-											<option value="net">Internet</option>
-											<option value="mouth">Word of mouth</option>
-										</select>
+										<input class="form-control" name="subject" placeholder=" "
+											id="update_subdhcp_title" type="text" readonly="readonly"
+											required value="" ></input>
+										
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">종류 
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">종류
 								</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
-																				<select id="heard" class="form-control" required>
-											<option value="">Choose..</option>
-											<option value="press">Press</option>
-											<option value="net">Internet</option>
-											<option value="mouth">Word of mouth</option>
+										<select id="update_subdhcp_selectType" class="form-control"
+											required>
+											<option value="1">예외</option>
+											<option value="2">고정</option>
+											<option value="3">범위</option>
 										</select>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">시작 IP
-								</label>
-									<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">시작
+									IP </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<input class="form-control" name="subject" placeholder=" "
-											id="insert_ntp_ " type="text" required value="" />
-											</div>
+											id="update_subdhcp_startip" type="text" required value="" />
 									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">끝 IP
-								</label>
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">끝
+									IP </label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
 										<input class="form-control" name="subject" placeholder=" "
-											id="insert_ntp_ " type="text" required value="" />
+											id="update_subdhcp_endip" type="text" value="" />
 									</div>
 								</div>
 							</div>
@@ -744,7 +751,7 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
 										<input class="form-control" name="subject" placeholder=" "
-											id="insert_ntp_ " type="text" disable value="" />
+											id="update_subdhcp_mac" type="text" value="" />
 									</div>
 								</div>
 							</div>
@@ -756,8 +763,8 @@
 							<button class="btn btn-danger" data-dismiss="modal">
 								<span class="glyphicon glyphicon-remove"></span> Cancel
 							</button>
-							<button class="btn btn-primary" id="insert_ntp">
-								<span class="glyphicon glyphicon-check"></span> Save
+							<button class="btn btn-primary" id="update_subdhcp">
+								<span class="glyphicon glyphicon-check"></span> Update
 							</button>
 						</div>
 					</div>
@@ -770,7 +777,7 @@
 	</div>
 	<!-- /.modal -->
 	<!-- sub edit Modal end -->
-		<!--dhcp delete Modal start -->
+	<!--dhcp delete Modal start -->
 	<div id="subDeleteModal" class="modal fade in">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -782,34 +789,14 @@
 				</div>
 				<div class="modal-body">
 					<div class="x_panel">
-						<form class="form-horizontal form-label-left">
-							<div class="form-group">
-								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">소분류
-								</label>
-								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<input class="form-control" name="subject" placeholder="ETC"
-											id="insert_ntp_etc" type="text" required value="" />
-									</div>
-									<div class="col-lg-6 col-md-6 col-sm-6 col-xs12">
-										<select id="heard" class="form-control" required>
-											<option value="">Choose..</option>
-											<option value="press">Press</option>
-											<option value="net">Internet</option>
-											<option value="mouth">Word of mouth</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</form>
+						<span id="delete_subdhcp_title"></span>
 					</div>
 					<div class="modal-footer">
 						<div class="btn-group">
 							<button class="btn btn-default" data-dismiss="modal">
 								<span class="glyphicon glyphicon-remove"></span> Cancel
 							</button>
-							<button class="btn btn-danger" id="insert_ntp">
+							<button class="btn btn-danger" id="delete_subdhcp">
 								<span class="glyphicon glyphicon-check"></span> Delete
 							</button>
 						</div>
@@ -823,8 +810,8 @@
 	</div>
 	<!-- /.modal -->
 	<!-- dhcp delete Modal end -->
-	
-	
+
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- Bootstrap -->

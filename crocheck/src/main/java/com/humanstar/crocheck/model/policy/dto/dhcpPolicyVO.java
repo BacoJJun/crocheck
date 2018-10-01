@@ -121,5 +121,12 @@ public class dhcpPolicyVO {
 		this.subnet_length = subnet_length;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "dhcpPolicyVO [id=" + id + ", protocol=" + protocol + ", start_ip=" + start_ip + ", end_ip=" + end_ip
+				+ ", bid=" + bid + ", created_at=" + created_at + ", day=" + day + ", hour=" + hour + ", min=" + min
+				+ ", dns1=" + dns1 + ", dns2=" + dns2 + ", category1=" + category1 + ", category2=" + category2
+				+ ", ip_count=" + ip_count + ", subnet=" + subnet + ", gateway=" + gateway + ", subnet_length="
+				+ subnet_length + "]";
+	}	
 }

@@ -7,9 +7,9 @@
 <body class="nav-sm">
 	<div class="container body">
 		<div class="main_container">
-					<!-- sidebar menu -->
-					<%@ include file="side.jsp"%>
-					<!-- sidebar menu -->
+			<!-- sidebar menu -->
+			<%@ include file="side.jsp"%>
+			<!-- sidebar menu -->
 
 
 
@@ -32,292 +32,294 @@
 						</div>
 
 						<!--  page part -->
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<!-- report view part -->
-								<div class="col-md-10" style="overflow-y: auto; height: 600px;">
-									<!--  dns domain start -->
-									<div id="dns_domain" class="row">
-										<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="col-lg-10 col-md-10" style="overflow-y: auto; height: 600px;">
+									<div id="report_page">
+										<!--  dns domain start -->
+										<div id="dns_domain" class="row">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="x_panel">
+													<div class="x_title">
+														<h2>
+															DNS DOMAIN<small>Donut graph</small>
+														</h2>
+													</div>
+													<div class="x_content ">
+														<div id="dns_domain_pie" style="height: 270px;"></div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="x_panel">
+													<div class="x_content">
+														<table class="table table-hover">
+															<colgroup>
+																<col width="60%">
+																<col width="20%">
+																<col width="20%">
+															</colgroup>
+															<thead>
+																<tr>
+																	<th>Domain</th>
+																	<th>Count</th>
+																	<th>Percentage</th>
+																</tr>
+															</thead>
+															<tbody id="dnsDomaintableList">
+															</tbody>
+														</table>
+
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- dns domain end -->
+
+										<!-- dns client start -->
+										<div id="dns_client" class="row">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="x_panel">
+													<div class="x_title">
+														<h2>
+															DNS CLIENT<small>Donut graph</small>
+														</h2>
+													</div>
+													<div class="x_content ">
+														<div id="dns_client_pie" style="height: 270px;"></div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="x_panel">
+													<div class="x_content">
+														<table class="table table-hover">
+															<colgroup>
+																<col width="60%">
+																<col width="20%">
+																<col width="20%">
+															</colgroup>
+															<thead>
+																<tr>
+																	<th>Src_ip</th>
+																	<th>Count</th>
+																	<th>Percentage</th>
+																</tr>
+															</thead>
+															<tbody id="dnsClienttableList">
+															</tbody>
+														</table>
+
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- dns client end -->
+
+										<!-- ddos domain start -->
+										<div id="ddos_domain" class="row">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="x_panel">
+													<div class="x_title">
+														<h2>
+															DDOS Domain<small>Donut graph</small>
+														</h2>
+													</div>
+													<div class="x_content ">
+														<div id="ddos_domain_pie" style="height: 270px;"></div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="x_panel">
+													<div class="x_content">
+														<table class="table table-hover">
+															<colgroup>
+																<col width="60%">
+																<col width="20%">
+																<col width="20%">
+															</colgroup>
+															<thead>
+																<tr>
+																	<th>Src</th>
+																	<th>Count</th>
+																	<th>Percentage</th>
+																</tr>
+															</thead>
+															<tbody id="ddosDomaintableList">
+															</tbody>
+														</table>
+
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- ddos domain end -->
+
+										<!-- ddos client start -->
+										<div id="ddos_client" class="row">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="x_panel">
+													<div class="x_title">
+														<h2>
+															DDOS CLIENT<small>Donut graph</small>
+														</h2>
+													</div>
+													<div class="x_content ">
+														<div id="ddos_client_pie" style="height: 270px;"></div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="x_panel">
+													<div class="x_content">
+														<table class="table table-hover">
+															<colgroup>
+																<col width="60%">
+																<col width="20%">
+																<col width="20%">
+															</colgroup>
+															<thead>
+																<tr>
+																	<th>Src_ip</th>
+																	<th>Count</th>
+																	<th>Percentage</th>
+																</tr>
+															</thead>
+															<tbody id="ddosClienttableList">
+															</tbody>
+														</table>
+
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- ddos client end -->
+
+										<!-- packet graph start -->
+										<div id="packet_graph" class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														DNS DOMAIN<small>Donut graph</small>
+														PACKET <small>graph</small>
 													</h2>
+													<div class="clearfix"></div>
 												</div>
-												<div class="x_content ">
-													<div id="dns_domain_pie" style="height: 270px;"></div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<div class="x_panel">
 												<div class="x_content">
-													<table class="table table-hover">
-														<colgroup>
-															<col width="60%">
-															<col width="20%">
-															<col width="20%">
-														</colgroup>
-														<thead>
-															<tr>
-																<th>Domain</th>
-																<th>Count</th>
-																<th>Percentage</th>
-															</tr>
-														</thead>
-														<tbody id="dnsDomaintableList">
-														</tbody>
-													</table>
-
+													<canvas id="packetChart"></canvas>
 												</div>
 											</div>
 										</div>
-									</div>
-									<!-- dns domain end -->
+										<!-- packet graph end -->
 
-									<!-- dns client start -->
-									<div id="dns_client" class="row">
-										<div class="col-md-6 col-sm-6 col-xs-12">
+										<!-- cpu graph start -->
+										<div id="cpu_graph" class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														DNS CLIENT<small>Donut graph</small>
+														CPU <small>graph</small>
 													</h2>
+													<div class="clearfix"></div>
 												</div>
-												<div class="x_content ">
-													<div id="dns_client_pie" style="height: 270px;"></div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<div class="x_panel">
 												<div class="x_content">
-													<table class="table table-hover">
-														<colgroup>
-															<col width="60%">
-															<col width="20%">
-															<col width="20%">
-														</colgroup>
-														<thead>
-															<tr>
-																<th>Src_ip</th>
-																<th>Count</th>
-																<th>Percentage</th>
-															</tr>
-														</thead>
-														<tbody id="dnsClienttableList">
-														</tbody>
-													</table>
-
+													<canvas id="cpuChart"></canvas>
 												</div>
 											</div>
 										</div>
-									</div>
-									<!-- dns client end -->
+										<!-- cpu graph end -->
 
-									<!-- ddos domain start -->
-									<div id="ddos_domain" class="row">
-										<div class="col-md-6 col-sm-6 col-xs-12">
+										<!-- memory graph start -->
+										<div id="memroy_graph" class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														DDOS Domain<small>Donut graph</small>
+														MEMORY <small>graph</small>
 													</h2>
+													<div class="clearfix"></div>
 												</div>
-												<div class="x_content ">
-													<div id="ddos_domain_pie" style="height: 270px;"></div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<div class="x_panel">
 												<div class="x_content">
-													<table class="table table-hover">
-														<colgroup>
-															<col width="60%">
-															<col width="20%">
-															<col width="20%">
-														</colgroup>
-														<thead>
-															<tr>
-																<th>Src</th>
-																<th>Count</th>
-																<th>Percentage</th>
-															</tr>
-														</thead>
-														<tbody id="ddosDomaintableList">
-														</tbody>
-													</table>
-
+													<canvas id="memoryChart"></canvas>
 												</div>
 											</div>
 										</div>
-									</div>
-									<!-- ddos domain end -->
+										<!-- memory graph end -->
 
-									<!-- ddos client start -->
-									<div id="ddos_client" class="row">
-										<div class="col-md-6 col-sm-6 col-xs-12">
+										<!-- disk graph start -->
+										<div id="disk_graph" class="col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														DDOS CLIENT<small>Donut graph</small>
+														DISK <small>graph</small>
 													</h2>
+													<div class="clearfix"></div>
 												</div>
-												<div class="x_content ">
-													<div id="ddos_client_pie" style="height: 270px;"></div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<div class="x_panel">
 												<div class="x_content">
-													<table class="table table-hover">
-														<colgroup>
-															<col width="60%">
-															<col width="20%">
-															<col width="20%">
-														</colgroup>
-														<thead>
-															<tr>
-																<th>Src_ip</th>
-																<th>Count</th>
-																<th>Percentage</th>
-															</tr>
-														</thead>
-														<tbody id="ddosClienttableList">
-														</tbody>
-													</table>
-
+													<canvas id="diskChart"></canvas>
 												</div>
 											</div>
 										</div>
+										<!-- disk graph end -->
 									</div>
-									<!-- ddos client end -->
-
-									<!-- packet graph start -->
-									<div id="packet_graph" class="col-md-6 col-sm-6 col-xs-12">
+									</div>
+									<!-- report view part end -->
+				
+									<!-- report check list -->
+									<div class="col-md-2">
 										<div class="x_panel">
 											<div class="x_title">
-												<h2>
-													PACKET <small>graph</small>
-												</h2>
+												<h2>체크 리스트</h2>
 												<div class="clearfix"></div>
 											</div>
-											<div class="x_content">
-												<canvas id="packetChart"></canvas>
+
+											<div class="checkbox">
+												<label> <input type="checkbox" id="check_dns_domain"
+													checked="checked"> DNS DOMAIN
+												</label>
+											</div>
+
+											<div class="checkbox">
+												<label> <input type="checkbox" id="check_dns_client"
+													checked="checked"> DNS CLIENT
+												</label>
+											</div>
+											<div class="checkbox">
+												<label> <input type="checkbox"
+													id="check_ddos_domain" checked="checked"> DDOS
+													DOMAIN
+												</label>
+											</div>
+											<div class="checkbox">
+												<label> <input type="checkbox"
+													id="check_ddos_client" checked="checked"> DDOS
+													CLIENT
+												</label>
+											</div>
+											<div class="checkbox">
+												<label> <input type="checkbox"
+													id="check_query_graph" checked="checked"> QUERY
+													GRAPH
+												</label>
+											</div>
+											<div class="checkbox">
+												<label> <input type="checkbox" id="check_cpu_graph"
+													checked="checked"> CPU GRAPH
+												</label>
+											</div>
+
+											<div class="checkbox">
+												<label> <input type="checkbox"
+													id="check_memroy_graph" checked="checked"> MEMORY
+													GRAPH
+												</label>
+											</div>
+
+											<div class="checkbox">
+												<label> <input type="checkbox" id="check_disk_graph"
+													checked="checked"> DISK GRAPH
+												</label>
 											</div>
 										</div>
-									</div>
-									<!-- packet graph end -->
-
-									<!-- cpu graph start -->
-									<div id="cpu_graph" class="col-md-6 col-sm-6 col-xs-12">
-										<div class="x_panel">
-											<div class="x_title">
-												<h2>
-													CPU <small>graph</small>
-												</h2>
-												<div class="clearfix"></div>
-											</div>
-											<div class="x_content">
-												<canvas id="cpuChart"></canvas>
-											</div>
-										</div>
-									</div>
-									<!-- cpu graph end -->
-
-									<!-- memory graph start -->
-									<div id="memroy_graph" class="col-md-6 col-sm-6 col-xs-12">
-										<div class="x_panel">
-											<div class="x_title">
-												<h2>
-													MEMORY <small>graph</small>
-												</h2>
-												<div class="clearfix"></div>
-											</div>
-											<div class="x_content">
-												<canvas id="memoryChart"></canvas>
-											</div>
-										</div>
-									</div>
-									<!-- memory graph end -->
-
-									<!-- disk graph start -->
-									<div id="disk_graph" class="col-md-6 col-sm-6 col-xs-12">
-										<div class="x_panel">
-											<div class="x_title">
-												<h2>
-													DISK <small>graph</small>
-												</h2>
-												<div class="clearfix"></div>
-											</div>
-											<div class="x_content">
-												<canvas id="diskChart"></canvas>
-											</div>
-										</div>
-									</div>
-									<!-- disk graph end -->
-								</div>
-								<!-- report view part end -->
-
-								<!-- report check list -->
-								<div class="col-md-2">
-									<div class="x_panel">
-										<div class="x_title">
-											<h2>체크 리스트</h2>
-											<div class="clearfix"></div>
-										</div>
-
-										<div class="checkbox">
-											<label> <input type="checkbox" id="check_dns_domain"
-												checked="checked"> DNS DOMAIN
-											</label>
-										</div>
-
-										<div class="checkbox">
-											<label> <input type="checkbox" id="check_dns_client"
-												checked="checked"> DNS CLIENT
-											</label>
-										</div>
-										<div class="checkbox">
-											<label> <input type="checkbox" 
-												id="check_ddos_domain" checked="checked"> DDOS
-												DOMAIN
-											</label>
-										</div>
-										<div class="checkbox">
-											<label> <input type="checkbox" 
-												id="check_ddos_client" checked="checked"> DDOS
-												CLIENT
-											</label>
-										</div>
-										<div class="checkbox">
-											<label> <input type="checkbox" 
-												id="check_query_graph" checked="checked"> QUERY
-												GRAPH
-											</label>
-										</div>
-										<div class="checkbox">
-											<label> <input type="checkbox" 
-												id="check_cpu_graph" checked="checked"> CPU GRAPH
-											</label>
-										</div>
-
-										<div class="checkbox">
-											<label> <input type="checkbox" 
-												id="check_memroy_graph" checked="checked"> MEMORY
-												GRAPH
-											</label>
-										</div>
-
-										<div class="checkbox">
-											<label> <input type="checkbox" 
-												id="check_disk_graph" checked="checked"> DISK GRAPH
-											</label>
-										</div>
-									</div>
 									<!-- report check list -->
 
 									<!-- report search start -->
@@ -360,7 +362,8 @@
 										</div>
 										<div class="clearfix"></div>
 										<div>
-											<button type="button" class="btn btn-success" id="search_stat">
+											<button type="button" class="btn btn-success"
+												id="search_stat">
 												<span>SUBMIT</span>
 											</button>
 										</div>
@@ -420,7 +423,7 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="js/status_report.js"></script>
-		<script src="js/alert.js"></script>
+	<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class changeValueDAOImpl implements changeValueDAO{
 	@Override
 	public List<changeValueVO> searchChangeValueList(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return  SqlSession.selectList("changevalue.seachvaluelist");
+		return  SqlSession.selectList("changevalue.seachvaluelist", vo);
 	}
 
 	@Override

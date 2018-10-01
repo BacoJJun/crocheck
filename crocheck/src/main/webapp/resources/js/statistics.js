@@ -14,11 +14,12 @@ $(document)
 										} else if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'min') {
+											pageReDraw();
 											init_minAjax("min");
 										} else if ($(
 												'input:radio[name="check_time"]:checked')
 												.val() == 'hour') {
-
+											pageReDraw();
 											init_hourAjax("hour");
 										}
 									})
@@ -364,7 +365,6 @@ function searchApp(start_date, end_date, search_type) {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				console.log(result.lastApplist);
 				for (var i = 0; i < result.lastApplist.length; i++) {
 					appCpu[i] = result.lastApplist[i].cpu_pct;
 					appMem[i] = result.lastApplist[i].mem_pct;
@@ -984,13 +984,17 @@ function init_dnssrc_progress(data) {
 
 	var show_dns_src = document.getElementById("dnsQuerySrcList");
 	var domain_html = '';
+	console.log(data);
 	for (i = 0; i < max_value; i++) {
 		domain_html += '<tr>';
-		domain_html += '<td>' + src_data[i] + '</td>';
-		domain_html += '<td><div class="progress progress_sm">';
-		domain_html += '<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>';
+/*		domain_html += '<td>' + src_data[i] + '</td>';
+		domain_html += '<td><div class="progress>';
+		domain_html += '<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>';
 		domain_html += '</div></td>';
-		domain_html += '<td>' + per_data[i] + '%</td>';
+		domain_html += '<td>' + per_data[i] + '%</td>';*/
+		domain_html += '<td><div class="progress"><div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ' + per_data[i] + '%;">        <span class="sr-only">60% Complete</span>    </div>    <span class="progress-type">' + src_data[i] + '</span>    <span class="progress-completed">' + per_data[i] + '%</span></div></td>';
+/*		domain_html += '<td>' + per_data[i] + '%</td>';*/
+		domain_html += '<td>' + count_data[i] + '</td>';
 		domain_html += '</tr>';
 	}
 	show_dns_src.innerHTML = domain_html;
@@ -1027,12 +1031,45 @@ function init_ddossrc_progress(data) {
 	var domain_html = '';
 	for (i = 0; i < max_value; i++) {
 		domain_html += '<tr>';
-		domain_html += '<td>' + src_data[i] + '</td>';
+/*		domain_html += '<td>' + src_data[i] + '</td>';
 		domain_html += '<td><div class="progress progress_sm">';
 		domain_html += '<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>';
 		domain_html += '</div></td>';
-		domain_html += '<td>' + per_data[i] + '%</td>';
+		domain_html += '<td>' + per_data[i] + '%</td>';*/
+		domain_html += '<td><div class="progress"><div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ' + per_data[i] + '%;">        <span class="sr-only">60% Complete</span>    </div>    <span class="progress-type">' + src_data[i] + '</span>    <span class="progress-completed">' + per_data[i] + '%</span></div></td>';
+		domain_html += '<td>' + count_data[i] + '</td>';
 		domain_html += '</tr>';
 	}
 	show_ddos_src.innerHTML = domain_html;
+}
+
+function pageReDraw(){
+	var mainDiv = document.getElementById("analysis_content");
+	mainDiv.innerHTML = '';
+	
+	var baseDiv = '';
+	baseDiv += '<div class="row">';
+
+	baseDiv += '<div class="row">';
+
+	baseDiv += '<div class="col-md-4 col-sm-12 col-xs-12"><div class="x_panel"><div class="x_title"><h2>Pick Time</h2><div class="clearfix"></div></div><div class="x_content"><div id="topListquery" style="height: 270px;"></div></div></div></div>';
+
+	baseDiv += '<div class="col-md-4 col-sm-12 col-xs-12"><div class="clearfix"></div><div class="x_panel"><div class="x_title"><h2>DNS QUERY</h2><div class="clearfix"></div></div><div class="x_content"><canvas id="lineChart-dns"></canvas></div></div></div>';
+
+	baseDiv += '<div class="col-md-4 col-sm-12 col-sm-12"><div class="x_panel"><div class="x_title"><h2>Appliance Status</h2><div class="clearfix"></div></div><div class="x_content"><canvas id="lineChart-app"></canvas></div><div class="clearfix"></div></div></div></div>';
+
+	baseDiv += '<div class="row">';
+	baseDiv += '<div class="col-md-6 col-sm-6 col-xs-4"><div class="x_panel tile fixed_height_320 overflow_hidden"><div class="x_title"><h2>DNS DOMAIN</h2><div class="clearfix"></div></div><div class="x_content"><table class="" style="width: 100%"><tr><th style="width: 45%;"><p>Top 5</p></th><th><div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"><p class="">Domain</p></div><div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 "><p class="">Count(%)</p></div></th></tr><tr><td><canvas id="dnsDomainDoughnut"class="dnsDomainDoughnut" height="220" width="220"style="margin: 0px 30px 0px 0"></canvas></td><td><table class="table"><tbody id="dnsQueryDomainList"></tbody></table></td></tr></table></div></div></div>';
+
+	baseDiv += '<div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel tile fixed_height_350 overflow_hidden"><div class="x_title"><h2>DNS Client List</h2><div class="clearfix"></div></div><div class="ddos_progress"><table class="table table-striped"><thead><tr><th width="85%">SOURCE IP</th><th width="15%">COUNT</th></tr></thead><tbody id="dnsQuerySrcList"></tbody></table></div></div></div></div>';
+
+
+	baseDiv += '<div class="row">';
+
+	baseDiv += '<div class="col-md-6 col-sm-6 col-xs-4"><div class="x_panel tile fixed_height_320 overflow_hidden"><div class="x_title"><h2>DDOS DOMAIN</h2><div class="clearfix"></div></div><div class="x_content"><table class="" style="width: 100%"><tr><th style="width: 45%;"><p>Top 5</p></th><th><div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"><p class="">Domain</p></div><div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 "><p class="">Count(%)</p></div></th></tr><tr><td><canvas id="ddosDomainDoughnut"class="ddosDomainDoughnut" height="220" width="220"style="margin: 0px 30px 0px 0"></canvas></td><td><table class="table"><tbody id="ddosQueryDomainList"></tbody></table></td></tr></table></div></div><div class="clearfix"></div></div>';
+
+	baseDiv += '<div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>DDOS Client List</h2><div class="clearfix"></div></div><div class="ddos_progress"><table class="table table-striped"><thead><tr><th width="85%">SOURCE IP</th><th width="15%">COUNT</th></tr></thead><tbody id="ddosQuerySrcList"></tbody><div class="clearfix"></div></table></div></div></div></div>';
+	baseDiv += '</div>';
+	mainDiv.innerHTML = baseDiv;
+	
 }

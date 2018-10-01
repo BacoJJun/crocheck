@@ -462,7 +462,7 @@ public class policyController {
 	}
 	@RequestMapping(value = "/updatesubdomain", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updatesubdomain(@ModelAttribute  dnspolicyVO vo) {
+	public Map<String, Object> updatesubdomain(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request ) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		changeValueVO changeVO = new changeValueVO();
@@ -525,12 +525,21 @@ public class policyController {
 	}
 	@RequestMapping(value = "/dhcpinsert", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> dhcpinsert(@ModelAttribute  dhcpPolicyVO vo) {
+	public Map<String, Object> dhcpinsert(@ModelAttribute  dhcpPolicyVO vo, HttpServletRequest request) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
 		
 		try {
+			changeVO.setChange_type("dhcp");
+			changeVO.setQuery_type("dhcp insert");
+			changeVO.setTitle("insert : " + vo.getStart_ip());
+			changeVO.setComment("insert : " + vo.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+			
 			dhcpPolicyService.insertDhcp(vo);
+			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -542,14 +551,46 @@ public class policyController {
 		return resultMap;
 	}
 
-	@RequestMapping(value = "/dhcpupdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/catchdhcp", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> dhcpupdate(@ModelAttribute  dhcpPolicyVO vo) {
+	public Map<String, Object> catchdhcp(@ModelAttribute  dhcpPolicyVO vo) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		dhcpPolicyVO selectdhcp = new dhcpPolicyVO();
 		
 		try {
+			selectdhcp = dhcpPolicyService.catchDhcp(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("selectdhcp", selectdhcp);
+		return resultMap;
+	}
+	
+	
+	@RequestMapping(value = "/dhcpupdate", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpupdate(@ModelAttribute  dhcpPolicyVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		dhcpPolicyVO beforeDhcp = new dhcpPolicyVO();
+		changeValueVO changeVO = new changeValueVO();
+		
+		try {
+			beforeDhcp = dhcpPolicyService.catchDhcp(vo);
+			changeVO.setChange_type("dhcp");
+			changeVO.setQuery_type("dhcp update");
+			changeVO.setTitle("update : " + vo.getStart_ip());
+			changeVO.setComment("after : " + vo.toString() + "before : " + beforeDhcp.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
 			dhcpPolicyService.updateDhcp(vo);
+			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -563,12 +604,22 @@ public class policyController {
 	
 	@RequestMapping(value = "/dhcpdelete", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> dhcpdelete(@ModelAttribute  dhcpPolicyVO vo) {
+	public Map<String, Object> dhcpdelete(@ModelAttribute  dhcpPolicyVO vo, HttpServletRequest request) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		dhcpPolicyVO beforeDhcp = new dhcpPolicyVO();
 		
 		try {
+			beforeDhcp = dhcpPolicyService.catchDhcp(vo);
+			changeVO.setChange_type("dhcp");
+			changeVO.setQuery_type("dhcp delete");
+			changeVO.setTitle("delete : " + beforeDhcp.getStart_ip());
+			changeVO.setComment("delete : " + beforeDhcp.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
 			dhcpPolicyService.deleteDhcp(vo);
+			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -581,4 +632,111 @@ public class policyController {
 	}
 	
 	
+	@RequestMapping(value = "/subdhcpinsert", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> subdhcpinsert(@ModelAttribute  dhcpSubVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		
+		try {
+			changeVO.setChange_type("dhcp");
+			changeVO.setQuery_type("sub_dhcp insert");
+			changeVO.setTitle("insert : " + vo.getStart_ip());
+			changeVO.setComment("insert : " + vo.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+			dhcpPolicyService.insertSubDhcp(vo);
+			changeValueService.insertChangeValue(changeVO);	
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}
+
+	
+	
+	@RequestMapping(value = "/catchsubdhcp", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> catchsubdhcp(@ModelAttribute  dhcpSubVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		dhcpSubVO selectsubdhcp = new dhcpSubVO();
+		
+		try {
+			selectsubdhcp = dhcpPolicyService.catchsubDhcp(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("selectsubdhcp", selectsubdhcp);
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/subdhcpupdate", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> subdhcpupdate(@ModelAttribute  dhcpSubVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		dhcpSubVO beforesubDhcp = new dhcpSubVO();
+		
+		
+		try {
+			beforesubDhcp = dhcpPolicyService.catchsubDhcp(vo);
+			changeVO.setChange_type("dhcp");
+			changeVO.setQuery_type("sub_dhcp update");
+			changeVO.setTitle("update : " + vo.getStart_ip());
+			changeVO.setComment("after : " + vo.toString() + "before : " + beforesubDhcp.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+			dhcpPolicyService.updateSubDhcp(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/subdhcpdelete", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> subdhcpdelete(@ModelAttribute  dhcpSubVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		dhcpSubVO beforesubDhcp = new dhcpSubVO();
+		
+		try {
+			beforesubDhcp = dhcpPolicyService.catchsubDhcp(vo);
+			changeVO.setChange_type("dhcp");
+			changeVO.setQuery_type("sub_dhcp delete");
+			changeVO.setTitle("delete : " + beforesubDhcp.getStart_ip());
+			changeVO.setComment("delete : " + beforesubDhcp.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+			dhcpPolicyService.deleteSubDhcp(vo);
+			changeValueService.insertChangeValue(changeVO);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}	
 }

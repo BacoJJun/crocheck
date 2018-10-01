@@ -489,7 +489,7 @@ function searhdnsdomain() {
 				success : function(result) {
 					if (result.result == 'success') {
 						var domain_html = '';
-						domain_html += '<table id="datatable" class="table table-striped table-bordered">';
+						domain_html += '<table id="lookupdatatable" class="table table-striped table-bordered">';
 						domain_html += '<colgroup><col width="15%"></col><col width="10%"></col><col width="30%"></col><col width="*"></col><col width="10%"></col></colgroup>'
 						domain_html += '<thead><tr><th>Zone</th><th>Type</th><th>Host</th><th>Data</th><th></th></thead><tbody>';
 						for (var i = 0; i < result.dnsTableList.length; i++) {
@@ -526,6 +526,7 @@ function searhdnsdomain() {
 							+ request.responseText + "\n");
 				}
 			});
+	$("#lookupdatatable").dataTable();
 }
 function dnstable() {
 	var dns_zone = document.getElementById("zonelist");

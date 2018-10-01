@@ -36,7 +36,6 @@
 								</div>
 							</fieldset>
 						</form>
-
 					</div>
 
 					<div class="col-lg-2 col-md-2">
@@ -66,7 +65,7 @@
 
 				</div>
 				<div class="row">
-					<div class="col-lg-3 col-md-3"></div>
+					<div class="col-lg-4 col-md-4"></div>
 					<div class="col-lg-8 col-md-8">
 						<form class="radio">
 							<label> <input type="radio" class="flat"
@@ -87,7 +86,7 @@
 				<div class="x_panel">
 					<!-- compare query -->
 					<div class="row" id="comparequery">
-						<div class="x_panel">
+						<div class="panel">
 							<div class="x_title">
 								<h2>Compare Query</h2>
 								<div class="clearfix"></div>

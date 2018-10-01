@@ -38,19 +38,50 @@ public class dhcpPolicyDAOImpl implements dhcpPolicyDAO{
 	@Override
 	public void insertDhcp(dhcpPolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		SqlSession.selectList("dhcppolicy.insertdhcp",vo);
+		SqlSession.insert("dhcppolicy.insertdhcp",vo);
 	}
 
 	@Override
+	public dhcpPolicyVO catchDhcp(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectOne("dhcppolicy.catchdhcp",vo);
+	}
+	
+	@Override
 	public void updateDhcp(dhcpPolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		SqlSession.selectList("dhcppolicy.updatedhcp",vo);
+		SqlSession.update("dhcppolicy.updatedhcp",vo);
 	}
 
 	@Override
 	public void deleteDhcp(dhcpPolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		SqlSession.selectList("dhcppolicy.deletedhcp",vo);
+		SqlSession.delete("dhcppolicy.deletedhcp",vo);
 	}
-	
+
+	@Override
+	public dhcpSubVO catchsubDhcp(dhcpSubVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectOne("dhcppolicy.catchsubdhcp",vo);
+	}
+
+	@Override
+	public void insertSubDhcp(dhcpSubVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.insert("dhcppolicy.insertsubdhcp",vo);
+	}
+
+	@Override
+	public void updateSubDhcp(dhcpSubVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.update("dhcppolicy.updatesubdhcp",vo);
+	}
+
+	@Override
+	public void deleteSubDhcp(dhcpSubVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.delete("dhcppolicy.deletesubdhcp",vo);
+	}
+
+
 }

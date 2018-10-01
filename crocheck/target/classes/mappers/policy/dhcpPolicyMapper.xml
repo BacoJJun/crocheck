@@ -8,17 +8,27 @@
 		start_ip
 	</select>
 	<insert id="insertdhcp">
-		INSERT INTO tb_dhcp(protocol, start_ip, end_ip, dns1, dns2, day, hour, min,
-		created_at, category1, category2, ip_count, subnet, gateway,
+		INSERT INTO tb_dhcp(protocol, start_ip, end_ip, dns1,
+		dns2, day, hour, min,
+		created_at, category1, category2, ip_count,
+		subnet, gateway,
 		subnet_length)
-		values(#{protocol}, #{start_ip}, #{end_ip}, #{dns1}, #{dns2}, #{day}, #{hour}, #{min},
-		#{created_at}, #{category1}, #{category2}, #{ip_count}, #{subnet},
-		#{gateway}, #{subnet_length})
+		values(#{protocol}, #{start_ip},
+		#{end_ip}, #{dns1}, #{dns2}, #{day}, #{hour}, #{min},
+		now(),
+		#{category1}, #{category2}, #{ip_count}, #{subnet},
+		#{gateway},
+		#{subnet_length})
 	</insert>
+	<select id="catchdhcp"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO">
+		select * from tb_dhcp where id = #{id}
+	</select>
 	<update id="updatedhcp">
 		UPDATE tb_dhcp SET
-		protocol= #{protocal}
-		,start_ip= #{start_ip}
+		protocol= #{protocol}
+		,start_ip=
+		#{start_ip}
 		,end_ip= #{end_ip}
 		,day=#{day}
 		,hour=#{hour}
@@ -31,8 +41,8 @@
 		,subnet=#{subnet}
 		,subnet_length=#{subnet_length}
 		,gateway=#{gateway}
+		,created_at=now()
 		WHERE id=#{id}
-
 	</update>
 	<delete id="deletedhcp">
 		delete from tb_dhcp where id=#{id}
@@ -99,17 +109,49 @@
 		sub2.hold_count,
 		rent.rent_count
 	</select>
-	<select id="category" resultType="com.humanstar.crocheck.model.policy.dto.dhcpCategoryVO">
+	<select id="catchsubdhcp" resultType="com.humanstar.crocheck.model.policy.dto.dhcpSubVO">
+		select * from tb_dhcp_sub where id= #{id}
+	</select>
+	
+	<insert id="insertsubdhcp">
+			INSERT INTO tb_dhcp_sub(type, start_ip, end_ip, mac,
+		mid, ip_count, created_at)
+		values(#{type}, #{start_ip},
+		#{end_ip}, #{mac}, #{mid}, #{ip_count}, 
+		now())
+	</insert>
+	
+	<update id="updatesubdhcp">
+			UPDATE tb_dhcp_sub SET
+		type = #{type}
+		,start_ip= #{start_ip}
+		,end_ip= #{end_ip}
+		,mac=#{mac}
+		,mid=#{mid}
+		,ip_count=#{ip_count}
+		,created_at = now()
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="deletesubdhcp">
+		delete from tb_dhcp_sub where id=#{id}
+	</delete>
+	
+	<select id="category"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpCategoryVO">
 		select distinct(category1) as category from tb_dhcp
 	</select>
-	<select id="category_group" resultType="com.humanstar.crocheck.model.policy.dto.dhcpCategoryVO">
+	<select id="category_group"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpCategoryVO">
 		select distinct(category2) as category from tb_dhcp
 	</select>
 	
-	<select id="selectdhcp" resultType="com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO">
+	<select id="selectdhcp"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO">
 		select * from tb_dhcp where id = #{id}
 	</select>
-	<select id="selectsubdhcp" resultType="com.humanstar.crocheck.model.policy.dto.dhcpSubVO">
+	<select id="selectsubdhcp"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpSubVO">
 		select * from tb_dhcp_sub where id= #{id}
 	</select>
 </mapper>

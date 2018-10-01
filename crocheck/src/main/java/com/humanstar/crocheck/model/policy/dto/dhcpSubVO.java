@@ -57,6 +57,12 @@ public class dhcpSubVO {
 	public void setIp_count(int ip_count) {
 		this.ip_count = ip_count;
 	}
+	@Override
+	public String toString() {
+		return "dhcpSubVO [id=" + id + ", type=" + type + ", start_ip=" + start_ip + ", end_ip=" + end_ip + ", mac="
+				+ mac + ", mid=" + mid + ", created_at=" + created_at + ", ip_count=" + ip_count + "]";
+	}
+	
 	
 	
 }

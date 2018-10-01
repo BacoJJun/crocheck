@@ -52,7 +52,7 @@
 					<button type="button" class="btn btn-success" id="search_stat">SUBMIT</button>
 				</div>
 
-				<div class="x_panel">
+				<div class="x_panel" id="analysis_content">
 					<div class="row">
 						<div class="col-md-4 col-sm-12 col-xs-12">
 							<div class="x_panel">
@@ -138,13 +138,11 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="ddos_progress">
-
 									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th width="20%">SOURCE IP</th>
-												<th width="70%"></th>
-												<th width="10%">%</th>
+												<th width="85%">SOURCE IP</th>
+												<th width="15%">COUNT</th>
 											</tr>
 										</thead>
 										<tbody id="dnsQuerySrcList">
@@ -205,9 +203,8 @@
 									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th width="20%">SOURCE IP</th>
-												<th width="70%"></th>
-												<th width="10%">%</th>
+												<th width="85%">SOURCE IP</th>
+												<th width="15%">COUNT</th>
 											</tr>
 										</thead>
 										<tbody id="ddosQuerySrcList">
@@ -220,8 +217,6 @@
 					</div>
 				</div>
 			</div>
-
-
 
 		</div>
 	</div>

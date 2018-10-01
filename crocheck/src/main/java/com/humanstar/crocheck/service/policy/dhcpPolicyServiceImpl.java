@@ -40,7 +40,13 @@ public class dhcpPolicyServiceImpl implements dhcpPolicyService{
 		// TODO Auto-generated method stub
 		dhcpPolicyDAO.insertDhcp(vo);
 	}
-
+	
+	@Override
+	public dhcpPolicyVO catchDhcp(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return 	dhcpPolicyDAO.catchDhcp(vo);
+	}
+	
 	@Override
 	public void updateDhcp(dhcpPolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
@@ -52,6 +58,31 @@ public class dhcpPolicyServiceImpl implements dhcpPolicyService{
 		// TODO Auto-generated method stub
 		dhcpPolicyDAO.deleteDhcp(vo);
 	}
-	
+
+	@Override
+	public dhcpSubVO catchsubDhcp(dhcpSubVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dhcpPolicyDAO.catchsubDhcp(vo);
+	}
+
+	@Override
+	public void insertSubDhcp(dhcpSubVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dhcpPolicyDAO.insertSubDhcp(vo);
+	}
+
+	@Override
+	public void updateSubDhcp(dhcpSubVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dhcpPolicyDAO.updateSubDhcp(vo);
+	}
+
+	@Override
+	public void deleteSubDhcp(dhcpSubVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dhcpPolicyDAO.deleteSubDhcp(vo);
+	}
+
+
 	
 }
