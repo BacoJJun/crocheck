@@ -134,4 +134,8 @@ public class HomeController {
 	public String guide(Locale locale, Model model) throws Exception {
 		return "guide";
 	}
+	@RequestMapping(value = "/temp", method = RequestMethod.GET)
+	public String temp(Locale locale, Model model) throws Exception {
+		return "temp";
+	}
 }
