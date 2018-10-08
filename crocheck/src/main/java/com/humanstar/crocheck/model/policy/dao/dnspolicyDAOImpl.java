@@ -98,4 +98,10 @@ public class dnspolicyDAOImpl implements dnspolicyDAO{
 		return SqlSession.selectList("dnspolicy.zonesearchdns", vo);
 	}
 
+	@Override
+	public List<dnspolicyVO> dnsBackupData() throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("dnspolicy.dnsbackup");
+	}
+
 }

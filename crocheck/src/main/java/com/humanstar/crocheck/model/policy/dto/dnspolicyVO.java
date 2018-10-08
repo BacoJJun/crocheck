@@ -123,4 +123,24 @@ public class dnspolicyVO {
 				+ resp_contact + ", serial=" + serial + ", refresh=" + refresh + ", retry=" + retry + ", expire="
 				+ expire + ", minimum=" + minimum + ", comment=" + comment + ", modified=" + modified + "]";
 	}
+	public String csvString() {
+		String line = "";
+		line += zone + ",";
+		line += ttl + ",";
+		line += type + ",";
+		line += host + ",";
+		line += mx_priority + ",";
+		line += data + ",";
+		line += primary_ns + ",";
+		line += resp_contact + ",";
+		line += serial + ",";
+		line += refresh + ",";
+		line += retry + ",";
+		line += expire + ",";
+		line += minimum + ",";
+		line += comment + ",";
+		line += modified;
+		
+		return line;
+	}
 }

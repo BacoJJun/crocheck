@@ -20,4 +20,6 @@ public interface dnspolicyDAO {
 	public void insertsubdomain(dnspolicyVO vo) throws Exception;
 	public void updatesubdomain(dnspolicyVO vo) throws Exception;
 	public void deletesubdomain(dnspolicyVO vo) throws Exception;
+	
+	public List<dnspolicyVO> dnsBackupData() throws Exception;
 }

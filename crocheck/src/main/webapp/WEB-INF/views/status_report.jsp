@@ -35,11 +35,12 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<!-- report view part -->
-								<div class="col-lg-10 col-md-10" style="overflow-y: auto; height: 600px;">
+								
+								<div class="col-lg-10 col-md-10" style="overflow-y: auto; height: 600px;" >
 									<div id="report_page">
 										<!--  dns domain start -->
 										<div id="dns_domain" class="row">
-											<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 												<div class="x_panel">
 													<div class="x_title">
 														<h2>
@@ -51,7 +52,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 												<div class="x_panel">
 													<div class="x_content">
 														<table class="table table-hover">
@@ -79,7 +80,7 @@
 
 										<!-- dns client start -->
 										<div id="dns_client" class="row">
-											<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 												<div class="x_panel">
 													<div class="x_title">
 														<h2>
@@ -91,7 +92,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 												<div class="x_panel">
 													<div class="x_content">
 														<table class="table table-hover">
@@ -119,7 +120,7 @@
 
 										<!-- ddos domain start -->
 										<div id="ddos_domain" class="row">
-											<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 												<div class="x_panel">
 													<div class="x_title">
 														<h2>
@@ -131,7 +132,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 												<div class="x_panel">
 													<div class="x_content">
 														<table class="table table-hover">
@@ -159,7 +160,7 @@
 
 										<!-- ddos client start -->
 										<div id="ddos_client" class="row">
-											<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 												<div class="x_panel">
 													<div class="x_title">
 														<h2>
@@ -171,7 +172,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 												<div class="x_panel">
 													<div class="x_content">
 														<table class="table table-hover">
@@ -198,7 +199,8 @@
 										<!-- ddos client end -->
 
 										<!-- packet graph start -->
-										<div id="packet_graph" class="col-md-6 col-sm-6 col-xs-12">
+										<div class="row">
+										<div id="packet_graph" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
@@ -214,7 +216,7 @@
 										<!-- packet graph end -->
 
 										<!-- cpu graph start -->
-										<div id="cpu_graph" class="col-md-6 col-sm-6 col-xs-12">
+										<div id="cpu_graph" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
@@ -230,7 +232,7 @@
 										<!-- cpu graph end -->
 
 										<!-- memory graph start -->
-										<div id="memroy_graph" class="col-md-6 col-sm-6 col-xs-12">
+										<div id="memroy_graph" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
@@ -246,7 +248,7 @@
 										<!-- memory graph end -->
 
 										<!-- disk graph start -->
-										<div id="disk_graph" class="col-md-6 col-sm-6 col-xs-12">
+										<div id="disk_graph" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
@@ -258,6 +260,7 @@
 													<canvas id="diskChart"></canvas>
 												</div>
 											</div>
+										</div>
 										</div>
 										<!-- disk graph end -->
 									</div>
@@ -318,6 +321,13 @@
 												<label> <input type="checkbox" id="check_disk_graph"
 													checked="checked"> DISK GRAPH
 												</label>
+											</div>
+											
+											<div class="panel">
+												<label> <button type="button" class="btn btn-primary" id="makepdf">pdf</button>
+												</label>
+												<label> <button type="button" class="btn btn-success" id="printreport">print</button>
+												</label>												
 											</div>
 										</div>
 									<!-- report check list -->
@@ -420,6 +430,9 @@
 	<script src="js/moment.min.js"></script>
 	<script src="js/daterangepicker.js"></script>
 	<script src="js/echarts.min.js"></script>
+	<script src="js/printThis.js"></script>
+		<script src="js/jspdf.min.js"></script>
+	<script type="text/javascript" src="js/html2canvas.js"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script src="js/status_report.js"></script>

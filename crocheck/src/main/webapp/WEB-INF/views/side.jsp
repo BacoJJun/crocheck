@@ -1,4 +1,5 @@
-
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html lang="ko" data-placeholders-focus="false">
 <!-- sidebar menu -->
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
@@ -13,21 +14,21 @@
 		<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 			<div class="menu_section">
 				<ul class="nav side-menu">
-					<li><a><i class="fa fa-home"></i> Home <span
+					<li><a><i class="fa fa-home"></i> <strong>처음화면</strong> <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href=" /dashboard">Dashboard</a></li>
+							<li><a href=" /dashboard">대시보드 </a></li>
 							<li><a href=" /dashboard2">Dashboard2</a></li>
 							<li><a href=" /dashboard3">Dashboard3</a></li>
 						</ul></li>
-					<li><a><i class="fa fa-bar-chart-o"></i> Statistics <span
+					<li><a><i class="fa fa-bar-chart-o"></i> <strong>통계분석 </strong><span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href=" /dnsstatus">DNS-STATUS</a></li>
-							<li><a href=" /statistics">ANALYSIS</a></li>
-							<li><a href=" /compare">COMPARE</a></li>
+							<li><a href=" /statistics">분석</a></li>
+							<li><a href=" /compare">비교</a></li>
 						</ul></li>
-					<li><a><i class="fa fa-edit"></i> Policy <span
+					<li><a><i class="fa fa-edit"></i><strong>정책설정 </strong><span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href=" /dnspolicy">DNS</a></li>
@@ -35,13 +36,13 @@
 							<li><a href=" /alertList">ALERT</a></li>
 							<li><a href=" /engine">ENGINE</a></li>
 						</ul></li>
-					<li><a><i class="fa fa-sitemap"></i>Organiziton<span
+					<li><a><i class="fa fa-sitemap"></i><strong>조 직 도</strong><span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href=" /organization">ORGANIZATION</a></li>
 						</ul></li>
 
-					<li><a><i class="fa fa-clone"></i>Report <span
+					<li><a><i class="fa fa-clone"></i><strong>보 고 서</strong><span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href=" /status_report">STATUS</a></li>

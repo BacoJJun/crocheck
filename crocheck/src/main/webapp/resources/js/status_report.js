@@ -7,8 +7,7 @@ $(document).ready(function() {
 	listCheck();
 	
 	var result = $('input:radio[name="report_count_type"]:checked').val() ;
-	console.log(result);
-	
+
 	
 	$('#search_stat').click(function() {
 				if ($(
@@ -24,10 +23,62 @@ $(document).ready(function() {
 						'input:radio[name="report_type"]:checked')
 						.val() == 'monthly') {
 					month_view();
-
 				}
 			});
+	buttonClickEvent();
 });
+function buttonClickEvent(){
+	$("#printreport").click(function(){
+		html2canvas(document.querySelector("#report_page")).then(canvas => {
+
+			    // 캔버스를 이미지로 변환
+		    var imgData = canvas.toDataURL('image/png');
+		     
+        var tWindow = window.open("");
+        $(tWindow.document.body)
+            .html("<img id='Image' src=" + imgData + " style='width:100%;'></img>")
+            .ready(function() {
+            	setTimeout(function(){
+            		tWindow.focus();
+            		 tWindow.print();
+            	});
+            });
+		});	
+	});
+	$("#makepdf").click(function(){
+		console.log("pdf test");
+		 
+		var doc = new jsPDF('p', 'mm', [297,210]);	
+		html2canvas(document.querySelector("#report_page")).then(canvas => {
+
+				    // 캔버스를 이미지로 변환
+			    var imgData = canvas.toDataURL('image/png');
+			     
+			    var imgWidth = 210; // 이미지 가로 길이(mm) A4 기준
+			    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+			    var imgHeight = canvas.height * imgWidth / canvas.width;
+			    var heightLeft = imgHeight;
+
+			   var position = 0;
+			   		 
+			        // 첫 페이지 출력
+			        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+			        heightLeft -=  pageHeight;
+
+			        // 한 페이지 이상일 경우 루프 돌면서 출력
+		        while (heightLeft >= 20) {
+			          position = heightLeft - imgHeight;
+			          doc.addPage();
+			          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+			          heightLeft -= pageHeight;
+			        }
+			 
+			      doc.save('SDNS_REPORT.pdf');
+			});
+		
+		  
+	});
+}
 function listCheck(){
 	$("#check_dns_domain").change(function(){
 		if ($("#check_dns_domain").is(":checked")){
