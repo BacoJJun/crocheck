@@ -10,4 +10,8 @@ public interface organizationMembersDAO {
 	public List<postVO> postList() throws Exception;
 	public List<memberVO> postMemberList(memberVO vo) throws Exception;
 	public postVO postSearchList(postVO vo) throws Exception;
+	public void insertMember(memberVO vo) throws Exception;
+	public void updateMember(memberVO vo) throws Exception;
+	public void deleteMember(memberVO vo) throws Exception;
+	public memberVO selectMember(memberVO vo) throws Exception;
 	}

@@ -101,8 +101,12 @@ function menu_list_draw(data) {
 	var organization_modal_list = document.getElementById("organization_list");
 	var edit_modal_list =  document.getElementById("edit_displaypost");
 	var insert_modal_list =  document.getElementById("insert_displaypost");
+	var insertmember_modal_list =  document.getElementById("insert_post_list");
+	var updatemember_modal_list =  document.getElementById("update_post_list");
+	
 	var modal_list = '';
 	var modal_edit = '';
+	var post_list = '';
 	var modal_insert='';
 	var list_html = '';
 	var j = 0;
@@ -126,9 +130,12 @@ function menu_list_draw(data) {
 			//dep_flow[j-1].innerHTML += '<li ><span value="'+data[i].id+'"></span>' + data[i].name + '</li>';
 			dep_flow[j-1].innerHTML += '<li ><button type="button" class="btn btn-xs" value="'+data[i].id +'">'+data[i].name+'</button></li>';
 			modal_list += '<option value="'+data[i].id + '"> + ' + data[i].name + '</option>';
+			post_list +=  '<option value="'+data[i].id + '"> ' + data[i].name + '</option>';
 		}
 	}
 	organization_modal_list.innerHTML = modal_list;
 	insert_modal_list.innerHTML = modal_insert;
 	edit_modal_list.innerHTML = modal_edit;
+	insertmember_modal_list.innerHTML = post_list;
+	updatemember_modal_list.innerHTML = post_list;
 }

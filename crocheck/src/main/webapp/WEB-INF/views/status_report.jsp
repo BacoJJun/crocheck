@@ -40,20 +40,20 @@
 									<div id="report_page">
 										<!--  dns domain start -->
 										<div id="dns_domain" class="row">
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+												<div class="x_panel"  style="height: 490px;" >
 													<div class="x_title">
 														<h2>
 															DNS DOMAIN<small>Donut graph</small>
 														</h2>
 													</div>
 													<div class="x_content ">
-														<div id="dns_domain_pie" style="height: 270px;"></div>
+														<div id="dns_domain_pie" style="height: 430px;"></div>
 													</div>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
+												<div class="x_panel" style="height: 490px;" >
 													<div class="x_content">
 														<table class="table table-hover">
 															<colgroup>
@@ -81,19 +81,19 @@
 										<!-- dns client start -->
 										<div id="dns_client" class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
+												<div class="x_panel" style="height: 490px;" >
 													<div class="x_title">
 														<h2>
 															DNS CLIENT<small>Donut graph</small>
 														</h2>
 													</div>
 													<div class="x_content ">
-														<div id="dns_client_pie" style="height: 270px;"></div>
+														<div id="dns_client_pie" style="height: 430px;"></div>
 													</div>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
+												<div class="x_panel" style="height: 490px;" >
 													<div class="x_content">
 														<table class="table table-hover">
 															<colgroup>
@@ -121,19 +121,19 @@
 										<!-- ddos domain start -->
 										<div id="ddos_domain" class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
+												<div class="x_panel" style="height: 490px;" >
 													<div class="x_title">
 														<h2>
 															DDOS Domain<small>Donut graph</small>
 														</h2>
 													</div>
 													<div class="x_content ">
-														<div id="ddos_domain_pie" style="height: 270px;"></div>
+														<div id="ddos_domain_pie" style="height: 430px;"></div>
 													</div>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
+												<div class="x_panel" style="height: 490px;" >
 													<div class="x_content">
 														<table class="table table-hover">
 															<colgroup>
@@ -161,19 +161,19 @@
 										<!-- ddos client start -->
 										<div id="ddos_client" class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
+												<div class="x_panel" style="height: 490px;" >
 													<div class="x_title">
 														<h2>
 															DDOS CLIENT<small>Donut graph</small>
 														</h2>
 													</div>
 													<div class="x_content ">
-														<div id="ddos_client_pie" style="height: 270px;"></div>
+														<div id="ddos_client_pie" style="height: 430px;"></div>
 													</div>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
+												<div class="x_panel" style="height: 490px;" >
 													<div class="x_content">
 														<table class="table table-hover">
 															<colgroup>
@@ -201,7 +201,7 @@
 										<!-- packet graph start -->
 										<div class="row">
 										<div id="packet_graph" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-											<div class="x_panel">
+											<div class="x_panel" style="height: 490px;">
 												<div class="x_title">
 													<h2>
 														PACKET <small>graph</small>
@@ -217,7 +217,7 @@
 
 										<!-- cpu graph start -->
 										<div id="cpu_graph" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-											<div class="x_panel">
+											<div class="x_panel" style="height: 490px;">
 												<div class="x_title">
 													<h2>
 														CPU <small>graph</small>
@@ -233,7 +233,7 @@
 
 										<!-- memory graph start -->
 										<div id="memroy_graph" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-											<div class="x_panel">
+											<div class="x_panel" style="height: 490px;">
 												<div class="x_title">
 													<h2>
 														MEMORY <small>graph</small>
@@ -249,7 +249,7 @@
 
 										<!-- disk graph start -->
 										<div id="disk_graph" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-											<div class="x_panel">
+											<div class="x_panel" style="height: 490px;">
 												<div class="x_title">
 													<h2>
 														DISK <small>graph</small>

@@ -734,10 +734,10 @@ function dnsDomainList(domainList, domainCount, domainPer){
 	
 	var domain_html ='';
 	var domain_length = '';
-	if(domainList.length < 7){
+	if(domainList.length < 12){
 		domain_length = domainList.length;
 	}else{
-		domain_length = 7;
+		domain_length = 12;
 	}
 	
 	for(var i = 0; i< domain_length;i++){
@@ -807,10 +807,10 @@ function ddosDomainList(domainList, domainCount, domainPer){
 	
 	var domain_html ='';
 	var domain_length = '';
-	if(domainList.length < 7){
+	if(domainList.length < 12){
 		domain_length = domainList.length;
 	}else{
-		domain_length = 7;
+		domain_length = 12;
 	}
 	
 	for(var i = 0; i< domain_length;i++){
@@ -879,10 +879,10 @@ function dnsClientList(srcList, srcCount, srcPer){
 	
 	var domain_html ='';
 	var src_length = '';
-	if(srcList.length < 7){
+	if(srcList.length < 12){
 		src_length = srcList.length;
 	}else{
-		src_length = 7;
+		src_length = 12;
 	}
 	
 	for(var i = 0; i< src_length;i++){
@@ -950,10 +950,10 @@ function ddosClientList(srcList, srcCount, srcPer){
 	
 	var domain_html ='';
 	var src_length = '';
-	if(srcList.length < 7){
+	if(srcList.length < 12){
 		src_length = srcList.length;
 	}else{
-		src_length = 7;
+		src_length = 12;
 	}
 	
 	for(var i = 0; i< src_length;i++){
@@ -1672,14 +1672,14 @@ function refrashPage(){
 	var report_page = document.getElementById("report_page");
 	var page_html = '';
 	page_html += '<div id="dns_domain" class="row">';
-	page_html += '<div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>DNS DOMAIN<small>Donut graph</small></div><div class="x_content "><div id="dns_domain_pie" style="height: 270px;"></div></div></div></div><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_content"><table class="table table-hover"><colgroup><col width="60%"><col width="20%"><col width="20%"></colgroup><thead><tr><th>Domain</th><th>Count</th><th>Percentage</th></tr></thead><tbody id="dnsDomaintableList"></tbody></table></div></div></div></div>';
-	page_html += '<div id="dns_client" class="row"><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>DNS CLIENT<small>Donut graph</small></h2></div><div class="x_content "><div id="dns_client_pie" style="height: 270px;"></div></div></div></div><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_content"><table class="table table-hover"><colgroup><col width="60%"><col width="20%"><col width="20%"></colgroup><thead><tr><th>Src_ip</th><th>Count</th><th>Percentage</th></tr></thead><tbody id="dnsClienttableList"></tbody></table></div></div></div></div>';
-	page_html += '<div id="ddos_domain" class="row"><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>DDOS Domain<small>Donut graph</small></h2></div><div class="x_content "><div id="ddos_domain_pie" style="height: 270px;"></div></div></div></div><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_content"><table class="table table-hover"><colgroup><col width="60%"><col width="20%"><col width="20%"></colgroup><thead><tr><th>Src</th><th>Count</th><th>Percentage</th></tr></thead><tbody id="ddosDomaintableList"></tbody></table></div></div></div></div>';
-	page_html += '<div id="ddos_client" class="row"><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>DDOS CLIENT<small>Donut graph</small></h2></div><div class="x_content "><div id="ddos_client_pie" style="height: 270px;"></div></div></div></div><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_content"><table class="table table-hover"><colgroup><col width="60%"><col width="20%"><col width="20%"></colgroup><thead><tr><th>Src_ip</th><th>Count</th><th>Percentage</th></tr></thead><tbody id="ddosClienttableList"></tbody></table></div></div></div></div>';
-	page_html += '<div id="packet_graph" class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>PACKET <small>graph</small></h2><div class="clearfix"></div></div><div class="x_content"><canvas id="packetChart"></canvas></div></div></div>';
-	page_html += '<div id="cpu_graph" class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>CPU <small>graph</small></h2><div class="clearfix"></div></div><div class="x_content"><canvas id="cpuChart"></canvas></div></div></div>';
-	page_html += '<div id="memroy_graph" class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>MEMORY <small>graph</small></h2><div class="clearfix"></div></div><div class="x_content"><canvas id="memoryChart"></canvas></div></div></div>';
-	page_html += '<div id="disk_graph" class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"><div class="x_title"><h2>DISK <small>graph</small></h2><div class="clearfix"></div></div><div class="x_content"><canvas id="diskChart"></canvas></div></div></div>';
+	page_html += '<div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_title"><h2>DNS DOMAIN<small>Donut graph</small></div><div class="x_content "><div id="dns_domain_pie" style="height: 430px;"></div></div></div></div><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_content"><table class="table table-hover"><colgroup><col width="60%"><col width="20%"><col width="20%"></colgroup><thead><tr><th>Domain</th><th>Count</th><th>Percentage</th></tr></thead><tbody id="dnsDomaintableList"></tbody></table></div></div></div></div>';
+	page_html += '<div id="dns_client" class="row"><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_title"><h2>DNS CLIENT<small>Donut graph</small></h2></div><div class="x_content "><div id="dns_client_pie" style="height: 430px;"></div></div></div></div><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_content"><table class="table table-hover"><colgroup><col width="60%"><col width="20%"><col width="20%"></colgroup><thead><tr><th>Src_ip</th><th>Count</th><th>Percentage</th></tr></thead><tbody id="dnsClienttableList"></tbody></table></div></div></div></div>';
+	page_html += '<div id="ddos_domain" class="row"><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_title"><h2>DDOS Domain<small>Donut graph</small></h2></div><div class="x_content "><div id="ddos_domain_pie" style="height: 430px;"></div></div></div></div><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_content"><table class="table table-hover"><colgroup><col width="60%"><col width="20%"><col width="20%"></colgroup><thead><tr><th>Src</th><th>Count</th><th>Percentage</th></tr></thead><tbody id="ddosDomaintableList"></tbody></table></div></div></div></div>';
+	page_html += '<div id="ddos_client" class="row"><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_title"><h2>DDOS CLIENT<small>Donut graph</small></h2></div><div class="x_content "><div id="ddos_client_pie" style="height: 430px;"></div></div></div></div><div class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_content"><table class="table table-hover"><colgroup><col width="60%"><col width="20%"><col width="20%"></colgroup><thead><tr><th>Src_ip</th><th>Count</th><th>Percentage</th></tr></thead><tbody id="ddosClienttableList"></tbody></table></div></div></div></div>';
+	page_html += '<div class="row"><div id="packet_graph" class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_title"><h2>PACKET <small>graph</small></h2><div class="clearfix"></div></div><div class="x_content"><canvas id="packetChart"></canvas></div></div></div>';
+	page_html += '<div id="cpu_graph" class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_title"><h2>CPU <small>graph</small></h2><div class="clearfix"></div></div><div class="x_content"><canvas id="cpuChart"></canvas></div></div></div>';
+	page_html += '<div id="memroy_graph" class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_title"><h2>MEMORY <small>graph</small></h2><div class="clearfix"></div></div><div class="x_content"><canvas id="memoryChart"></canvas></div></div></div>';
+	page_html += '<div id="disk_graph" class="col-md-6 col-sm-6 col-xs-12"><div class="x_panel"  style="height: 490px;"><div class="x_title"><h2>DISK <small>graph</small></h2><div class="clearfix"></div></div><div class="x_content"><canvas id="diskChart"></canvas></div></div></div></div>';
 	report_page.innerHTML = page_html;
 	
 }

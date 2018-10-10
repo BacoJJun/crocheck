@@ -120,4 +120,88 @@ public class organizationController {
 
 		return resultMap; 
 	}
+	
+	@RequestMapping(value = "/insertmember", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertmember(@ModelAttribute memberVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			organizationService.insertMember(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap; 
+	}
+	
+	@RequestMapping(value = "/updatemember", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updatemember(@ModelAttribute memberVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			organizationService.updateMember(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap; 
+	}
+	
+	@RequestMapping(value = "/deletemember", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deletemember(@ModelAttribute memberVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			organizationService.deleteMember(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap; 
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/selectmember", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> selectmember(@ModelAttribute memberVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		memberVO selectmember = new memberVO();
+
+		try {
+			selectmember = organizationService.selectMember(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("selectmember", selectmember);
+
+		return resultMap; 
+	}
+	
+	
 }

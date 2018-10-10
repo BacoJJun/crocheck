@@ -21,15 +21,14 @@
 							</ul></li>
 
 						<li role="presentation" class="dropdown"><a
-							href="javascript:;" class="dropdown-toggle info-number"
+							href="javascript;" class="dropdown-toggle info-number"
 							data-toggle="dropdown" aria-expanded="false"> <i
 								class="fa fa-bell-o"></i> <span class="badge bg-green" id="alertCount"></span>
 						</a>
 						
 							<ul id="alertMenu" class="dropdown-menu list-unstyled msg_list"
 								role="menu">
-								<div id="alertList">
-								</div>
+								<div id="alertList"></div>
 								<li>
 								<div class="col-lg-4 col-md-4">
 									<div class="text-center">

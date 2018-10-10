@@ -23,13 +23,13 @@
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
-								Organization <small>조직도 </small>
+								조직도 <small>Organization </small>
 							</h3>
 						</div>
 
 						<div class="title_right text-right">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
-									<button class="btn btn-defalut " type="button">+</button>
+									<button class="btn btn-defalut " type="button"  data-toggle="modal" data-target="#insertMemberModal">+</button>
 							</div>
 						</div>
 					</div>
@@ -95,6 +95,258 @@
 		</div>
 	</div>
 
+
+<!--insert member start -->
+	<div id="insertMemberModal" class="modal fade in">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<a class="btn btn-default" data-dismiss="modal"><span
+						class="glyphicon glyphicon-remove"></span></a>
+					<h4 class="modal-title">구성원 추가</h4>
+				</div>
+				<div class="modal-body">
+					<div class="x_panel">
+						<form class="form-horizontal form-label-left">
+							<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">부서 
+								</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
+											<select class="select_multiple form-control" id="insert_post_list">
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">이름  </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_member_name" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">IP주소  </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_member_ip" type="text" value=""  />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">전화번호 </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_member_phone" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">휴대전화 </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_member_mobile" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">E-Mail</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_member_mail" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">기타 </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="insert_member_etc" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="modal-footer">
+						<div class="btn-group">
+							<button class="btn btn-danger" data-dismiss="modal">
+								<span class="glyphicon glyphicon-remove"></span> 취소 
+							</button>
+							<button class="btn btn-primary" id="insert_member_info">
+								<span class="glyphicon glyphicon-check"></span> 추가 
+							</button>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dalog -->
+		</div>
+	</div>
+	<!-- /.modal -->
+	<!--insert member Modal end -->
+	
+	<!--update member start -->
+	<div id="updateMemberModal" class="modal fade in">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<a class="btn btn-default" data-dismiss="modal"><span
+						class="glyphicon glyphicon-remove"></span></a>
+					<h4 class="modal-title">구성원 정보 수정 </h4>
+				</div>
+				<div class="modal-body">
+					<div class="x_panel">
+						<form class="form-horizontal form-label-left">
+													<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">부서 
+								</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs12">
+										<select id="update_post_list" class="form-control"
+											required>
+										</select>
+									</div>
+									<input type="hidden" id="update_member_id"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">이름  </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=""
+											id="update_member_name" type="text" required value="" />
+									
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">IP주소  </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="update_member_ip" type="text" required value="" readonly />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">전화번호 </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="update_member_phone" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">휴대전화 </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="update_member_mobile" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">E-Mail</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="update_member_mail" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">기타 </label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input class="form-control" name="subject" placeholder=" "
+											id="update_member_etc" type="text" required value="" />
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="modal-footer">
+						<div class="btn-group">
+							<button class="btn btn-danger" data-dismiss="modal">
+								<span class="glyphicon glyphicon-remove"></span> 취소 
+							</button>
+							<button class="btn btn-primary" id="update_member_info">
+								<span class="glyphicon glyphicon-check"></span> 수정 
+							</button>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dalog -->
+		</div>
+	</div>
+	<!-- /.modal -->
+	<!--update member Modal end -->
+	
+	<!--delete member Modal start -->
+	<div id="deleteMemberModal" class="modal fade in">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header bg-danger">
+					<a class="btn btn-default" data-dismiss="modal"><span
+						class="glyphicon glyphicon-remove"></span></a>
+					<h4 class="modal-title">구성원 정보 삭제 </h4>
+				</div>
+				<div class="modal-body">
+					<div class="x_panel">
+						<span id="delete_member_info_view"></span>
+						<input type="hidden" id="delete_member_id"/>
+					</div>
+					<div class="modal-footer">
+						<div class="btn-group">
+							<button class="btn btn-default" data-dismiss="modal">
+								<span class="glyphicon glyphicon-remove"></span> 취소
+							</button>
+							<button class="btn btn-danger" id="delete_member_info">
+								<span class="glyphicon glyphicon-check"></span> 삭제 
+							</button>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dalog -->
+		</div>
+	</div>
+	<!-- /.modal -->
+	<!-- dhcp delete Modal end -->
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>

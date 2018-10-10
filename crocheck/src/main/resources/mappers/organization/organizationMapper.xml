@@ -20,7 +20,36 @@
 			</if>
 		</where>
 	</select>
-	<select id="postsearchlist" resultType="com.humanstar.crocheck.model.organization.dto.postVO">
-	select * from organizations where id = #{id}	
+	<select id="postsearchlist"
+		resultType="com.humanstar.crocheck.model.organization.dto.postVO">
+		select * from organizations where id = #{id}
+	</select>
+	<insert id="insertmember">
+		insert into organization_members(ip, post, name,
+		phone, etc, created_at, updated_at, organization_id,  mobile,
+		email)
+		values( #{ip}::inet, #{post}, #{name}, #{phone}, #{etc}, now(), now(),
+		#{organization_id},  #{mobile}, #{email} )
+	</insert>
+	<update id="updatemember">
+		update organization_members set
+		post = #{post},
+		name =
+		#{name},
+		phone = #{phone},
+		etc = #{etc},
+		updated_at =now(),
+		organization_id = #{organization_id},
+		gid =#{gid},
+		mobile =#{mobile},
+		email = #{email}
+		where id= #{id}
+	</update>
+	<delete id="deletemember">
+		delete from organization_members where id = #{id}
+	</delete>
+	<select id="selectmember"
+		resultType="com.humanstar.crocheck.model.organization.dto.memberVO">
+		select * from organization_members where id = #{id}
 	</select>
 </mapper>
