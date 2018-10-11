@@ -30,6 +30,8 @@
 <link href="css/checkbox_custom.css" rel="stylesheet">
 <link href="css/analysis.css" rel="stylesheet">
 <link href="css/c3.css" rel="stylesheet">
+<link href="css/ion.rangeSlider.css" rel="stylesheet">
+<link href="css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
 <!-- <link href="css/bootstrap.black.css" rel="stylesheet"> -->
 
 </head>

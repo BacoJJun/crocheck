@@ -16,98 +16,86 @@
 			<!-- /top navigation -->
 
 			<!-- page content -->
-			<div class="right_col" role="main">
+			<div class="right_col" role="main" style="height=900px;">
 				<div class="row ">
 
 					<!--  Report start -->
 					<div class="x_panel">
 						<div class="x_title">
 							<h2>
-								ALERT<small></small>
+								임계값 설정 <small></small>
 							</h2>
 
 							<div class="clearfix"></div>
 						</div>
 
-						<!--  page part -->
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<!-- report view part -->
-								<div class="col-md-9" style="overflow-y: auto; height: 600px;">
+						<!-- form grid slider -->
+						<div class="x_panel" >
 
-									<!--  update liststart -->
-									<div class="x_panel">
-										<div class="x_title">
-											<h2>
-												CRITICAL VALUE <small></small>
-											</h2>
-
-											<div class="clearfix"></div>
-										</div>
-										<div class="x_content">
-											<table class="table table-bordered">
-												<colgroup>
-													<col width="20%" />
-													<col width="40%" />
-													<col width="40%" />
-												</colgroup>
-												<thead>
-													<tr>
-														<th>TYPE</th>
-														<th>WARNING</th>
-														<th>CRITICAL</th>
-													</tr>
-												</thead>
-												<tbody>
-												<tr>
-													<td>CPU</td>
-													<td>  <input type="number" id="cpu_warning" name="cpu_warning" required="required" data-validate-minmax="0,100" class="form-control col-md-7 col-xs-12"></td>
-													<td>   <input type="number" id="cpu_critical" name="cpu_critical" required="required" data-validate-minmax="0,100" class="form-control col-md-7 col-xs-12"></td>
-												</tr>
-													<tr>
-													<td>MEMORY</td>
-													<td>  <input type="number" id="memory_warning" name="memory_warning" required="required" data-validate-minmax="0,100" class="form-control col-md-7 col-xs-12"></td>
-													<td>   <input type="number" id="memory_critical" name="memory_critical" required="required" data-validate-minmax="0,100" class="form-control col-md-7 col-xs-12"></td>
-												</tr>
-													<tr>
-													<td>DISK</td>
-													<td>  <input type="number" id="disk_warning" name="disk_warning" required="required" data-validate-minmax="0,100" class="form-control col-md-7 col-xs-12"></td>
-													<td>   <input type="number" id="disk_critical" name="disk_critical" required="required" data-validate-minmax="0,100" class="form-control col-md-7 col-xs-12"></td>
-												</tr>
-													<tr>
-													<td>DNS</td>
-													<td>  <input type="number" id="dns_warning" name="dns_warning" required="required" data-validate-minmax="0,100000000" class="form-control col-md-7 col-xs-12"></td>
-													<td>   <input type="number" id="dns_critical" name="dns_critical" required="required" data-validate-minmax="0,100000000" class="form-control col-md-7 col-xs-12"></td>
-												</tr>
-													<tr>
-													<td>DDOS</td>
-													<td>  <input type="number" id="ddos_warning" name="ddos_warning" required="required" data-validate-minmax="0,100000000" class="form-control col-md-7 col-xs-12"></td>
-													<td>   <input type="number" id="ddos_critical" name="ddos_critical" required="required" data-validate-minmax="0,100000000" class="form-control col-md-7 col-xs-12"></td>
-												</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="clearfix"></div>
-										<div>
-											<input type="button" class="btn btn-info btn-reset" id="btn-reset" value="reset"></input>
-											<input type="button" class="btn btn-success" id="btn-save" value="save"
-											></input>
-										</div>
-									</div>
+							<div class="row grid_slider">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+									<p>CPU</p>
 								</div>
-								<!-- update list end -->
-
+								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
+									id="cpu_range_graph">
+									<input type="text" id="cpu_range" value="" name="range" />
+								</div>
 							</div>
-							<!-- report check list end -->
+							<br>
+							<div class="row grid_slider">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+									<p>Memory</p>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
+									id="memory_range_graph">
+									<input type="text" id="memory_range" value="" name="range" />
+								</div>
+							</div>
+							<br>
+							<div class="row grid_slider">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+									<p>Disk</p>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
+									id="disk_range_graph">
+									<input type="text" id="disk_range" value="" name="range" />
+								</div>
+							</div>
+							<br>
+							<div class="row grid_slider">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+									<p>DNS</p>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
+									id="dns_range_graph">
+									<input type="text" id="dns_range" value="" name="range" />
+								</div>
+							</div>
+							<br>
+							<div class="row grid_slider">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+									<p>DDOS</p>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
+									id="ddos_range_graph">
+									<input type="text" id="ddos_range" value="" name="range" />
+								</div>
+							</div>
+							<br><br>
+																<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
+										<input type="button"
+											class="btn btn-success" id="btn-save" value="save"></input>
+									</div>
 						</div>
 					</div>
-
-					<!-- Report  end -->
+					<!--  page part -->
+					
 				</div>
+
+				<!-- Report  end -->
 			</div>
-			<!--end  page content -->
 		</div>
-	</div>
+		<!--end  page content -->
 	</div>
 
 	<!-- jQuery -->
@@ -164,10 +152,11 @@
 	<script
 		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	<script src="js/ion.rangeSlider.min.js"></script>
 	<!-- Custom Theme Scripts -->
 
 	<script src="js/alertList.js"></script>
-		<script src="js/alert.js"></script>
+	<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>

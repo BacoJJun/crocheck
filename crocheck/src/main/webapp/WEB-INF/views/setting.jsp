@@ -21,7 +21,26 @@
 					<!--  Policy setting start -->
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>System Management</h2>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+							<h2>시스템 설정</h2>
+							
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+								<button data-toggle="dropdown"
+									class="btn btn-default dropdown-toggle" type="button"
+									aria-expanded="false">
+									백업  <span class="caret"></span>
+								</button>
+								<ul role="menu" class="dropdown-menu">
+									<li><a id="dnsbackup" href="#">DNS</a></li>
+									<li><a id="dhcpbackup" href="#">DHCP</a></li>
+									<li><a id="ddosbackup" href="#">DDOS</a></li>
+									<li><a id="enginebackup" href="#">ENGINE</a></li>
+									<li class="divider"></li>
+									<li><a id="organizationbackup" href="#">조직도</a></li>
+									<li><a id="alertbackup" href="#">임계치</a></li>
+								</ul>
+							</div>
 							<div class="clearfix"></div>
 						</div>
 						<div class="row panel">
@@ -34,7 +53,7 @@
 								</div>
 								<div class="col-lg-6 col-md-6">
 									<div class="x_panel">
-										<span><strong>CroCheck SDNS 3.0</strong></span>
+										<span><strong>CroCheck SDNS 2.0.2</strong></span>
 									</div>
 								</div>
 								<div class="clearfix"></div>
@@ -138,6 +157,7 @@
 									</div>
 								</div>
 							</div>
+							
 						</div>
 					</div>
 					<!--end  page content -->

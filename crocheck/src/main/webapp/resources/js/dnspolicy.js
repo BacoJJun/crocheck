@@ -245,7 +245,7 @@ function insertdnszone() {
 	var expire = document.getElementById("dns_insert_expire").value;
 	var minimum = document.getElementById("dns_insert_minimum").value;
 	var comment = document.getElementById("dns_insert_comment").value;
-
+	var bl = 0;
 	$.ajax({
 		url : '/insertdns',
 		data : {
@@ -262,7 +262,7 @@ function insertdnszone() {
 			"expire" : expire,
 			"minimum" : minimum,
 			"comment" : comment,
-			"bl" : 0
+			"bl" : bl
 		},
 		type : 'post',
 		dataType : 'json',

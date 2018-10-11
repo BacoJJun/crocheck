@@ -28,9 +28,9 @@ public class csvMakeController {
 	@Inject 
 	csvZoneMakeServiceImpl csvZoneMakeService;
 	
-	@RequestMapping(value = "/testCsvMake", method = RequestMethod.POST)
+	@RequestMapping(value = "/zoneCsvMake", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> testCsvMake() {
+	public Map<String, Object> zoneCsvMake() {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		String file_name = "";

@@ -3,6 +3,7 @@ $(document).ready(function() {
 	operatorlist();
 	accesslist();
 	buttonClickEvent();
+	backupClickEvent();
 });
 function buttonClickEvent(){
 	$("#operator_list button").click(function(){
@@ -16,6 +17,33 @@ function buttonClickEvent(){
 	$("#operator_insert_mail_check").click(function(){
 		var test = $("#operator_insert_mail_check input").is(':checked');
 		console.log(test);
+	});
+}
+function backupClickEvent(){
+	$("#dnsbackup").click(function(){
+		$.ajax({
+			url : '/zoneCsvMake',
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					console.log(result.file_name);
+					setTimeout(function(){
+						window.location.assign('download/' + result.file_name);
+					},1000);
+					
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		
 	});
 }
 function operatorEvent(operator_id){

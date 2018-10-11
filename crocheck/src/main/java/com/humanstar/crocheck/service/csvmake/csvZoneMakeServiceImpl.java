@@ -34,12 +34,12 @@ public class csvZoneMakeServiceImpl implements csvZoneMakeService{
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyyymmddhhmm");
 		String str = dayTime.format(new Date(time));
 		
-		file_name = "test_" + str + ".csv";
+		file_name = "dns_" + str + ".csv";
 
 		String title_line = "zone,ttl,type,host,mx_priority,data,primary_ns,resp_contact,serial,refresh,retry,expire,minimum,comment,modified";
 		try {
 			dnsZoneList = dnsPolicyDAO.dnsBackupData();
-			br = Files.newBufferedWriter(Paths.get("/home/jun/", file_name));
+			br = Files.newBufferedWriter(Paths.get("/Users/leejunseok/git/crocheck/crocheck/src/main/webapp/resources/download", file_name));
 			Charset.forName("UTF-8");
 			
 			br.write(title_line);
