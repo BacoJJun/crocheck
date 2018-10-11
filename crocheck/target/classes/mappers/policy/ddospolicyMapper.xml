@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ddospolicy">
+	<select id="ddosbanlist" resultType="com.humanstar.crocheck.model.policy.dto.ddosblockipVO">
+	select * from tb_ddos_block_ip
+	</select>
+	
+	<insert id ="insertddosblock">
+		insert into tb_ddos_block_ip( ip, comment, created_at)
+		values(#{ip}, #{comment}, now() )
+	</insert>
+	
+	<delete id="deleteddosblock">
+		delete from tb_ddos_block_ip where ip =#{ip}
+	</delete>
+	
+	<select id="selectddosblock"  resultType="com.humanstar.crocheck.model.policy.dto.ddosblockipVO">
+		select * from tb_ddos_block_ip where ip = #{ip}
+	</select>
+</mapper>
+
+
+

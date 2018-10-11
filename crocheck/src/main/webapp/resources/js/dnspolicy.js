@@ -3,7 +3,7 @@ $(document)
 				function() {
 					dnstable();
 					table_click_event();
-
+					dnsblocklist();
 					$('#btn-lookup')
 							.click(
 									function() {
@@ -16,12 +16,47 @@ $(document)
 											searhdnsdomain();
 										}
 									});
-					table_loop();
 					dns_button_event();
-
 					buttonClickEvent();
 
 				});
+function dnsblocklist() {
+	var dnsblocktable = document.getElementById("dnsblocklist");
+
+	$
+			.ajax({
+				url : '/dnsbanlist',
+				type : 'post',
+				dataType : 'json',
+				async : false,
+				success : function(result) {
+					if (result.result == 'success') {
+						console.log(result.dnsbanList);
+						var tablelist = '';
+						for (var i = 0; i < result.dnsbanList.length; i++) {
+							tablelist += '<tr>';
+							tablelist += '<td>' + result.dnsbanList[i].zone
+									+ '</td>';
+							tablelist += '<td>' + result.dnsbanList[i].comment
+									+ '</td>';
+							tablelist += '<td><button type="button" data-toggle="modal" data-target="#dnsblockdeleteModal" class="btn btn-danger btn-xs" value="'
+									+ result.dnsbanList[i].zone
+									+ '"><i class="fa fa-trash-o"></i> </button> </td> ';
+							tablelist += '</tr>';
+						}
+						dnsblocktable.innerHTML = tablelist;
+					} else {
+						alert(result.errorMsg);
+					}
+				},
+				error : function(request) {
+					alert('error!');
+					alert("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n");
+				}
+			});
+
+}
 function buttonClickEvent() {
 	$("#insertdns").click(function() {
 		insertdnszone();
@@ -29,17 +64,91 @@ function buttonClickEvent() {
 	$("#updatedns").click(function() {
 		updatednszone();
 	});
-	$("#insertSubDomainBtn").click(function(){
+	$("#insertSubDomainBtn").click(function() {
 		zonelistdraw();
 	});
-	$("#insertsubdomain").click(function(){
+	$("#insertsubdomain").click(function() {
 		subdomaininsert();
 	});
-	$("#updatesubdomain").click(function(){
+	$("#updatesubdomain").click(function() {
 		updatesubdomain();
 	});
 
+	$("#dnsblocklist button").click(function() {
+		var zone = $(this).attr('value');
+		console.log(zone);
+		var deletednsblockview = document.getElementById("deletednsblockview");
+		var deletednsblockzone = document.getElementById("deletednsblockzone");
 
+		deletednsblockview.innerText = zone + '을(를) 삭제하시겠습니까?';
+		deletednsblockzone.value = zone;
+
+	});
+
+	$("#dnsblock_insert").click(
+			function() {
+				var insertdnsblockzone = document
+						.getElementById("dnsblock_insert_zone").value;
+				var insertdnsblockcomment = $("#dnsblock_insert_comment").val();
+/*				console.log(insertdnsblockcomment);
+				console.log(jQuery.type(insertdnsblockcomment));*/
+				$.ajax({
+					url : '/insertdnsban',
+					data : {
+						"zone" : insertdnsblockzone
+						,"comment" : insertdnsblockcomment
+						,"data" : insertdnsblockzone
+					},
+					type : 'post',
+					dataType : 'json',
+					async : false,
+					success : function(result) {
+						if (result.result == 'success') {
+							setTimeout(function(){
+								location.reload();
+							});
+						} else {
+							alert(result.errorMsg);
+						}
+					},
+					error : function(request) {
+						alert('error!');
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n");
+					}
+				});
+
+			});
+
+	$("#dnsblock_delete").click(
+			function() {
+				var deletednsblockzone = document
+						.getElementById("deletednsblockzone").value;
+
+				var action = $.ajax({
+					url : '/deletednsban',
+					data : {
+						"zone" : deletednsblockzone
+					},
+					type : 'post',
+					dataType : 'json',
+					async : false,
+					success : function(result) {
+						if (result.result == 'success') {
+							setTimeout(function(){
+								location.reload();
+							});
+						} else {
+							alert(result.errorMsg);
+						}
+					},
+					error : function(request) {
+						alert('error!');
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n");
+					}
+				});
+			});
 }
 function dns_button_event() {
 	$('#zonelist button').click(function() {
@@ -47,12 +156,12 @@ function dns_button_event() {
 		var dns_type = $(this).attr('name');
 		console.log(dns_type);
 		console.log(dns_value);
-		if(dns_type == "dns_edit"){
+		if (dns_type == "dns_edit") {
 			dnsupdate(dns_value);
-		}else if(dns_type=="dns_delete"){
+		} else if (dns_type == "dns_delete") {
 			dnsdeletebuttonevent(dns_value);
 		}
-		
+
 	});
 }
 function sub_button_event() {
@@ -61,18 +170,18 @@ function sub_button_event() {
 		var sub_type = $(this).attr('name');
 		console.log(sub_type);
 		console.log(sub_id);
-		if(sub_type=="sub_edit"){
+		if (sub_type == "sub_edit") {
 			subdomainupdate(sub_id);
 		}
-		if(sub_type=="sub_delete"){
+		if (sub_type == "sub_delete") {
 			subdomaindeletebuttonevent(sub_id);
 		}
 	});
 }
 
-function updatednszone(){
+function updatednszone() {
 	var zone = document.getElementById("dns_update_zone").value;
-	var type =$('input:radio[name="dns_insert_type"]:checked').val();
+	var type = $('input:radio[name="dns_insert_type"]:checked').val();
 	var host = document.getElementById("dns_update_host").value;
 	var data = document.getElementById("dns_update_data").value;
 	var ttl = document.getElementById("dns_update_ttl").value;
@@ -84,9 +193,8 @@ function updatednszone(){
 	var expire = document.getElementById("dns_update_expire").value;
 	var minimum = document.getElementById("dns_update_minimum").value;
 	var comment = document.getElementById("dns_update_comment").value;
-	
-	$
-	.ajax({
+
+	$.ajax({
 		url : '/updatedns',
 		data : {
 			"zone" : zone,
@@ -101,7 +209,8 @@ function updatednszone(){
 			"retry" : retry,
 			"expire" : expire,
 			"minimum" : minimum,
-			"comment" : comment
+			"comment" : comment,
+			"bl" : 0
 		},
 		type : 'post',
 		dataType : 'json',
@@ -119,12 +228,12 @@ function updatednszone(){
 					+ request.responseText + "\n");
 		}
 	});
-	
+
 	location.reload();
 }
-function insertdnszone(){
+function insertdnszone() {
 	var zone = document.getElementById("dns_insert_zone").value;
-	var type =$('input:radio[name="dns_insert_type"]:checked').val();
+	var type = $('input:radio[name="dns_insert_type"]:checked').val();
 	var host = '@';
 	var data = document.getElementById("dns_insert_data").value;
 	var ttl = document.getElementById("dns_insert_ttl").value;
@@ -136,9 +245,8 @@ function insertdnszone(){
 	var expire = document.getElementById("dns_insert_expire").value;
 	var minimum = document.getElementById("dns_insert_minimum").value;
 	var comment = document.getElementById("dns_insert_comment").value;
-	
-	$
-	.ajax({
+
+	$.ajax({
 		url : '/insertdns',
 		data : {
 			"zone" : zone,
@@ -153,6 +261,41 @@ function insertdnszone(){
 			"retry" : retry,
 			"expire" : expire,
 			"minimum" : minimum,
+			"comment" : comment,
+			"bl" : 0
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				sleep(1000);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
+	location.reload();
+}
+function updatesubdomain() {
+	var zone = document.getElementById("subdomain_update_zone").value;
+	var type = $('input:radio[name="subdomain_zone_type_check"]:checked').val();
+	var host = document.getElementById("subdomain_update_host").value;
+	var data = document.getElementById("subdomain_update_data").value;
+	var comment = document.getElementById("subdomain_update_comment").value;
+	$.ajax({
+		url : '/updatesubdomain',
+		data : {
+			"zone" : zone,
+			"type" : type,
+			"host" : host,
+			"data" : data,
 			"comment" : comment
 		},
 		type : 'post',
@@ -171,53 +314,17 @@ function insertdnszone(){
 					+ request.responseText + "\n");
 		}
 	});
-	
 	location.reload();
+
 }
-function updatesubdomain(){
-	var zone = document.getElementById("subdomain_update_zone").value;
-	var type = $('input:radio[name="subdomain_zone_type_check"]:checked').val();
-	var host = document.getElementById("subdomain_update_host").value;
-	var data = document.getElementById("subdomain_update_data").value;
-	var comment = document.getElementById("subdomain_update_comment").value;
-	$
-	.ajax({
-		url : '/updatesubdomain',
-		data : {
-			"zone" : zone,
-			"type" : type,
-			"host" : host,
-			"data" : data,
-			"comment" : comment
-		},
-		type : 'post',
-		dataType : 'json',
-		async : false,
-		success : function(result) {
-			if (result.result == 'success') {
-					sleep(1000);
-			} else {
-				alert(result.errorMsg);
-			}
-		},
-		error : function(request) {
-			alert('error!');
-			alert("code:" + request.status + "\n" + "message:"
-					+ request.responseText + "\n");
-		}
-	});
-	location.reload();
-	
-}
-function subdomainupdate(sub_id){
-	var modaltitle =   document.getElementById("subdomain_zone_name");
+function subdomainupdate(sub_id) {
+	var modaltitle = document.getElementById("subdomain_zone_name");
 	var zone = document.getElementById("subdomain_update_zone");
 	var type = $('input:radio[name="subdomain_zone_type_check"]:checked');
 	var host = document.getElementById("subdomain_update_host");
 	var data = document.getElementById("subdomain_update_data");
 	var comment = document.getElementById("subdomain_update_comment");
-	$
-	.ajax({
+	$.ajax({
 		url : '/catchDnsDomain',
 		data : {
 			"id" : sub_id
@@ -230,9 +337,12 @@ function subdomainupdate(sub_id){
 				console.log(result.dnsTableList);
 				modaltitle.innerText = result.dnsTableList[0].zone + '  설정';
 				zone.value = result.dnsTableList[0].zone;
-				$('input:radio[name="subdomain_zone_type_check"][value=' + result.dnsTableList[0].type + ']').prop('checked',  true);
-				host.value =  result.dnsTableList[0].host;
-				data.value =  result.dnsTableList[0].data;
+				$(
+						'input:radio[name="subdomain_zone_type_check"][value='
+								+ result.dnsTableList[0].type + ']').prop(
+						'checked', true);
+				host.value = result.dnsTableList[0].host;
+				data.value = result.dnsTableList[0].data;
 				comment.value = result.dnsTableList[0].comment;
 
 			} else {
@@ -245,13 +355,13 @@ function subdomainupdate(sub_id){
 					+ request.responseText + "\n");
 		}
 	});
-	
+
 }
-function dnsupdate(dns_id){
-	var modaltitle =   document.getElementById("update_zone_name");
+function dnsupdate(dns_id) {
+	var modaltitle = document.getElementById("update_zone_name");
 	var zone = document.getElementById("dns_update_zone");
 	var type = document.getElementById("dns_update_type");
-	var host =document.getElementById("dns_update_host");
+	var host = document.getElementById("dns_update_host");
 	var data = document.getElementById("dns_update_data");
 	var ttl = document.getElementById("dns_update_ttl");
 	var primaryns = document.getElementById("dns_update_primaryns");
@@ -262,9 +372,8 @@ function dnsupdate(dns_id){
 	var expire = document.getElementById("dns_update_expire");
 	var minimum = document.getElementById("dns_update_minimum");
 	var comment = document.getElementById("dns_update_comment");
-	
-	$
-	.ajax({
+
+	$.ajax({
 		url : '/catchDnsDomain',
 		data : {
 			"id" : dns_id
@@ -278,16 +387,16 @@ function dnsupdate(dns_id){
 				modaltitle.innerText = result.dnsTableList[0].zone + '  설정';
 				zone.value = result.dnsTableList[0].zone;
 				type.value = result.dnsTableList[0].type;
-				host.value =  result.dnsTableList[0].host;
-				data.value =  result.dnsTableList[0].data;
-				ttl.value =  result.dnsTableList[0].ttl;
-				primaryns.value =  result.dnsTableList[0].primary_ns;
-				resp_contact.value =  result.dnsTableList[0].resp_contact;
-				serial.value =  result.dnsTableList[0].serial;
-				refresh.value =  result.dnsTableList[0].refresh;
-				retry.value =  result.dnsTableList[0].retry;
-				expire.value =  result.dnsTableList[0].expire;
-				minimum.value =  result.dnsTableList[0].minimum;
+				host.value = result.dnsTableList[0].host;
+				data.value = result.dnsTableList[0].data;
+				ttl.value = result.dnsTableList[0].ttl;
+				primaryns.value = result.dnsTableList[0].primary_ns;
+				resp_contact.value = result.dnsTableList[0].resp_contact;
+				serial.value = result.dnsTableList[0].serial;
+				refresh.value = result.dnsTableList[0].refresh;
+				retry.value = result.dnsTableList[0].retry;
+				expire.value = result.dnsTableList[0].expire;
+				minimum.value = result.dnsTableList[0].minimum;
 				comment.innerText = result.dnsTableList[0].comment;
 
 			} else {
@@ -301,21 +410,20 @@ function dnsupdate(dns_id){
 		}
 	});
 }
-function subdomaindeletebuttonevent(sub_id){
-	$("#deletesubdomain").click(function(){
+function subdomaindeletebuttonevent(sub_id) {
+	$("#deletesubdomain").click(function() {
 		subdomaindelete(sub_id);
 	})
 
 }
-function dnsdeletebuttonevent(dns_value){
-	$("#deletednszone").click(function(){
+function dnsdeletebuttonevent(dns_value) {
+	$("#deletednszone").click(function() {
 		dnsdelete(dns_value);
 	})
 
 }
-function subdomaindelete(sub_id){
-	$
-	.ajax({
+function subdomaindelete(sub_id) {
+	$.ajax({
 		url : '/deletesubdomain',
 		data : {
 			"id" : sub_id
@@ -338,47 +446,11 @@ function subdomaindelete(sub_id){
 	});
 	location.reload();
 }
-function dnsdelete(dns_value){
-		$
-		.ajax({
-			url : '/deletedns',
-			data : {
-				"zone" : dns_value
-			},
-			type : 'post',
-			dataType : 'json',
-			async : false,
-			success : function(result) {
-				if (result.result == 'success') {
-					sleep(1000);
-				} else {
-					alert(result.errorMsg);
-				}
-			},
-			error : function(request) {
-				alert('error!');
-				alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n");
-			}
-		});
-		location.reload();
-}
-function subdomaininsert(){
-	var zone = document.getElementById("subdomain_insert_zone").value;
-	var type =$('input:radio[name="zone_type_check"]:checked').val();
-	var host =document.getElementById("subdomain_insert_host").value;
-	var data = document.getElementById("subdomain_insert_data").value;
-	var comment = document.getElementById("subdomain_insert_comment").value;
-	
-	$
-	.ajax({
-		url : '/insertsubdomain',
+function dnsdelete(dns_value) {
+	$.ajax({
+		url : '/deletedns',
 		data : {
-			"zone" : zone,
-			"type" : type,
-			"host" : host,
-			"data" : data,
-			"comment" : comment
+			"zone" : dns_value
 		},
 		type : 'post',
 		dataType : 'json',
@@ -398,23 +470,29 @@ function subdomaininsert(){
 	});
 	location.reload();
 }
-function zonelistdraw(){
-	var subdomainzonelist = document.getElementById("subdomain_zonelist");
-	$
-	.ajax({
-		url : '/dnszonelist',
+function subdomaininsert() {
+	var zone = document.getElementById("subdomain_insert_zone").value;
+	var type = $('input:radio[name="zone_type_check"]:checked').val();
+	var host = document.getElementById("subdomain_insert_host").value;
+	var data = document.getElementById("subdomain_insert_data").value;
+	var comment = document.getElementById("subdomain_insert_comment").value;
+
+	$.ajax({
+		url : '/insertsubdomain',
+		data : {
+			"zone" : zone,
+			"type" : type,
+			"host" : host,
+			"data" : data,
+			"comment" : comment,
+			"bl" : 0
+		},
 		type : 'post',
 		dataType : 'json',
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-					var zonelist_html = '';
-					zonelist_html += '<select id="subdomain_insert_zone" class="form-control" required>';
-					for(var i =0; i<result.zonelist.length;i++){
-						zonelist_html +='<option value="'+result.zonelist[i].zone +'">' + result.zonelist[i].zone +'</option>';
-					}
-					zonelist_html += '</select>';
-					subdomainzonelist.innerHTML = zonelist_html;
+				sleep(1000);
 			} else {
 				alert(result.errorMsg);
 			}
@@ -425,44 +503,27 @@ function zonelistdraw(){
 					+ request.responseText + "\n");
 		}
 	});
+	location.reload();
 }
-
-function table_loop() {
-	init_ddos_block_table();
-	setTimeout(table_loop, 1000);
-}
-function init_ddos_block_table() {
-	var blocklist = document.getElementById("ddos_block_list");
-	var ddos_attacker = document.getElementById("ddos_attacker");
-	var ddos_attack_count = document.getElementById("ddos_attack_count");
+function zonelistdraw() {
+	var subdomainzonelist = document.getElementById("subdomain_zonelist");
 	$
 			.ajax({
-				url : '/ddosBlockStatus',
+				url : '/dnszonelist',
 				type : 'post',
 				dataType : 'json',
 				async : false,
 				success : function(result) {
 					if (result.result == 'success') {
-						var domain_html = '';
-						var attack_count = 0;
-						for (var i = 0; i < result.ddosBlockList.length; i++) {
-							domain_html += '<tr>';
-							domain_html += '<td>'
-									+ result.ddosBlockList[i].src_ip + '</td>';
-							domain_html += '<td>'
-									+ result.ddosBlockList[i].domain + '</td>';
-							domain_html += '<td>'
-									+ result.ddosBlockList[i].count + '</td>';
-							domain_html += '<td>'
-									+ result.ddosBlockList[i].created_at
-									+ '</td>';
-							domain_html += '</tr>';
-							attack_count = attack_count
-									+ result.ddosBlockList[i].count;
+						var zonelist_html = '';
+						zonelist_html += '<select id="subdomain_insert_zone" class="form-control" required>';
+						for (var i = 0; i < result.zonelist.length; i++) {
+							zonelist_html += '<option value="'
+									+ result.zonelist[i].zone + '">'
+									+ result.zonelist[i].zone + '</option>';
 						}
-						ddos_attacker.innerText = result.ddosBlockList.length;
-						ddos_attack_count.innerText = attack_count;
-						blocklist.innerHTML = domain_html;
+						zonelist_html += '</select>';
+						subdomainzonelist.innerHTML = zonelist_html;
 					} else {
 						alert(result.errorMsg);
 					}

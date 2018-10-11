@@ -33,6 +33,7 @@
 						<ul class="nav child_menu">
 							<li><a href=" /dnspolicy">DNS</a></li>
 							<li><a href=" /dhcppolicy">DHCP</a></li>
+							<li><a href="/ddosban">DDoS</a>
 							<li><a href=" /alertList">ALERT</a></li>
 							<li><a href=" /engine">ENGINE</a></li>
 						</ul></li>

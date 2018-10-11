@@ -20,7 +20,7 @@
 
 			<!-- page content -->
 			<div class="right_col" role="main" style="min-height: 1200px;">
-				<div class="row "> 
+				<div class="row ">
 
 					<div class="x_panel">
 						<div class="x_title">
@@ -34,38 +34,28 @@
 						<div class="x_panel">
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="x_title">
-									<h2>
-										DDoS 차단 현황 <small>최근 한시간 이내의 내역 표기</small>
-									</h2>
+									<h2>유해사이트 차단</h2>
 									<div class="clearfix"></div>
-								</div>
-								<div class="table-responsive">
-									<table class="table table-striped jambo_table bulk_action">
-										<thead>
-											<tr class="headings ">
-												<th class="column-title text-center">공격자 :<span
-													id="ddos_attacker"></span></th>
-												<th class="column-title" id="ddos_attacker"></th>
-												<th class="column-title text-center">횟수 : <span
-													id="ddos_attack_count"></span></th>
-												<th class="column-title" id="ddos_count"></th>
-											</tr>
-										</thead>
-										<tbody>
-										</tbody>
-									</table>
 								</div>
 								<div class="table-bordered">
 									<table class="table table-striped">
+										<colgroup>
+											<col width="35%" />
+											<col width="55%" />
+											<col width="10%" />
+										</colgroup>
 										<thead>
 											<tr>
-												<th>IP주소</th>
 												<th>도메인</th>
-												<th>차단횟수</th>
-												<th>마지막 탐지된 시간</th>
+												<th>비고</th>
+												<th><button type="button"
+														class="btn btn-primary btn-xs" data-toggle="modal"
+														data-target="#dnsblockinsertModal">
+														<i class="fa fa-plus"></i>
+													</button></th>
 											</tr>
 										</thead>
-										<tbody id="ddos_block_list">
+										<tbody id="dnsblocklist">
 										</tbody>
 									</table>
 								</div>
@@ -117,7 +107,7 @@
 									<H2>Domain</H2>
 								</div>
 
-								<div class="col-md-3 text-right" >
+								<div class="col-md-3 text-right">
 									<button type="button" class="btn btn-success btn-xs"
 										id="insertDomainBtn" data-toggle="modal"
 										data-target="#dnsInsertModal">
@@ -136,8 +126,8 @@
 									<colgroup>
 										<col width="20%"></col>
 										<col width="20%"></col>
-										
-										
+
+
 										<col width="*"></col>
 										<col width="15%"></col>
 									</colgroup>
@@ -153,7 +143,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="col-md-4 col-sm-12 col-xs-12" style="overflow-y: auto; height: 550px;">
+							<div class="col-md-4 col-sm-12 col-xs-12"
+								style="overflow-y: auto; height: 550px;">
 								<div class="x_title">
 									<h2>
 										sub_domain : <span id="sub_domain_count"></span>
@@ -323,7 +314,8 @@
 								<input type="button" class="btn btn-success" id="insertdns"
 									value="INSERT" />
 								<!--<span class="glyphicon glyphicon-ok"></span>-->
-								<input type="reset" class="btn btn-danger btn-close" value="Clear" />
+								<input type="reset" class="btn btn-danger btn-close"
+									value="Clear" />
 								<!--<span class="glyphicon glyphicon-remove"></span>-->
 								<button style="float: right;" type="button"
 									class="btn btn-default btn-close" data-dismiss="modal">Close</button>
@@ -512,13 +504,9 @@
 				<div class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">×</button>
-					<h4 class="panel-title panel-danger" id="voteLabel">
-						DELELTE 
-					</h4>
+					<h4 class="panel-title panel-danger" id="voteLabel">DELELTE</h4>
 				</div>
-				<div class="modal-body">
-					
-				</div>
+				<div class="modal-body"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger " id="deletednszone">DELETE</button>
 					<button type="button" class="btn btn-default btn-close"
@@ -637,7 +625,8 @@
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">ZONE</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<input class="form-control" name="subject" placeholder="Host"
-										id="subdomain_update_zone" type="text" required  disabled="disabled" />
+										id="subdomain_update_zone" type="text" required
+										disabled="disabled" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -645,19 +634,20 @@
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">Type</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<label><input type="radio" id="subdomain_update_type"
-										name="subdomain_zone_type_check" value="A" class="flot">A <input
-										type="radio" id="subdomain_update_type" name="subdomain_zone_type_check"
-										value="NS" class="flot">NS <input type="radio"
-										id="subdomain_update_type" name="subdomain_zone_type_check"
-										value="CNAME" class="flot">CNAME <input type="radio"
-										id="subdomain_update_type" name="subdomain_zone_type_check" value="PTR"
-										class="flot">PTR <input type="radio"
-										id="subdomain_update_type" name="subdomain_zone_type_check" value="TXT"
-										class="flot">TXT <input type="radio"
-										id="subdomain_update_type" name="subdomain_zone_type_check" value="SRV"
-										class="flot">SRV <input type="radio"
-										id="subdomain_update_type" name="subdomain_zone_type_check" value="MX"
-										class="flot">MX </label>
+										name="subdomain_zone_type_check" value="A" class="flot">A
+										<input type="radio" id="subdomain_update_type"
+										name="subdomain_zone_type_check" value="NS" class="flot">NS
+										<input type="radio" id="subdomain_update_type"
+										name="subdomain_zone_type_check" value="CNAME" class="flot">CNAME
+										<input type="radio" id="subdomain_update_type"
+										name="subdomain_zone_type_check" value="PTR" class="flot">PTR
+										<input type="radio" id="subdomain_update_type"
+										name="subdomain_zone_type_check" value="TXT" class="flot">TXT
+										<input type="radio" id="subdomain_update_type"
+										name="subdomain_zone_type_check" value="SRV" class="flot">SRV
+										<input type="radio" id="subdomain_update_type"
+										name="subdomain_zone_type_check" value="MX" class="flot">MX
+									</label>
 								</div>
 							</div>
 							<div class="form-group">
@@ -714,7 +704,8 @@
 				</div>
 				<div class="modal-body"></div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger btn-close" id="deletesubdomain" value="DELETE">DELETE</button>
+					<button type="button" class="btn btn-danger btn-close"
+						id="deletesubdomain" value="DELETE">DELETE</button>
 					<button type="button" class="btn btn-default btn-close"
 						data-dismiss="modal">Close</button>
 
@@ -723,6 +714,85 @@
 		</div>
 	</div>
 	<!-- subDomain Delete Modal end -->
+
+
+
+	<!-- dnsblock Insert Modal start -->
+	<div class="modal fade" id="dnsblockinsertModal" tabindex="-1"
+		role="dialog" aria-labelledby="voteLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">
+						<i class="glyphicon glyphicon-remove"></i>
+					</button>
+					<h4 class="panel-title">
+						<span class="glyphicon glyphicon-info-sign"></span>유해사이트 차단 추가 
+					</h4>
+				</div>
+				<div class="modal-body" style="padding: 5px;">
+					<div class="x_panel">
+						<form class="form-horizontal form-label-left">
+							<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">ZONE</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<input class="form-control" name="subject"
+										placeholder="차단하실 zone을 입력해주십시오." id="dnsblock_insert_zone" type="text"
+										required value=" " />
+								</div>
+							</div>
+							<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">COMMENT</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<input class="form-control" name="subject" placeholder="comment"
+										id="dnsblock_insert_comment" type="text" required value="" />
+								</div>
+							</div>
+							<div class="panel-footer" style="margin-bottom: -14px;">
+								<input type="button" class="btn btn-success" id="dnsblock_insert"
+									value="저장" />
+								<!--<span class="glyphicon glyphicon-ok"></span>-->
+								<input type="reset" class="btn btn-danger btn-close" value="초기화" />
+								<!--<span class="glyphicon glyphicon-remove"></span>-->
+								<button style="float: right;" type="button"
+									class="btn btn-default btn-close" data-dismiss="modal">닫기 </button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- dnsblock Insert Modal end -->
+
+	<!-- dnsblock Delete Modal start -->
+	<div class="modal fade" id="dnsblockdeleteModal" tabindex="-1"
+		role="dialog" aria-labelledby="voteLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="panel-title panel-danger" id="voteLabel">차단 정책 삭제</h4>
+				</div>
+				<div class="modal-body">
+					<span id="deletednsblockview"></span> <input type="hidden"
+						id="deletednsblockzone" />
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-close"
+						data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-danger " id="dnsblock_delete">삭제
+					</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- dnsblock delete Modal end -->
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
@@ -778,10 +848,10 @@
 		src="js/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script src="js/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 
-	
+
 	<!-- Custom Theme Scripts -->
 	<script src="js/dnspolicy.js"></script>
-		<script src="js/alert.js"></script>
+	<script src="js/alert.js"></script>
 	<script src="js/custom.js"></script>
 
 

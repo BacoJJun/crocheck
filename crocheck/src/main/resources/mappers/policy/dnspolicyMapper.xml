@@ -3,7 +3,14 @@
 <mapper namespace="dnspolicy">
 	<select id="dnstable"
 		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
-		select * from dns_record where type='SOA' order by id desc
+		select * from dns_record where type='SOA' and bl = 0 order by id desc
+	</select>
+	<select id ="dnsblock" resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select * from dns_record where type='SOA' and bl = 1 order by id desc
+	</select>
+	<select id ="dnsblocksearch" resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+	select * from dns_record where type='SOA' and bl=1 and zone = #{zone}
+	
 	</select>
 	<select id="dnsbackup" resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
 		select * from dns_record order by id desc
@@ -18,7 +25,13 @@
 			</if>
 		</where>
 	</select>
-
+   <insert id="insertdnsban">
+   	insert into dns_record(zone, ttl, type, host, data, comment, modified, bl)
+   	values(#{zone}, #{ttl}, #{type}, #{host}, #{data},#{comment}::text,  #{modified}, #{bl})
+   </insert>
+   <delete id="deletednsban">
+   	delete from dns_record where zone =#{zone} and bl = 1
+   </delete>
 	<select id="dnscatch"
 		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
 		select * from dns_record where id=#{id}

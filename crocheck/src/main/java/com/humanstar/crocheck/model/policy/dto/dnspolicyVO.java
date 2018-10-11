@@ -18,6 +18,7 @@ public class dnspolicyVO {
 	private int minimum;
 	private String comment;
 	private int modified;
+	private int bl;
 	
 	public int getId() {
 		return id;
@@ -114,6 +115,12 @@ public class dnspolicyVO {
 	}
 	public void setModified(int modified) {
 		this.modified = modified;
+	}
+	public int getBl() {
+		return bl;
+	}
+	public void setBl(int bl) {
+		this.bl = bl;
 	}
 	
 	@Override

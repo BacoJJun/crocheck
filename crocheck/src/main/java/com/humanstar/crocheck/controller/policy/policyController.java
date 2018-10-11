@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.humanstar.crocheck.model.change.dto.changeValueVO;
 import com.humanstar.crocheck.model.policy.dto.ddosBlockStatusVO;
+import com.humanstar.crocheck.model.policy.dto.ddosblockipVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpCategoryVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpCountVO;
 import com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO;
@@ -26,9 +27,11 @@ import com.humanstar.crocheck.model.policy.dto.dhcpSubVO;
 import com.humanstar.crocheck.model.policy.dto.dnspolicyVO;
 import com.humanstar.crocheck.service.change.changeValueServiceImpl;
 import com.humanstar.crocheck.service.policy.ddosBlockServiceImpl;
+import com.humanstar.crocheck.service.policy.ddosblockipServiceImpl;
 import com.humanstar.crocheck.service.policy.dhcpCategoryServiceImpl;
 import com.humanstar.crocheck.service.policy.dhcpCountServiceImpl;
 import com.humanstar.crocheck.service.policy.dhcpPolicyServiceImpl;
+import com.humanstar.crocheck.service.policy.dnsbanServiceImpl;
 import com.humanstar.crocheck.service.policy.dnspolicyServiceImpl;
 
 @Controller
@@ -53,6 +56,10 @@ public class policyController {
 	changeValueServiceImpl changeValueService;
 	@Inject
 	dhcpCountServiceImpl dhcpCountService;
+	@Inject
+	dnsbanServiceImpl dnsbanService;
+	@Inject
+	ddosblockipServiceImpl ddosblockipService;
 	
 	@RequestMapping(value = "/dnsTableList", method = RequestMethod.POST)
 	@ResponseBody
@@ -739,4 +746,215 @@ public class policyController {
 		}
 		return resultMap;
 	}	
+	
+	@RequestMapping(value = "/dnsbanlist", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dnsbanlist() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<dnspolicyVO> dnsbanList = new ArrayList<dnspolicyVO>();
+		
+		try {
+			dnsbanList = dnsbanService.dnsbanlist();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+		}
+		resultMap.put("dnsbanList", dnsbanList);
+		return resultMap;
+	}	
+	
+	@RequestMapping(value = "/insertdnsban", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertdnsban(@ModelAttribute dnspolicyVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		dnspolicyVO dnsbanObject = new dnspolicyVO();
+
+		logger.info(vo.csvString());
+		try {
+			// SOA 삽입
+			dnsbanObject = vo;
+			dnsbanObject.setTtl(3600);
+			dnsbanObject.setType("SOA");
+			dnsbanObject.setHost("@");
+			dnsbanObject.setBl(1);
+			dnsbanService.insertDnsBan(dnsbanObject);
+			
+			//ns-@ 삽입
+			dnsbanObject.setTtl(0);
+			dnsbanObject.setType("NS");
+			dnsbanObject.setHost("@");
+			dnsbanObject.setData("ns");
+			dnsbanService.insertDnsBan(dnsbanObject);
+			
+			// A -ns 삽입
+			dnsbanObject.setType("A");
+			dnsbanObject.setHost("ns");
+			dnsbanObject.setData("127.0.0.1");
+			dnsbanService.insertDnsBan(dnsbanObject);
+
+			//A-* 삽입
+			dnsbanObject.setType("A");
+			dnsbanObject.setHost("*");
+			dnsbanObject.setData("www.crocheck600.co.kr");
+			dnsbanService.insertDnsBan(dnsbanObject);
+
+			//A-@ 삽입
+			dnsbanObject.setType("A");
+			dnsbanObject.setHost("@");
+			dnsbanObject.setData("127.0.0.1");
+			dnsbanService.insertDnsBan(dnsbanObject);
+
+			changeVO.setChange_type("dnsban");
+			changeVO.setQuery_type("dnsban insert");
+			changeVO.setTitle("dns ban : " + vo.getZone());
+			changeVO.setComment("insert : " + vo.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+			
+			changeValueService.insertChangeValue(changeVO);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}	
+	
+	
+	@RequestMapping(value = "/deletednsban", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deletednsban(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		dnspolicyVO beforeBanObject = new dnspolicyVO();
+		
+
+		try {
+			beforeBanObject = dnsbanService.dnsbanSearch(vo);
+			
+			changeVO.setChange_type("dns ban");
+			changeVO.setQuery_type("dns ban delete");
+			changeVO.setTitle("delete : " + beforeBanObject.getZone());
+			changeVO.setComment("delete : " + beforeBanObject.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+		    dnsbanService.deleteDnsBan(beforeBanObject);
+			changeValueService.insertChangeValue(changeVO);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}	
+	
+	
+	@RequestMapping(value = "/ddosblocklist", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> ddosblocklist() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<ddosblockipVO> ddosblockiplist = new ArrayList<ddosblockipVO>();
+		
+		try {
+			ddosblockiplist =  ddosblockipService.ddosBlockList();
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+		}
+		resultMap.put("ddosblockiplist", ddosblockiplist);
+		return resultMap;
+	}	
+	
+	@RequestMapping(value = "/selectddosblock", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> selectddosblock(@ModelAttribute  ddosblockipVO vo ) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		ddosblockipVO ddosblockObject = new ddosblockipVO();
+		
+		try {
+			ddosblockObject = ddosblockipService.selectDdosBlock(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+		}
+		resultMap.put("ddosblockObject", ddosblockObject);
+		
+		return resultMap;
+	}	
+	
+	@RequestMapping(value = "/insertddosblock", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertddosblock(@ModelAttribute  ddosblockipVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		
+		try {
+			changeVO.setChange_type("ip block");
+			changeVO.setQuery_type("ip block insert");
+			changeVO.setTitle("insert : " + vo.getIp());
+			changeVO.setComment("insert : " + vo.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+			ddosblockipService.insertDdosBlock(vo);
+			changeValueService.insertChangeValue(changeVO);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}	
+	
+	@RequestMapping(value = "/deleteddosblock", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteddosblock(@ModelAttribute  ddosblockipVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		
+		try {
+			changeVO.setChange_type("ip block");
+			changeVO.setQuery_type("ip block delete");
+			changeVO.setTitle("delete : " + vo.getIp());
+			changeVO.setComment("delete : " + vo.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");
+			ddosblockipService.deleteDdosBlock(vo);
+			changeValueService.insertChangeValue(changeVO);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		return resultMap;
+	}	
+	
 }
