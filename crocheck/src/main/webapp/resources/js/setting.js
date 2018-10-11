@@ -30,7 +30,8 @@ function backupClickEvent(){
 				if (result.result == 'success') {
 					console.log(result.file_name);
 					setTimeout(function(){
-						window.location.assign('download/' + result.file_name);
+						//window.location.assign('download/' + result.file_name);
+						fileDownload(result.file_name);
 					},1000);
 					
 				} else {
@@ -45,6 +46,20 @@ function backupClickEvent(){
 		});
 		
 	});
+}
+function fileDownload(file_name){
+    $.ajax({
+        type: 'POST',
+        url: '/fileDownload4?fileName='+file_name,
+        dataType: 'json',
+        contentType: 'application/json;charset=UTF-8',
+        success: function (data) {
+            console.log("in sucess")
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            console.log("in error")
+        } 
+    });
 }
 function operatorEvent(operator_id){
 	var operator_email = document.getElementById('operator_update_email_text');

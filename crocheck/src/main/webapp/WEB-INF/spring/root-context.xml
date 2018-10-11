@@ -56,4 +56,10 @@
 		class="com.humanstar.crocheck.scheduler.alert.alertScheduler" />
 	<task:scheduler id="scheduler" pool-size="10" />
 	<task:annotation-driven scheduler="scheduler" />
+	
+<!-- 파일 다운로드 -->
+    <bean id="fileDownload" class="com.humanstar.crocheck.util.filedownload.FileDownload"></bean>
+    <bean id="fileViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+    <property name="order" value="0">
+    </property></bean>
 </beans>

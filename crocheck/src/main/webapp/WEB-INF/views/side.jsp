@@ -18,8 +18,8 @@
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href=" /dashboard">대시보드 </a></li>
-							<li><a href=" /dashboard2">Dashboard2</a></li>
-							<li><a href=" /dashboard3">Dashboard3</a></li>
+<!-- 							<li><a href=" /dashboard2">Dashboard2</a></li>
+							<li><a href=" /dashboard3">Dashboard3</a></li> -->
 						</ul></li>
 					<li><a><i class="fa fa-bar-chart-o"></i> <strong>통계분석 </strong><span
 							class="fa fa-chevron-down"></span></a>
