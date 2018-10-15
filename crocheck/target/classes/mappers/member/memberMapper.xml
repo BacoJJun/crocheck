@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중독되지 않도록 네임스페이스 기재 -->
+<mapper namespace="member">
+	<select id="memberlist" resultType="com.humanstar.crocheck.model.user.dto.userVO">
+		select * from admins2
+	</select>
+	<select id="selectuser" resultType="com.humanstar.crocheck.model.user.dto.userVO">
+		select * from admins2 where username = #{username}
+	</select>
+	<update id="updateuser">
+		update admins2 
+		set
+		encrypted_password = #{encrypted_password}
+		where username = #{username}
+	</update>
+</mapper>

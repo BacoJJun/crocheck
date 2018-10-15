@@ -1,15 +1,8 @@
 package com.humanstar.crocheck;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.humanstar.crocheck.model.appliance.dto.applianceVO;
-import com.humanstar.crocheck.model.dashboard.dto.alertLiveDomainVO;
-import com.humanstar.crocheck.service.appliance.applianceService;
 import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;;
 
 /**
@@ -46,100 +35,196 @@ public class HomeController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String basedashboard(Locale locale, Model model) throws Exception {
-		return "dashboard";
+	public ModelAndView mainview(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("dashboard");
+		mav.addObject("msg", "success");
+		return mav;
 	}	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public String dashboard(Locale locale, Model model) throws Exception {
-		return "dashboard";
+	public ModelAndView dashboard(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("dashboard");
+		mav.addObject("msg", "success");
+		return mav;
 	}	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws Exception {
-		return "home";
+	public ModelAndView home(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("home");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index(Locale locale, Model model) throws Exception {
-		return "index";
+	public ModelAndView index(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("index");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public String chart(Locale locale, Model model) throws Exception {
-		return "chart";
+	public ModelAndView chart(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("chart");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	@RequestMapping(value = "/dashboard2", method = RequestMethod.GET)
-	public String dashboard2(Locale locale, Model model) throws Exception {
-		return "dashboard_old";
+	public ModelAndView dashboard2(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("dashboard2");
+		mav.addObject("msg", "success");
+		return mav;
 	}	
 	@RequestMapping(value = "/dashboard3", method = RequestMethod.GET)
-	public String dashboard3(Locale locale, Model model) throws Exception {
-		return "dashboard3";
+	public ModelAndView dashboard3(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("dashboard3");
+		mav.addObject("msg", "success");
+		return mav;
 	}	
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
-	public String statistics(Locale locale, Model model) throws Exception {
-		return "statistics";
+	public ModelAndView statistics(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("statistics");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	@RequestMapping(value = "/compare", method = RequestMethod.GET)
-	public String compare(Locale locale, Model model) throws Exception {
-		return "compare";
+	public ModelAndView compare(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("compare");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	@RequestMapping(value = "/dnsstatus", method = RequestMethod.GET)
-	public String dnsstatus(Locale locale, Model model) throws Exception {
-		return "dnsstatus";
+	public ModelAndView dnsstatus(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("dnsstatus");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/dnspolicy", method = RequestMethod.GET)
-	public String dnspolicy(Locale locale, Model model) throws Exception {
-		return "dnspolicy";
+	public ModelAndView dnspolicy(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("dnspolicy");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/dhcppolicy", method = RequestMethod.GET)
-	public String dhcppolicy(Locale locale, Model model) throws Exception {
-		return "dhcppolicy";
+	public ModelAndView dhcppolicy(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("dhcppolicy");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	@RequestMapping(value = "/alertList", method = RequestMethod.GET)
-	public String alertList(Locale locale, Model model) throws Exception {
-		return "alertList";
+	public ModelAndView alertList(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("alertList");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	@RequestMapping(value = "/engine", method = RequestMethod.GET)
-	public String engine(Locale locale, Model model) throws Exception {
-		return "engine";
+	public ModelAndView engine(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("engine");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/organization", method = RequestMethod.GET)
-	public String organization(Locale locale, Model model) throws Exception {
-		return "organization";
+	public ModelAndView organization(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("organization");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/status_report", method = RequestMethod.GET)
-	public String status_report(Locale locale, Model model) throws Exception {
-		return "status_report";
+	public ModelAndView status_report(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("status_report");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/update_report", method = RequestMethod.GET)
-	public String update_report(Locale locale, Model model) throws Exception {
-		return "update_report";
+	public ModelAndView update_report(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("update_report");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/alert_notice", method = RequestMethod.GET)
-	public String alert_notice(Locale locale, Model model) throws Exception {
-		return "alert_notice";
+	public ModelAndView alert_notice(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("alert_notice");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/setting", method = RequestMethod.GET)
-	public String setting(Locale locale, Model model) throws Exception {
-		return "setting";
+	public ModelAndView setting(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("setting");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/guide", method = RequestMethod.GET)
-	public String guide(Locale locale, Model model) throws Exception {
-		return "guide";
+	public ModelAndView guide(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("guide");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	@RequestMapping(value = "/ddosban", method = RequestMethod.GET)
-	public String ddosban(Locale locale, Model model) throws Exception {
-		return "ddosban";
+	public ModelAndView ddosban(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("ddosban");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 	@RequestMapping(value = "/temp", method = RequestMethod.GET)
-	public String temp(Locale locale, Model model) throws Exception {
-		return "temp";
+	public ModelAndView temp(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("temp");
+		mav.addObject("msg", "success");
+		return mav;
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login(Locale locale, Model model) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("login");
+		mav.addObject("msg", "success");
+		return mav;
 	}
 }
