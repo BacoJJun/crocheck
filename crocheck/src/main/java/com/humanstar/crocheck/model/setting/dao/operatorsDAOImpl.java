@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.humanstar.crocheck.model.setting.dto.operatorsVO;
-import com.humanstar.crocheck.service.setting.settingServiceImpl;
-
 
 @Repository
 public class operatorsDAOImpl implements operatorsDAO{
@@ -36,6 +34,18 @@ public class operatorsDAOImpl implements operatorsDAO{
 	public void deleteOperator(operatorsVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		SqlSession.delete("setting.deleteoperator", vo);
+	}
+
+	@Override
+	public void insertOperator(operatorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.insert("setting.insertoperator", vo);
+	}
+
+	@Override
+	public void updateOperator(operatorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.update("setting.updateoperator", vo);
 	}
 
 

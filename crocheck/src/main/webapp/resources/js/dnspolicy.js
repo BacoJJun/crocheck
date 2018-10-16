@@ -104,6 +104,23 @@ function buttonClickEvent() {
 					async : false,
 					success : function(result) {
 						if (result.result == 'success') {
+						} else {
+							alert(result.errorMsg);
+						}
+					},
+					error : function(request) {
+						alert('error!');
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n");
+					}
+				});
+				$.ajax({
+					url : '/dnsupdatescript',
+					type : 'post',
+					dataType : 'json',
+					async : false,
+					success : function(result) {
+						if (result.result == 'success') {
 							setTimeout(function(){
 								location.reload();
 							});
@@ -130,6 +147,26 @@ function buttonClickEvent() {
 					data : {
 						"zone" : deletednsblockzone
 					},
+					type : 'post',
+					dataType : 'json',
+					async : false,
+					success : function(result) {
+						if (result.result == 'success') {
+							setTimeout(function(){
+								location.reload();
+							});
+						} else {
+							alert(result.errorMsg);
+						}
+					},
+					error : function(request) {
+						alert('error!');
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n");
+					}
+				});
+				$.ajax({
+					url : '/dnsupdatescript',
 					type : 'post',
 					dataType : 'json',
 					async : false,
@@ -304,6 +341,26 @@ function updatesubdomain() {
 		success : function(result) {
 			if (result.result == 'success') {
 				sleep(1000);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	$.ajax({
+		url : '/dnsupdatescript',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				setTimeout(function(){
+					location.reload();
+				});
 			} else {
 				alert(result.errorMsg);
 			}

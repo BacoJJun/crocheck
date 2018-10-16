@@ -14,11 +14,153 @@ function buttonClickEvent(){
 		var access_id = $(this).attr('value');
 		accessEvent(access_id);
 	});
-	$("#operator_insert_mail_check").click(function(){
-		var test = $("#operator_insert_mail_check input").is(':checked');
-		console.log(test);
+	$("#insertoperators").click(function(){
+		var operator_email = document.getElementById("operator_email_text").value;
+		var operator_phone = document.getElementById("operator_phone_text").value;
+		var operator_name = document.getElementById("operator_name_text").value;
+		var result = $("#operator_update_mail_check").is(":checked");
+		var operator_mail_check = 0;
+		
+		if(result){
+			operator_mail_check = 1;
+		}else{
+			operator_mail_check = 0;
+		}
+		
+		$.ajax({
+			url : '/insertoperator',
+			data : {
+				"name" : operator_name,
+				"email" : operator_email,
+				"phone" : operator_phone,
+				"mail_yn" : operator_mail_check,
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					console.log(result.file_name);
+					setTimeout(function(){
+						location.reload();			
+					},1000);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		
 	});
+	$("#change_pwd").click(function(){
+		var change_pwd = document.getElementById("change_pwd_txt").value;
+		var change_re = document.getElementById("change_pwd_re").value;
+
+		if(change_pwd == change_re){
+		$.ajax({
+			url : '/updateuser',
+			data: {
+				"username" : "admin",
+				"encrypted_password": change_pwd
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					scrolltop();
+					$("#alert_success").show();
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		}else{
+			scrolltop();
+			$("#alert_danger").show();
+		}
+		
+	});
+	
+	$("#insertaccessor").click(function(){
+		var access_ip = document.getElementById("access_ip_text").value;
+		var access_name = document.getElementById("access_name_text").value;		
+		
+		$.ajax({
+			url : '/insertaccess',
+			data : {
+				"name" : access_name,
+				"ip" : access_ip,
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					console.log(result.file_name);
+					setTimeout(function(){
+						location.reload();			
+					},1000);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+	});
+	
+	$("#updateaccessor").click(function(){
+		var access_id = document.getElementById("access_edit_id").value;		
+		var access_ip = document.getElementById("access_edit_ip_text").value;
+		var access_name = document.getElementById("access_edit_name_text").value;		
+	
+		$.ajax({
+			url : '/updateaccess',
+			data : {
+				"id" : access_id,
+				"name" : access_name,
+				"ip" : access_ip,
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					console.log(result.file_name);
+					setTimeout(function(){
+						location.reload();			
+					},1000);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+	});
+	
 }
+function scrolltop(){
+	$('html, body').scrollTop(0);
+
+}
+
 function backupClickEvent(){
 	$("#dnsbackup").click(function(){
 		$.ajax({
@@ -33,7 +175,6 @@ function backupClickEvent(){
 						//window.location.assign('download/' + result.file_name);
 						fileDownload(result.file_name);
 					},1000);
-					
 				} else {
 					alert(result.errorMsg);
 				}
@@ -80,10 +221,10 @@ function operatorEvent(operator_id){
 				operator_email.value = result.searchoperator.email;
 				operator_phone.value = result.searchoperator.phone;
 				operator_name.value = result.searchoperator.name;
-				console.log(result.searchoperator.mail_yn);
 				if(result.searchoperator.mail_yn =='1'){
-					console.log($('#operator_update_mail_check input').attr('data-checked'));
-					$('#operator_update_mail_check input').show();
+					operator_mail.value = 1;
+					console.log(	$('#operator_update_mail input'));
+					$('#operator_update_mail input').prop('checked', true);
 				}else{
 					$('#operator_update_mail_check input').prop('checked', false);
 				}
@@ -124,8 +265,10 @@ function operatorEvent(operator_id){
 	});
 }
 function accessEvent(access_id){
+	var access_hidden_id = document.getElementById("access_edit_id");		
 	var accessor_ip = document.getElementById('access_edit_ip_text');
 	var accessor_name = document.getElementById('access_edit_name_text');
+	var accessor_view = document.getElementById('access_delete_view');
 	
 	var update_modal = 		$
 	.ajax({
@@ -138,8 +281,10 @@ function accessEvent(access_id){
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				access_hidden_id.value = result.searchaccess.id;
 				accessor_ip.value = result.searchaccess.ip;
 				accessor_name.value = result.searchaccess.name;
+				accessor_view.innerText = result.searchaccess.name + "("+ result.searchaccess.ip + ") 을(를) 삭제 하시겠습니까?";
 			} else {
 				alert(result.errorMsg);
 			}

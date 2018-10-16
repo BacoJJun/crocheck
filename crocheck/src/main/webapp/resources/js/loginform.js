@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 	$("#loginsubmit").click(function(){
-		logincheck( $("#admin_username").val(), $("#admin_password").val());
+	//	logincheck( $("#admin_username").val(), $("#admin_password").val());
 	})
 	
 });
@@ -8,7 +8,7 @@ $( document ).ready(function() {
 function logincheck(username, user_pass){
 	$.ajax({
 		url : '/logincheck',
-		 type : 'post'
+		 contentType : 'application/json'
 			, dataType : 'json'
 			, async : false
 			, success : function(result){

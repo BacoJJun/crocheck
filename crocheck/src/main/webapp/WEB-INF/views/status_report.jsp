@@ -324,10 +324,8 @@
 											</div>
 											
 											<div class="panel">
-												<label> <button type="button" class="btn btn-primary" id="makepdf">pdf</button>
-												</label>
-												<label> <button type="button" class="btn btn-success" id="printreport">print</button>
-												</label>												
+												<label> <button type="button" class="btn btn-primary" id="makepdf">PDF</button>
+												</label>									
 											</div>
 										</div>
 									<!-- report check list -->
@@ -357,7 +355,7 @@
 												type="text" name="reservation-times" id="reservation-time"
 												class="form-control" value="" />
 										</div>
-										<div class="clearfix"></div>
+<!-- 										<div class="clearfix"></div>
 										<div class="radio">
 											<label> <input type="radio" class="flat" checked
 												name="report_count_type" checked value="all"> 전체
@@ -370,7 +368,7 @@
 												value="100" type="number" step="1" name="report_count"
 												id="dhcp_min" />
 										</div>
-										<div class="clearfix"></div>
+										<div class="clearfix"></div> -->
 										<div>
 											<button type="button" class="btn btn-success"
 												id="search_stat">

@@ -14,6 +14,19 @@
 	<select id="searchoperator" resultType="com.humanstar.crocheck.model.setting.dto.operatorsVO">
 		select * from operators where id = #{id}
 	</select>
+	<insert id="insertoperator">
+		insert into operators(name, email, mail_yn,  phone)
+		values(#{name}, #{email}, #{mail_yn},  #{phone})
+	</insert>
+	<update id="updateoperator">
+		update operators
+		set
+		name = #{name},
+		email = #{email},
+		mail_yn = #{mail_yn},
+		phone = #{phone}
+		where id = #{id}
+	</update>
 	<delete  id="deleteoperator">
 		delete from operators where id = #{id}
 	</delete>
@@ -24,6 +37,17 @@
 	<select id="searchacessor"	resultType="com.humanstar.crocheck.model.setting.dto.accessorsVO">
 		select * from accessors where id = #{id}
 	</select>
+	<insert id="insertaccess">
+		insert into accessors(name, ip)
+		values (#{name}, #{ip})
+	</insert>
+	<update id="updateaccess">
+		update accessors
+		set 
+		name = #{name},
+		ip = #{ip}
+		where id = #{id}
+	</update>
 	<delete id="deleteaccess">
 		delete from accessors where id = #{id}
 	</delete>

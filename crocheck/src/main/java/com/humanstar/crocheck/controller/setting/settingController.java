@@ -121,7 +121,43 @@ public class settingController {
 		return resultMap;
 	}
 
+	@RequestMapping(value = "/insertoperator", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertoperator(@ModelAttribute  operatorsVO vo) {
 
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			 settingService.insertOperator(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		
+		return resultMap;
+	}
+
+	@RequestMapping(value = "updateoperator", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateoperator(@ModelAttribute  operatorsVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			settingService.updateOperator(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		
+		return resultMap;
+	}
 	
 	@RequestMapping(value = "/accesslist", method = RequestMethod.POST)
 	@ResponseBody
@@ -185,5 +221,45 @@ public class settingController {
 		return resultMap;
 	}
 
+
+	@RequestMapping(value = "/insertaccess", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertaccess(@ModelAttribute  accessorsVO vo) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			settingService.insertAccess(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		
+		return resultMap;
+	}
+
+	
+	@RequestMapping(value = "/updateaccess", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateaccess(@ModelAttribute  accessorsVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+			
+		try {
+			settingService.updateAccess(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
 
 }

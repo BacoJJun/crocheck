@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 			<div class="top_nav">
 				<div class="nav_menu">
 					<nav>
@@ -12,12 +14,12 @@
 								class=" fa fa-angle-down"></span>
 						</a>
 							<ul class="dropdown-menu dropdown-usermenu pull-right">
-							<li><a href="#" id="requestfullscreen_top" class="requestfullscreen">Full Screen Mode</a><a href="#" id="exitfullscreen_top" class="exitfullscreen" style="display: none">Browser Screen Mode</a></li>
-								<li><a href="/setting">Settings</a></li>
-								<li><a href="/guide"> <span>guide</span>
-								</a></li>		
-								<li><a href="login.html"><i
-										class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+							<li><a href="#" id="requestfullscreen_top" class="requestfullscreen">풀스크린모드 </a><a href="#" id="exitfullscreen_top" class="exitfullscreen" style="display: none">브라우져 모드</a></li>
+								<li><a href="/setting">설정</a></li>
+								<!-- <li><a href="/guide"> <span>가이드</span>
+								</a></li>		 -->
+								<li><a href="/logout"><i
+										class="fa fa-sign-out pull-right"></i>로그아웃</a></li>
 							</ul></li>
 
 						<li role="presentation" class="dropdown"><a
@@ -32,12 +34,12 @@
 								<li>
 								<div class="col-lg-4 col-md-4">
 									<div class="text-center">
-										<span id="allread"><a><strong>all read</strong></a></span>
+										<span id="allread"><a><strong>모두 읽기 </strong></a></span>
 									</div>
 								</div>
 								<div class="col-lg-8 col-md-8">
 									<div class="text-center">
-										<a href="/alert_notice"> <strong>See All Alerts</strong> <i
+										<a href="/alert_notice"> <strong>메세지 모두 보기</strong> <i
 											class="fa fa-angle-right"></i>
 										</a>
 									</div>

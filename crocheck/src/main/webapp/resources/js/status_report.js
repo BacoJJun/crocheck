@@ -28,23 +28,6 @@ $(document).ready(function() {
 	buttonClickEvent();
 });
 function buttonClickEvent(){
-	$("#printreport").click(function(){
-		html2canvas(document.querySelector("#report_page")).then(canvas => {
-
-			    // 캔버스를 이미지로 변환
-		    var imgData = canvas.toDataURL('image/png');
-		     
-        var tWindow = window.open("");
-        $(tWindow.document.body)
-            .html("<img id='Image' src=" + imgData + " style='width:100%;'></img>")
-            .ready(function() {
-            	setTimeout(function(){
-            		tWindow.focus();
-            		 tWindow.print();
-            	});
-            });
-		});	
-	});
 	$("#makepdf").click(function(){
 		console.log("pdf test");
 		 

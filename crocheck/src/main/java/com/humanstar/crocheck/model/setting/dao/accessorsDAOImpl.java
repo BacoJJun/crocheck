@@ -30,5 +30,15 @@ public class accessorsDAOImpl implements accessorsDAO{
 		// TODO Auto-generated method stub
 		SqlSession.delete("setting.deleteaccess", vo);
 	}
+	@Override
+	public void insertAccess(accessorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.insert("setting.insertaccess", vo);
+	}
+	@Override
+	public void updateAccess(accessorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.update("setting.updateaccess", vo);
+	}
 
 }

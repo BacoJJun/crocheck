@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -35,26 +36,25 @@ public class loginController {
 	@Inject
 	userServiceImpl userService;
 	
-	@RequestMapping(value= "/logincheck")
-	public ModelAndView logincheck(Locale locale, Model model) throws Exception {
+	@RequestMapping(value = "/logincheck", method = RequestMethod.POST)
+	public ModelAndView logincheck(Locale locale, Model model, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("dashboard");
-		mav.addObject("msg", "success");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/loginuser", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> loginuser(@ModelAttribute  userVO vo) {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+		String username = request.getParameter("admin_username");
+		String password = request.getParameter("admin_password");
 		StringBuffer sb = new StringBuffer();
-		userVO compareVO  = new userVO();
-		String checkLogin = "false";
+		userVO compareVO = new userVO();
+		userVO vo =  new userVO();
+		vo.setUsername(username);;
+		vo.setEncrypted_password(password);
 		
 		try {
 			try {
 				compareVO = userService.selectMember(vo);
+				if(compareVO == null) {
+					mav.setViewName("login");
+					mav.addObject("msg", "failure");
+					return mav;
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -65,21 +65,25 @@ public class loginController {
 			   sb.append( Integer.toString( digest[i] & 0x0f, 16 ) );
 			  }
 			  vo.setEncrypted_password(sb.toString());
-			  if(vo.getEncrypted_password().equals(compareVO.getEncrypted_password())) {
-				  checkLogin = "true";
+			  
+			  if(  vo.getEncrypted_password().equals(compareVO.getEncrypted_password())) {
+				  	session.setAttribute("userId", vo.getUsername());
+					mav.setViewName("dashboard");
+					mav.addObject("msg", "success");
+					return mav;
+			  }else {
+					mav.setViewName("login");
+					mav.addObject("msg", "failure");
+					return mav;
 			  }
-				resultMap.put(RESULT, RESULT_SUCCESS);
-				resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
-		} catch (NoSuchAlgorithmException e1) {
-			resultMap.put(RESULT, RESULT_ERROR);
-			resultMap.put(ERROR_MESSAGE, "connect_faled!");
-			e1.printStackTrace();
+		}catch(NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
-		
-		resultMap.put("base", checkLogin);
-		resultMap.put("md5",vo.getEncrypted_password());
-		return resultMap; 
+		mav.setViewName("login");
+		mav.addObject("msg", "failure");
+		return mav;
 	}
+	
 	
 	@RequestMapping(value = "/updateuser", method = RequestMethod.POST)
 	@ResponseBody

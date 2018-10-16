@@ -3,6 +3,8 @@ package com.humanstar.crocheck;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,185 +37,333 @@ public class HomeController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView mainview(Locale locale, Model model) throws Exception {
+	public ModelAndView mainview(HttpServletRequest request, Locale locale, Model model, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
+
+		 session = request.getSession(true);
 		
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("dashboard");
 		mav.addObject("msg", "success");
 		return mav;
 	}	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView dashboard(Locale locale, Model model) throws Exception {
+	public ModelAndView dashboard(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("dashboard");
 		mav.addObject("msg", "success");
 		return mav;
 	}	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView home(Locale locale, Model model) throws Exception {
+	public ModelAndView home(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("home");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView index(Locale locale, Model model) throws Exception {
+	public ModelAndView index(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("index");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public ModelAndView chart(Locale locale, Model model) throws Exception {
+	public ModelAndView chart(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("chart");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	@RequestMapping(value = "/dashboard2", method = RequestMethod.GET)
-	public ModelAndView dashboard2(Locale locale, Model model) throws Exception {
+	public ModelAndView dashboard2(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("dashboard2");
 		mav.addObject("msg", "success");
 		return mav;
 	}	
 	@RequestMapping(value = "/dashboard3", method = RequestMethod.GET)
-	public ModelAndView dashboard3(Locale locale, Model model) throws Exception {
+	public ModelAndView dashboard3(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("dashboard3");
 		mav.addObject("msg", "success");
 		return mav;
 	}	
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
-	public ModelAndView statistics(Locale locale, Model model) throws Exception {
+	public ModelAndView statistics(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("statistics");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	@RequestMapping(value = "/compare", method = RequestMethod.GET)
-	public ModelAndView compare(Locale locale, Model model) throws Exception {
+	public ModelAndView compare(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("compare");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	@RequestMapping(value = "/dnsstatus", method = RequestMethod.GET)
-	public ModelAndView dnsstatus(Locale locale, Model model) throws Exception {
+	public ModelAndView dnsstatus(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("dnsstatus");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/dnspolicy", method = RequestMethod.GET)
-	public ModelAndView dnspolicy(Locale locale, Model model) throws Exception {
+	public ModelAndView dnspolicy(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("dnspolicy");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/dhcppolicy", method = RequestMethod.GET)
-	public ModelAndView dhcppolicy(Locale locale, Model model) throws Exception {
+	public ModelAndView dhcppolicy(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("dhcppolicy");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	@RequestMapping(value = "/alertList", method = RequestMethod.GET)
-	public ModelAndView alertList(Locale locale, Model model) throws Exception {
+	public ModelAndView alertList(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("alertList");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	@RequestMapping(value = "/engine", method = RequestMethod.GET)
-	public ModelAndView engine(Locale locale, Model model) throws Exception {
+	public ModelAndView engine(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("engine");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/organization", method = RequestMethod.GET)
-	public ModelAndView organization(Locale locale, Model model) throws Exception {
+	public ModelAndView organization(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("organization");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/status_report", method = RequestMethod.GET)
-	public ModelAndView status_report(Locale locale, Model model) throws Exception {
+	public ModelAndView status_report(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("status_report");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/update_report", method = RequestMethod.GET)
-	public ModelAndView update_report(Locale locale, Model model) throws Exception {
+	public ModelAndView update_report(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("update_report");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/alert_notice", method = RequestMethod.GET)
-	public ModelAndView alert_notice(Locale locale, Model model) throws Exception {
+	public ModelAndView alert_notice(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("alert_notice");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/setting", method = RequestMethod.GET)
-	public ModelAndView setting(Locale locale, Model model) throws Exception {
+	public ModelAndView setting(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("setting");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/guide", method = RequestMethod.GET)
-	public ModelAndView guide(Locale locale, Model model) throws Exception {
+	public ModelAndView guide(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("guide");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	@RequestMapping(value = "/ddosban", method = RequestMethod.GET)
-	public ModelAndView ddosban(Locale locale, Model model) throws Exception {
+	public ModelAndView ddosban(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		 session = request.getSession(true);
+			
+		if(session == null  ||session.getAttribute("userId") == null ||  !session.getAttribute("userId").equals("admin") ) {
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
 		mav.setViewName("ddosban");
 		mav.addObject("msg", "success");
 		return mav;
 	}
 	@RequestMapping(value = "/temp", method = RequestMethod.GET)
-	public ModelAndView temp(Locale locale, Model model) throws Exception {
+	public ModelAndView temp(Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
+		
 		
 		mav.setViewName("temp");
 		mav.addObject("msg", "success");
@@ -227,4 +377,23 @@ public class HomeController {
 		mav.addObject("msg", "success");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView logout(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		 session = request.getSession(true);
+			
+		if(session != null  |session.getAttribute("userId") == null ||  session.getAttribute("userId").equals("admin") ) {
+			session.invalidate();
+			mav.setViewName("login");
+			mav.addObject("msg", "fail");
+			return mav;
+		}
+		session.invalidate();
+		mav.setViewName("login");
+		mav.addObject("msg", "success");
+		return mav;
+	}
+
 }

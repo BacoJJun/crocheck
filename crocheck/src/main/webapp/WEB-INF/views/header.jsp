@@ -4,8 +4,8 @@
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="images/favicon.ico" type="image/ico" />
-
+<link rel="icon" href="img/favicon.ico" type="image/ico" />
+<title>CROCHECK SDNS</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Font Awesome -->
@@ -27,11 +27,12 @@
 <!-- Custom Theme Style -->
 <link href="css/modal.css" rel="stylesheet">
 <link href="css/custom.css" rel="stylesheet">
-<link href="css/checkbox_custom.css" rel="stylesheet">
-<link href="css/analysis.css" rel="stylesheet">
+<!-- <link href="css/checkbox_custom.css" rel="stylesheet">
+ --><link href="css/analysis.css" rel="stylesheet">
 <link href="css/c3.css" rel="stylesheet">
 <link href="css/ion.rangeSlider.css" rel="stylesheet">
 <link href="css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+<link href="css/notice.css" rel="stylesheet">
 <!-- <link href="css/bootstrap.black.css" rel="stylesheet"> -->
 
 </head>

@@ -24,7 +24,7 @@
 					<li><a><i class="fa fa-bar-chart-o"></i> <strong>통계분석 </strong><span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href=" /dnsstatus">DNS-STATUS</a></li>
+							<li><a href=" /dnsstatus">DNS</a></li>
 							<li><a href=" /statistics">분석</a></li>
 							<li><a href=" /compare">비교</a></li>
 						</ul></li>
@@ -33,7 +33,7 @@
 						<ul class="nav child_menu">
 							<li><a href=" /dnspolicy">DNS</a></li>
 							<li><a href=" /dhcppolicy">DHCP</a></li>
-							<li><a href="/ddosban">DDoS</a>
+							<li><a href="/ddosban">DDOS</a>
 							<li><a href=" /alertList">ALERT</a></li>
 							<li><a href=" /engine">ENGINE</a></li>
 						</ul></li>
@@ -60,20 +60,20 @@
 		</div>
 		<div class="sidebar-footer hidden-small">
 			<a href=" /setting" data-toggle="tooltip"
-				data-placement="top" title="Settings"> <span
+				data-placement="top" title="설정"> <span
 				class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 			</a> <a href=" /guide" data-toggle="tooltip" data-placement="top"
-				title="Guide"> <span class="glyphicon glyphicon-book"
+				title="가이드"> <span class="glyphicon glyphicon-book"
 				aria-hidden="true"></span>
 			</a> <a href="#" class="requestfullscreen" data-toggle="tooltip"
-				data-placement="top" id="requestfullscreen" title="FullScreen">
+				data-placement="top" id="requestfullscreen" title="풀스크린모드">
 				<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
 			</a><a href="#" class="exitfullscreen" data-toggle="tooltip"
-				data-placement="top" id="exitfullscreen" title="FullScreen"
+				data-placement="top" id="exitfullscreen" title="브라우져모드"
 				style="display: none"> <span
 				class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-			</a><a data-toggle="tooltip" data-placement="top" title="Logout"
-				href="login.html"> <span class="glyphicon glyphicon-off"
+			</a><a data-toggle="tooltip" data-placement="top" title="로그아웃"
+				href="/logout"> <span class="glyphicon glyphicon-off"
 				aria-hidden="true"></span>
 			</a>
 

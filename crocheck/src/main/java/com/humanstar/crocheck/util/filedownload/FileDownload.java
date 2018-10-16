@@ -26,7 +26,9 @@ public class FileDownload {
         String path =  request.getSession().getServletContext().getRealPath("/Users/leejunseok/git/crocheck/crocheck/src/main/webapp/resources/download");
         
         String filename = request.getParameter("fileName");
+        filename = "dns_201837160437.csv";
         String downname = request.getParameter("downName");
+        downname = "dns_201837160437.csv";
         String realPath = "";
         System.out.println("downname: "+downname);
         if (filename == null || "".equals(filename)) {

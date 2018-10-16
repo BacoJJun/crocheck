@@ -18,7 +18,7 @@
 			<!-- /top navigation -->
 
 			<!-- page content -->
-			<div class="right_col" role="main" style="height: 100%">
+			<div class="right_col" id="main" style="min-height: 1200px;">
 				<div class="x_panel">
 					<!-- top tiles -->
 					<div class="row tile_count">
@@ -60,7 +60,7 @@
 
 						<!--  main graph  left 2/3-->
 						<div class="col-md-6">
-							<div class="x_panel">
+							<div class="x_panel" style="height: 60px;">
 								<div class="col-lg-6 col-md-6">
 									<div class="x_title">
 										<h2 id="zone_count"></h2>
@@ -69,30 +69,30 @@
 								</div>
 								<div class="col-lg-6 col-md-6">
 									<div class="x_title">
-										<h2  id="sub_domain_count"></h2>
+										<h2 id="sub_domain_count"></h2>
 										<div class="clearfix"></div>
 									</div>
 								</div>
 
 							</div>
-							<div class="x_panel">
+							<div class="x_panel" style="height: 290px;">
 								<div class="panel panel-body">
 									<div class="x_title">
 										<h2>Appliance Status</h2>
 										<div class="clearfix"></div>
 									</div>
 									<div class="row">
-										<div class="col-xs-4">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 											<div class="x_content">
 												<div id="echart_gauge_cpu" style="height: 150px;"></div>
 											</div>
 										</div>
-										<div class="col-xs-4">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 											<div class="x_content">
 												<div id="echart_gauge_memory" style="height: 150px;"></div>
 											</div>
 										</div>
-										<div class="col-xs-4">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 											<div class="x_content">
 												<div id="echart_gauge_disk" style="height: 150px;"></div>
 											</div>
@@ -101,7 +101,7 @@
 
 								</div>
 							</div>
-							<div class="x_panel">
+							<div class="x_panel" style="height: 350px;">
 								<div class="x_title">
 									<h2>Today Query graph</h2>
 									<div class="clearfix"></div>
@@ -110,7 +110,7 @@
 									<div class="col-md-12 col-sm-12 col-xs-12">
 										<div class="demo-container" style="height: 245px">
 											<!-- <div id="chart_plot_02_dns" class="demo-placeholder"></div> -->
-											<canvas id="mybarChart_dns" class="demo-placeholder"></canvas>
+											<canvas id="mybarChart_dns"></canvas>
 										</div>
 									</div>
 								</div>
@@ -121,7 +121,7 @@
 
 						<!--  main table right 1/3 -->
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<div class="x_panel">
+							<div class="x_panel" style="height: 360px;">
 								<div class="x_title">
 									<h2>
 										DNS <small>Top Query List</small>
@@ -143,7 +143,7 @@
 									</table>
 								</div>
 							</div>
-							<div class="x_panel">
+							<div class="x_panel" style="height: 350px;">
 								<div class="x_title">
 									<h2>
 										DDOS <small>Top List</small>
@@ -167,14 +167,26 @@
 								</div>
 							</div>
 						</div>
+
 						<!--  end main table  -->
 						<!-- /page content -->
-
 					</div>
 				</div>
 			</div>
+			<div class="container-fluid text-center" style='clear: left;'
+				id=footer>
+				<small>Copyright ©️ 2018. &nbsp;&nbsp;&nbsp;<img
+					style="position: relative; top: -3px; display: inline;"
+					src="/img/ci-gray.png" width=136 height=36 alt=" HUMANSTAR ">
+						Co.,Ltd. All Rights Reserved.</small>
+			</div>
 		</div>
+
 	</div>
+
+
+
+
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>

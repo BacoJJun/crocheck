@@ -69,4 +69,28 @@ public class settingServiceImpl implements settingService{
 		return accessorsDAO.searchAccess(vo);
 	}
 
+	@Override
+	public void insertOperator(operatorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		operatorsDAO.insertOperator(vo);
+	}
+
+	@Override
+	public void updateOperator(operatorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		operatorsDAO.updateOperator(vo);
+	}
+
+	@Override
+	public void insertAccess(accessorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		accessorsDAO.insertAccess(vo);
+	}
+
+	@Override
+	public void updateAccess(accessorsVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		accessorsDAO.updateAccess(vo);
+	}
+
 }
