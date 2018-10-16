@@ -18,7 +18,7 @@ function buttonClickEvent(){
 		var operator_email = document.getElementById("operator_email_text").value;
 		var operator_phone = document.getElementById("operator_phone_text").value;
 		var operator_name = document.getElementById("operator_name_text").value;
-		var result = $("#operator_update_mail_check").is(":checked");
+		var result = $("#operator_insert_mail_check").is(":checked");
 		var operator_mail_check = 0;
 		
 		if(result){
@@ -30,6 +30,52 @@ function buttonClickEvent(){
 		$.ajax({
 			url : '/insertoperator',
 			data : {
+				"name" : operator_name,
+				"email" : operator_email,
+				"phone" : operator_phone,
+				"mail_yn" : operator_mail_check,
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					console.log(result.file_name);
+					setTimeout(function(){
+						location.reload();			
+					},1000);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		
+	});
+	
+	$("#update_operator").click(function(){
+		var operator_email = document.getElementById("operator_update_email_text").value;
+		var operator_phone = document.getElementById("operator_update_phone_text").value;
+		var operator_name = document.getElementById("operator_update_name_text").value;
+		var operator_id = document.getElementById("operator_update_id").value;
+		var result = $("input:checkbox[id='operator_update_mail_check']").is(":checked");
+
+		var operator_mail_check = 0;
+		
+		if(result){
+			operator_mail_check = 1;
+		}else{
+			operator_mail_check = 0;
+		}
+		
+		$.ajax({
+			url : '/updateoperator',
+			data : {
+				"id" : operator_id,
 				"name" : operator_name,
 				"email" : operator_email,
 				"phone" : operator_phone,
@@ -203,12 +249,13 @@ function fileDownload(file_name){
     });
 }
 function operatorEvent(operator_id){
+	var operator_update_id = document.getElementById('operator_update_id');
 	var operator_email = document.getElementById('operator_update_email_text');
 	var operator_phone = document.getElementById('operator_update_phone_text');
 	var operator_name = document.getElementById('operator_update_name_text');
 	var operator_mail = document.getElementById('operator_update_mail');
-	var update_modal = 		$
-	.ajax({
+	var operator_delete_view =  document.getElementById('operator_delete_view');
+	$.ajax({
 		url : '/searchoperator',
 		data : {
 			"id" : operator_id
@@ -218,15 +265,16 @@ function operatorEvent(operator_id){
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				operator_delete_view.innerText = result.searchoperator.name + "(" +result.searchoperator.email + ") 을(를) 삭제하시겠습니까? "; 
+				operator_update_id.value = result.searchoperator.id;
 				operator_email.value = result.searchoperator.email;
 				operator_phone.value = result.searchoperator.phone;
 				operator_name.value = result.searchoperator.name;
 				if(result.searchoperator.mail_yn =='1'){
 					operator_mail.value = 1;
-					console.log(	$('#operator_update_mail input'));
-					$('#operator_update_mail input').prop('checked', true);
+					$("input:checkbox[id='operator_update_mail_check']").prop("checked", true);
 				}else{
-					$('#operator_update_mail_check input').prop('checked', false);
+					$("input:checkbox[id='operator_update_mail_check']").prop("checked", false);
 				}
 			} else {
 				alert(result.errorMsg);
