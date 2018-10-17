@@ -83,5 +83,17 @@ public class dhcpPolicyDAOImpl implements dhcpPolicyDAO{
 		SqlSession.delete("dhcppolicy.deletesubdhcp",vo);
 	}
 
+	@Override
+	public List<dhcpSubVO> backupDhcpSub() throws Exception {
+		// TODO Auto-generated method stub
+		return 	SqlSession.selectList("dhcppolicy.dhcpsubbackup");
+	}
+
+	@Override
+	public List<dhcpRentVO> backupDhcpRent() throws Exception {
+		// TODO Auto-generated method stub
+		return 	SqlSession.selectList("dhcppolicy.dhcprentbackup");
+	}
+
 
 }

@@ -45,5 +45,15 @@ public class operatorsVO {
 	}
 	
 	
-	
+	public String csvString() {
+		String line = "";
+		line += "\"name\":\"" +name + "\",";
+		line += "\"email\":\"" +email + "\",";
+		line += "\"mail_yn\":\"" +mail_yn + "\",";
+		line += "\"sms_yn\":\"" +sms_yn + "\",";
+		line += "\"phone\":\"" +phone + "\"";
+		
+		return line;
+		
+	}
 }

@@ -10,20 +10,31 @@
         http://www.springframework.org/schema/task 
         http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
-<!--  	<bean id="dataSource"
+	
+	
+<!-- <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="org.postgresql.Driver" />
+		<property name="url"
+			value="jdbc:postgresql://localhost:5432/alicedb" />
+		<property name="username" value="dbadmin" />
+		<property name="password" value="dbadminpass" />
+	</bean> -->
+  	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="org.postgresql.Driver" />
 		<property name="url"
 			value="jdbc:postgresql://192.168.0.40:5432/alicedb" />
 		<property name="username" value="dbadmin" />
 		<property name="password" value="dbadminpass" />
-	</bean> -->
-
+	</bean> 
+<!-- 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource"> 
 		<property name="driverClass" value="org.postgresql.Driver" /> <property name="url" 
 		value="jdbc:postgresql://106.240.251.114:42345/alicedb" /> <property name="username" 
-		value="dbadmin" /> <property name="password" value="dbadminpass" /> </bean> 
+		value="dbadmin" /> <property name="password" value="dbadminpass" /> </bean>  -->
+		
+		
 	<!-- SqlSessionFactory 객체 주입 -->
 	<!-- sqlSessionFactory는 dataSource를 참조 -->
 	<bean id="sqlSessionFactory"

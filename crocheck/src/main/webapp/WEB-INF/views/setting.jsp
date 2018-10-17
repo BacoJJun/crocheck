@@ -34,11 +34,11 @@
 								<ul role="menu" class="dropdown-menu">
 									<li><a id="dnsbackup" href="#">DNS</a></li>
 									<li><a id="dhcpbackup" href="#">DHCP</a></li>
-									<li><a id="ddosbackup" href="#">DDOS</a></li>
+<!-- 									<li><a id="ddosbackup" href="#">DDOS</a></li> -->
 									<li><a id="enginebackup" href="#">ENGINE</a></li>
 									<li class="divider"></li>
-									<li><a id="organizationbackup" href="#">조직도</a></li>
-									<li><a id="alertbackup" href="#">임계치</a></li>
+<!-- 									<li><a id="organizationbackup" href="#">조직도</a></li>
+									<li><a id="alertbackup" href="#">임계치</a></li> -->
 								</ul>
 							</div>
 							<div class="clearfix"></div>
@@ -446,7 +446,7 @@
 									발송 </label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 										<div class="checkbox" id="operator_update_mail">
-											<label><input type="checkbox" name="mail_yn" id="operator_update_mail_check" checked/>메일 발송 </label>
+											<label><input type="checkbox" name="mail_yn" id="operator_insert_mail_check" checked/>메일 발송 </label>
 										</div>
 								</div>
 							</div>
@@ -490,6 +490,7 @@
 									<input class="form-control" name="subject"
 										placeholder="관리자 E-mail을 입력해주십시오."
 										id="operator_update_email_text" type="text" required value="" />
+									<input type="hidden" id="operator_update_id" value=""/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -518,16 +519,16 @@
 
 									<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 										<div class="checkbox">
-											<label><input type="checkbox" name="mail_yn" id="operator_update_mail_check" checked=""/>메일 발송 </label>
+											<label><input type="checkbox" name="mail_yn" id="operator_update_mail_check" />메일 발송 </label>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer" style="margin-bottom: -14px;">
 								<input type="button" class="btn btn-info" id="update_operator"
-									value="UPDATE" />
+									value="수정" />
 								<button style="float: right;" type="button"
-									class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+									class="btn btn-default btn-close" data-dismiss="modal">닫기</button>
 							</div>
 						</form>
 					</div>
@@ -545,14 +546,16 @@
 				<div class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">×</button>
-					<h4 class="panel-title">Delete Operator</h4>
+					<h4 class="panel-title">관리자 E-MAIL 삭제</h4>
 				</div>
-				<div class="modal-body"></div>
+				<div class="modal-body">
+					<span id="operator_delete_view"></span>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger btn-close"
-						id="deleteoperator" value="DELETE">DELETE</button>
+						id="deleteoperator" value="DELETE">삭제</button>
 					<button type="button" class="btn btn-default btn-close"
-						data-dismiss="modal">Close</button>
+						data-dismiss="modal">닫기</button>
 
 				</div>
 			</div>

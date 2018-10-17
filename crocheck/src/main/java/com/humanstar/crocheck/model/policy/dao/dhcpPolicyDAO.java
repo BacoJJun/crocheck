@@ -19,4 +19,7 @@ public interface dhcpPolicyDAO {
 	public void insertSubDhcp(dhcpSubVO vo) throws Exception;
 	public void updateSubDhcp(dhcpSubVO vo) throws Exception;
 	public void deleteSubDhcp(dhcpSubVO vo) throws Exception;
+	
+	public List<dhcpSubVO> backupDhcpSub() throws Exception;
+	public List<dhcpRentVO> backupDhcpRent() throws Exception;
 }

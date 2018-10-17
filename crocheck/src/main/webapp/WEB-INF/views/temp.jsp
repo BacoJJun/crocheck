@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class='mydiv'>    
+    <button class='gen_btn'>Generate File</button>
+</div>
 </body>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/script.js"></script>

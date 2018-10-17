@@ -63,6 +63,17 @@ public class dhcpSubVO {
 				+ mac + ", mid=" + mid + ", created_at=" + created_at + ", ip_count=" + ip_count + "]";
 	}
 	
+	public String csvString() {
+		String line = "";
+		line += "\"type\":\"" +type + "\",";
+		line += "\"start_ip\":\"" +start_ip + "\",";
+		line += "\"end_ip\":\"" +end_ip + "\",";
+		line += "\"mac\":\"" +mac + "\",";
+		line += "\"mid\":\"" +mid + "\",";
+		line += "\"created_at\":\"" +created_at + "\",";
+		line += "\"ip_count\":\"" +ip_count + "\"";
+		return line;
+	}
 	
 	
 }

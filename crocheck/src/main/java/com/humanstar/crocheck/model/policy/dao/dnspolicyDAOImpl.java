@@ -51,7 +51,6 @@ public class dnspolicyDAOImpl implements dnspolicyDAO{
 
 	@Override
 	public void insertdns(dnspolicyVO vo) throws Exception {
-		logger.info(vo.toString());
 		SqlSession.insert("dnspolicy.dnsinsert", vo);
 		
 	}

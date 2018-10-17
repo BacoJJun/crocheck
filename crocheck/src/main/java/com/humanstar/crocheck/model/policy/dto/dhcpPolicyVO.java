@@ -129,4 +129,25 @@ public class dhcpPolicyVO {
 				+ ", ip_count=" + ip_count + ", subnet=" + subnet + ", gateway=" + gateway + ", subnet_length="
 				+ subnet_length + "]";
 	}	
+	
+	public String csvString() {
+		String line = "";
+		line += "\"protocol\":\"" +protocol + "\",";
+		line += "\"start_ip\":\"" +start_ip + "\",";
+		line += "\"end_ip\":\"" +end_ip + "\",";
+		line += "\"bid\":\"" +bid + "\",";
+		line += "\"created_at\":\"" +created_at + "\",";
+		line += "\"day\":\"" +day + "\",";
+		line += "\"hour\":\"" +hour + "\",";
+		line += "\"min\":\"" +min + "\",";
+		line += "\"dns1\":\"" +dns1 + "\",";
+		line += "\"dns2\":\"" +dns2 + "\",";
+		line += "\"category1\":\"" +category1 + "\",";
+		line += "\"category2\":\"" +category2 + "\",";
+		line += "\"ip_count\":\"" +ip_count + "\",";
+		line += "\"subnet\":\"" +subnet + "\",";
+		line += "\"gateway\":\"" +gateway + "\",";
+		line += "\"subnet_length\":\"" +subnet_length + "\"";
+		return line;
+	}
 }

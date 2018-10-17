@@ -18,7 +18,7 @@ function buttonClickEvent(){
 		var operator_email = document.getElementById("operator_email_text").value;
 		var operator_phone = document.getElementById("operator_phone_text").value;
 		var operator_name = document.getElementById("operator_name_text").value;
-		var result = $("#operator_update_mail_check").is(":checked");
+		var result = $("#operator_insert_mail_check").is(":checked");
 		var operator_mail_check = 0;
 		
 		if(result){
@@ -30,6 +30,52 @@ function buttonClickEvent(){
 		$.ajax({
 			url : '/insertoperator',
 			data : {
+				"name" : operator_name,
+				"email" : operator_email,
+				"phone" : operator_phone,
+				"mail_yn" : operator_mail_check,
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					console.log(result.file_name);
+					setTimeout(function(){
+						location.reload();			
+					},1000);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		
+	});
+	
+	$("#update_operator").click(function(){
+		var operator_email = document.getElementById("operator_update_email_text").value;
+		var operator_phone = document.getElementById("operator_update_phone_text").value;
+		var operator_name = document.getElementById("operator_update_name_text").value;
+		var operator_id = document.getElementById("operator_update_id").value;
+		var result = $("input:checkbox[id='operator_update_mail_check']").is(":checked");
+
+		var operator_mail_check = 0;
+		
+		if(result){
+			operator_mail_check = 1;
+		}else{
+			operator_mail_check = 0;
+		}
+		
+		$.ajax({
+			url : '/updateoperator',
+			data : {
+				"id" : operator_id,
 				"name" : operator_name,
 				"email" : operator_email,
 				"phone" : operator_phone,
@@ -163,18 +209,127 @@ function scrolltop(){
 
 function backupClickEvent(){
 	$("#dnsbackup").click(function(){
-		$.ajax({
-			url : '/zoneCsvMake',
+
+		$
+		.ajax({
+			url : '/zoneCsv',
 			type : 'post',
 			dataType : 'json',
 			async : false,
 			success : function(result) {
 				if (result.result == 'success') {
-					console.log(result.file_name);
-					setTimeout(function(){
-						//window.location.assign('download/' + result.file_name);
-						fileDownload(result.file_name);
-					},1000);
+					console.log(result.csvZoneContent);
+					 JSONToCSVConvertor(result.csvZoneContent, "DNSZonefile", true);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		
+	});
+	
+	$("#dhcpbackup").click(function(){
+
+		$
+		.ajax({
+			url : '/dhcpsubcsv',
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					//console.log(result.csvDchpsubContent);
+					 JSONToCSVConvertor(result.csvDchpsubContent, "dhcpsubfile", true);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+	
+	$
+	.ajax({
+		url : '/dhcprentcsv',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				if(result.csvDchpRentContent.length > 0){
+					JSONToCSVConvertor(result.csvDchpRentContent, "dhcprentfile", true);
+				}
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+		
+	$
+	.ajax({
+		url : '/dhcpcsv',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				//console.log(result.csvDhcpContent);
+				JSONToCSVConvertor(result.csvDhcpContent, "dhcpfile", true);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	});
+	
+	$("#enginebackup").click(function(){
+		$
+		.ajax({
+			url : '/operatorcsv',
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					JSONToCSVConvertor(result.csvOperators, "operatorsfile", true);
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		
+		$
+		.ajax({
+			url : '/accessorcsv',
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					JSONToCSVConvertor(result.csvAccessors, "accessors", true);
 				} else {
 					alert(result.errorMsg);
 				}
@@ -188,27 +343,95 @@ function backupClickEvent(){
 		
 	});
 }
-function fileDownload(file_name){
-    $.ajax({
-        type: 'POST',
-        url: '/fileDownload4?fileName='+file_name,
-        dataType: 'json',
-        contentType: 'application/json;charset=UTF-8',
-        success: function (data) {
-            console.log("in sucess")
-        },
-        error:function (xhr, ajaxOptions, thrownError){
-            console.log("in error")
-        } 
-    });
+
+function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
+    // If JSONData is not an object then JSON.parse will parse the JSON string
+	// in an Object
+    var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+    
+    var CSV = '';    
+    // Set Report title in first row or line
+    
+    CSV += ReportTitle + '\r\n\n';
+
+    // This condition will generate the Label/Header
+    if (ShowLabel) {
+        var row = "";
+        
+        // This loop will extract the label from 1st index of on array
+        for (var index in arrData[0]) {
+            
+            // Now convert each value to string and comma-seprated
+            row += index + ',';
+        }
+
+        row = row.slice(0, -1);
+        
+        // append Label row with line break
+        CSV += row + '\r\n';
+    }
+    
+    // 1st loop is to extract each row
+    for (var i = 0; i < arrData.length; i++) {
+        var row = "";
+        
+        // 2nd loop will extract each column and convert it in string
+		// comma-seprated
+        for (var index in arrData[i]) {
+            row += '"' + arrData[i][index] + '",';
+        }
+
+        row.slice(0, row.length - 1);
+        
+        // add a line break after each row
+        CSV += row + '\r\n';
+    }
+
+    if (CSV == '') {        
+        alert("Invalid data");
+        return;
+    }   
+    
+    // Generate a file name
+    var fileName = "";
+    // this will remove the blank-spaces from the title and replace it with an
+	// underscore
+    fileName += ReportTitle.replace(/ /g,"_");   
+    
+    // Initialize file format you want csv or xls
+    var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+    
+    // Now the little tricky part.
+    // you can use either>> window.open(uri);
+    // but this will not work in some browsers
+    // or you will not get the correct file extension
+    
+    // this trick will generate a temp <a /> tag
+    var link = document.createElement("a");    
+    link.href = uri;
+    
+    // set the visibility hidden so it will not effect on your web-layout
+    link.style = "visibility:hidden";
+	var fullDate = new Date()
+	var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+	var currentDate = fullDate.getFullYear()+ twoDigitMonth  + fullDate.getDate()  + fullDate.getHours() + fullDate.getMinutes();
+
+	
+    link.download = fileName + "_" +currentDate + ".csv";
+    
+    // this part will append the anchor tag and remove it after automatic click
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 function operatorEvent(operator_id){
+	var operator_update_id = document.getElementById('operator_update_id');
 	var operator_email = document.getElementById('operator_update_email_text');
 	var operator_phone = document.getElementById('operator_update_phone_text');
 	var operator_name = document.getElementById('operator_update_name_text');
 	var operator_mail = document.getElementById('operator_update_mail');
-	var update_modal = 		$
-	.ajax({
+	var operator_delete_view =  document.getElementById('operator_delete_view');
+	$.ajax({
 		url : '/searchoperator',
 		data : {
 			"id" : operator_id
@@ -218,15 +441,16 @@ function operatorEvent(operator_id){
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				operator_delete_view.innerText = result.searchoperator.name + "(" +result.searchoperator.email + ") 을(를) 삭제하시겠습니까? "; 
+				operator_update_id.value = result.searchoperator.id;
 				operator_email.value = result.searchoperator.email;
 				operator_phone.value = result.searchoperator.phone;
 				operator_name.value = result.searchoperator.name;
 				if(result.searchoperator.mail_yn =='1'){
 					operator_mail.value = 1;
-					console.log(	$('#operator_update_mail input'));
-					$('#operator_update_mail input').prop('checked', true);
+					$("input:checkbox[id='operator_update_mail_check']").prop("checked", true);
 				}else{
-					$('#operator_update_mail_check input').prop('checked', false);
+					$("input:checkbox[id='operator_update_mail_check']").prop("checked", false);
 				}
 			} else {
 				alert(result.errorMsg);

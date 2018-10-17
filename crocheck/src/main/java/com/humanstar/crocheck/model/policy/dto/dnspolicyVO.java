@@ -132,21 +132,21 @@ public class dnspolicyVO {
 	}
 	public String csvString() {
 		String line = "";
-		line += zone + ",";
-		line += ttl + ",";
-		line += type + ",";
-		line += host + ",";
-		line += mx_priority + ",";
-		line += data + ",";
-		line += primary_ns + ",";
-		line += resp_contact + ",";
-		line += serial + ",";
-		line += refresh + ",";
-		line += retry + ",";
-		line += expire + ",";
-		line += minimum + ",";
-		line += comment + ",";
-		line += modified;
+		line += "\"zone\":\"" +zone + "\",";
+		line += "\"ttl\":\"" +ttl + "\",";
+		line += "\"type\":\"" +type + "\",";
+		line += "\"host\":\"" +host + "\",";
+		line += "\"mx_priority\":\"" +mx_priority + "\",";
+		line += "\"data\":\"" +data + "\",";
+		line += "\"primary_ns\":\"" +primary_ns + "\",";
+		line += "\"resp_contact\":\"" +resp_contact + "\",";
+		line += "\"serial\":\"" +serial + "\",";
+		line += "\"refresh\":\"" +refresh + "\",";
+		line += "\"retry\":\"" +retry + "\",";
+		line += "\"expire\":\"" +expire + "\",";
+		line += "\"minimum\":\"" +minimum + "\",";
+		line += "\"comment\":\"" +comment + "\",";
+		line += "\"modified\":\"" +modified + "\"";
 		
 		return line;
 	}

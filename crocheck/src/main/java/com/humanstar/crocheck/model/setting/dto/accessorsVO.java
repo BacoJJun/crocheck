@@ -23,5 +23,12 @@ public class accessorsVO {
 		this.ip = ip;
 	}
 	
-	
+	public String csvString() {
+		String line = "";
+		line += "\"name\":\"" +name + "\",";
+		line += "\"email\":\"" +ip + "\"";
+
+		return line;
+		
+	}
 }

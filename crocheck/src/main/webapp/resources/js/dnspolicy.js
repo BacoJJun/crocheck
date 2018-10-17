@@ -20,6 +20,25 @@ $(document)
 					buttonClickEvent();
 
 				});
+function dnsscript() {
+	$.ajax({
+		url : '/dnsupdatescript',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
 function dnsblocklist() {
 	var dnsblocktable = document.getElementById("dnsblocklist");
 
@@ -85,57 +104,43 @@ function buttonClickEvent() {
 
 	});
 
-	$("#dnsblock_insert").click(
-			function() {
-				var insertdnsblockzone = document
-						.getElementById("dnsblock_insert_zone").value;
-				var insertdnsblockcomment = $("#dnsblock_insert_comment").val();
-/*				console.log(insertdnsblockcomment);
-				console.log(jQuery.type(insertdnsblockcomment));*/
-				$.ajax({
-					url : '/insertdnsban',
-					data : {
-						"zone" : insertdnsblockzone
-						,"comment" : insertdnsblockcomment
-						,"data" : insertdnsblockzone
-					},
-					type : 'post',
-					dataType : 'json',
-					async : false,
-					success : function(result) {
-						if (result.result == 'success') {
-						} else {
-							alert(result.errorMsg);
-						}
-					},
-					error : function(request) {
-						alert('error!');
-						alert("code:" + request.status + "\n" + "message:"
-								+ request.responseText + "\n");
-					}
-				});
-				$.ajax({
-					url : '/dnsupdatescript',
-					type : 'post',
-					dataType : 'json',
-					async : false,
-					success : function(result) {
-						if (result.result == 'success') {
-							setTimeout(function(){
-								location.reload();
-							});
-						} else {
-							alert(result.errorMsg);
-						}
-					},
-					error : function(request) {
-						alert('error!');
-						alert("code:" + request.status + "\n" + "message:"
-								+ request.responseText + "\n");
-					}
-				});
+	$("#dnsblock_insert")
+			.click(
+					function() {
+						var insertdnsblockzone = document
+								.getElementById("dnsblock_insert_zone").value;
+						var insertdnsblockcomment = $(
+								"#dnsblock_insert_comment").val();
+						/*
+						 * console.log(insertdnsblockcomment);
+						 * console.log(jQuery.type(insertdnsblockcomment));
+						 */
+						$.ajax({
+							url : '/insertdnsban',
+							data : {
+								"zone" : insertdnsblockzone,
+								"comment" : insertdnsblockcomment,
+								"data" : insertdnsblockzone
+							},
+							type : 'post',
+							dataType : 'json',
+							async : false,
+							success : function(result) {
+								if (result.result == 'success') {
+									dnsscript();
+								} else {
+									alert(result.errorMsg);
+								}
+							},
+							error : function(request) {
+								alert('error!');
+								alert("code:" + request.status + "\n"
+										+ "message:" + request.responseText
+										+ "\n");
+							}
+						});
 
-			});
+					});
 
 	$("#dnsblock_delete").click(
 			function() {
@@ -152,27 +157,8 @@ function buttonClickEvent() {
 					async : false,
 					success : function(result) {
 						if (result.result == 'success') {
-							setTimeout(function(){
-								location.reload();
-							});
-						} else {
-							alert(result.errorMsg);
-						}
-					},
-					error : function(request) {
-						alert('error!');
-						alert("code:" + request.status + "\n" + "message:"
-								+ request.responseText + "\n");
-					}
-				});
-				$.ajax({
-					url : '/dnsupdatescript',
-					type : 'post',
-					dataType : 'json',
-					async : false,
-					success : function(result) {
-						if (result.result == 'success') {
-							setTimeout(function(){
+							dnsscript();
+							setTimeout(function() {
 								location.reload();
 							});
 						} else {
@@ -326,6 +312,7 @@ function updatesubdomain() {
 	var host = document.getElementById("subdomain_update_host").value;
 	var data = document.getElementById("subdomain_update_data").value;
 	var comment = document.getElementById("subdomain_update_comment").value;
+
 	$.ajax({
 		url : '/updatesubdomain',
 		data : {
@@ -340,27 +327,8 @@ function updatesubdomain() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				dnsscript();
 				sleep(1000);
-			} else {
-				alert(result.errorMsg);
-			}
-		},
-		error : function(request) {
-			alert('error!');
-			alert("code:" + request.status + "\n" + "message:"
-					+ request.responseText + "\n");
-		}
-	});
-	$.ajax({
-		url : '/dnsupdatescript',
-		type : 'post',
-		dataType : 'json',
-		async : false,
-		success : function(result) {
-			if (result.result == 'success') {
-				setTimeout(function(){
-					location.reload();
-				});
 			} else {
 				alert(result.errorMsg);
 			}
@@ -490,6 +458,7 @@ function subdomaindelete(sub_id) {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				dnsscript();
 				sleep(1000);
 			} else {
 				alert(result.errorMsg);
@@ -514,6 +483,7 @@ function dnsdelete(dns_value) {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				dnsscript();
 				sleep(1000);
 			} else {
 				alert(result.errorMsg);
@@ -549,6 +519,7 @@ function subdomaininsert() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				dnsscript();
 				sleep(1000);
 			} else {
 				alert(result.errorMsg);
