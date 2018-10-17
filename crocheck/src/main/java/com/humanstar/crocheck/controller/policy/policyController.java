@@ -350,6 +350,7 @@ public class policyController {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		changeValueVO changeVO = new changeValueVO();
+		dnspolicyVO autoCreateDNS = new dnspolicyVO();
 		
 		changeVO.setChange_type("dns");
 		changeVO.setQuery_type("zone insert");

@@ -337,17 +337,25 @@
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">×</button>
 					<h4 class="panel-title" id="voteLabel">
-						<span class="glyphicon glyphicon-arrow-right"></span> dns Copy
-						Modal
+						<span class="glyphicon glyphicon-arrow-right"></span> DNS ZONE 복사 
 					</h4>
 				</div>
-				<div class="modal-body"></div>
+				<div class="modal-body">
+							<div class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12"> 변경할 이름 
+									</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<input class="form-control" name="subject"
+										placeholder=" " id="dns_copy_zone" type="text"
+										required value="Responsible Person" />
+								</div>
+							</div>
+				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-success btn-vote">Vote!</button>
-					<span class="btn btn-primary dropdown-results btn-results"
-						data-for=".results">View Results</span>
+					<button type="button" class="btn btn-success btn-vote" id="dns_copy">저장</button>
 					<button type="button" class="btn btn-default btn-close"
-						data-dismiss="modal">Close</button>
+						data-dismiss="modal">닫기</button>
 
 				</div>
 			</div>

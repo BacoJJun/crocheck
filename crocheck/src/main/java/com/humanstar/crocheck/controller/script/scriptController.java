@@ -29,7 +29,7 @@ public class scriptController {
 	public static final String ERROR_MESSAGE = "errorMsg";
 	
 	
-	@RequestMapping(value = "/testScript", method = RequestMethod.POST)
+	@RequestMapping(value = "/nslookupscript", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> testScript(@ModelAttribute String Msg) {
         Process process = null;
@@ -46,7 +46,7 @@ public class scriptController {
         cmdList.add("/bin/sh");
         cmdList.add("-c");
         
-        msg = "nslookup www.naver.com 192.168.0.40";
+        msg = "nslookup " + Msg + " 8.8.8.8";
         logger.info(Msg);
         cmdList.add(msg);
         String[] array = cmdList.toArray(new String[cmdList.size()]);

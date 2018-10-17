@@ -10,6 +10,7 @@ $(document)
 										if ($(
 												'input:radio[name="dns_search"]:checked')
 												.val() == 'lookup') {
+											lookupdnsdomain();
 										} else if ($(
 												'input:radio[name="dns_search"]:checked')
 												.val() == 'zone') {
@@ -20,6 +21,7 @@ $(document)
 					buttonClickEvent();
 
 				});
+
 function dnsscript() {
 	$.ajax({
 		url : '/dnsupdatescript',
@@ -562,6 +564,43 @@ function zonelistdraw() {
 							+ request.responseText + "\n");
 				}
 			});
+}
+function lookupdnsdomain() {
+	var search_text = document.getElementById("text-lookup").value;
+	var result_table = document.getElementById("lookup-result");
+	$
+	.ajax({
+		url : '/nslookupscript',
+		data : {
+			"Msg" : search_text
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				var domain_html = '';
+				domain_html += '<table id="lookupdatatable" class="table table-striped table-bordered">';
+					domain_html += '<tbody>';
+					domain_html += '<tr>';
+					domain_html += '<td>' + result.commandMsg
+							+ '</td>';
+					domain_html += '</tr>'
+				
+				domain_html += '</tbody></table>';
+				result_table.innerHTML = domain_html;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
+	
 }
 function searhdnsdomain() {
 	var search_text = document.getElementById("text-lookup").value;
