@@ -364,6 +364,16 @@ public class policyController {
 		vo.setBl(0);
 		try {
 			dnspolicyService.insertdns(vo);
+			
+			autoCreateDNS.setTtl(0);
+			autoCreateDNS.setType("A");
+			autoCreateDNS.setHost("@");
+			autoCreateDNS.setData(vo.getData());
+			autoCreateDNS.setModified(1);
+			autoCreateDNS.setBl(0);		
+			autoCreateDNS.setComment("Auto increate NS");
+			dnspolicyService.insertdns(autoCreateDNS);
+			
 			autoCreateDNS.setTtl(0);
 			autoCreateDNS.setType("NS");
 			autoCreateDNS.setHost("@");
@@ -372,13 +382,8 @@ public class policyController {
 			autoCreateDNS.setBl(0);
 			autoCreateDNS.setComment("Auto increate NS");
 			dnspolicyService.insertdns(autoCreateDNS);
-			autoCreateDNS.setTtl(0);
-			autoCreateDNS.setType("A");
-			autoCreateDNS.setHost(vo.getPrimary_ns());
-			autoCreateDNS.setData(vo.getResp_contact());
-			autoCreateDNS.setModified(1);
-			autoCreateDNS.setBl(0);		
-			autoCreateDNS.setComment("Auto increate NS");
+			
+
 			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");

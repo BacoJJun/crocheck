@@ -203,5 +203,64 @@ public class organizationController {
 		return resultMap; 
 	}
 	
+	@RequestMapping(value = "/insertpost", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertpost(@ModelAttribute postVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			organizationService.insertPost(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap; 
+	}
+	
+	@RequestMapping(value = "/updatepost", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updatepost(@ModelAttribute postVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			organizationService.updatePost(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap; 
+	}
+	
+	@RequestMapping(value = "/deletepost", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deletepost(@ModelAttribute postVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			organizationService.deletePost(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap; 
+	}
 	
 }

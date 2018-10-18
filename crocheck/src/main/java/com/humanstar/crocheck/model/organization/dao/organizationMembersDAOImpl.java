@@ -64,4 +64,22 @@ public class organizationMembersDAOImpl implements organizationMembersDAO{
 		return SqlSession.selectOne("organization.selectmember", vo);
 	}
 
+	@Override
+	public void insertPost(postVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.insert("organization.insertpost",vo);
+	}
+
+	@Override
+	public void updatePost(postVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.update("organization.updatepost",vo);
+	}
+
+	@Override
+	public void deletePost(postVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.delete("organization.deletepost",vo);
+	}
+
 }

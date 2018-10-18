@@ -14,4 +14,7 @@ public interface organizationMembersDAO {
 	public void updateMember(memberVO vo) throws Exception;
 	public void deleteMember(memberVO vo) throws Exception;
 	public memberVO selectMember(memberVO vo) throws Exception;
+	public void insertPost(postVO vo) throws Exception;
+	public void updatePost(postVO vo) throws Exception;
+	public void deletePost(postVO vo) throws Exception;
 	}

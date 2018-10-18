@@ -64,4 +64,22 @@ public class organizationServiceImpl implements organizationService{
 		return organizationMembersDAO.selectMember(vo);
 	}
 
+	@Override
+	public void insertPost(postVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		organizationMembersDAO.insertPost(vo);
+	}
+
+	@Override
+	public void updatePost(postVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		organizationMembersDAO.updatePost(vo);
+	}
+
+	@Override
+	public void deletePost(postVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		organizationMembersDAO.deletePost(vo);
+	}
+
 }

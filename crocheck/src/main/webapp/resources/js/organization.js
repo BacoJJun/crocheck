@@ -10,6 +10,7 @@ $(document).ready(function() {
 function button_click_event(){
 	$("#member_list button").click(function(){
 		var id = $(this).attr('value');
+		console.log(id);
 		memberselect(id);
 	});
 	$("#insert_member_info").click(function(){

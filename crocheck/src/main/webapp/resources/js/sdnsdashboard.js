@@ -577,7 +577,7 @@ function init_echarts() {
 					offsetCenter : [ '-65%', -10 ],
 					textStyle : {
 						color : '#333',
-						fontSize : 15
+						fontSize : 10
 					}
 				},
 				detail : {
@@ -591,7 +591,7 @@ function init_echarts() {
 					formatter : '{value}%',
 					textStyle : {
 						color : 'black',
-						fontSize : 15
+						fontSize : 10
 					}
 				},
 				data : [ {
@@ -674,10 +674,10 @@ function init_echarts() {
 				},
 				title : {
 					show : true,
-					offsetCenter : [ '-65%', -10 ],
+					offsetCenter : [ '-55%', -10 ],
 					textStyle : {
 						color : '#333',
-						fontSize : 15
+						fontSize : 10
 					}
 				},
 				detail : {
@@ -691,7 +691,7 @@ function init_echarts() {
 					formatter : '{value}%',
 					textStyle : {
 						color : 'black',
-						fontSize : 15
+						fontSize : 10
 					}
 				},
 				data : [ {
@@ -774,7 +774,7 @@ function init_echarts() {
 					offsetCenter : [ '-65%', -10 ],
 					textStyle : {
 						color : '#333',
-						fontSize : 15
+						fontSize : 10
 					}
 				},
 				detail : {
@@ -788,7 +788,7 @@ function init_echarts() {
 					formatter : '{value}%',
 					textStyle : {
 						color : 'black',
-						fontSize : 15
+						fontSize : 10
 					}
 				},
 				data : [ {

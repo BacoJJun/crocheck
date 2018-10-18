@@ -135,22 +135,22 @@
 						</div>
 						<div class="row">
 							<div class="col-lg-4 col-md-4">
-								<button type="button" class="btn btn-default btn-xs"
+<!-- 								<button type="button" class="btn btn-default btn-xs"
 									id="derp_up">UP</button>
 								<button type="button" class="btn btn-default btn-xs"
-									id="derp_down">DOWN</button>
+									id="derp_down">DOWN</button> -->
 							</div>
 							<div class="col-lg-8 col-md-8 text-right">
 								<button type="button" class="btn btn-info btn-xs"
-									id="derp_insert">NEW</button>
+									id="derp_insert">신규 부서</button>
 								<button type="button" class="btn btn-danger btn-xs"
-									id="derp_delete">DELETE</button>
+									id="derp_delete">부서 삭제</button>
 							</div>
 						</div>
-						<div class="row" id="depr_insert_div"  style="display: none">
+						<div class="row" id="depr_insert_div" style="display: none">
 							<div class="x_panel">
 								<div class="row">
-									<div class="col-lg-2 col-md-2" >
+									<div class="col-lg-2 col-md-2">
 										<select class="select_multiple form-control"
 											id="insert_displaypost">
 										</select>

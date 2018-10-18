@@ -194,8 +194,7 @@
 						<i class="glyphicon glyphicon-remove"></i>
 					</button>
 					<h4 class="panel-title">
-						<span class="glyphicon glyphicon-info-sign"></span> INSERT DNS
-						ZONE
+						<span class="glyphicon glyphicon-info-sign"></span> DNS ZONE 생성 
 					</h4>
 				</div>
 				<div class="modal-body" style="padding: 5px;">

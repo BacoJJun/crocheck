@@ -129,7 +129,7 @@ function menu_list_draw(data) {
 		} else {
 			//dep_flow[j-1].innerHTML += '<li ><span value="'+data[i].id+'"></span>' + data[i].name + '</li>';
 			dep_flow[j-1].innerHTML += '<li ><button type="button" class="btn btn-xs" value="'+data[i].id +'">'+data[i].name+'</button></li>';
-			modal_list += '<option value="'+data[i].id + '"> + ' + data[i].name + '</option>';
+			modal_list += '<option value="'+data[i].id + '"> +' + data[i].name + '</option>';
 			post_list +=  '<option value="'+data[i].id + '"> ' + data[i].name + '</option>';
 		}
 	}

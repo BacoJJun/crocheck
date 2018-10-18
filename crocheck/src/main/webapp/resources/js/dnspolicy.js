@@ -266,7 +266,7 @@ function insertdnszone() {
 	var zone = document.getElementById("dns_insert_zone").value;
 	var type = $('input:radio[name="dns_insert_type"]:checked').val();
 	var host = '@';
-	var data = document.getElementById("dns_insert_data").value;
+	var data = document.getElementById("dns_insert_primary_ip").value;
 	var ttl = document.getElementById("dns_insert_ttl").value;
 	var primaryns = document.getElementById("dns_insert_primaryns").value;
 	var resp_contact = document.getElementById("dns_insert_resp_contact").value;
@@ -277,42 +277,58 @@ function insertdnszone() {
 	var minimum = document.getElementById("dns_insert_minimum").value;
 	var comment = document.getElementById("dns_insert_comment").value;
 	var bl = 0;
-	$.ajax({
-		url : '/insertdns',
-		data : {
-			"zone" : zone,
-			"type" : type,
-			"host" : host,
-			"data" : data,
-			"ttl" : ttl,
-			"primary_ns" : primaryns,
-			"resp_contact" : resp_contact,
-			"serial" : serial,
-			"refresh" : refresh,
-			"retry" : retry,
-			"expire" : expire,
-			"minimum" : minimum,
-			"comment" : comment,
-			"bl" : bl
-		},
-		type : 'post',
-		dataType : 'json',
-		async : false,
-		success : function(result) {
-			if (result.result == 'success') {
-				sleep(1000);
-			} else {
-				alert(result.errorMsg);
+	
+	if(zone == "" || zone == null){
+		$("#dns_insert_zone").focus();
+		//$("#dns_insert_zone").blur();
+	}else if (data =="" || data == null){
+		$("#dns_insert_data").focus();
+	}else if (primaryns =="" || primaryns == null){
+		$("#dns_insert_primaryns").focus();
+	}else if (resp_contact =="" || resp_contact == null){
+		$("#dns_insert_resp_contact").focus();
+	}else{
+		$.ajax({
+			url : '/insertdns',
+			data : {
+				"zone" : zone,
+				"type" : type,
+				"host" : host,
+				"data" : data,
+				"ttl" : ttl,
+				"primary_ns" : primaryns,
+				"resp_contact" : resp_contact,
+				"serial" : serial,
+				"refresh" : refresh,
+				"retry" : retry,
+				"expire" : expire,
+				"minimum" : minimum,
+				"comment" : comment,
+				"bl" : bl
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					setTimeout(function(){
+						location.reload();
+					});
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
 			}
-		},
-		error : function(request) {
-			alert('error!');
-			alert("code:" + request.status + "\n" + "message:"
-					+ request.responseText + "\n");
-		}
-	});
+		});
 
-	location.reload();
+		
+	}
+	
+	
 }
 function updatesubdomain() {
 	var zone = document.getElementById("subdomain_update_zone").value;
@@ -409,7 +425,7 @@ function copydomain(){
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				setTImeout(function(){
+				setTimeout(function(){
 					dnsscript();
 					location.reload();
 				});
