@@ -186,7 +186,7 @@ public class scriptController {
         cmdList.add("/bin/sh");
         cmdList.add("-c");
         
-        cmdList.add("/crocheck/script/dhcp-makeconf.sh");
+        cmdList.add("sh /crocheck/script/dhcp-makeconf.sh");
         String[] array = cmdList.toArray(new String[cmdList.size()]);
 
 		try {
