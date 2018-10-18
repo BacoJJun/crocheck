@@ -22,7 +22,7 @@
 					<div class="x_panel">
 						<div class="x_title">
 							<h2>
-								REPORT<small></small>
+								변경 내역 보고서 <small></small>
 							</h2>
 
 							<div class="clearfix"></div>
@@ -33,15 +33,8 @@
 							<!-- report view part -->
 							<div class="col-lg-9 col-md-9" style="overflow-y: auto; height: 600px;" id="changereportmain">
 
-								<!--  update liststart -->
+								<!--  update list start -->
 								<div class="x_panel">
-									<div class="x_title">
-										<h2>
-											DNS update list <small></small>
-										</h2>
-
-										<div class="clearfix"></div>
-									</div>
 									<div class="x_content">
 										<table id="changeValuedatatable"
 											class="table table-striped table-bordered">

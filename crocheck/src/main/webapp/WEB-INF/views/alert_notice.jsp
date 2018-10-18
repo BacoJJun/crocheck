@@ -24,7 +24,7 @@
 					<div class="x_panel">
 						<div class="x_title">
 							<h2>
-								Alert Message List<small></small>
+								경고 메세지 리스트<small></small>
 							</h2>
 
 							<div class="clearfix"></div>
@@ -32,13 +32,10 @@
 
 						<!--  page part -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
 								
-								<div class="x_panel">
 									<div class="x_content">
 										<!--search start -->
-										<div class="x_panel">
-											<div class="x_title">
+										<!-- 	<div class="x_title">
 												<div class="row">
 
 												<div class="col-lg-2 col-md-2"><h2>검색조건</h2></div>
@@ -57,9 +54,9 @@
 													</button>
 												</div>
 											</div>
-											<!--  search start -->
+											 search start
 
-											</div>
+											</div> -->
 											<!-- search end -->
 											
 											<div class="row">
@@ -90,10 +87,9 @@
 
 					<!-- Report  end -->
 				</div>
-			</div>
 			<!--end  page content -->
-		</div>
-	</div>
+
+
 
 
 	<!-- jQuery -->

@@ -40,14 +40,14 @@
 					<li><a><i class="fa fa-sitemap"></i><strong>조 직 도</strong><span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href=" /organization">ORGANIZATION</a></li>
+							<li><a href=" /organization">조직구성</a></li>
 						</ul></li>
 
 					<li><a><i class="fa fa-clone"></i><strong>보 고 서</strong><span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href=" /status_report">STATUS</a></li>
-							<li><a href=" /update_report">UPDATE</a></li>
+							<li><a href=" /status_report">기본 보고서</a></li>
+							<li><a href=" /update_report">변경 내역 보고서</a></li>
 						</ul></li>
 				</ul>
 			</div>

@@ -38,6 +38,26 @@ function dhcpcount() {
 			});
 }
 
+function dhcpscript() {
+	$.ajax({
+		url : '/dhcpupdatescript',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
+
 function dhcpsubcount(id) {
 	var sub_total_count = document.getElementById("sub_total_count");
 	var sub_exception_count = document.getElementById("sub_exception_count");
@@ -437,6 +457,10 @@ function insertdhcp() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				setTimeout(function(){
+					dhcpscript();
+					location.reload();
+				});
 				} else {
 				alert(result.errorMsg);
 			}
@@ -447,9 +471,6 @@ function insertdhcp() {
 					+ request.responseText + "\n");
 		}
 	});
-	
-	location.reload();
-		
 }
 function updatedhcp(id){
 	var update_dhcp_category1 = document.getElementById("update_dhcp_category1").value;
@@ -498,6 +519,10 @@ function updatedhcp(id){
 				async : false,
 				success : function(result) {
 					if (result.result == 'success') {
+						setTimeout(function(){
+							dhcpscript();
+							location.reload();
+						});
 						} else {
 						alert(result.errorMsg);
 					}
@@ -508,8 +533,6 @@ function updatedhcp(id){
 							+ request.responseText + "\n");
 				}
 			});
-			
-			location.reload();
 }
 function deletedhcp(id){
 	$.ajax(
@@ -523,7 +546,11 @@ function deletedhcp(id){
 				async : false,
 				success : function(result) {
 					if (result.result == 'success') {
-						} else {
+						setTimeout(function(){
+							dhcpscript();
+							location.reload();
+						});
+					} else {
 						alert(result.errorMsg);
 					}
 				},
@@ -533,8 +560,7 @@ function deletedhcp(id){
 							+ request.responseText + "\n");
 				}
 			});
-			
-			location.reload();
+
 }
 
 function insertsubdhcp(){
@@ -563,6 +589,10 @@ function insertsubdhcp(){
 				async : false,
 				success : function(result) {
 					if (result.result == 'success') {
+						setTimeout(function(){
+							dhcpscript();
+							location.reload();
+						});
 						} else {
 						alert(result.errorMsg);
 					}
@@ -574,7 +604,6 @@ function insertsubdhcp(){
 				}
 			});
 			
-			location.reload();
 }
 
 function updatesubdhcp(sub_id){
@@ -628,6 +657,10 @@ function deletesubdhcp(sub_id){
 				async : false,
 				success : function(result) {
 					if (result.result == 'success') {
+						setTimeout(function(){
+							dhcpscript();
+							location.reload();
+						});
 						} else {
 						alert(result.errorMsg);
 					}
@@ -638,8 +671,6 @@ function deletesubdhcp(sub_id){
 							+ request.responseText + "\n");
 				}
 			});
-			
-			location.reload();
 }
 function subdhcptable(id) {
 	var dhcpsublist = document.getElementById("dhcp_sublist");

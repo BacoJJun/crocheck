@@ -360,9 +360,25 @@ public class policyController {
 		changeVO.setUser_ip(" ");
 		logger.info(request.getRemoteAddr());
 		
-				
+		autoCreateDNS = vo;
+		vo.setBl(0);
 		try {
 			dnspolicyService.insertdns(vo);
+			autoCreateDNS.setTtl(0);
+			autoCreateDNS.setType("NS");
+			autoCreateDNS.setHost("@");
+			autoCreateDNS.setData(vo.getPrimary_ns());
+			autoCreateDNS.setModified(1);
+			autoCreateDNS.setBl(0);
+			autoCreateDNS.setComment("Auto increate NS");
+			dnspolicyService.insertdns(autoCreateDNS);
+			autoCreateDNS.setTtl(0);
+			autoCreateDNS.setType("A");
+			autoCreateDNS.setHost(vo.getPrimary_ns());
+			autoCreateDNS.setData(vo.getResp_contact());
+			autoCreateDNS.setModified(1);
+			autoCreateDNS.setBl(0);		
+			autoCreateDNS.setComment("Auto increate NS");
 			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
@@ -375,6 +391,56 @@ public class policyController {
 
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/copydns", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> copydns(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		changeValueVO changeVO = new changeValueVO();
+		dnspolicyVO dnszone = new dnspolicyVO();
+		List<dnspolicyVO> dnsList = new ArrayList<dnspolicyVO>();
+		
+		logger.info("copy dns start");
+		try {
+			dnsList = dnspolicyService.idsearchDns(vo);
+			dnszone = dnsList.get(0);
+			logger.info(dnszone.toString());
+			
+			dnsList = dnspolicyService.subDnsList(dnszone);
+			
+			dnszone.setZone(vo.getZone());
+			dnszone.setBl(0);
+			dnspolicyService.insertdns(dnszone);
+			
+			for( int i=0; i<dnsList.size();i++) {
+				dnsList.get(i).setZone(vo.getZone());
+				dnsList.get(i).setBl(0);
+				logger.info(dnsList.get(0).csvString());
+				dnspolicyService.insertsubdomain(dnsList.get(i));
+			}
+			changeVO.setChange_type("dns");
+			changeVO.setQuery_type("zone copy");
+			changeVO.setTitle("insert : " + vo.getZone());
+			changeVO.setComment("after : " + vo.toString() + "before : " + dnszone.toString());
+			changeVO.setChange_user("Administrator");
+			changeVO.setUser_ip(" ");	
+			
+			changeValueService.insertChangeValue(changeVO);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap;
+	}
+	
+	
+	
 	@RequestMapping(value = "/updatedns", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updatedns(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {

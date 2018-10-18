@@ -88,8 +88,14 @@ function buttonClickEvent() {
 	$("#insertSubDomainBtn").click(function() {
 		zonelistdraw();
 	});
+	$("#dns_copy").click(function(){
+		copydomain();
+	});
 	$("#insertsubdomain").click(function() {
 		subdomaininsert();
+	});
+	$("#continuousinsertsubdomain").click(function(){
+		subdomaininsert2();
 	});
 	$("#updatesubdomain").click(function() {
 		updatesubdomain();
@@ -113,23 +119,23 @@ function buttonClickEvent() {
 								.getElementById("dnsblock_insert_zone").value;
 						var insertdnsblockcomment = $(
 								"#dnsblock_insert_comment").val();
-						/*
-						 * console.log(insertdnsblockcomment);
-						 * console.log(jQuery.type(insertdnsblockcomment));
-						 */
+						
 						$.ajax({
 							url : '/insertdnsban',
 							data : {
 								"zone" : insertdnsblockzone,
+								"data" : insertdnsblockzone,
 								"comment" : insertdnsblockcomment,
-								"data" : insertdnsblockzone
 							},
 							type : 'post',
 							dataType : 'json',
 							async : false,
 							success : function(result) {
 								if (result.result == 'success') {
+									setTimeout(function(){
 									dnsscript();
+									location.reload();
+									});
 								} else {
 									alert(result.errorMsg);
 								}
@@ -179,12 +185,12 @@ function dns_button_event() {
 	$('#zonelist button').click(function() {
 		var dns_value = $(this).attr('value');
 		var dns_type = $(this).attr('name');
-		console.log(dns_type);
-		console.log(dns_value);
 		if (dns_type == "dns_edit") {
 			dnsupdate(dns_value);
 		} else if (dns_type == "dns_delete") {
 			dnsdeletebuttonevent(dns_value);
+		}else if(dns_type == "dns_copy"){
+			dnscopy(dns_value);
 		}
 
 	});
@@ -384,6 +390,69 @@ function subdomainupdate(sub_id) {
 	});
 
 }
+function copydomain(){
+	var copy_zone_name = document.getElementById("dns_copy_zone").value;
+	var copy_zone = document.getElementById("dns_copy_zone_name").value;
+	var copy_id = document.getElementById("dns_copy_id").value;
+		
+	if(copy_zone == copy_zone_name){
+		console.log("test");
+	}
+	$.ajax({
+		url : '/copydns',
+		data : {
+			"id" : copy_id,
+			"zone" : copy_zone_name
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				setTImeout(function(){
+					dnsscript();
+					location.reload();
+				});
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});	
+}
+function dnscopy(dns_id) {
+	var copy_title = document.getElementById("dns_copy_title");
+	var copy_zone = document.getElementById("dns_copy_zone_name");
+	var copy_id = document.getElementById("dns_copy_id");
+	$.ajax({
+		url : '/catchDnsDomain',
+		data : {
+			"id" : dns_id
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				copy_title.innerText = result.dnsTableList[0].zone + "을(를) 복제 하시겠습니까?";
+				copy_zone.value  = result.dnsTableList[0].zone;
+				copy_id.value = result.dnsTableList[0].id;
+				console.log(result.dnsTableList);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
 function dnsupdate(dns_id) {
 	var modaltitle = document.getElementById("update_zone_name");
 	var zone = document.getElementById("dns_update_zone");
@@ -399,7 +468,7 @@ function dnsupdate(dns_id) {
 	var expire = document.getElementById("dns_update_expire");
 	var minimum = document.getElementById("dns_update_minimum");
 	var comment = document.getElementById("dns_update_comment");
-
+	
 	$.ajax({
 		url : '/catchDnsDomain',
 		data : {
@@ -535,6 +604,42 @@ function subdomaininsert() {
 	});
 	location.reload();
 }
+
+function subdomaininsert2() {
+	var zone = document.getElementById("subdomain_insert_zone").value;
+	var type = $('input:radio[name="zone_type_check"]:checked').val();
+	var host = document.getElementById("subdomain_insert_host").value;
+	var data = document.getElementById("subdomain_insert_data").value;
+	var comment = document.getElementById("subdomain_insert_comment").value;
+
+	$.ajax({
+		url : '/insertsubdomain',
+		data : {
+			"zone" : zone,
+			"type" : type,
+			"host" : host,
+			"data" : data,
+			"comment" : comment,
+			"bl" : 0
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				dnsscript();
+				
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+}
 function zonelistdraw() {
 	var subdomainzonelist = document.getElementById("subdomain_zonelist");
 	$
@@ -640,7 +745,6 @@ function searhdnsdomain() {
 									+ result.dnsTableList[i].id
 									+ '"></button></td>';
 							domain_html += '</tr>';
-							console.log("aaa");
 						}
 						domain_html += '</tbody></table>';
 						result_table.innerHTML = domain_html;

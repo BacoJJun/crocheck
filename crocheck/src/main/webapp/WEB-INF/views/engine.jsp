@@ -132,6 +132,7 @@
 															<button type="button" class="btn btn-xs fa fa-plus"
 																data-toggle="modal" data-target="#ntpInsertModal"></button>
 															<button type="button" class="btn btn-xs fa fa-question"
+																data-toggle="modal" data-target="#ntpStatustModal"
 																id="status_ntp"></button>
 														</th>
 													</tr>
@@ -280,10 +281,10 @@
 					<div class="modal-footer">
 						<div class="btn-group">
 							<button class="btn btn-danger" data-dismiss="modal">
-								<span class="glyphicon glyphicon-remove"></span> Cancel
+								<span class="glyphicon glyphicon-remove"></span> 닫기 
 							</button>
 							<button class="btn btn-primary" id="insert_ntp">
-								<span class="glyphicon glyphicon-check"></span> Save
+								<span class="glyphicon glyphicon-check"></span> 저장 
 							</button>
 						</div>
 					</div>
@@ -294,6 +295,51 @@
 			<!-- /.modal-dalog -->
 		</div>
 	</div>
+	<!--  ntp insert modal -->
+
+	<!--ntp status Modal start -->
+	<div id="ntpStatustModal" class="modal fade in">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<a class="btn btn-default" data-dismiss="modal"><span
+						class="glyphicon glyphicon-remove"></span></a>
+					<h4 class="modal-title">NTP 서버 상태 정보</h4>
+				</div>
+				<div class="modal-body">
+					<div class="x_panel">
+						<form class="form-horizontal form-label-left">
+							<div class="form-group">
+								<label
+									class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">NTP
+									SERVER</label>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<textarea style="resize: vertical;" class="form-control"
+										placeholder="comment" id="ntp_status_server" rows="6"
+										name="comment" required>Comment</textarea>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<div class="btn-group">
+						<button class="btn btn-danger" data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove"></span> 닫기
+						</button>
+					</div>
+				</div>
+
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dalog -->
+	</div>
+	<!--  ntp status modal -->
 	<!-- /.modal -->
 	<!-- ntp insert Modal end -->
 	<!-- jQuery -->

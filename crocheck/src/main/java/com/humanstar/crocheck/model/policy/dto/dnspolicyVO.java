@@ -107,7 +107,7 @@ public class dnspolicyVO {
 	public String getComment() {
 		return comment;
 	}
-	public void setConmment(String comment) {
+	public void setComment(String comment) {
 		this.comment = comment;
 	}
 	public int getModified() {

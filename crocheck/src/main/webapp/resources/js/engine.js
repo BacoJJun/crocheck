@@ -26,7 +26,63 @@ function button_event_list() {
 		var ntp_server = $(this).attr('value');
 		delete_ntp_server(ntp_server);
 	});
+	$("#status_ntp").click(function(){
+		var status_text =  document.getElementById("ntp_status_server");
+		
+		$.ajax({
+			url : '/ntpscript',
+			data : {
+				"Msg" : "status"
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					status_text.value = result.commentMsg;
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+	});
 
+}
+function enginescript(type, msg) {
+	var script_url = '';
+	if(type == "dns"){
+		script_url = '/dnsenginescript';
+	} else if (type == "dhcp" ){
+		script_url = '/dhcpenginescript';
+	} else if(type == "ntp" ){
+		script_url = '/ntpscript';
+	}
+	
+	$.ajax({
+		url : script_url,
+		data : {
+			"Msg" : msg
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
 }
 function delete_ntp_server(ntp_server){
 	$.ajax({
@@ -39,7 +95,9 @@ function delete_ntp_server(ntp_server){
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				sleep(1000);
+				setTimeout(function(){
+					location.reload();
+				});
 			} else {
 				alert(result.errorMsg);
 			}
@@ -50,7 +108,7 @@ function delete_ntp_server(ntp_server){
 					+ request.responseText + "\n");
 		}
 	});
-	location.reload();
+
 	
 }
 function insert_ntp_server(){
@@ -83,6 +141,7 @@ function insert_ntp_server(){
 	
 }
 function update_dns_roles(check_value) {
+	var msg = 'false';
 	$.ajax({
 		url : '/updateDnsRoles',
 		data : {
@@ -93,7 +152,13 @@ function update_dns_roles(check_value) {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				sleep(1000);
+				setTimeout(function(){
+					if(check_value){
+						msg = 'true';
+					}
+					enginescript("dns", msg);
+					location.reload();
+				});
 			} else {
 				alert(result.errorMsg);
 			}
@@ -104,9 +169,10 @@ function update_dns_roles(check_value) {
 					+ request.responseText + "\n");
 		}
 	});
-	location.reload();
+
 }
 function update_ntp_roles(check_value) {
+	var msg = 'false';
 	$.ajax({
 		url : '/updateNtpRoles',
 		data : {
@@ -117,7 +183,13 @@ function update_ntp_roles(check_value) {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				sleep(1000);
+				setTimeout(function(){
+					if(check_value){
+						msg = 'true';
+					}
+					enginescript("ntp", msg);
+					location.reload();
+				});
 			} else {
 				alert(result.errorMsg);
 			}
@@ -128,10 +200,10 @@ function update_ntp_roles(check_value) {
 					+ request.responseText + "\n");
 		}
 	});
-	location.reload();
 }
 
 function update_dhcp_roles(check_value) {
+	var msg = 'false';
 	$.ajax({
 		url : '/updatedhcp',
 		data : {
@@ -142,8 +214,14 @@ function update_dhcp_roles(check_value) {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				sleep(1000);
-			} else {
+				setTimeout(function(){
+					if(check_value){
+						msg = 'true';
+					}
+					enginescript("dhcp", msg);
+					location.reload();
+				});
+				} else {
 				alert(result.errorMsg);
 			}
 		},

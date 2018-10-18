@@ -207,7 +207,7 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<input class="form-control" name="subject"
 										placeholder="도메인을 입력합니다." id="dns_insert_zone" type="text"
-										required value="zone_name" />
+										required value="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -216,7 +216,7 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<input class="form-control" name="subject"
 										placeholder="Origin을 설정합니다." id="dns_insert_data" type="text"
-										required value="Origin" />
+										required value="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -241,8 +241,8 @@
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">Primary_ns</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<input class="form-control" name="subject"
-										placeholder="Primary_ns 설정" id="dns_insert_primaryns"
-										type="text" required value="Primary_ns" />
+										placeholder="Primary_ns을 입력합니다. " id="dns_insert_primaryns"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -250,8 +250,8 @@
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">Primary_IP</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<input class="form-control" name="subject"
-										placeholder="Origin을 설정합니다." id="dns_insert_primary_ip"
-										type="text" required value="Origin" />
+										placeholder="primary_ip 를 입력합니다. " id="dns_insert_primary_ip"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -260,8 +260,8 @@
 									Person</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<input class="form-control" name="subject"
-										placeholder="관리자 계정 " id="dns_insert_resp_contact" type="text"
-										required value="Responsible Person" />
+										placeholder="관리자 E-Mail을 입력합니다. " id="dns_insert_resp_contact"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -306,19 +306,16 @@
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">COMMENT</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<textarea style="resize: vertical;" class="form-control"
-										placeholder="comment" id="dns_insert_comment" rows="6"
-										name="comment" required>Comment</textarea>
+										placeholder="" id="dns_insert_comment" rows="6" name="comment"
+										required></textarea>
 								</div>
 							</div>
 							<div class="panel-footer" style="margin-bottom: -14px;">
 								<input type="button" class="btn btn-success" id="insertdns"
-									value="INSERT" />
-								<!--<span class="glyphicon glyphicon-ok"></span>-->
-								<input type="reset" class="btn btn-danger btn-close"
-									value="Clear" />
-								<!--<span class="glyphicon glyphicon-remove"></span>-->
+									value="저장" />
 								<button style="float: right;" type="button"
-									class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+									class="btn btn-default btn-close" data-dismiss="modal">닫기
+								</button>
 							</div>
 						</form>
 					</div>
@@ -337,23 +334,26 @@
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">×</button>
 					<h4 class="panel-title" id="voteLabel">
-						<span class="glyphicon glyphicon-arrow-right"></span> DNS ZONE 복사 
+						<span class="glyphicon glyphicon-arrow-right"></span> DNS ZONE 복사
 					</h4>
 				</div>
 				<div class="modal-body">
-							<div class="form-group">
-								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12"> 변경할 이름 
-									</label>
-								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-									<input class="form-control" name="subject"
-										placeholder=" " id="dns_copy_zone" type="text"
-										required value="Responsible Person" />
-								</div>
-							</div>
+					<div class="form-group">
+						<div class="row">
+							<span id="dns_copy_title"></span>
+						</div>
+						<br>
+						<div class="row">
+							<input class="form-control" name="subject"
+								placeholder="신규 ZONE 이름" id="dns_copy_zone" type="text" required
+								value="" /><input type="hidden" id="dns_copy_id" /><input
+								type="hidden" id="dns_copy_zone_name" />
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-success btn-vote" id="dns_copy">저장</button>
+					<button type="button" class="btn btn-success btn-vote"
+						id="dns_copy">저장</button>
 					<button type="button" class="btn btn-default btn-close"
 						data-dismiss="modal">닫기</button>
 
@@ -537,8 +537,7 @@
 						<i class="glyphicon glyphicon-remove"></i>
 					</button>
 					<h4 class="panel-title">
-						<span class="glyphicon glyphicon-info-sign"></span>INSERT
-						SUB_DOMAIN
+						<span class="glyphicon glyphicon-info-sign"></span>서브 도메인 추가
 					</h4>
 				</div>
 				<div class="modal-body" style="padding: 5px;">
@@ -575,32 +574,35 @@
 								<label
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">Host</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-									<input class="form-control" name="subject" placeholder="Host"
-										id="subdomain_insert_host" type="text" required value="@" />
+									<input class="form-control" name="subject"
+										placeholder="Host를 설정합니다. " id="subdomain_insert_host"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">DATA(IP)</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-									<input class="form-control" name="subject" placeholder="DATA"
-										id="subdomain_insert_data" type="text" required value="@" />
+									<input class="form-control" name="subject"
+										placeholder="IP를 설정합니다. " id="subdomain_insert_data"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label
-									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">COMMENT</label>
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12"></label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<textarea style="resize: vertical;" class="form-control"
-										placeholder="comment" id="subdomain_insert_comment" rows="6"
-										name="comment" required>test comment</textarea>
+										placeholder="도메인에 대한 메모할 사항을 적어주십시오."
+										id="subdomain_insert_comment" rows="6" name="comment" required></textarea>
 								</div>
 							</div>
 							<div class="panel-footer" style="margin-bottom: -14px;">
-								<input type="button" class="btn btn-info" id="insertsubdomain"
-									value="INSERT" />
+								<input type="button" class="btn btn-info" id="continuousinsertsubdomain"
+									value="연속저장" /> <input type="button" class="btn btn-info"
+									id="insertsubdomain" value="저장" />
 								<button style="float: right;" type="button"
-									class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+									class="btn btn-default btn-close" data-dismiss="modal">닫기</button>
 							</div>
 						</form>
 					</div>
@@ -728,7 +730,7 @@
 	<!-- dnsblock Insert Modal start -->
 	<div class="modal fade" id="dnsblockinsertModal" tabindex="-1"
 		role="dialog" aria-labelledby="voteLabel" aria-hidden="true">
-			<div class="modal-dialog">
+		<div class="modal-dialog">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal"
@@ -736,7 +738,7 @@
 						<i class="glyphicon glyphicon-remove"></i>
 					</button>
 					<h4 class="panel-title">
-						<span class="glyphicon glyphicon-info-sign"></span>유해사이트 차단 추가 
+						<span class="glyphicon glyphicon-info-sign"></span>유해사이트 차단 추가
 					</h4>
 				</div>
 				<div class="modal-body" style="padding: 5px;">
@@ -746,27 +748,27 @@
 								<label
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">ZONE</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-									<input class="form-control" name="subject"
-										placeholder="차단하실 zone을 입력해주십시오." id="dnsblock_insert_zone" type="text"
-										required value=" " />
+									<input class="form-control" name="block_insert_zone"
+										placeholder="차단하실 DOMAIN을 입력하세요." id="dnsblock_insert_zone"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">COMMENT</label>
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-									<input class="form-control" name="subject" placeholder="comment"
-										id="dnsblock_insert_comment" type="text" required value="" />
+									<input class="form-control" name="insert_block_comment"
+										placeholder="차단 사유를 입력하세요." id="dnsblock_insert_comment"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="panel-footer" style="margin-bottom: -14px;">
-								<input type="button" class="btn btn-success" id="dnsblock_insert"
-									value="저장" />
+								<input type="button" class="btn btn-success"
+									id="dnsblock_insert" value="저장" />
 								<!--<span class="glyphicon glyphicon-ok"></span>-->
-								<input type="reset" class="btn btn-danger btn-close" value="초기화" />
-								<!--<span class="glyphicon glyphicon-remove"></span>-->
 								<button style="float: right;" type="button"
-									class="btn btn-default btn-close" data-dismiss="modal">닫기 </button>
+									class="btn btn-default btn-close" data-dismiss="modal">닫기
+								</button>
 							</div>
 						</form>
 					</div>
