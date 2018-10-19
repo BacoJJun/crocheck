@@ -277,6 +277,7 @@ function insertdnszone() {
 	var minimum = document.getElementById("dns_insert_minimum").value;
 	var comment = document.getElementById("dns_insert_comment").value;
 	var bl = 0;
+
 	
 	if(zone == "" || zone == null){
 		$("#dns_insert_zone").focus();
