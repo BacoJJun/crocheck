@@ -848,15 +848,12 @@ public class policyController {
 		changeValueVO changeVO = new changeValueVO();
 		dnspolicyVO dnsbanObject = new dnspolicyVO();
 
+
 		logger.info(vo.csvString());
 		try {
-			// SOA 삽입
-			dnsbanObject = vo;
-			dnsbanObject.setTtl(3600);
-			dnsbanObject.setType("SOA");
-			dnsbanObject.setHost("@");
-			dnsbanObject.setBl(1);
-			dnsbanService.insertDnsBan(dnsbanObject);
+
+			dnsbanObject.setZone(vo.getZone());
+
 			
 			//ns-@ 삽입
 			dnsbanObject.setTtl(0);
@@ -874,7 +871,7 @@ public class policyController {
 			//A-* 삽입
 			dnsbanObject.setType("A");
 			dnsbanObject.setHost("*");
-			dnsbanObject.setData("www.crocheck600.co.kr");
+			dnsbanObject.setData("127.0.0.1");
 			dnsbanService.insertDnsBan(dnsbanObject);
 
 			//A-@ 삽입
@@ -882,7 +879,24 @@ public class policyController {
 			dnsbanObject.setHost("@");
 			dnsbanObject.setData("127.0.0.1");
 			dnsbanService.insertDnsBan(dnsbanObject);
-
+			
+			// SOA 삽입
+			dnsbanObject.setTtl(3600);
+			dnsbanObject.setType("SOA");
+			dnsbanObject.setHost("@");
+			dnsbanObject.setData("www."+vo.getZone() + "." );
+			dnsbanObject.setPrimary_ns(vo.getZone()+ ".");
+			dnsbanObject.setResp_contact("admin");
+			dnsbanObject.setSerial(2018222);
+			dnsbanObject.setRefresh(36000);
+			dnsbanObject.setRetry(3600);
+			dnsbanObject.setExpire(604800);
+			dnsbanObject.setMinimum(36000);
+			dnsbanObject.setModified(1);
+			dnsbanObject.setComment(vo.getComment());
+			dnsbanObject.setBl(1);
+			dnsbanService.insertDnsBan(dnsbanObject);
+			
 			changeVO.setChange_type("dnsban");
 			changeVO.setQuery_type("dnsban insert");
 			changeVO.setTitle("dns ban : " + vo.getZone());

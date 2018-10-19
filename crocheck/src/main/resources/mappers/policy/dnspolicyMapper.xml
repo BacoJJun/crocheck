@@ -29,6 +29,14 @@
    	insert into dns_record(zone, ttl, type, host, data, comment, modified, bl)
    	values(#{zone}, #{ttl}, #{type}, #{host}, #{data},#{comment}::text,  #{modified}, #{bl})
    </insert>
+   <insert id="insertdnsbansoa">
+   		insert into dns_record(zone, ttl, type, host, data,
+		primary_ns,resp_contact, serial, refresh, retry, expire,
+		minimum,comment,modified, bl)
+		values(#{zone}, #{ttl}, #{type}, #{host},
+		#{data}, #{primary_ns}, #{resp_contact}, #{serial},
+		#{refresh},#{retry}, #{expire}, #{minimum},#{comment},#{modified}, #{bl})
+   </insert>
    <delete id="deletednsban">
    	delete from dns_record where zone =#{zone} and bl = 1
    </delete>

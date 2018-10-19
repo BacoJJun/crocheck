@@ -38,5 +38,11 @@ public class dnsbanDAOImpl implements dnsbanDAO {
 		// TODO Auto-generated method stub
 		return SqlSession.selectOne("dnspolicy.dnsblocksearch", vo);
 	}
+
+	@Override
+	public void insertDnsSOABan(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.insert("dnspolicy.insertdnsbansoa",vo);
+	}
 	
 }
