@@ -112,7 +112,7 @@
 <!-- dns Insert Modal start -->
 <div class="modal fade" id="editdepart" tabindex="-1" role="dialog"
 	aria-labelledby="contactLabel" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<button type="button" class="close" data-dismiss="modal"
@@ -127,65 +127,71 @@
 			<div class="modal-body" style="padding: 5px;">
 				<div class="x_panel">
 					<form class="form-horizontal form-label-left">
-						<div class="row">
-							<select class="select_multiple form-control"
-								id="organization_list" multiple="multiple"
-								style="width: 100%; height: 240px;">
-							</select>
-						</div>
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-<!-- 								<button type="button" class="btn btn-default btn-xs"
-									id="derp_up">UP</button>
+						<div class="col-lg-6 col-md-6">
+							<div class="row">
+								<select class="select_multiple form-control"
+									id="organization_list" multiple="multiple"
+									style="width: 100%; height: 240px;">
+								</select>
+							</div>
+							<div class="row text-right">
 								<button type="button" class="btn btn-default btn-xs"
-									id="derp_down">DOWN</button> -->
-							</div>
-							<div class="col-lg-8 col-md-8 text-right">
-								<button type="button" class="btn btn-info btn-xs"
-									id="derp_insert">신규 부서</button>
-								<button type="button" class="btn btn-danger btn-xs"
-									id="derp_delete">부서 삭제</button>
-							</div>
-						</div>
-						<div class="row" id="depr_insert_div" style="display: none">
-							<div class="x_panel">
-								<div class="row">
-									<div class="col-lg-2 col-md-2">
-										<select class="select_multiple form-control"
-											id="insert_displaypost">
-										</select>
-									</div>
-									<div class="col-lg-4 col-md-4">
-										<input type="text" class="form-control"
-											id="insert_organization_text" placeholder=""> <span
-											class="input-group-btn"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row" id="depr_update_div">
-							<div class="x_panel">
-								<div class="row">
-									<div class="col-lg-2 col-md-2" id="postlist">
-										<select class="select_multiple form-control"
-											id="edit_displaypost">
-										</select>
-									</div>
-									<div class="col-lg-4 col-md-4">
-										<input type="text" class="form-control"
-											id="update_organization_text" placeholder=""> <span
-											class="input-group-btn"></span>
-									</div>
-								</div>
+									id="derp_up">▲</button>
+								<button type="button" class="btn btn-default btn-xs"
+									id="derp_down">▼</button>
 							</div>
 						</div>
 
-						<div class="panel-footer" style="margin-bottom: -14px;">
-							<button style="float: right;" type="button"
-								class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-							<div class="clrearfix"></div>
+						<div class="col-lg-6 col-md-6">
+							<div class="row">
+	
+									<div class="form-group">
+										<label
+											class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">상위
+											부서 </label>
+										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+												<select class="select_multiple form-control"
+													id="insert_displaypost">
+												</select>
+										</div>
+									</div>
+									<div class="form-group" >
+										<label
+											class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">부서명</label>
+										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+											<input type="text" class="form-control"
+												id="insert_organization_text" placeholder=""> <span
+												class="input-group-btn"></span>
+										</div>
+									</div>
+									<div class="form-group" >
+										<label
+											class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">부서명</label>
+										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+											<input type="textarea" class="form-control"
+												id="insert_organization_info" placeholder=""> <span
+												class="input-group-btn"></span>
+										</div>
+									</div>
+
+							<div class="row">
+								<div class="col-lg-6 col-md-6"></div>
+								<div class="col-lg-6 col-md-6 text-right">
+									<button type="button" class="btn btn-info btn-xs"
+										id="derp_insert">신규 부서</button>
+									<button type="button" class="btn btn-danger btn-xs"
+										id="derp_delete">부서 삭제</button>
+								</div>
+							</div>
+							</div>
+
+
 						</div>
 					</form>
+					<div class="modal-footer" style="margin-bottom: -14px;">
+						<button style="float: right;" type="button"
+							class="btn btn-default btn-close" data-dismiss="modal">닫기</button>
+					</div>
 				</div>
 			</div>
 		</div>
