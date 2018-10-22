@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/humanstar/crocheck/controller/policy/policyController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/dashboard.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/dhcppolicy.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/dnspolicy.jsp=UTF-8
@@ -8,3 +9,4 @@ encoding//src/main/webapp/WEB-INF/views/index.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/organization_menu.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/side.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/top.jsp=UTF-8
+encoding/<project>=UTF-8
