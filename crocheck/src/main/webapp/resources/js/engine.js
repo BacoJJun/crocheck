@@ -30,16 +30,13 @@ function button_event_list() {
 		var status_text =  document.getElementById("ntp_status_server");
 		
 		$.ajax({
-			url : '/ntpscript',
-			data : {
-				"Msg" : "status"
-			},
+			url : '/ntpstatusscript',
 			type : 'post',
 			dataType : 'json',
 			async : false,
 			success : function(result) {
 				if (result.result == 'success') {
-					status_text.value = result.commentMsg;
+					status_text.innerHTML = result.commandMsg;
 				} else {
 					alert(result.errorMsg);
 				}
@@ -54,20 +51,27 @@ function button_event_list() {
 
 }
 function enginescript(type, msg) {
-	var script_url = '';
-	if(type == "dns"){
-		script_url = '/dnsenginescript';
-	} else if (type == "dhcp" ){
-		script_url = '/dhcpenginescript';
-	} else if(type == "ntp" ){
-		script_url = '/ntpscript';
-	}
+	var Msg = '';
 	
-	$.ajax({
+	if(msg == "true"){
+		if(type == "dns"){
+			script_url = '/dnstartscript';
+		} else if (type == "dhcp" ){
+			script_url = '/dhcpstartscript';
+		} else if(type == "ntp" ){
+			script_url = '/ntpstartscript';
+		}
+	}else{
+		if(type == "dns"){
+			script_url = '/dnsstopscript';
+		} else if (type == "dhcp" ){
+			script_url = '/dhcpstopscript';
+		} else if(type == "ntp" ){
+			script_url = '/ntpstopscript';
+		}
+	}
+		$.ajax({
 		url : script_url,
-		data : {
-			"Msg" : msg
-		},
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -152,11 +156,11 @@ function update_dns_roles(check_value) {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				if(check_value == true){
+					msg = 'true';
+				}
+				enginescript("dns", msg);
 				setTimeout(function(){
-					if(check_value){
-						msg = 'true';
-					}
-					enginescript("dns", msg);
 					location.reload();
 				});
 			} else {
@@ -172,7 +176,7 @@ function update_dns_roles(check_value) {
 
 }
 function update_ntp_roles(check_value) {
-	var msg = 'false';
+
 	$.ajax({
 		url : '/updateNtpRoles',
 		data : {
@@ -184,10 +188,7 @@ function update_ntp_roles(check_value) {
 		success : function(result) {
 			if (result.result == 'success') {
 				setTimeout(function(){
-					if(check_value){
-						msg = 'true';
-					}
-					enginescript("ntp", msg);
+					enginescript("ntp", check_value);
 					location.reload();
 				});
 			} else {
@@ -215,7 +216,7 @@ function update_dhcp_roles(check_value) {
 		success : function(result) {
 			if (result.result == 'success') {
 				setTimeout(function(){
-					if(check_value){
+					if(check_value == true){
 						msg = 'true';
 					}
 					enginescript("dhcp", msg);

@@ -10,6 +10,7 @@ public interface dnspolicyDAO {
 	public List<dnspolicyVO> searchDnsDomain(dnspolicyVO vo) throws Exception;
 	public List<dnspolicyVO> catchDnsDomain(dnspolicyVO vo) throws Exception;
 	public List<dnspolicyVO> zonelist() throws Exception;
+	public List<dnspolicyVO> zonechecklist(dnspolicyVO vo) throws Exception;
 	public List<dnspolicyVO> idsearchDns(dnspolicyVO vo) throws Exception;
 	public List<dnspolicyVO> zonesearhDns(dnspolicyVO vo) throws Exception;
 	

@@ -39,4 +39,10 @@ public class dnsbanServiceImpl implements dnsbanService{
 		return dnsbanDAO.dnsbanSearch(vo);
 	}
 
+	@Override
+	public void insertDnsSOABan(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dnsbanDAO.insertDnsSOABan(vo);
+	}
+
 }

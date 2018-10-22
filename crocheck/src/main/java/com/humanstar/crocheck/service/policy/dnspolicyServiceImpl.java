@@ -47,6 +47,12 @@ public class dnspolicyServiceImpl implements dnspolicyService{
 		// TODO Auto-generated method stub
 		return dnspolicyDAO.zonelist();
 	}
+	
+	@Override
+	public List<dnspolicyVO> zonechecklist(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dnspolicyDAO.zonechecklist(vo);
+	}
 
 	@Override
 	public void insertdns(dnspolicyVO vo) throws Exception {

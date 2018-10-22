@@ -427,11 +427,56 @@ function insertdhcp() {
 	var insert_dhcp_start_ip = '';
 	var insert_dhcp_end_ip = '';
 	var insert_dhcp_ip_count = 0;
+	var dhcpcheckyn = 0;
+	
+	var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
 	
 
 	insert_dhcp_start_ip = sipchk(insert_dhcp_host, insert_dhcp_subnet, '1');
 	insert_dhcp_end_ip = sipchk(insert_dhcp_host, insert_dhcp_subnet, '2');
 	insert_dhcp_ip_count = insert_dhcp_end_ip.split('.')[3] - insert_dhcp_start_ip.split('.')[3] -1;
+	
+	$.ajax({
+		url : '/dhcpchecklist',
+		type : 'post',
+		data : {
+			"start_ip" : insert_dhcp_host
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				dhcpcheckyn = result.dhcpchecklist.length;
+				console.log('1'+dhcpcheckyn);
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+	if(insert_dhcp_host == "" || insert_dhcp_host == null){
+		$("#insert_dhcp_host").focus();
+		alert('Host는 필수입력입니다.');
+	}else if(insert_dhcp_broadcast == "" || insert_dhcp_broadcast == null){
+		$("#insert_dhcp_broadcast").focus();
+		alert('Broadcast는 필수입력입니다.');
+	}else if(insert_dhcp_subnet == "" || insert_dhcp_subnet == null){
+		$("#insert_dhcp_subnet").focus();
+		alert('subnet은 필수입력입니다.');
+	}else if(!regIP.test(insert_dhcp_host)){
+		$("#insert_dhcp_host").focus();
+		alert('IP 형식이 아닙니다.');
+	}else if(!regIP.test(insert_dhcp_broadcast)){
+		$("#insert_dhcp_broadcast").focus();
+		alert('IP 형식이 아닙니다.');
+	}else if(dhcpcheckyn > 0){
+		alert('중복된 DHCP입니다.');
+	}else{
 	
 	$.ajax(
 	{
@@ -471,6 +516,7 @@ function insertdhcp() {
 					+ request.responseText + "\n");
 		}
 	});
+	}
 }
 function updatedhcp(id){
 	var update_dhcp_category1 = document.getElementById("update_dhcp_category1").value;
@@ -489,11 +535,54 @@ function updatedhcp(id){
 	var update_dhcp_start_ip = '';
 	var update_dhcp_end_ip = '';
 	var update_dhcp_ip_count = 0;
+	var dhcpcheckyn = 0;
+	
+	var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
 	
 	update_dhcp_start_ip = sipchk(update_dhcp_host, update_dhcp_subnet, '1');
 	update_dhcp_end_ip = sipchk(update_dhcp_host, update_dhcp_subnet, '2');
 	update_dhcp_ip_count = update_dhcp_end_ip.split('.')[3] - update_dhcp_start_ip.split('.')[3] -1;
 	
+	$.ajax({
+		url : '/dhcpchecklist',
+		type : 'post',
+		data : {
+			"start_ip" : insert_dhcp_host
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				dhcpcheckyn = result.dhcpchecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+	if(update_dhcp_host == "" || update_dhcp_host == null){
+		$("#update_dhcp_host").focus();
+		alert('Host는 필수입력입니다.');
+	}else if(update_dhcp_broadcast == "" || update_dhcp_broadcast == null){
+		$("#update_dhcp_broadcast").focus();
+		alert('Broadcast는 필수입력입니다.');
+	}else if(update_dhcp_subnet == "" || update_dhcp_subnet == null){
+		$("#update_dhcp_subnet").focus();
+		alert('subnet은 필수입력입니다.');
+	}else if(!regIP.test(update_dhcp_host)){
+		$("#update_dhcp_host").focus();
+		alert('IP 형식이 아닙니다.');
+	}else if(!regIP.test(update_dhcp_broadcast)){
+		$("#update_dhcp_broadcast").focus();
+		alert('IP 형식이 아닙니다.');
+	}else if(dhcpcheckyn > 0){
+		alert('중복된 DHCP입니다.');
+	}else{
 	$.ajax(
 			{
 				url : '/dhcpupdate',
@@ -533,6 +622,7 @@ function updatedhcp(id){
 							+ request.responseText + "\n");
 				}
 			});
+	}
 }
 function deletedhcp(id){
 	$.ajax(
@@ -571,8 +661,31 @@ function insertsubdhcp(){
 	var insert_subdhcp_mac = document.getElementById("insert_subdhcp_mac").value;
 	var insert_subdhcp_ip_count = 0;
 	
+	var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+	
 	insert_subdhcp_ip_count = insert_subdhcp_end_ip.split('.')[3] - insert_subdhcp_start_ip.split('.')[3] +1;
 	
+	if(insert_subdhcp_selectType == 1 && (insert_subdhcp_start_ip == "" || insert_subdhcp_start_ip == null)){
+		alert('시작 IP는 필수입력입니다.');
+	}else if(insert_subdhcp_selectType == 1 && !regIP.test(insert_subdhcp_start_ip)){
+		alert('시작 IP는 IP형식만 입력이 가능합니다.');
+	}else if(insert_subdhcp_selectType == 1 && !regIP.test(insert_subdhcp_end_ip) && !(insert_subdhcp_end_ip == "" || insert_subdhcp_end_ip == null)){
+		alert('끝 IP는 IP형식만 입력이 가능합니다.');
+	}else if(insert_subdhcp_selectType == 2 && (insert_subdhcp_start_ip == "" || insert_subdhcp_start_ip == null)){
+		alert('시작 IP는 필수입력입니다.');
+	}else if(insert_subdhcp_selectType == 2 && (insert_subdhcp_mac == "" || insert_subdhcp_mac == null)){
+		alert('MAC은 필수입력입니다.');
+	}else if(insert_subdhcp_selectType == 2 && !regIP.test(insert_subdhcp_end_ip)){
+		alert('끝 IP는 IP형식만 입력이 가능합니다.');
+	}else if(insert_subdhcp_selectType == 3 && (insert_subdhcp_start_ip == "" || insert_subdhcp_start_ip == null)){
+		alert('시작 IP는 필수입력입니다.');
+	}else if(insert_subdhcp_selectType == 3 && (insert_subdhcp_end_ip == "" || insert_subdhcp_end_ip == null)){
+		alert('끝 IP는 필수입력입니다.');
+	}else if(insert_subdhcp_selectType == 3 && !regIP.test(insert_subdhcp_start_ip)){
+		alert('시작 IP는 IP형식만 입력이 가능합니다.');
+	}else if(insert_subdhcp_selectType == 3 && !regIP.test(insert_subdhcp_end_ip)){
+		alert('끝 IP는 IP형식만 입력이 가능합니다.');
+	}else{
 	$.ajax(
 			{
 				url : '/subdhcpinsert',
@@ -603,6 +716,7 @@ function insertsubdhcp(){
 							+ request.responseText + "\n");
 				}
 			});
+	}
 			
 }
 
@@ -614,8 +728,31 @@ function updatesubdhcp(sub_id){
 	var update_subdhcp_mac = document.getElementById("update_subdhcp_mac").value;
 	var update_subdhcp_ip_count = 0;
 	
+	var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+	
 	update_subdhcp_ip_count = update_subdhcp_end_ip.split('.')[3] - update_subdhcp_start_ip.split('.')[3] +1;
 	
+	if(update_subdhcp_selectType == 1 && (update_subdhcp_start_ip == "" || update_subdhcp_start_ip == null)){
+		alert('시작 IP는 필수입력입니다.');
+	}else if(update_subdhcp_selectType == 1 && !regIP.test(update_subdhcp_start_ip)){
+		alert('시작 IP는 IP형식만 입력이 가능합니다.');
+	}else if(update_subdhcp_selectType == 1 && !regIP.test(update_subdhcp_end_ip) && !(update_subdhcp_end_ip == "" || update_subdhcp_end_ip == null)){
+		alert('끝 IP는 IP형식만 입력이 가능합니다.');
+	}else if(update_subdhcp_selectType == 2 && (update_subdhcp_start_ip == "" || update_subdhcp_start_ip == null)){
+		alert('시작 IP는 필수입력입니다.');
+	}else if(update_subdhcp_selectType == 2 && (update_subdhcp_mac == "" || update_subdhcp_mac == null)){
+		alert('MAC은 필수입력입니다.');
+	}else if(update_subdhcp_selectType == 2 && !regIP.test(update_subdhcp_end_ip)){
+		alert('끝 IP는 IP형식만 입력이 가능합니다.');
+	}else if(update_subdhcp_selectType == 3 && (update_subdhcp_start_ip == "" || update_subdhcp_start_ip == null)){
+		alert('시작 IP는 필수입력입니다.');
+	}else if(update_subdhcp_selectType == 3 && (update_subdhcp_end_ip == "" || update_subdhcp_end_ip == null)){
+		alert('끝 IP는 필수입력입니다.');
+	}else if(update_subdhcp_selectType == 3 && !regIP.test(update_subdhcp_start_ip)){
+		alert('시작 IP는 IP형식만 입력이 가능합니다.');
+	}else if(update_subdhcp_selectType == 3 && !regIP.test(update_subdhcp_end_ip)){
+		alert('끝 IP는 IP형식만 입력이 가능합니다.');
+	}else{
 	$.ajax(
 			{
 				url : '/subdhcpupdate',
@@ -644,6 +781,7 @@ function updatesubdhcp(sub_id){
 				}
 			});
 	location.reload();
+	}
 }
 function deletesubdhcp(sub_id){
 	$.ajax(

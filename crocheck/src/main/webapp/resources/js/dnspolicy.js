@@ -21,6 +21,48 @@ $(document)
 					buttonClickEvent();
 
 				});
+function hostDomain(zones, hosts){
+	var zone = zones;
+	var host = hosts;
+	var zone_length = zone.length;
+    var host_length = host.length;
+    var minus_zone = -zone_length;
+    var plus_host = 0;
+    var host_front = "";
+    var host_back = "";
+    var host_datyn = "";
+    
+    if(host_length > zone_length){   	
+    	if(host.charAt(host_length-1) == "."){
+    		host = host.slice(0,-1);
+    		host_length = host.length;
+    		plus_host = host_length - zone_length ;
+    		host_front = host.slice(0,minus_zone);
+    		host_back = host.slice(plus_host);
+
+    		if(zone == host_back && host_front.charAt(host_front.length-1) == "." ){
+    			return 1;
+    		}else{
+    			return 0;
+    		}
+
+    	}else{
+    		plus_host = host_length - zone_length ;
+    		host_front = host.slice(0,minus_zone);
+    		host_back = host.slice(plus_host);
+    		if(zone == host_back && host_front.charAt(host_front.length-1) == "."){
+    			host = host + ".";
+    			$("#subdomain_insert_host").prop("value",host);
+    			return 1;
+    		}else{
+    			return 0;
+    		}
+    	}
+
+    }else{
+    	return 1;
+    }
+}
 
 function dnsscript() {
 	$.ajax({
@@ -119,6 +161,39 @@ function buttonClickEvent() {
 								.getElementById("dnsblock_insert_zone").value;
 						var insertdnsblockcomment = $(
 								"#dnsblock_insert_comment").val();
+						var zonecheckyn = 0;
+						
+						var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+						
+						$.ajax({
+							url : '/dnszonechecklist',
+							type : 'post',
+							data : {
+								"zone" : insertdnsblockzone
+							},
+							dataType : 'json',
+							async : false,
+							success : function(result) {
+								if (result.result == 'success') {
+									zonecheckyn = result.zonechecklist.length;
+								} else {
+									alert(result.errorMsg);
+								}
+							},
+							error : function(request) {
+								alert('error!');
+								alert("code:" + request.status + "\n" + "message:"
+										+ request.responseText + "\n");
+							}
+						});
+						
+						if(insertdnsblockzone == "" || insertdnsblockzone == null){
+							alert('ZONE은 필수입력입니다.');
+						}else if(!regDomain.test(insertdnsblockzone)){
+							alert('ZONE은 도메인 형식만 가능합니다.');
+						}else if(zonecheckyn > 0){
+							alert('중복된 zone입니다.');
+						}else{
 						
 						$.ajax({
 							url : '/insertdnsban',
@@ -147,7 +222,7 @@ function buttonClickEvent() {
 										+ "\n");
 							}
 						});
-
+					}
 					});
 
 	$("#dnsblock_delete").click(
@@ -224,7 +299,51 @@ function updatednszone() {
 	var expire = document.getElementById("dns_update_expire").value;
 	var minimum = document.getElementById("dns_update_minimum").value;
 	var comment = document.getElementById("dns_update_comment").value;
-
+	var zonecheckyn = 0;
+	
+	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	
+	$.ajax({
+		url : '/dnszonechecklist',
+		type : 'post',
+		data : {
+			"zone" : zone
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zonecheckyn = result.zonechecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	
+	if(zone == "" || zone == null){
+		$("#dns_update_zone").focus();
+		alert('ZONE은 필수입력입니다.');
+		//$("#dns_update_zone").blur();
+	}else if(!regDomain.test(zone)){
+		$("#dns_update_zone").focus();
+		alert('Domain 형식이 아닙니다.');
+	}else if (data =="" || data == null){
+		$("#dns_update_data").focus();
+		alert('Primary_IP는 필수입력입니다.');
+	}else if (primaryns =="" || primaryns == null){
+		$("#dns_update_primaryns").focus();
+		alert('Primary_ns은 필수입력입니다.');
+	}else if (resp_contact =="" || resp_contact == null){
+		$("#dns_update_resp_contact").focus();
+		alert('관리자메일은 필수입력입니다.');
+	}else if(zonecheckyn > 0){
+		alert('중복된 zone입니다.');
+	}else{
 	$.ajax({
 		url : '/updatedns',
 		data : {
@@ -261,6 +380,7 @@ function updatednszone() {
 	});
 
 	location.reload();
+	}
 }
 function insertdnszone() {
 	var zone = document.getElementById("dns_insert_zone").value;
@@ -277,16 +397,51 @@ function insertdnszone() {
 	var minimum = document.getElementById("dns_insert_minimum").value;
 	var comment = document.getElementById("dns_insert_comment").value;
 	var bl = 0;
+	var zonecheckyn = 0;
+	
+	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	
+	$.ajax({
+		url : '/dnszonechecklist',
+		type : 'post',
+		data : {
+			"zone" : zone
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zonecheckyn = result.zonechecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
 	
 	if(zone == "" || zone == null){
 		$("#dns_insert_zone").focus();
+		alert('ZONE은 필수입력입니다.');
 		//$("#dns_insert_zone").blur();
+	}else if(!regDomain.test(zone)){
+		$("#dns_insert_zone").focus();
+		alert('Domain 형식이 아닙니다.');
 	}else if (data =="" || data == null){
 		$("#dns_insert_data").focus();
+		alert('Primary_IP는 필수입력입니다.');
 	}else if (primaryns =="" || primaryns == null){
 		$("#dns_insert_primaryns").focus();
+		alert('Primary_ns은 필수입력입니다.');
 	}else if (resp_contact =="" || resp_contact == null){
 		$("#dns_insert_resp_contact").focus();
+		alert('관리자메일은 필수입력입니다.');
+	}else if(zonecheckyn > 0){
+		alert('중복된 zone입니다.');
 	}else{
 		$.ajax({
 			url : '/insertdns',
@@ -312,6 +467,7 @@ function insertdnszone() {
 			success : function(result) {
 				if (result.result == 'success') {
 					setTimeout(function(){
+						dnsscript();
 						location.reload();
 					});
 				} else {
@@ -327,7 +483,6 @@ function insertdnszone() {
 
 		
 	}
-	
 	
 }
 function updatesubdomain() {
@@ -412,6 +567,7 @@ function copydomain(){
 	var copy_id = document.getElementById("dns_copy_id").value;
 		
 	if(copy_zone == copy_zone_name){
+		//같은 이름 이벤트 처리 
 		console.log("test");
 	}
 	$.ajax({
@@ -590,6 +746,25 @@ function subdomaininsert() {
 	var host = document.getElementById("subdomain_insert_host").value;
 	var data = document.getElementById("subdomain_insert_data").value;
 	var comment = document.getElementById("subdomain_insert_comment").value;
+	
+	var regSP = /[`~!\#$%<>^&*\()\=+_\']/gi;
+	var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+	var regHost = hostDomain(zone, host);
+	
+	if(host == "" || host == null){
+		$("#subdomain_insert_host").focus();
+	}else if(type == "MX" || type =="TXT"){
+		host = "@";
+	}else if(regSP.test(host)){
+		$("#subdomain_insert_host").focus();
+		alert('특수문자는 사용 불가능합니다.');
+	}else if(type == "A" && !regIP.test(data)){
+		$("#subdomain_insert_data").focus();
+		alert('A타입은 IP만 사용 가능합니다.');
+	}else if(regHost == 0){
+		$("#subdomain_insert_host").focus();
+		alert('host 정책에 위배됩니다.');
+	}else{
 
 	$.ajax({
 		url : '/insertsubdomain',
@@ -606,7 +781,7 @@ function subdomaininsert() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				dnsscript();
+//				dnsscript();
 				sleep(1000);
 			} else {
 				alert(result.errorMsg);
@@ -619,6 +794,7 @@ function subdomaininsert() {
 		}
 	});
 	location.reload();
+	}	
 }
 
 function subdomaininsert2() {

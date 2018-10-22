@@ -9,4 +9,5 @@ public interface dnsbanService {
 	public void insertDnsBan(dnspolicyVO vo) throws Exception;
 	public void deleteDnsBan(dnspolicyVO vo) throws Exception;
 	public dnspolicyVO dnsbanSearch(dnspolicyVO vo) throws Exception;
+	public void insertDnsSOABan(dnspolicyVO vo) throws Exception;
 }
