@@ -373,7 +373,7 @@ public class policyController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		changeValueVO changeVO = new changeValueVO();
 		dnspolicyVO autoCreateDNS = new dnspolicyVO();
-		
+		dnspolicyVO autoCreatesubDNS = new dnspolicyVO();	
 		changeVO.setChange_type("dns");
 		changeVO.setQuery_type("zone insert");
 		changeVO.setTitle("insert : " + vo.getZone());
@@ -381,29 +381,34 @@ public class policyController {
 		changeVO.setChange_user("Administrator");
 		changeVO.setUser_ip(" ");
 		logger.info(request.getRemoteAddr());
-		
+	
+		logger.info("vo :  " + vo.toString());
+		String data = vo.getData();
 		autoCreateDNS = vo;
-		vo.setBl(0);
+		autoCreateDNS.setBl(0);
+		autoCreateDNS.setData("@");
+
 		try {
-			dnspolicyService.insertdns(vo);
+			dnsbanService.insertDnsSOABan(autoCreateDNS);
+			autoCreatesubDNS.setZone(vo.getZone());
+			autoCreatesubDNS.setTtl(0);
+			autoCreatesubDNS.setType("A");
+			autoCreatesubDNS.setHost(vo.getPrimary_ns());
+			autoCreatesubDNS.setData(data);
+			autoCreatesubDNS.setModified(1);
+			autoCreatesubDNS.setBl(0);		
+			autoCreatesubDNS.setComment("Auto increate NS");
 			
-			autoCreateDNS.setTtl(0);
-			autoCreateDNS.setType("A");
-			autoCreateDNS.setHost("@");
-			autoCreateDNS.setData(vo.getData());
-			autoCreateDNS.setModified(1);
-			autoCreateDNS.setBl(0);		
-			autoCreateDNS.setComment("Auto increate NS");
-			dnspolicyService.insertdns(autoCreateDNS);
+			dnsbanService.insertDnsBan(autoCreatesubDNS);
 			
-			autoCreateDNS.setTtl(0);
-			autoCreateDNS.setType("NS");
-			autoCreateDNS.setHost("@");
-			autoCreateDNS.setData(vo.getPrimary_ns());
-			autoCreateDNS.setModified(1);
-			autoCreateDNS.setBl(0);
-			autoCreateDNS.setComment("Auto increate NS");
-			dnspolicyService.insertdns(autoCreateDNS);
+			autoCreatesubDNS.setTtl(0);
+			autoCreatesubDNS.setType("NS");
+			autoCreatesubDNS.setHost("@");
+			autoCreatesubDNS.setData(vo.getPrimary_ns());
+			autoCreatesubDNS.setModified(1);
+			autoCreatesubDNS.setBl(0);
+			autoCreatesubDNS.setComment("Auto increate NS");
+			dnsbanService.insertDnsBan(autoCreatesubDNS);
 			
 
 			changeValueService.insertChangeValue(changeVO);
@@ -928,8 +933,8 @@ public class policyController {
 			dnsbanObject.setTtl(3600);
 			dnsbanObject.setType("SOA");
 			dnsbanObject.setHost("@");
-			dnsbanObject.setData("www."+vo.getZone() + "." );
-			dnsbanObject.setPrimary_ns(vo.getZone()+ ".");
+			dnsbanObject.setData(vo.getZone() + "." );
+			dnsbanObject.setPrimary_ns("ns."+ vo.getZone());
 			dnsbanObject.setResp_contact("admin");
 			dnsbanObject.setSerial(2018222);
 			dnsbanObject.setRefresh(36000);
@@ -939,7 +944,8 @@ public class policyController {
 			dnsbanObject.setModified(1);
 			dnsbanObject.setComment(vo.getComment());
 			dnsbanObject.setBl(1);
-			dnsbanService.insertDnsBan(dnsbanObject);
+
+			dnsbanService.insertDnsSOABan(dnsbanObject);
 			
 			changeVO.setChange_type("dnsban");
 			changeVO.setQuery_type("dnsban insert");

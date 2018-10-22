@@ -317,9 +317,11 @@
 							</div>
 							<div class="form-group">
 								<div class="row">
-									<textarea style="resize: vertical;" class="form-control"
+<!-- 									<textarea style="resize: vertical;" class="form-control"
 										placeholder="comment" id="ntp_status_server" rows="6"
-										name="comment" required>Comment</textarea>
+										name="comment" required>Comment</textarea> -->
+										<div id="ntp_status_server">
+										</div>
 								</div>
 							</div>
 						</form>

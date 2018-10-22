@@ -397,6 +397,7 @@ function insertdnszone() {
 	var minimum = document.getElementById("dns_insert_minimum").value;
 	var comment = document.getElementById("dns_insert_comment").value;
 	var bl = 0;
+<<<<<<< HEAD
 	var zonecheckyn = 0;
 	
 	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
@@ -422,6 +423,9 @@ function insertdnszone() {
 					+ request.responseText + "\n");
 		}
 	});
+=======
+
+>>>>>>> refs/remotes/origin/master
 	
 	if(zone == "" || zone == null){
 		$("#dns_insert_zone").focus();
@@ -567,6 +571,7 @@ function copydomain(){
 	var copy_id = document.getElementById("dns_copy_id").value;
 		
 	if(copy_zone == copy_zone_name){
+		//같은 이름 이벤트 처리 
 		console.log("test");
 	}
 	$.ajax({
