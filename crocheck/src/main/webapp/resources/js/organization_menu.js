@@ -20,7 +20,76 @@ $(document).ready(
 			});
 
 			selectBoxClickEvent();
+			post_button_Event();
 		});
+function post_button_Event(){
+	$('#derp_delete').click(function(){
+		var edit_modal_id = document.getElementById("organization_id").value;
+		console.log(edit_modal_id);
+		
+		$.ajax({
+			url : '/deletepost',
+			data : {
+				"id" : edit_modal_id
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					setTimeout(function(){
+						location.reload();
+					})
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		
+	});
+	
+	$('#derp_update').click(function(){
+		var edit_modal_list =  document.getElementById("displaypost_update").value;
+		var edit_modal_text =  document.getElementById("organization_text_update").value;
+		var edit_modal_id = document.getElementById("organization_id").value;
+		var edit_modal_flowcount = document.getElementById("organization_flowcount").value;
+		
+		console.log(edit_modal_flowcount);
+		
+		$.ajax({
+			url : '/updatepost',
+			data : {
+				"id" : edit_modal_id,
+				"parent_id" : edit_modal_list,
+				"name" : edit_modal_text,
+				"flowcount" : edit_modal_flowcount
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					setTimeout(function(){
+				//		location.reload();
+					})
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+				
+	});
+}
 function selectBoxClickEvent(){
 	$('#organization_list option').click(function(){
 		var sub_id = $(this).attr('value');
@@ -51,24 +120,32 @@ function postSearchList(id){
 	});
 }
 function distinctpostlist(data){
-	var edit_modal_list =  document.getElementById("postlist");
-	var edit_modal_text =  document.getElementById("update_organization_text");
+	var edit_modal_list =  document.getElementById("displaypost_update");
+	var edit_modal_text =  document.getElementById("organization_text_update");
+	var edit_modal_id = document.getElementById("organization_id");
+	var edit_modal_flowcount = document.getElementById("organization_flowcount");
 	
 	if(data.flowcount == 0) {
+		$("select[name='displaypost_update']").attr("disabled", true);
+		$("#displaypost_insert").val(data.parent_id).prop("selected", true);
 		edit_modal_text.value = data.name;
-		$("#postlist").hide();
+
 	}else{
 		if ( data.flowcount %1000 != 0){
-			$("#postlist").show();
-			console.log(data.id);
-			$("#edit_displaypost").val(data.parent_id).prop("selected", true);
+			$("select[name=displaypost_update]").attr("disabled", false);
+			$("#displaypost_update").val(data.parent_id).prop("selected", true);
+
 			edit_modal_text.value = data.name;
-			console.log(data.name);
 		}else{ 
 		edit_modal_text.value = data.name;
-		$("#postlist").hide();
+		$("select[name='displaypost_update']").attr("disabled", true);
+		$("#displaypost").attr("disable",true);
 		}
 	}
+	console.log(data.id);
+	edit_modal_id.value = data.id;
+	edit_modal_flowcount.value = data.flowcount;
+	
 }
 function menu_list_draw(data) {
 	var organization_first = document.getElementById("organization_first");
@@ -100,9 +177,10 @@ function menu_list_draw(data) {
 	
 	var organization_modal_list = document.getElementById("organization_list");
 	var edit_modal_list =  document.getElementById("edit_displaypost");
-	var insert_modal_list =  document.getElementById("insert_displaypost");
-	var insertmember_modal_list =  document.getElementById("insert_post_list");
-	var updatemember_modal_list =  document.getElementById("update_post_list");
+	var insert_modal_list =  document.getElementById("insert_post_list");
+	var update_modal_list = document.getElementById("update_post_list");
+	var insertmember_modal_list =  document.getElementById("displaypost_insert");
+	var updatemember_modal_list =  document.getElementById("displaypost_update");
 	
 	var modal_list = '';
 	var modal_edit = '';
@@ -134,8 +212,8 @@ function menu_list_draw(data) {
 		}
 	}
 	organization_modal_list.innerHTML = modal_list;
-	insert_modal_list.innerHTML = modal_insert;
-	edit_modal_list.innerHTML = modal_edit;
-	insertmember_modal_list.innerHTML = post_list;
-	updatemember_modal_list.innerHTML = post_list;
+	insert_modal_list.innerHTML = modal_edit;
+	update_modal_list.innerHTML = modal_edit;
+	insertmember_modal_list.innerHTML = modal_insert;
+	updatemember_modal_list.innerHTML = modal_edit;
 }

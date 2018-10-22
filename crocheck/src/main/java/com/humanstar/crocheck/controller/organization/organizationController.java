@@ -223,6 +223,63 @@ public class organizationController {
 		return resultMap; 
 	}
 	
+	@RequestMapping(value = "/relocationpost", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> relocationpost() {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<postVO> postList = new ArrayList<postVO>();
+		int compareId = 0;
+		int[] post = new int[10];
+		int flowcount = 0;
+
+		int k=0,j = 0;
+		int max = 0;
+		
+		try {
+			postList = organizationService.relocationPost();
+			compareId = postList.get(0).getId();
+			flowcount += 1000;
+			
+			for( int i = 1 ; i < postList.size() ; i++) {
+				postList.get(i).setFlowcount(0);
+				if(compareId == Integer.parseInt(postList.get(i).getParent_id())) {
+					post[j++] = postList.get(i).getId();
+					postList.get(i).setFlowcount(flowcount);
+					max = j;
+					flowcount += 1000;
+				}
+			}
+			flowcount = 1000;
+			for( int i = max ; i<postList.size() ; i++) {
+				if(post[j] == Integer.parseInt(postList.get(i).getParent_id())) {
+					flowcount += 100;
+					postList.get(i).setFlowcount(flowcount);
+				}else {
+					if(j < max) {
+						j++;
+						flowcount = 1000 + j * 1000;
+						if(post[j] == Integer.parseInt(postList.get(i).getParent_id())) {
+							flowcount += 100;
+							postList.get(i).setFlowcount(flowcount);
+						}
+					}
+				}
+			}
+			
+			resultMap.put("postList", postList);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+
+		return resultMap; 
+	}
+	
 	@RequestMapping(value = "/updatepost", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updatepost(@ModelAttribute postVO vo) {
@@ -231,6 +288,7 @@ public class organizationController {
 
 		try {
 			organizationService.updatePost(vo);
+	
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
 		} catch (Exception e) {
@@ -248,8 +306,14 @@ public class organizationController {
 	public Map<String, Object> deletepost(@ModelAttribute postVO vo) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-
+		List<memberVO> memberList = new ArrayList<memberVO>();
+		memberVO searchMember = new memberVO();
+		searchMember.setOrganization_id(vo.getId());
 		try {
+			memberList = organizationService.postMemberList(searchMember);
+			for(int i = 0 ; i< memberList.size() ;i++) {
+				organizationService.deleteMember(memberList.get(i));
+			}
 			organizationService.deletePost(vo);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");

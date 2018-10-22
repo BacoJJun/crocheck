@@ -7,9 +7,15 @@
 		resultType="com.humanstar.crocheck.model.organization.dto.memberVO">
 		select * from organization_members
 	</select>
+	<select id="relocation" resultType="com.humanstar.crocheck.model.organization.dto.postVO">
+	SELECT * FROM organizations ORDER BY (CASE WHEN parent_id IS NULL THEN 0 ELSE 1 END), parent_id,created_at
+	</select>
 	<select id="postlist"
 		resultType="com.humanstar.crocheck.model.organization.dto.postVO">
 		select * from organizations order by flowcount asc
+	</select>
+	<select id="selectpost" resultType="com.humanstar.crocheck.model.organization.dto.postVO">
+		select * from organizations where id= #{id} 
 	</select>
 	<select id="postmembers"
 		resultType="com.humanstar.crocheck.model.organization.dto.memberVO">
