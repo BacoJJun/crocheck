@@ -48,6 +48,12 @@ public class dnspolicyDAOImpl implements dnspolicyDAO{
 		// TODO Auto-generated method stub
 		return SqlSession.selectList("dnspolicy.zonelist");
 	}
+	
+	@Override
+	public List<dnspolicyVO> zonechecklist(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("dnspolicy.zonechecklist", vo);
+	}
 
 	@Override
 	public void insertdns(dnspolicyVO vo) throws Exception {

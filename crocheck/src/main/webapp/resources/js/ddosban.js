@@ -45,7 +45,41 @@ function ddosblock_button_event(){
 	$("#ddosblock_insert").click(function(){
 		var insertblockcomment = document.getElementById("ddosblock_insert_comment").value;	
 		var insertblockip = document.getElementById("ddosblock_insert_ip").value;
-
+		var ddoscheckyn = 0;
+		
+		var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+		
+		console.log(insertblockip);
+		
+		$.ajax({
+			url : '/ddosblockchecklist',
+			type : 'post',
+			data : {
+				"ip" : insertblockip
+			},
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					ddoscheckyn = result.ddosblockchecklist.length;
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
+		
+		if(insertblockip == "" || insertblockip == null){
+			alert('IP는 필수 입력입니다.');
+		}else if(!regIP.test(insertblockip)){
+			alert('IP 형식에 맞지 않습니다.');
+		}else if(ddoscheckyn > 0){
+			alert('중복된 DDoS입니다.');
+		}else{
 			$
 			.ajax({
 				url : '/insertddosblock',
@@ -71,8 +105,8 @@ function ddosblock_button_event(){
 							+ request.responseText + "\n");
 				}
 			});
-		});
-		
+			}
+		});	
 }
 function table_loop() {
 	init_ddos_block_table();

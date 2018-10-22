@@ -20,6 +20,12 @@ public class ddosblockipServiceImpl implements ddosblockipService{
 		// TODO Auto-generated method stub
 		return ddosblockipDAO.ddosBlockList();
 	}
+	
+	@Override
+	public List<ddosblockipVO> ddosblockchecklist(ddosblockipVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return ddosblockipDAO.ddosblockchecklist(vo);
+	}
 
 	@Override
 	public void insertDdosBlock(ddosblockipVO vo) throws Exception {

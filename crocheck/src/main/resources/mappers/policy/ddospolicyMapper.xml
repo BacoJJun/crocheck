@@ -6,6 +6,10 @@
 	select * from tb_ddos_block_ip
 	</select>
 	
+	<select id="ddosblockchecklist" resultType="com.humanstar.crocheck.model.policy.dto.ddosblockipVO">
+	select * from tb_ddos_block_ip where ip = #{ip}
+	</select>
+	
 	<insert id ="insertddosblock">
 		insert into tb_ddos_block_ip( ip, comment, created_at)
 		values(#{ip}, #{comment}, now() )

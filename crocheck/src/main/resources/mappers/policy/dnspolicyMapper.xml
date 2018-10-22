@@ -60,6 +60,11 @@
 		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
 		select distinct(zone) from dns_record
 	</select>
+	
+	<select id="zonechecklist"
+		resultType="com.humanstar.crocheck.model.policy.dto.dnspolicyVO">
+		select * from dns_record where type = 'SOA' and zone = #{zone}
+	</select>
 
 	<select id="ddosblockstatus"
 		resultType="com.humanstar.crocheck.model.policy.dto.ddosBlockStatusVO">

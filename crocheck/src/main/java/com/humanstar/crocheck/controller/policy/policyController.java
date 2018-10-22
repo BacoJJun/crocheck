@@ -104,6 +104,28 @@ public class policyController {
 		return resultMap; 
 	}
 	
+	@RequestMapping(value = "/dnszonechecklist", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dnszonechecklist(@ModelAttribute  dnspolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<dnspolicyVO> zonechecklist = new ArrayList<dnspolicyVO>();
+
+		try {
+			zonechecklist = dnspolicyService.zonechecklist(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("zonechecklist", zonechecklist);
+
+		return resultMap; 
+	}
+	
 	@RequestMapping(value = "/subDnsList", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> subDnsList(@ModelAttribute  dnspolicyVO vo) {
@@ -652,6 +674,28 @@ public class policyController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value = "/dhcpchecklist", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> dhcpchecklist(@ModelAttribute  dhcpPolicyVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<dhcpPolicyVO> dhcpchecklist = new ArrayList<dhcpPolicyVO>();
+
+		try {
+			dhcpchecklist = dhcpPolicyService.dhcpchecklist(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+
+		}
+		resultMap.put("dhcpchecklist", dhcpchecklist);
+
+		return resultMap; 
+	}
+	
 	
 	@RequestMapping(value = "/dhcpupdate", method = RequestMethod.POST)
 	@ResponseBody
@@ -855,32 +899,32 @@ public class policyController {
 			dnsbanObject.setZone(vo.getZone());
 
 			
-			//ns-@ 삽입
+			//ns-@ �궫�엯
 			dnsbanObject.setTtl(0);
 			dnsbanObject.setType("NS");
 			dnsbanObject.setHost("@");
 			dnsbanObject.setData("ns");
 			dnsbanService.insertDnsBan(dnsbanObject);
 			
-			// A -ns 삽입
+			// A -ns �궫�엯
 			dnsbanObject.setType("A");
 			dnsbanObject.setHost("ns");
 			dnsbanObject.setData("127.0.0.1");
 			dnsbanService.insertDnsBan(dnsbanObject);
 
-			//A-* 삽입
+			//A-* �궫�엯
 			dnsbanObject.setType("A");
 			dnsbanObject.setHost("*");
 			dnsbanObject.setData("127.0.0.1");
 			dnsbanService.insertDnsBan(dnsbanObject);
 
-			//A-@ 삽입
+			//A-@ �궫�엯
 			dnsbanObject.setType("A");
 			dnsbanObject.setHost("@");
 			dnsbanObject.setData("127.0.0.1");
 			dnsbanService.insertDnsBan(dnsbanObject);
 			
-			// SOA 삽입
+			// SOA �궫�엯
 			dnsbanObject.setTtl(3600);
 			dnsbanObject.setType("SOA");
 			dnsbanObject.setHost("@");
@@ -967,7 +1011,27 @@ public class policyController {
 		}
 		resultMap.put("ddosblockiplist", ddosblockiplist);
 		return resultMap;
-	}	
+	}
+	
+	@RequestMapping(value = "/ddosblockchecklist", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> ddosblockchecklist(@ModelAttribute ddosblockipVO vo) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<ddosblockipVO> ddosblockchecklist = new ArrayList<ddosblockipVO>();
+		
+		try {
+			ddosblockchecklist =  ddosblockipService.ddosblockchecklist(vo);
+			resultMap.put(RESULT, RESULT_SUCCESS);
+			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
+		} catch (Exception e) {
+			resultMap.put(RESULT, RESULT_ERROR);
+			resultMap.put(ERROR_MESSAGE, "connect_faled!");
+			logger.error(e.toString());
+		}
+		resultMap.put("ddosblockchecklist", ddosblockchecklist);
+		return resultMap;
+	}
 	
 	@RequestMapping(value = "/selectddosblock", method = RequestMethod.POST)
 	@ResponseBody
