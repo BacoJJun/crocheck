@@ -413,6 +413,7 @@ function copydomain(){
 	var copy_id = document.getElementById("dns_copy_id").value;
 		
 	if(copy_zone == copy_zone_name){
+		//같은 이름 이벤트 처리 
 		console.log("test");
 	}
 	$.ajax({
