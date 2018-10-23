@@ -423,6 +423,59 @@ function insertdnszone() {
 		}
 	});
 
+	var zonecheckyn = 0;
+	
+	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	
+	$.ajax({
+		url : '/dnszonechecklist',
+		type : 'post',
+		data : {
+			"zone" : zone
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zonecheckyn = result.zonechecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
+
+	var zonecheckyn = 0;
+	
+	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	
+	$.ajax({
+		url : '/dnszonechecklist',
+		type : 'post',
+		data : {
+			"zone" : zone
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zonecheckyn = result.zonechecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
 	
 	if(zone == "" || zone == null){
 		$("#dns_insert_zone").focus();
