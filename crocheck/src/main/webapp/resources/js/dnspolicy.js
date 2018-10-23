@@ -397,7 +397,6 @@ function insertdnszone() {
 	var minimum = document.getElementById("dns_insert_minimum").value;
 	var comment = document.getElementById("dns_insert_comment").value;
 	var bl = 0;
-<<<<<<< HEAD
 	var zonecheckyn = 0;
 	
 	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
@@ -423,9 +422,60 @@ function insertdnszone() {
 					+ request.responseText + "\n");
 		}
 	});
-=======
 
->>>>>>> refs/remotes/origin/master
+	var zonecheckyn = 0;
+	
+	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	
+	$.ajax({
+		url : '/dnszonechecklist',
+		type : 'post',
+		data : {
+			"zone" : zone
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zonecheckyn = result.zonechecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
+
+	var zonecheckyn = 0;
+	
+	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	
+	$.ajax({
+		url : '/dnszonechecklist',
+		type : 'post',
+		data : {
+			"zone" : zone
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zonecheckyn = result.zonechecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
 	
 	if(zone == "" || zone == null){
 		$("#dns_insert_zone").focus();
@@ -486,7 +536,6 @@ function insertdnszone() {
 
 		
 	}
-	
 	
 }
 function updatesubdomain() {
