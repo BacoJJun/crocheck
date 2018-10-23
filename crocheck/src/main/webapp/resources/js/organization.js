@@ -2,179 +2,198 @@ $(document).ready(function() {
 	allmemberList();
 	table_click_event();
 
-
 	$('.dataTable').each(function() {
 		$(this).dataTable().fnDraw();
 	});
 	button_click_event();
-});
-function button_click_event(){
 	
-$("#datatables button").click(function(){
-	console.log("button click");
+
+});
+function button_click_event() {
+
+	$("#datatables button").click(function() {
+		console.log("button click");
 		var id = $(this).attr("name");
 		memberselect(id);
 		id = '';
 	});
-$("#updateMoal").click(function(){
-	console.log("test");
-})
-		
-	$("#insert_member_info").click(function(){
-		var insertMember_name = document.getElementById("insert_member_name").value;
-		var insertMember_gid = $("#insert_post_list").val();
-		var insertMember_post = $("#insert_post_list option:checked").text();
-		var insertMember_phone = document.getElementById("insert_member_phone").value;
-		var insertMember_mobile = document.getElementById("insert_member_mobile").value;
-		var insertMember_mail = document.getElementById("insert_member_mail").value;
-		var insertMember_ip = document.getElementById("insert_member_ip").value;
-		var insertMember_etc = document.getElementById("insert_member_etc").value;
-		$
-		.ajax({
-			url : '/insertmember',
-			data : {
-				"ip" : insertMember_ip,
-				"name" : insertMember_name,
-				"post" : insertMember_post,
-				"phone" : insertMember_phone,
-				"organization_id" : insertMember_gid,
-				"mobile" : insertMember_mobile,
-				"email" : insertMember_mail,
-				"etc" : insertMember_etc
-			},
-			type : 'post',
-			dataType : 'json',
-			async : false,
-			success : function(result) {
-				if (result.result == 'success') {
-					setTimeout(function(){
-						location.reload();
-					});
-					} else {
-					alert(result.errorMsg);
-				}
-			},
-			error : function(request) {
-				alert('error!');
-				alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n");
-			}
-		});
-		
+	$("#member_datatable_paginate  li").click(function(){
+		console.log("li click");
+		button_click_event();
+	});
+	$("#insert_member_info").click(
+			function() {
+				var insertMember_name = document
+						.getElementById("insert_member_name").value;
+				var insertMember_gid = $("#insert_post_list").val();
+				var insertMember_post = $("#insert_post_list option:checked")
+						.text();
+				var insertMember_phone = document
+						.getElementById("insert_member_phone").value;
+				var insertMember_mobile = document
+						.getElementById("insert_member_mobile").value;
+				var insertMember_mail = document
+						.getElementById("insert_member_mail").value;
+				var insertMember_ip = document
+						.getElementById("insert_member_ip").value;
+				var insertMember_etc = document
+						.getElementById("insert_member_etc").value;
+				$.ajax({
+					url : '/insertmember',
+					data : {
+						"ip" : insertMember_ip,
+						"name" : insertMember_name,
+						"post" : insertMember_post,
+						"phone" : insertMember_phone,
+						"organization_id" : insertMember_gid,
+						"mobile" : insertMember_mobile,
+						"email" : insertMember_mail,
+						"etc" : insertMember_etc
+					},
+					type : 'post',
+					dataType : 'json',
+					async : false,
+					success : function(result) {
+						if (result.result == 'success') {
+							setTimeout(function() {
+								location.reload();
+							});
+						} else {
+							alert(result.errorMsg);
+						}
+					},
+					error : function(request) {
+						alert('error!');
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n");
+					}
+				});
 
-	});
-	$("#update_member_info").click(function(){
-		var updateMember_id =  document.getElementById("update_member_id").value;
-		var updateMember_name = document.getElementById("update_member_name").value;
-		var updateMember_gid = $("#update_post_list").val();
-		var updateMember_post = $("#update_post_list option:checked").text();
-		var updateMember_phone = document.getElementById("update_member_phone").value;
-		var updateMember_mobile = document.getElementById("update_member_mobile").value;
-		var updateMember_mail = document.getElementById("update_member_mail").value;
-		var updateMember_ip = document.getElementById("update_member_ip").value;
-		var updateMember_etc = document.getElementById("update_member_etc").value;
-$
-		.ajax({
-			url : '/updatemember',
-			data : {
-				"id" : updateMember_id,
-				"name" : updateMember_name,
-				"post" : updateMember_post,
-				"phone" : updateMember_phone,
-				"organization_id" : updateMember_gid,
-				"mobile" : updateMember_mobile,
-				"email" : updateMember_mail,
-				"etc" : updateMember_etc
-			},
-			type : 'post',
-			dataType : 'json',
-			async : false,
-			success : function(result) {
-				if (result.result == 'success') {
-					setTimeout(function(){
-						location.reload();
+			});
+	$("#update_member_info").click(
+			function() {
+				var updateMember_id = document
+						.getElementById("update_member_id").value;
+				var updateMember_name = document
+						.getElementById("update_member_name").value;
+				var updateMember_gid = $("#update_post_list").val();
+				var updateMember_post = $("#update_post_list option:checked")
+						.text();
+				var updateMember_phone = document
+						.getElementById("update_member_phone").value;
+				var updateMember_mobile = document
+						.getElementById("update_member_mobile").value;
+				var updateMember_mail = document
+						.getElementById("update_member_mail").value;
+				var updateMember_ip = document
+						.getElementById("update_member_ip").value;
+				var updateMember_etc = document
+						.getElementById("update_member_etc").value;
+				$.ajax({
+					url : '/updatemember',
+					data : {
+						"id" : updateMember_id,
+						"name" : updateMember_name,
+						"post" : updateMember_post,
+						"phone" : updateMember_phone,
+						"organization_id" : updateMember_gid,
+						"mobile" : updateMember_mobile,
+						"email" : updateMember_mail,
+						"etc" : updateMember_etc
+					},
+					type : 'post',
+					dataType : 'json',
+					async : false,
+					success : function(result) {
+						if (result.result == 'success') {
+							setTimeout(function() {
+								location.reload();
+							});
+						} else {
+							alert(result.errorMsg);
+						}
+					},
+					error : function(request) {
+						alert('error!');
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n");
+					}
+				});
+			});
+	$("#delete_member_info")
+			.click(
+					function() {
+						var deleteview_id = document
+								.getElementById("delete_member_id").value;
+						$.ajax({
+							url : '/deletemember',
+							data : {
+								"id" : deleteview_id,
+							},
+							type : 'post',
+							dataType : 'json',
+							async : false,
+							success : function(result) {
+								if (result.result == 'success') {
+									setTimeout(function() {
+										location.reload();
+									});
+								} else {
+									alert(result.errorMsg);
+								}
+							},
+							error : function(request) {
+								alert('error!');
+								alert("code:" + request.status + "\n"
+										+ "message:" + request.responseText
+										+ "\n");
+							}
+						});
 					});
-					} else {
-					alert(result.errorMsg);
-				}
-			},
-			error : function(request) {
-				alert('error!');
-				alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n");
-			}
-		});
-	});
-	$("#delete_member_info").click(function(){
-		var deleteview_id =  document.getElementById("delete_member_id").value;
-		$
-		.ajax({
-			url : '/deletemember',
-			data : {
-				"id" : deleteview_id,
-			},
-			type : 'post',
-			dataType : 'json',
-			async : false,
-			success : function(result) {
-				if (result.result == 'success') {
-					setTimeout(function(){
-						location.reload();
-					});
-					} else {
-					alert(result.errorMsg);
-				}
-			},
-			error : function(request) {
-				alert('error!');
-				alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n");
-			}
-		});
-	});
 }
-function memberselect(id){
+function memberselect(id) {
 	var updateMember_name = document.getElementById("update_member_name");
 	var updateMember_phone = document.getElementById("update_member_phone");
 	var updateMember_mobile = document.getElementById("update_member_mobile");
 	var updateMember_mail = document.getElementById("update_member_mail");
 	var updateMember_ip = document.getElementById("update_member_ip");
 	var updateMember_etc = document.getElementById("update_member_etc");
-	var updateMember_id =  document.getElementById("update_member_id");
-	var deleteview_id =  document.getElementById("delete_member_id");
+	var updateMember_id = document.getElementById("update_member_id");
+	var deleteview_id = document.getElementById("delete_member_id");
 	var deleteview = document.getElementById("delete_member_info_view");
-	$
-			.ajax({
-				url : '/selectmember',
-				data : {
-					"id" : id
-				},
-				type : 'post',
-				dataType : 'json',
-				async : false,
-				success : function(result) {
-					if (result.result == 'success') {
-						$("#update_post_list").val(result.selectmember.organization_id).prop("selected", true);
-						updateMember_id.value = result.selectmember.id;
-						updateMember_name.value = result.selectmember.name;
-						updateMember_phone.value = result.selectmember.phone
-						updateMember_mobile.value = result.selectmember.mobile;
-						updateMember_mail.value = result.selectmember.mail;
-						updateMember_ip.value = result.selectmember.ip;
-						updateMember_etc.value = result.selectmember.etc;
-						deleteview_id.value = result.selectmember.id;
-						deleteview.innerText = result.selectmember.post + '부서의 ' + result.selectmember.name + '에 대한 정보를 삭제하시겠습니까?';
-					} else {
-						alert(result.errorMsg);
-					}
-				},
-				error : function(request) {
-					alert('error!');
-					alert("code:" + request.status + "\n" + "message:"
-							+ request.responseText + "\n");
-				}
-			});
-
+	$.ajax({
+		url : '/selectmember',
+		data : {
+			"id" : id
+		},
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				$("#update_post_list").val(result.selectmember.organization_id)
+						.prop("selected", true);
+				updateMember_id.value = result.selectmember.id;
+				updateMember_name.value = result.selectmember.name;
+				updateMember_phone.value = result.selectmember.phone
+				updateMember_mobile.value = result.selectmember.mobile;
+				updateMember_mail.value = result.selectmember.mail;
+				updateMember_ip.value = result.selectmember.ip;
+				updateMember_etc.value = result.selectmember.etc;
+				deleteview_id.value = result.selectmember.id;
+				deleteview.innerText = result.selectmember.post + '부서의 '
+						+ result.selectmember.name + '에 대한 정보를 삭제하시겠습니까?';
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+	button_click_event();
 }
 function table_click_event() {
 	$('#dep_table button').click(function() {
@@ -215,8 +234,8 @@ function draw_div() {
 	div_html += '</tbody>';
 	div_html += '</table>';
 	div_html += '</div>';
-	
-	datatablename.innerHTML=div_html;
+
+	datatablename.innerHTML = div_html;
 }
 function postmemberList(id) {
 	draw_div();
@@ -250,7 +269,15 @@ function postmemberList(id) {
 									+ '</td>';
 							member_html += '<td>' + result.memberList[i].etc
 									+ '</td>';
-							member_html += '<td><button   class="btn btn-info btn-xs" data-toggle="modal" data-target="#updateMemberModal" name="'+ result.memberList[i].id +'" value="'+ result.memberList[i].id +'" ><i class="fa fa-pencil"></i></button> <button type="button"  id="deleteModal" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMemberModal" name="'+ result.memberList[i].id +'" value="'+ result.memberList[i].id +'" ><i class="fa fa-trash-o"></i></button></td>';
+							member_html += '<td><button   class="btn btn-info btn-xs" data-toggle="modal" data-target="#updateMemberModal" name="'
+									+ result.memberList[i].id
+									+ '" value="'
+									+ result.memberList[i].id
+									+ '" ><i class="fa fa-pencil"></i></button> <button type="button"  id="deleteModal" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMemberModal" name="'
+									+ result.memberList[i].id
+									+ '" value="'
+									+ result.memberList[i].id
+									+ '" ><i class="fa fa-trash-o"></i></button></td>';
 							member_html += '</tr>';
 						}
 						memberlist.innerHTML = member_html;
@@ -266,7 +293,9 @@ function postmemberList(id) {
 				}
 			});
 
-	 $("#member_datatable").dataTable(); 
+	$("#member_datatable").dataTable();
+	
+	button_click_event();
 }
 function allmemberList() {
 	draw_div();
@@ -283,7 +312,8 @@ function allmemberList() {
 						for (var i = 0; i < result.memberList.length; i++) {
 							member_html += '<tr>';
 							member_html += '<td>' + result.memberList[i].post
-									+ '<input type="hidden" value="'+ result.memberList[i].id +'"></td>';
+									+ '<input type="hidden" value="'
+									+ result.memberList[i].id + '"></td>';
 							member_html += '<td>' + result.memberList[i].name
 									+ '</td>';
 							member_html += '<td>' + result.memberList[i].ip
@@ -296,7 +326,15 @@ function allmemberList() {
 									+ '</td>';
 							member_html += '<td>' + result.memberList[i].etc
 									+ '</td>';
-							member_html += '<td><button    class="btn btn-info btn-xs" data-toggle="modal" data-target="#updateMemberModal" name="'+ result.memberList[i].id +'"  value="'+ result.memberList[i].id +'"><i class="fa fa-pencil"></i></button> <button type="button"   id="deleteModal" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMemberModal" name="'+ result.memberList[i].id +'" value="'+ result.memberList[i].id +'"><i class="fa fa-trash-o"></i></button></td>';
+							member_html += '<td><button    class="btn btn-info btn-xs" data-toggle="modal" data-target="#updateMemberModal" name="'
+									+ result.memberList[i].id
+									+ '"  value="'
+									+ result.memberList[i].id
+									+ '"><i class="fa fa-pencil"></i></button> <button type="button"   id="deleteModal" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMemberModal" name="'
+									+ result.memberList[i].id
+									+ '" value="'
+									+ result.memberList[i].id
+									+ '"><i class="fa fa-trash-o"></i></button></td>';
 							member_html += '</tr>';
 						}
 						memberlist.innerHTML = member_html;
@@ -314,4 +352,5 @@ function allmemberList() {
 	$("#member_datatable").dataTable({
 		responsive : true
 	});
+	button_click_event();
 }
