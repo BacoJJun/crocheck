@@ -285,21 +285,6 @@ function sub_button_event() {
 	});
 }
 
-function search_button_event() {
-	$('#lookup-result button').click(function() {
-		var sub_id = $(this).attr('value');
-		var sub_type = $(this).attr('name');
-		console.log(sub_type);
-		console.log(sub_id);
-		if (sub_type == "sub_edit") {
-			subdomainupdate(sub_id);
-		}
-		if (sub_type == "sub_delete") {
-			subdomaindeletebuttonevent(sub_id);
-		}
-	});
-}
-
 function updatednszone() {
 	var zone = document.getElementById("dns_update_zone").value;
 	var type = $('input:radio[name="dns_insert_type"]:checked').val();
@@ -437,6 +422,60 @@ function insertdnszone() {
 					+ request.responseText + "\n");
 		}
 	});
+
+	var zonecheckyn = 0;
+	
+	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	
+	$.ajax({
+		url : '/dnszonechecklist',
+		type : 'post',
+		data : {
+			"zone" : zone
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zonecheckyn = result.zonechecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
+
+	var zonecheckyn = 0;
+	
+	var regDomain = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	
+	$.ajax({
+		url : '/dnszonechecklist',
+		type : 'post',
+		data : {
+			"zone" : zone
+		},
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+				zonecheckyn = result.zonechecklist.length;
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+
 	
 	if(zone == "" || zone == null){
 		$("#dns_insert_zone").focus();
@@ -582,8 +621,8 @@ function copydomain(){
 		
 	if(copy_zone == copy_zone_name){
 		//같은 이름 이벤트 처리 
-		alert("중복된 ZONE입니다.");
-	}else{
+		console.log("test");
+	}
 	$.ajax({
 		url : '/copydns',
 		data : {
@@ -608,8 +647,7 @@ function copydomain(){
 			alert("code:" + request.status + "\n" + "message:"
 					+ request.responseText + "\n");
 		}
-	});
-	}
+	});	
 }
 function dnscopy(dns_id) {
 	var copy_title = document.getElementById("dns_copy_title");
@@ -946,9 +984,9 @@ function searhdnsdomain() {
 							} else {
 								domain_html += '<td></td>';
 							}
-							domain_html += '<td></button><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="sub_edit" data-toggle="modal" data-target="#subDomainUpdateModal" value="'
+							domain_html += '<td></button><button type="button"   class="btn btn-success btn-xs fa fa-edit" name="dns_edit" data-toggle="modal" data-target="#dnsUpdateModal" value="'
 									+ result.dnsTableList[i].id
-									+ '"></button> <button type="button" class="btn btn-danger btn-xs fa fa-trash" name="sub_delete" data-toggle="modal" data-target="#subDomainDeleteModal" value="'
+									+ '"></button> <button type="button" id="dns_delete" class="btn btn-danger btn-xs fa fa-trash" name="dns_delete" data-toggle="modal" data-target="#dnsDeleteModal" value="'
 									+ result.dnsTableList[i].id
 									+ '"></button></td>';
 							domain_html += '</tr>';
@@ -965,7 +1003,6 @@ function searhdnsdomain() {
 							+ request.responseText + "\n");
 				}
 			});
-	search_button_event();
 	$("#lookupdatatable").dataTable();
 }
 function dnstable() {
