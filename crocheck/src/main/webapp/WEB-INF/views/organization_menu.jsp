@@ -109,7 +109,7 @@
 </div>
 
 
-<!-- dns Insert Modal start -->
+<!-- post update Modal start -->
 <div class="modal fade" id="editdepart" tabindex="-1" role="dialog"
 	aria-labelledby="contactLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
@@ -120,8 +120,7 @@
 					<i class="glyphicon glyphicon-remove"></i>
 				</button>
 				<h4 class="panel-title">
-					<span class="glyphicon glyphicon-info-sign"></span> ORGANIZATION
-					LIST
+					<span class="glyphicon glyphicon-info-sign"></span> 조직 명칭 변경 
 				</h4>
 			</div>
 			<div class="modal-body" style="padding: 5px;">
@@ -134,67 +133,105 @@
 									style="width: 100%; height: 240px;">
 								</select>
 							</div>
-							<div class="row text-right">
+							<!-- 							<div class="row text-right">
 								<button type="button" class="btn btn-default btn-xs"
 									id="derp_up">▲</button>
 								<button type="button" class="btn btn-default btn-xs"
-									id="derp_down">▼</button>
-							</div>
+
+							</div> -->
 						</div>
 
 						<div class="col-lg-6 col-md-6">
-							<div class="row">
-	
-									<div class="form-group">
-										<label
-											class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">상위
-											부서 </label>
-										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-												<select class="select_multiple form-control"
-													id="insert_displaypost">
-												</select>
-										</div>
-									</div>
-									<div class="form-group" >
-										<label
-											class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">부서명</label>
-										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-											<input type="text" class="form-control"
-												id="insert_organization_text" placeholder=""> <span
-												class="input-group-btn"></span>
-										</div>
-									</div>
-									<div class="form-group" >
-										<label
-											class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">부서명</label>
-										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-											<input type="textarea" class="form-control"
-												id="insert_organization_info" placeholder=""> <span
-												class="input-group-btn"></span>
-										</div>
-									</div>
+							<div class="x_content">
+								<div class="" role="tabpanel" data-example-id="togglable-tabs">
+									<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+										<li role="presentation" class="active"><a
+											href="#post_info" id="home-tab" role="tab" data-toggle="tab"
+											aria-expanded="true">상세 정보 </a></li>
+										<li role="presentation" class=""><a href="#new_post"
+											role="tab" id="profile-tab" data-toggle="tab"
+											aria-expanded="false">신규 부서</a></li>
+									</ul>
+									<div id="post_list" class="tab-content">
+										<div role="tabpanel" class="tab-pane fade active in"
+											id="post_info" aria-labelledby="home-tab">
+											<div class="row">
+												<div class="panel" style="height: 130px;">
+													<div class="form-group">
+														<label
+															class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">상위
+															부서 </label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+															<select class="select_multiple form-control"
+																id="displaypost_update" name="displaypost_update">
+															</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label
+															class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">부서명</label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+															<input type="text" class="form-control"
+																id="organization_text_update" placeholder=""> <input
+																type="hidden" id="organization_id" />
+															<input type="hidden" id="organization_flowcount"/>
 
-							<div class="row">
-								<div class="col-lg-6 col-md-6"></div>
-								<div class="col-lg-6 col-md-6 text-right">
-									<button type="button" class="btn btn-info btn-xs"
-										id="derp_insert">신규 부서</button>
-									<button type="button" class="btn btn-danger btn-xs"
-										id="derp_delete">부서 삭제</button>
+														</div>
+													</div>
+
+												</div>
+												<div class="row">
+													<div class="col-lg-6 col-md-6"></div>
+													<div class="col-lg-6 col-md-6 text-right">
+														<button type="button" class="btn btn-info btn-xs"
+															id="derp_update">변경 내역 저장</button>
+														<button type="button" class="btn btn-danger btn-xs"
+															id="derp_delete">부서 삭제</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane fade" id="new_post"
+											aria-labelledby="profile-tab">
+											<div class="panel" style="height: 130px;">
+												<div class="form-group">
+													<label
+														class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">상위
+														부서 </label>
+													<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+														<select class="select_multiple form-control"
+															id="displaypost_insert" name="displaypost_insert">
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label
+														class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">부서명</label>
+													<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+														<input type="text" class="form-control"
+															id="organization_text_insert" placeholder=""> <span
+															class="input-group-btn"></span>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-lg-6 col-md-6"></div>
+												<div class="col-lg-6 col-md-6 text-right">
+													<button type="button" class="btn btn-info btn-xs"
+														id="derp_insert">신규 부서 저장</button>
+												</div>
+											</div>
+										</div>
+
+									</div>
 								</div>
 							</div>
-							</div>
-
-
-						</div>
+						</div>	
 					</form>
-					<div class="modal-footer" style="margin-bottom: -14px;">
-						<button style="float: right;" type="button"
-							class="btn btn-default btn-close" data-dismiss="modal">닫기</button>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- dns Insert Modal end -->
+<!--post update Modal end -->

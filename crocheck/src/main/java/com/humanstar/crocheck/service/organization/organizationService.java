@@ -17,4 +17,6 @@ public interface organizationService {
 	public void insertPost(postVO vo) throws Exception;
 	public void updatePost(postVO vo) throws Exception;
 	public void deletePost(postVO vo) throws Exception;
+	public postVO selectPost(postVO vo) throws Exception;
+	public List<postVO> relocationPost() throws Exception;
 }
