@@ -8,7 +8,7 @@ $(document).ready(function(){
 			async : false,
 			success : function(result) {
 				if (result.result == 'success') {
-
+							console.log(result.post);
 					for( var i =0; i< result.postList.length; i++){
 						console.log(result.postList[i].id + " / " + result.postList[i].name + " / " + result.postList[i].parent_id + " / " + result.postList[i].flowcount );
 					}

@@ -109,7 +109,7 @@
 </div>
 
 
-<!-- post update Modal start -->
+<!-- post Modal start -->
 <div class="modal fade" id="editdepart" tabindex="-1" role="dialog"
 	aria-labelledby="contactLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
@@ -234,4 +234,4 @@
 		</div>
 	</div>
 </div>
-<!--post update Modal end -->
+<!--post Modal end -->
