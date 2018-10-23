@@ -386,7 +386,11 @@
 	<script src="js/moment.min.js"></script>
 	<script src="js/daterangepicker.js"></script>
 	<script src="js/echarts.min.js"></script>
+	<!-- datatable -->
+
 	<script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="js/datatables.net/js/fnReloadAjax.js"></script>
+
 	<script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 	<script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
