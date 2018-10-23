@@ -2,17 +2,24 @@ $(document).ready(function() {
 	allmemberList();
 	table_click_event();
 
-	button_click_event();
+
 	$('.dataTable').each(function() {
 		$(this).dataTable().fnDraw();
 	});
+	button_click_event();
 });
 function button_click_event(){
-	$("#member_list button").click(function(){
-		var id = $(this).attr('value');
-		console.log(id);
+	
+$("#datatables button").click(function(){
+	console.log("button click");
+		var id = $(this).attr("name");
 		memberselect(id);
+		id = '';
 	});
+$("#updateMoal").click(function(){
+	console.log("test");
+})
+		
 	$("#insert_member_info").click(function(){
 		var insertMember_name = document.getElementById("insert_member_name").value;
 		var insertMember_gid = $("#insert_post_list").val();
@@ -167,6 +174,7 @@ function memberselect(id){
 							+ request.responseText + "\n");
 				}
 			});
+
 }
 function table_click_event() {
 	$('#dep_table button').click(function() {
@@ -242,7 +250,7 @@ function postmemberList(id) {
 									+ '</td>';
 							member_html += '<td>' + result.memberList[i].etc
 									+ '</td>';
-							member_html += '<td><button type="button"  id="updateModal" class="btn btn-info btn-xs" data-toggle="modal" data-target="#updateMemberModal" value="'+ result.memberList[i].id +'" ><i class="fa fa-pencil"></i></button> <button type="button"  id="deleteModal" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMemberModal" value="'+ result.memberList[i].id +'" ><i class="fa fa-trash-o"></i></button></td>';
+							member_html += '<td><button   class="btn btn-info btn-xs" data-toggle="modal" data-target="#updateMemberModal" name="'+ result.memberList[i].id +'" value="'+ result.memberList[i].id +'" ><i class="fa fa-pencil"></i></button> <button type="button"  id="deleteModal" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMemberModal" name="'+ result.memberList[i].id +'" value="'+ result.memberList[i].id +'" ><i class="fa fa-trash-o"></i></button></td>';
 							member_html += '</tr>';
 						}
 						memberlist.innerHTML = member_html;
@@ -275,7 +283,7 @@ function allmemberList() {
 						for (var i = 0; i < result.memberList.length; i++) {
 							member_html += '<tr>';
 							member_html += '<td>' + result.memberList[i].post
-									+ '</td>';
+									+ '<input type="hidden" value="'+ result.memberList[i].id +'"></td>';
 							member_html += '<td>' + result.memberList[i].name
 									+ '</td>';
 							member_html += '<td>' + result.memberList[i].ip
@@ -288,7 +296,7 @@ function allmemberList() {
 									+ '</td>';
 							member_html += '<td>' + result.memberList[i].etc
 									+ '</td>';
-							member_html += '<td><button type="button"  id="updateModal"  class="btn btn-info btn-xs" data-toggle="modal" data-target="#updateMemberModal" value=" '+ result.memberList[i].id +' "><i class="fa fa-pencil"></i></button> <button type="button"   id="deleteModal" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMemberModal" value=" '+ result.memberList[i].id +' "><i class="fa fa-trash-o"></i></button></td>';
+							member_html += '<td><button    class="btn btn-info btn-xs" data-toggle="modal" data-target="#updateMemberModal" name="'+ result.memberList[i].id +'"  value="'+ result.memberList[i].id +'"><i class="fa fa-pencil"></i></button> <button type="button"   id="deleteModal" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMemberModal" name="'+ result.memberList[i].id +'" value="'+ result.memberList[i].id +'"><i class="fa fa-trash-o"></i></button></td>';
 							member_html += '</tr>';
 						}
 						memberlist.innerHTML = member_html;

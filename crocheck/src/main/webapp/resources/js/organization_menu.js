@@ -22,6 +22,32 @@ $(document).ready(
 			selectBoxClickEvent();
 			post_button_Event();
 		});
+
+function relocation_post(){
+	$
+	.ajax({
+		url : '/relocationpost',
+		type : 'post',
+		dataType : 'json',
+		async : false,
+		success : function(result) {
+			if (result.result == 'success') {
+						console.log(result.post);
+				for( var i =0; i< result.postList.length; i++){
+					console.log(result.postList[i].id + " / " + result.postList[i].name + " / " + result.postList[i].parent_id + " / " + result.postList[i].flowcount );
+				}
+			} else {
+				alert(result.errorMsg);
+			}
+		},
+		error : function(request) {
+			alert('error!');
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n");
+		}
+	});
+    
+}
 function post_button_Event(){
 	$('#derp_delete').click(function(){
 		var edit_modal_id = document.getElementById("organization_id").value;
@@ -38,6 +64,7 @@ function post_button_Event(){
 			success : function(result) {
 				if (result.result == 'success') {
 					setTimeout(function(){
+						relocation_post();
 						location.reload();
 					})
 				} else {
@@ -75,7 +102,8 @@ function post_button_Event(){
 			success : function(result) {
 				if (result.result == 'success') {
 					setTimeout(function(){
-				//		location.reload();
+						relocation_post();
+						location.reload();
 					})
 				} else {
 					alert(result.errorMsg);
@@ -88,6 +116,36 @@ function post_button_Event(){
 			}
 		});
 				
+	});
+	$('#derp_insert').click(function(){
+		var insert_modal_list =  document.getElementById("displaypost_insert").value;
+		var insert_modal_text =  document.getElementById("organization_text_insert").value;
+		
+		$.ajax({
+			url : '/insertpost',
+			data : {
+				"parent_id" : insert_modal_list,
+				"name" : insert_modal_text,
+			},
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				if (result.result == 'success') {
+					setTimeout(function(){
+						relocation_post();
+						location.reload();
+					})
+				} else {
+					alert(result.errorMsg);
+				}
+			},
+			error : function(request) {
+				alert('error!');
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n");
+			}
+		});
 	});
 }
 function selectBoxClickEvent(){
@@ -188,7 +246,7 @@ function menu_list_draw(data) {
 	var modal_insert='';
 	var list_html = '';
 	var j = 0;
-	modal_insert +=  '<option value="new">' + '신규' + '</option>';
+	modal_insert +=  '<option value="70">' + '신규' + '</option>';
 	
 	for (var i = 0; i < data.length; i++) {
 		if( (data[i].flowcount - (data[i].flowcount %1000) / 1000 ) >= first_title_count  && data[i].flowcount % 1000 == 0){
@@ -212,8 +270,8 @@ function menu_list_draw(data) {
 		}
 	}
 	organization_modal_list.innerHTML = modal_list;
-	insert_modal_list.innerHTML = modal_edit;
-	update_modal_list.innerHTML = modal_edit;
+	insert_modal_list.innerHTML = post_list;
+	update_modal_list.innerHTML = post_list;
 	insertmember_modal_list.innerHTML = modal_insert;
 	updatemember_modal_list.innerHTML = modal_edit;
 }

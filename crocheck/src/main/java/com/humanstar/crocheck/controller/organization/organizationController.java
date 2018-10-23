@@ -210,6 +210,7 @@ public class organizationController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		try {
+			vo.setDescription(" ");
 			organizationService.insertPost(vo);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
@@ -233,7 +234,7 @@ public class organizationController {
 		int[] post = new int[10];
 		int flowcount = 0;
 
-		int k=0,j = 0;
+		int j = 0;
 		int max = 0;
 		
 		try {
@@ -246,27 +247,28 @@ public class organizationController {
 				if(compareId == Integer.parseInt(postList.get(i).getParent_id())) {
 					post[j++] = postList.get(i).getId();
 					postList.get(i).setFlowcount(flowcount);
+					organizationService.updatePost(postList.get(i));
 					max = j;
 					flowcount += 1000;
 				}
 			}
+			
 			flowcount = 1000;
-			for( int i = max ; i<postList.size() ; i++) {
-				if(post[j] == Integer.parseInt(postList.get(i).getParent_id())) {
-					flowcount += 100;
-					postList.get(i).setFlowcount(flowcount);
-				}else {
-					if(j < max) {
-						j++;
-						flowcount = 1000 + j * 1000;
-						if(post[j] == Integer.parseInt(postList.get(i).getParent_id())) {
-							flowcount += 100;
-							postList.get(i).setFlowcount(flowcount);
-						}
+
+			
+			for(j =0; j < max ; j++) {
+				flowcount = 1000 +j * 1000;
+				for( int i =1; i<postList.size(); i++) {
+					if(post[j] == Integer.parseInt(postList.get(i).getParent_id())){
+						flowcount += 100;
+						postList.get(i).setFlowcount(flowcount);
+						organizationService.updatePost(postList.get(i));
 					}
 				}
+				
 			}
 			
+			resultMap.put("post",post);
 			resultMap.put("postList", postList);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");

@@ -58,9 +58,9 @@
 		resultType="com.humanstar.crocheck.model.organization.dto.memberVO">
 		select * from organization_members where id = #{id}
 	</select>
-	<insert id="isnertpost">
-		insert into organizations(name, created_at, updated_at, parent_id, flowcount)
-		values(#{name}, now(), now() , #{parent_id}, #{flowcount})
+	<insert id="insertpost">
+		insert into organizations(name, description,created_at, updated_at, parent_id)
+		values(#{name}, #{description}, now(), now() , #{parent_id} )
 	</insert>
 	<update id="updatepost">
 		update organizations
