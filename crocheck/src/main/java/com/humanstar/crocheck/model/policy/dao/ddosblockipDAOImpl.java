@@ -20,6 +20,13 @@ public class ddosblockipDAOImpl implements ddosblockipDAO{
 		// TODO Auto-generated method stub
 		return SqlSession.selectList("ddospolicy.ddosbanlist");
 	}
+	
+	@Override
+	public List<ddosblockipVO> ddosblockchecklist(ddosblockipVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("ddospolicy.ddosblockchecklist", vo);
+	}
+
 
 	@Override
 	public void insertDdosBlock(ddosblockipVO vo) throws Exception {

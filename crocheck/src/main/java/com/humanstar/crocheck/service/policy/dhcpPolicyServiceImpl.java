@@ -48,6 +48,12 @@ public class dhcpPolicyServiceImpl implements dhcpPolicyService{
 	}
 	
 	@Override
+	public List<dhcpPolicyVO> dhcpchecklist(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return 	dhcpPolicyDAO.dhcpchecklist(vo);
+	}
+	
+	@Override
 	public void updateDhcp(dhcpPolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		dhcpPolicyDAO.updateDhcp(vo);

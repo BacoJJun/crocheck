@@ -7,6 +7,10 @@
 		SELECT * FROM tb_dhcp order by category1, category2,
 		start_ip
 	</select>
+	<select id="dhcpchecklist"
+		resultType="com.humanstar.crocheck.model.policy.dto.dhcpPolicyVO">
+		SELECT * FROM tb_dhcp where start_ip = #{start_ip} 
+	</select>
 	<insert id="insertdhcp">
 		INSERT INTO tb_dhcp(protocol, start_ip, end_ip, dns1,
 		dns2, day, hour, min,

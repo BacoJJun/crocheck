@@ -10,6 +10,7 @@ public interface dnspolicyService {
 	public List<dnspolicyVO> searchDnsDomain(dnspolicyVO vo) throws Exception;
 	public List<dnspolicyVO> catchDnsDomain(dnspolicyVO vo) throws Exception;
 	public List<dnspolicyVO> zonelist() throws Exception;
+	public List<dnspolicyVO> zonechecklist(dnspolicyVO vo) throws Exception;
 	
 	public void insertdns(dnspolicyVO vo) throws Exception;
 	public void updatedns(dnspolicyVO vo) throws Exception;

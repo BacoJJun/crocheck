@@ -48,6 +48,12 @@ public class dhcpPolicyDAOImpl implements dhcpPolicyDAO{
 	}
 	
 	@Override
+	public List<dhcpPolicyVO> dhcpchecklist(dhcpPolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return SqlSession.selectList("dhcppolicy.dhcpchecklist",vo);
+	}
+	
+	@Override
 	public void updateDhcp(dhcpPolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		SqlSession.update("dhcppolicy.updatedhcp",vo);

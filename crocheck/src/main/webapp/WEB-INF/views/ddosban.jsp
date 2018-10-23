@@ -109,6 +109,7 @@
 	</div>
 
 
+
 	<!-- The Modal   -->
 	<!-- ddosblock Insert Modal start -->
 	<div class="modal fade" id="ddosblockinsertModal" tabindex="-1" role="dialog"
@@ -133,7 +134,7 @@
 								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<input class="form-control" name="subject"
 										placeholder="차단 IP" id="ddosblock_insert_ip" type="text"
-										required value=" " />
+										required value="" />
 								</div>
 							</div>
 							<div class="form-group">
