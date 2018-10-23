@@ -1,73 +1,22 @@
 $(document).ready(function() {
 	alertValueList();
 	button_event();
+	
 
 });
-function init_range(alertList){
-	$("#cpu_range").ionRangeSlider({
-		hide_min_max : true,
-		keyboard : true,
-		min : 0,
-		max : 100,
-		from : alertList.cpu_warning,
-		to : alertList.cpu_critical,
-		type : 'double',
-		step : 5,
-		grid : true
-	});
-
-	$("#memory_range").ionRangeSlider({
-		hide_min_max : true,
-		keyboard : true,
-		min : 0,
-		max : 100,
-		from : alertList.memory_warning,
-		to : alertList.memory_critical,
-		type : 'double',
-		step : 5,
-		grid : true
-	});
-
-	$("#disk_range").ionRangeSlider({
-		hide_min_max : true,
-		keyboard : true,
-		min : 0,
-		max : 100,
-		from : alertList.disk_warning,
-		to : alertList.disk_critical,
-		type : 'double',
-		step : 5,
-		grid : true
-	});
-
-	$("#dns_range").ionRangeSlider({
-		hide_min_max : true,
-		keyboard : true,
-		min : 0,
-		max : 60000,
-		from : alertList.dns_warning,
-		to : alertList.dns_critical,
-		type : 'double',
-		step : 100,
-		grid : true
-	});
-
-	$("#ddos_range").ionRangeSlider({
-		hide_min_max : true,
-		keyboard : true,
-		min : 0,
-		max : 5000,
-		from : alertList.ddos_warning,
-		to : alertList.ddos_critical,
-		type : 'double',
-		step : 50,
-		grid : true
-	});
-
-}
-
-
 function alertValueList() {
+	
+	var cpu_warning = document.getElementById("cpu_warning");
+	var memory_warning =  document.getElementById("memory_warning");
+	var disk_warning = document.getElementById("disk_warning");
+	var dns_warning =  document.getElementById("dns_warning");
+	var ddos_warning = document.getElementById("ddos_warning");
+	var cpu_critical =  document.getElementById("cpu_critical");
+	var memory_critical =  document.getElementById("memory_critical");
+	var disk_critical = document.getElementById("disk_critical");
+	var dns_critical =  document.getElementById("dns_critical");
+	var ddos_critical =  document.getElementById("ddos_critical");
+	
 	$.ajax({
 		url : '/alertList',
 		type : 'post',
@@ -75,7 +24,17 @@ function alertValueList() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-				init_range(result.alertList);
+				console.log(result.alertList);
+				cpu_warning.value = result.alertList.cpu_warning;
+				memory_warning.value = result.alertList.memory_warning;
+				disk_warning.value = result.alertList.disk_warning;
+				dns_warning.value = result.alertList.dns_warning;
+				ddos_warning.value = result.alertList.ddos_warning;
+				cpu_critical.value = result.alertList.cpu_critical;
+				memory_critical.value = result.alertList.memory_critical;
+				disk_critical.value = result.alertList.disk_critical;
+				dns_critical.value = result.alertList.dns_critical;
+				ddos_critical.value = result.alertList.ddos_critical;
 			} else {
 				alert(result.errorMsg);
 			}
@@ -88,22 +47,20 @@ function alertValueList() {
 	});
 }
 function button_event(){
-	$("#btn-save").click(function(){
+	$("#alert_save").click(function(){
 		
-		var cpu_warning = document.getElementsByClassName('irs-from')[0].innerText;
-		var memory_warning = document.getElementsByClassName('irs-from')[1].innerText;
-		var disk_warning = document.getElementsByClassName('irs-from')[2].innerText;
-		var dns_warning = document.getElementsByClassName('irs-from')[3].innerText;
-		var ddos_warning = document.getElementsByClassName('irs-from')[4].innerText;
-		var cpu_critical = document.getElementsByClassName('irs-to')[0].innerText;
-		var memory_critical = document.getElementsByClassName('irs-to')[1].innerText;
-		var disk_critical = document.getElementsByClassName('irs-to')[2].innerText;
-		var dns_critical = document.getElementsByClassName('irs-to')[3].innerText;
-		var ddos_critical = document.getElementsByClassName('irs-to')[4].innerText;
+		var cpu_warning = document.getElementById("cpu_warning").value;
+		var memory_warning =  document.getElementById("memory_warning").value;
+		var disk_warning = document.getElementById("disk_warning").value;
+		var dns_warning =  document.getElementById("dns_warning").value;
+		var ddos_warning = document.getElementById("ddos_warning").value;
+		var cpu_critical =  document.getElementById("cpu_critical").value;
+		var memory_critical =  document.getElementById("memory_critical").value;
+		var disk_critical = document.getElementById("disk_critical").value;
+		var dns_critical =  document.getElementById("dns_critical").value;
+		var ddos_critical =  document.getElementById("ddos_critical").value;
 		
-		console.log(cpu_warning);
-		console.log(cpu_critical);
-		
+	
 		$.ajax({
 			url : '/updatealertvalue',
 			data : {
