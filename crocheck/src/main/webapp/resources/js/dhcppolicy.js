@@ -4,6 +4,7 @@ $(document).ready(function() {
 	category();
 	table_click_event();
 	button_click_event();
+	button_blur_event();
 });
 function dhcpcount() {
 	var total_count = document.getElementById("total_count");
@@ -408,6 +409,34 @@ function button_click_event() {
 	$("#delete_subdhcp").click(function(){
 		var sub_id = $(this).attr('value');
 		deletesubdhcp(sub_id);
+	});
+	
+}
+function button_blur_event() {
+	$('#insert_dhcp_host').blur(function(){
+		var prepix = $('#insert_dhcp_subnet_length').val();
+		var subnet ='';
+		subnet = getSubmask(prepix);
+		$("#insert_dhcp_subnet").prop("value", subnet);
+		
+		var sip_chks = sipchk($('#insert_dhcp_host').val(),subnet,'1');
+		var eip_chks = sipchk($('#insert_dhcp_host').val(),subnet,'2');
+		
+		$('#insert_dhcp_host').prop("value",sip_chks);
+		$('#insert_dhcp_broadcast').prop("value",eip_chks);
+	});
+	
+	$('#insert_dhcp_subnet_length').blur(function(){
+		var prepix = $('#insert_dhcp_subnet_length').val();
+		var subnet ='';
+		subnet = getSubmask(prepix);
+		$("#insert_dhcp_subnet").prop("value", subnet);
+		
+		var sip_chks = sipchk($('#insert_dhcp_host').val(),subnet,'1');
+		var eip_chks = sipchk($('#insert_dhcp_host').val(),subnet,'2');
+		
+		$('#insert_dhcp_host').prop("value",sip_chks);
+		$('#insert_dhcp_broadcast').prop("value",eip_chks);
 	});
 }
 function insertdhcp() {
