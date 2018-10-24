@@ -29,15 +29,7 @@
 							<div class="clearfix"></div>
 						</div>
 
-						<!-- form grid slider -->
-<<<<<<< HEAD
-						<div class="x_panel" >
-<div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="x_content">
-                    <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-=======
+
 						<div class="x_panel">
 							<div class="row">
 								<div class="col-md-12 col-sm-12 col-xs-12">
@@ -45,121 +37,6 @@
 										<br />
 										<form id="demo-form2" data-parsley-validate
 											class="form-horizontal form-label-left">
->>>>>>> branch 'master' of https://github.com/BacoJJun/crocheck.git
-
-<<<<<<< HEAD
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="gender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                            </label>
-                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="female"> Female
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                        </label>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                                                <label class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                        </label>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-
-                          <button type="submit" class="btn btn-success">저장</button>
-                        </div>
-                      </div>
-
-                    </form>
-                  </div>
-                </div>
-
-            </div>
-							<div class="row grid_slider">
-								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-									<p>CPU</p>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
-									id="cpu_range_graph">
-									<input type="text" id="cpu_range" value="" name="range" />
-								</div>
-							</div>
-							<br>
-							<div class="row grid_slider">
-								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-									<p>Memory</p>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
-									id="memory_range_graph">
-									<input type="text" id="memory_range" value="" name="range" />
-								</div>
-							</div>
-							<br>
-							<div class="row grid_slider">
-								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-									<p>Disk</p>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
-									id="disk_range_graph">
-									<input type="text" id="disk_range" value="" name="range" />
-								</div>
-							</div>
-							<br>
-							<div class="row grid_slider">
-								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-									<p>DNS</p>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
-									id="dns_range_graph">
-									<input type="text" id="dns_range" value="" name="range" />
-								</div>
-							</div>
-							<br>
-							<div class="row grid_slider">
-								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-									<p>DDOS</p>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8"
-									id="ddos_range_graph">
-									<input type="text" id="ddos_range" value="" name="range" />
-								</div>
-							</div>
-							<br><br>
-																<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
-										<input type="button"
-											class="btn btn-success" id="btn-save" value="save"></input>
-=======
 											<div class="form-group">
 												<label
 													class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12"> CPU
@@ -289,7 +166,6 @@
 											</div>
 
 										</form>
->>>>>>> branch 'master' of https://github.com/BacoJJun/crocheck.git
 									</div>
 								</div>
 
