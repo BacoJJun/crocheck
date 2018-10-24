@@ -16,7 +16,7 @@
 			<!-- /top navigation -->
 
 			<!-- page content -->
-			<div class="right_col" role="main" style="height=900px;">
+			<div class="right_col" role="main" style="">
 				<div class="row ">
 
 					<!--  Report start -->
@@ -30,13 +30,24 @@
 						</div>
 
 						<!-- form grid slider -->
+<<<<<<< HEAD
 						<div class="x_panel" >
 <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="x_content">
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+=======
+						<div class="x_panel">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="x_content">
+										<br />
+										<form id="demo-form2" data-parsley-validate
+											class="form-horizontal form-label-left">
+>>>>>>> branch 'master' of https://github.com/BacoJJun/crocheck.git
 
+<<<<<<< HEAD
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
                         </label>
@@ -148,13 +159,144 @@
 																<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
 										<input type="button"
 											class="btn btn-success" id="btn-save" value="save"></input>
+=======
+											<div class="form-group">
+												<label
+													class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12"> CPU
+
+												</label>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+													<label
+														class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12"><button type="button" class="btn btn-warning btn-xs">Warning</button>
+													</label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="cpu_warning"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+													<label
+														class=" control-label col-lg-1 col-md-1 col-sm-1 col-xs-12">
+														<button type="button" class="btn btn-danger btn-xs">Critical</button> </label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="cpu_critical"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label
+													class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12"> MEMORY
+
+												</label>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+													<label
+														class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12"><button type="button" class="btn btn-warning btn-xs">Warning</button>
+													</label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="memory_warning"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+													<label
+														class=" control-label col-lg-1 col-md-1 col-sm-1 col-xs-12">
+														<button type="button" class="btn btn-danger btn-xs">Critical</button> </label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="memory_critical"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label
+													class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12"> DISK
+
+												</label>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+													<label
+														class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12"><button type="button" class="btn btn-warning btn-xs">Warning</button>
+													</label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="disk_warning"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+													<label
+														class=" control-label col-lg-1 col-md-1 col-sm-1 col-xs-12">
+														<button type="button" class="btn btn-danger btn-xs">Critical</button> </label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="disk_critical"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label
+													class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12"> DNS
+												</label>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+													<label
+														class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12"><button type="button" class="btn btn-warning btn-xs">Warning</button>
+													</label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="dns_warning"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+													<label
+														class=" control-label col-lg-1 col-md-1 col-sm-1 col-xs-12">
+														<button type="button" class="btn btn-danger btn-xs">Critical</button> </label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="dns_critical"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label
+													class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12"> DDOS
+
+												</label>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+													<label
+														class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12"><button type="button" class="btn btn-warning btn-xs">Warning</button>
+													</label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="ddos_warning"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+													<label
+														class=" control-label col-lg-1 col-md-1 col-sm-1 col-xs-12">
+														<button type="button" class="btn btn-danger btn-xs">Critical</button> </label>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														<input id="ddos_critical"
+															class="form-control col-md-3 col-xs-12"
+															required="required" type="text">
+													</div>
+												</div>
+											</div>
+											<div class="ln_solid"></div>
+											<div class="form-group">
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+												<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
+
+													<button id="alert_save" type="submit" class="btn btn-success">저장</button>
+												</div>
+											</div>
+
+										</form>
+>>>>>>> branch 'master' of https://github.com/BacoJJun/crocheck.git
 									</div>
-						</div>
-						
-						
+								</div>
+
+							</div>
 					</div>
 					<!--  page part -->
-					
+
 				</div>
 
 				<!-- Report  end -->

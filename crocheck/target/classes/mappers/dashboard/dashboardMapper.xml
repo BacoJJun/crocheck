@@ -97,7 +97,7 @@
 	</select>
 	<select id="zonecount" resultType="com.humanstar.crocheck.model.dashboard.dto.zoneCountVO">
 		select zone.count as zone_count, sub.count as sub_count from (select
-		count(*) as count from dns_record where type='SOA') zone, (select
-		count(*) as count from dns_record where type !='SOA' ) sub
+		count(*) as count from dns_record where type='SOA' and bl = 0) zone, (select
+		count(*) as count from dns_record where type !='SOA' and bl = 0) sub
 	</select>
 </mapper>
