@@ -394,25 +394,40 @@ function init_minAjax(search_type) {
 	var arrDate = $("#reservation-time").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
-
+	var start_date1 = new Date(start_date);
+	var end_date1 = new Date(end_date);
+	var minus = end_date1 - start_date1;
+	if(minus/1000/60 > 60){
+		alert('시간당 검색만 가능합니다.');
+		location.reload();
+	}else{
 	searchApp(start_date, end_date, search_type);
 	searchDataPacket(start_date, end_date, search_type);
 	searchdnsDomain(start_date, end_date, search_type);
 	searchddosDomain(start_date, end_date, search_type);
 	searchdnsSrc(start_date, end_date, search_type);
 	searchddosSrc(start_date, end_date, search_type);
+	}
 }
 function init_hourAjax(search_type) {
 	var arrDate = $("#reservation-time").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
-
+	var start_date1 = new Date(start_date);
+	var end_date1 = new Date(end_date);
+	var minus = end_date1 - start_date1;
+	
+	if(minus/1000/60/60 > 24){
+		alert('최대 24시간 검색만 가능합니다.');
+		location.reload();
+	}else{
 	searchApp(start_date, end_date, search_type);
 	searchDataPacket(start_date, end_date, search_type);
 	searchdnsDomain(start_date, end_date, search_type);
 	searchddosDomain(start_date, end_date, search_type);
 	searchdnsSrc(start_date, end_date, search_type);
 	searchddosSrc(start_date, end_date, search_type);
+	}
 }
 function toplist(dns_data, dns_date, ddos_data, ddos_date) {
 	var maxDDosValue = '0';
