@@ -49,7 +49,7 @@ public class statisticsPacketDAOImpl implements statisticsPacketDAO{
 	@Override
 	public List<statPacketVO> hourDDosPacket(searchTypeVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("statPacket.hourdns", vo);
+		return SqlSession.selectList("statPacket.hourddos", vo);
 	}
 	
 	

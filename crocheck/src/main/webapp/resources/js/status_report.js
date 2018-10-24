@@ -8,7 +8,6 @@ $(document).ready(function() {
 	
 	var result = $('input:radio[name="report_count_type"]:checked').val() ;
 
-	
 	$('#search_stat').click(function() {
 				if ($(
 						'input:radio[name="report_type"]:checked')
@@ -27,6 +26,7 @@ $(document).ready(function() {
 			});
 	buttonClickEvent();
 });
+
 function buttonClickEvent(){
 	$("#makepdf").click(function(){
 		console.log("pdf test");
@@ -255,7 +255,7 @@ function baseQuery(){
 	
 }
 function monthQuery(){
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	
@@ -386,7 +386,7 @@ function monthQuery(){
 }
 
 function weekQuery(){
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	
@@ -526,7 +526,7 @@ function weekQuery(){
 }
 
 function daysQuery(){
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	
@@ -950,7 +950,7 @@ function ddosClientList(srcList, srcCount, srcPer){
 }
 
 function monthPacket() {
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	var appDnsPacket = [];
@@ -1012,7 +1012,7 @@ function monthPacket() {
 }
 
 function weekPacket() {
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	var appDnsPacket = [];
@@ -1074,7 +1074,7 @@ function weekPacket() {
 }
 
 function daysPacket() {
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	var appDnsPacket = [];
@@ -1222,7 +1222,7 @@ function init_packetChart(appDnsPacket, appDDosPacket, appDate) {
 	}
 }
 function monthAppliance() {
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	var appCpu = [];
@@ -1260,7 +1260,7 @@ function monthAppliance() {
 	});
 }
 function weekAppliance() {
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	var appCpu = [];
@@ -1298,7 +1298,7 @@ function weekAppliance() {
 	});
 }
 function daysAppliance() {
-	var arrDate = $("#reservation-time").val().split("-");
+	var arrDate = $("#reportrange_right").val().split("-");
 	var start_date = arrDate[0];
 	var end_date = arrDate[1];
 	var appCpu = [];

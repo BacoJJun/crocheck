@@ -112,6 +112,7 @@ var end_date = arrDate[1];
 			targets : [ 0 ]
 		} ]
 	});
+	table_click_event();
 }
 function changevaluelist(){
 	var changeList  = document.getElementById("changeValueList");
@@ -154,6 +155,7 @@ function changevaluelist(){
 			targets : [ 0 ]
 		} ]
 	});
+	table_click_event();
 }
 function refreshPage(){
 	var changeTable  = document.getElementById("changereportmain");
