@@ -33,14 +33,14 @@
 		SELECT max(to_char(date_trunc('hour', hhmmss), 'mm dd')) as hhmmss,
 		max(cpu_total_pct) as cpu_pct, max(mem_use_pct) as mem_pct,
 		max(disk_vol1_usage_pct) as disk_vol1_pct FROM
-		tb_usage_system_1day WHERE ( hhmmss BETWEEN date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT TIME ZONE))) GROUP BY hhmmss order by hhmmss asc
+		tb_usage_system_1day WHERE ( date_trunc('second',(to_char(hhmmss,'YYYY-MM-DD')::TIMESTAMP WITHOUT TIME ZONE)) BETWEEN date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT TIME ZONE))) GROUP BY hhmmss order by hhmmss asc
 	</select>
 
 	<select id="monthApp"
 		resultType="com.humanstar.crocheck.model.report.dto.reportApplianceVO">
 		SELECT max(cpu_total_pct) as cpu_pct, max(mem_use_pct) as mem_pct,
 		max(disk_vol1_usage_pct) as disk_vol1_pct, date_trunc('days',
-		hhmmss) as hhmmss FROM tb_usage_system_1day WHERE ( hhmmss BETWEEN date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT TIME ZONE))) group by hhmmss
+		hhmmss) as hhmmss FROM tb_usage_system_1day WHERE ( date_trunc('second',(to_char(hhmmss,'YYYY-MM-DD')::TIMESTAMP WITHOUT TIME ZONE)) BETWEEN date_trunc('second',(#{date_start}::TIMESTAMP WITHOUT TIME ZONE)) AND date_trunc('second',(#{date_end}::TIMESTAMP WITHOUT TIME ZONE))) group by hhmmss
 		ORDER BY hhmmss asc
 	</select>
 </mapper>
