@@ -18,28 +18,12 @@
 			<!-- page content -->
 			<div class="right_col" role="main">
 				<div class="row ">
-					<!--  Policy setting start -->
+					<!--  Policy setting start -->d
 					<div class="x_panel">
 						<div class="x_title">
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 								<h2>시스템 설정</h2>
 
-							</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
-								<button data-toggle="dropdown"
-									class="btn btn-default dropdown-toggle" type="button"
-									aria-expanded="false">
-									백업 <span class="caret"></span>
-								</button>
-								<ul role="menu" class="dropdown-menu">
-									<li><a id="dnsbackup" href="#">DNS</a></li>
-									<li><a id="dhcpbackup" href="#">DHCP</a></li>
-<!-- 									<li><a id="ddosbackup" href="#">DDOS</a></li> -->
-									<li><a id="enginebackup" href="#">ENGINE</a></li>
-									<li class="divider"></li>
-<!-- 									<li><a id="organizationbackup" href="#">조직도</a></li>
-									<li><a id="alertbackup" href="#">임계치</a></li> -->
-								</ul>
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -118,8 +102,8 @@
 											<table class="table" id="accesslistTable">
 												<colgroup>
 													<col width="45%"></col>
-													<col width="45%"></col>
-													<col width="10%"></col>
+													<col width="40%"></col>
+													<col width="15%"></col>
 												</colgroup>
 												<thead>
 													<tr>
@@ -151,8 +135,8 @@
 													<col width="25%"></col>
 													<col width="25%"></col>
 													<col width="20%"></col>
-													<col width="20%"></col>
-													<col width="10%"></col>
+													<col width="15%"></col>
+													<col width="15%"></col>
 												</colgroup>
 												<thead>
 													<tr>
@@ -184,6 +168,32 @@
 										<button type="button" class="btn btn-info"
 											id="password_change" data-toggle="modal"
 											data-target="#changepassword">관리자 비밀번호 변경</button>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-1 col-md-1"></div>
+								<div class="col-lg-2 col-md-2">
+									<div class="x_panel">
+										<span><strong>백업 </strong></span>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="x_panel">
+								<button data-toggle="dropdown"
+									class="btn btn-default dropdown-toggle" type="button"
+									aria-expanded="false">
+									백업 <span class="caret"></span>
+								</button>
+								<ul role="menu" class="dropdown-menu">
+									<li><a id="dnsbackup" href="#">DNS</a></li>
+									<li><a id="dhcpbackup" href="#">DHCP</a></li>
+<!-- 									<li><a id="ddosbackup" href="#">DDOS</a></li> -->
+									<li><a id="enginebackup" href="#">ENGINE</a></li>
+									<li class="divider"></li>
+<!-- 									<li><a id="organizationbackup" href="#">조직도</a></li>
+									<li><a id="alertbackup" href="#">임계치</a></li> -->
+								</ul>
 									</div>
 								</div>
 							</div>

@@ -348,7 +348,7 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
     // If JSONData is not an object then JSON.parse will parse the JSON string
 	// in an Object
     var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
-    
+    console.log(arrData);
     var CSV = '';    
     // Set Report title in first row or line
     
@@ -370,7 +370,7 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         // append Label row with line break
         CSV += row + '\r\n';
     }
-    console.log(JSONData);
+    
     // 1st loop is to extract each row
     for (var i = 0; i < arrData.length; i++) {
         var row = "";
@@ -378,7 +378,7 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         // 2nd loop will extract each column and convert it in string
 		// comma-seprated
         for (var index in arrData[i]) {
-            row += '"' + '\ufeff' + arrData[i][index] + '",';
+            row += '"' + arrData[i][index] + '",';
         }
 
         row.slice(0, row.length - 1);
@@ -394,13 +394,14 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
     
     // Generate a file name
     var fileName = "";
+    var BOM = '%EF%BB%BF';
     // this will remove the blank-spaces from the title and replace it with an
 	// underscore
     fileName += ReportTitle.replace(/ /g,"_");   
     
     // Initialize file format you want csv or xls
-    var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
-
+    var uri = 'data:application/csv;charset=utf-8,'+BOM+',' + encodeURIComponent(CSV);
+    
     // Now the little tricky part.
     // you can use either>> window.open(uri);
     // but this will not work in some browsers
