@@ -1,5 +1,6 @@
 package com.humanstar.crocheck;
 
+import java.io.File;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.humanstar.crocheck.service.dashboard.alertLiveServiceImpl;;
@@ -396,4 +398,15 @@ public class HomeController {
 		return mav;
 	}
 
+	  @RequestMapping(value = "/fileDown", method = {RequestMethod.GET, RequestMethod.POST})
+	  public ModelAndView fileDown(@RequestParam("fileName") String fileName) {
+		  ModelAndView mav = new ModelAndView();
+		  
+	    String fullPath = "/home/jun/git/crocheck/crocheck/src/main/webapp/WEB-INF/views/download/" + fileName ;
+	    File downloadFile = new File(fullPath);
+		  logger.info(fileName);
+		  mav.setViewName("download");
+		  mav.addObject("downloadFile", downloadFile);
+	    return mav;
+	  }
 }

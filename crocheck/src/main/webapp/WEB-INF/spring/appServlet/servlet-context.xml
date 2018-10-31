@@ -25,7 +25,7 @@
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	<resources mapping="/vendor/**/**"
 		location="/resources/vendor/**" />
-	<resources mapping="/download/**" location="/resources/download/" />
+	<resources mapping="/download/**" location="/WEB-INF/views/download/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean

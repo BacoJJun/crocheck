@@ -72,7 +72,7 @@
 						<div class="x_panel">
 							<div class="x_title">
 								<h2>
-									DHCP Lookup <small> </small>
+								임대 내역 조회 
 								</h2>
 								<div class="clearfix"></div>
 							</div>

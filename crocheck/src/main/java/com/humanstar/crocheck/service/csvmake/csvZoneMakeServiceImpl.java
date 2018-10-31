@@ -53,14 +53,21 @@ public class csvZoneMakeServiceImpl implements csvZoneMakeService{
 	//	String title_line = "zone,ttl,type,host,mx_priority,data,primary_ns,resp_contact,serial,refresh,retry,expire,minimum,comment,modified";
 		try {
 			dnsZoneList = dnsPolicyDAO.dnsBackupData();
-			br = Files.newBufferedWriter(Paths.get("/home/jun/git/crocheck/crocheck/src/main/webapp/resources/download", file_name));
+			br = Files.newBufferedWriter(Paths.get("/home/jun/git/crocheck/crocheck/src/main/webapp/WEB-INF/views/download", file_name));
 			Charset.forName("UTF-8");
 			
 //			br.write(title_line);
+			br.write("[");
 			for(int i =0; i< dnsZoneList.size() ; i++) {
-				br.write(dnsZoneList.get(i).csvString());
+				br.write("{" +dnsZoneList.get(i).csvString());
+				if(i == dnsZoneList.size() -1) {
+					br.write("}");
+				}else {
+					br.write("},");
+				}
 				br.newLine();
 			}
+			br.write("]");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

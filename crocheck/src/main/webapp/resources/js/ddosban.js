@@ -146,7 +146,7 @@ function blocklist(){
 					+ request.responseText + "\n");
 		}
 	});
-	
+	$("#ddosblocktable").dataTable();
 }
 function init_ddos_block_table() {
 	var blocklist = document.getElementById("ddos_block_list");

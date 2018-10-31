@@ -370,7 +370,7 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         // append Label row with line break
         CSV += row + '\r\n';
     }
-    
+    console.log(JSONData);
     // 1st loop is to extract each row
     for (var i = 0; i < arrData.length; i++) {
         var row = "";
@@ -378,7 +378,7 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         // 2nd loop will extract each column and convert it in string
 		// comma-seprated
         for (var index in arrData[i]) {
-            row += '"' + arrData[i][index] + '",';
+            row += '"' + '\ufeff' + arrData[i][index] + '",';
         }
 
         row.slice(0, row.length - 1);
@@ -400,7 +400,7 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
     
     // Initialize file format you want csv or xls
     var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
-    
+
     // Now the little tricky part.
     // you can use either>> window.open(uri);
     // but this will not work in some browsers

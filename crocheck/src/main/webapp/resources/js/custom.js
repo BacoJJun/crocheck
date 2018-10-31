@@ -1901,15 +1901,15 @@ function init_daterangepicker_right() {
 	var cb = function(start, end, label) {
 		// console.log(start.toISOString(), end.toISOString(), label);
 		$('#reportrange_right span').html(
-				start.format('YYYY.MM.DD') + ' - '
-						+ end.format('YYYY.MM.DD'));
+				start.format('YYYY/MM/DD') + ' - '
+						+ end.format('YYYY/MM/DD'));
 	};
 
 	var optionSet1 = {
 		startDate : moment().subtract(29, 'days'),
 		endDate : moment(),
-		minDate : '01/01/2018',
-		maxDate : '12/31/2023',
+		minDate : '2018.01.01',
+		maxDate : '2021.12.31',
 		dateLimit : {
 			days : 60
 		},
@@ -1935,6 +1935,7 @@ function init_daterangepicker_right() {
 		format : 'YYYY-MM-DD',
 		separator : ' to ',
 		locale : {
+			format : 'YYYY.MM.DD ',
 			applyLabel : 'Submit',
 			cancelLabel : 'Clear',
 			fromLabel : 'From',
@@ -1949,8 +1950,8 @@ function init_daterangepicker_right() {
 	};
 
 	$('#reportrange_right span').html(
-			moment().subtract(29, 'days').format('YYYY.MM.DD') + '-'
-					+ moment().format('YYYY.MM.DD'));
+			moment().subtract(29, 'days').format('YYYY/MM/DD') + '-'
+					+ moment().format('YYYY/MM/DD'));
 
 	$('#reportrange_right').daterangepicker(optionSet1, cb);
 

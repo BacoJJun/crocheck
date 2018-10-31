@@ -38,7 +38,7 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="table-bordered">
-									<table class="table table-striped">
+									<table class="table table-striped" id = "dnsbantable">
 										<colgroup>
 											<col width="35%" />
 											<col width="55%" />

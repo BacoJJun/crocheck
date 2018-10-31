@@ -9,8 +9,10 @@
 <body>
 <div class='mydiv'>    
     <button class='gen_btn'>Generate File</button>
+    <a href='/download/dns_201842250442.csv' > download</a>
 </div>
 </body>
 	<script src="js/jquery.min.js"></script>
-	<script src="js/relocation.js"></script>
+	<script src="js/jquery.fileDownload.js"></script>
+	<script src="js/filedownload.js"></script>
 </html>

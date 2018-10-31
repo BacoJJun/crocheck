@@ -118,6 +118,7 @@ function dnsblocklist() {
 							+ request.responseText + "\n");
 				}
 			});
+	$("#dnsbantable").dataTable();
 
 }
 function buttonClickEvent() {
