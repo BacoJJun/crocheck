@@ -385,11 +385,13 @@ public class policyController {
 		logger.info("vo :  " + vo.toString());
 		String data = vo.getData();
 		autoCreateDNS = vo;
+		autoCreateDNS.setModified(1);
 		autoCreateDNS.setBl(0);
 		autoCreateDNS.setData("@");
 
 		try {
-			dnsbanService.insertDnsSOABan(autoCreateDNS);
+			dnspolicyService.insertdns(autoCreateDNS);
+	
 			autoCreatesubDNS.setZone(vo.getZone());
 			autoCreatesubDNS.setTtl(0);
 			autoCreatesubDNS.setType("A");
@@ -435,8 +437,7 @@ public class policyController {
 		
 		logger.info("copy dns start");
 		try {
-			dnsList = dnspolicyService.idsearchDns(vo);
-			dnszone = dnsList.get(0);
+			dnszone = dnspolicyService.idsearchDns(vo);
 			logger.info(dnszone.toString());
 			
 			dnsList = dnspolicyService.subDnsList(dnszone);
@@ -490,6 +491,7 @@ public class policyController {
 			changeVO.setComment("after : " + vo.toString() + "before : " + dnsList.get(0).toString());
 			changeVO.setChange_user("Administrator");
 			changeVO.setUser_ip(" ");	
+			vo.setModified(1);
 			
 			dnspolicyService.updatedns(vo);
 			changeValueService.insertChangeValue(changeVO);
@@ -552,9 +554,14 @@ public class policyController {
 		changeVO.setComment("insert : " + vo.toString());
 		changeVO.setChange_user("Administrator");
 		changeVO.setUser_ip(request.getRemoteAddr());
+		vo.setModified(1);
 		
 		try {
-			dnspolicyService.insertsubdomain(vo);
+			if(vo.getMx_priority() < 0) {
+				dnspolicyService.insertsubdomain(vo);
+			}else {
+				dnspolicyService.insertmxsubdomain(vo);
+			}
 			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
 			resultMap.put(SUCCESS_MESSAGE, "connect_seccess!");
@@ -578,6 +585,7 @@ public class policyController {
 		try {
 			dnsList = dnspolicyService.zonesearchDns(vo);
 			vo.setId(dnsList.get(0).getId());
+			vo.setModified(1);
 			changeVO.setChange_type("dns");
 			changeVO.setQuery_type("sub_domain update");
 			changeVO.setTitle("update : " + vo.getZone());
@@ -585,7 +593,13 @@ public class policyController {
 			changeVO.setChange_user("Administrator");
 			changeVO.setUser_ip(" ");	
 
-			dnspolicyService.updatesubdomain(vo);
+			
+			if(vo.getMx_priority() < 0) {
+				dnspolicyService.updatesubdomain(vo);
+			}else {
+				dnspolicyService.updatesubdomainmx(vo);
+			}
+			
 			changeValueService.insertChangeValue(changeVO);
 			
 			resultMap.put(RESULT, RESULT_SUCCESS);
@@ -599,24 +613,29 @@ public class policyController {
 
 		return resultMap;
 	}
+	
+	
 	@RequestMapping(value = "/deletesubdomain", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> deletesubdomain(@ModelAttribute  dnspolicyVO vo, HttpServletRequest request) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		changeValueVO changeVO = new changeValueVO();
-		List<dnspolicyVO> dnsList = new ArrayList<dnspolicyVO>();
+		dnspolicyVO dnsList = new dnspolicyVO();
 		
 		
 		try {
 			dnsList = dnspolicyService.idsearchDns(vo);
+			logger.info(dnsList.toString());
+			vo = dnsList;
 			changeVO.setChange_type("dns");
 			changeVO.setQuery_type("sub_domain delete");
 			changeVO.setTitle("delete : " + vo.getZone());
-			changeVO.setComment("delete : " + dnsList.get(0).toString());
+			changeVO.setComment("delete : " + dnsList.toString());
 			changeVO.setChange_user("Administrator");
 			changeVO.setUser_ip(" ");
 
+			dnspolicyService.updatesubdomainlist(dnsList);
 			dnspolicyService.deletesubdomain(vo);
 			changeValueService.insertChangeValue(changeVO);
 			resultMap.put(RESULT, RESULT_SUCCESS);
@@ -630,6 +649,7 @@ public class policyController {
 
 		return resultMap;
 	}
+	
 	@RequestMapping(value = "/dhcpinsert", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> dhcpinsert(@ModelAttribute  dhcpPolicyVO vo, HttpServletRequest request) {

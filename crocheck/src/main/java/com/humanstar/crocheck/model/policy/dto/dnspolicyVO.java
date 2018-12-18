@@ -7,7 +7,7 @@ public class dnspolicyVO {
 	private int ttl;
 	private String type;
 	private String host;
-	private String mx_priority;
+	private int mx_priority;
 	private String data;
 	private String primary_ns;
 	private String resp_contact;
@@ -50,10 +50,10 @@ public class dnspolicyVO {
 	public void setHost(String host) {
 		this.host = host;
 	}
-	public String getMx_priority() {
+	public int getMx_priority() {
 		return mx_priority;
 	}
-	public void setMx_priority(String mx_priority) {
+	public void setMx_priority(int mx_priority) {
 		this.mx_priority = mx_priority;
 	}
 	public String getData() {

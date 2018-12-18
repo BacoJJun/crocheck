@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
 <!--header include-->
 <%@ include file="header.jsp"%>
@@ -20,7 +20,7 @@
 			<div class="right_col" role="main">
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="x_panel">
+						<div class="base_panel">
 							<div class="x_title">
 								<h2>
 									DNS <small>dns</small>

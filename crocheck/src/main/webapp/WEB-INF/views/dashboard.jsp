@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html >
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="ko" data-placeholders-focus="false">
 <!--header include-->
@@ -19,7 +19,7 @@
 
 			<!-- page content -->
 			<div class="right_col" id="main" style="min-height: 1200px;">
-				<div class="x_panel">
+				<div class="base_panel">
 					<!-- top tiles -->
 					<div class="row tile_count">
 						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">

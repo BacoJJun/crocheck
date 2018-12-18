@@ -11,7 +11,7 @@ public interface dnspolicyDAO {
 	public List<dnspolicyVO> catchDnsDomain(dnspolicyVO vo) throws Exception;
 	public List<dnspolicyVO> zonelist() throws Exception;
 	public List<dnspolicyVO> zonechecklist(dnspolicyVO vo) throws Exception;
-	public List<dnspolicyVO> idsearchDns(dnspolicyVO vo) throws Exception;
+	public dnspolicyVO idsearchDns(dnspolicyVO vo) throws Exception;
 	public List<dnspolicyVO> zonesearhDns(dnspolicyVO vo) throws Exception;
 	
 	public void insertdns(dnspolicyVO vo) throws Exception;
@@ -19,7 +19,10 @@ public interface dnspolicyDAO {
 	public void delete(dnspolicyVO vo) throws Exception;
 	
 	public void insertsubdomain(dnspolicyVO vo) throws Exception;
+	public void insertmxsubdomain(dnspolicyVO vo) throws Exception;
 	public void updatesubdomain(dnspolicyVO vo) throws Exception;
+	public void updatemxsubdomain(dnspolicyVO vo) throws Exception;
+	public void updatesubdomainlist(dnspolicyVO vo) throws Exception;
 	public void deletesubdomain(dnspolicyVO vo) throws Exception;
 	
 	public List<dnspolicyVO> dnsBackupData() throws Exception;

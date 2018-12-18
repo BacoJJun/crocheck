@@ -22,7 +22,7 @@
 			<div class="right_col" role="main" style="min-height: 1200px;">
 				<div class="row "> 
 
-					<div class="x_panel">
+					<div class="base_panel">
 						<div class="x_title">
 							<h2>
 								DDOS 

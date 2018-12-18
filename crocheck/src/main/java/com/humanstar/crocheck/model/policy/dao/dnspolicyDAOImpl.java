@@ -92,9 +92,9 @@ public class dnspolicyDAOImpl implements dnspolicyDAO{
 	}
 
 	@Override
-	public List<dnspolicyVO> idsearchDns(dnspolicyVO vo) throws Exception {
+	public dnspolicyVO idsearchDns(dnspolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return SqlSession.selectList("dnspolicy.idsearchdns", vo);
+		return SqlSession.selectOne("dnspolicy.idsearchdns", vo);
 	}
 
 	@Override
@@ -107,6 +107,24 @@ public class dnspolicyDAOImpl implements dnspolicyDAO{
 	public List<dnspolicyVO> dnsBackupData() throws Exception {
 		// TODO Auto-generated method stub
 		return SqlSession.selectList("dnspolicy.dnsbackup");
+	}
+
+	@Override
+	public void updatesubdomainlist(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.update("dnspolicy.subdomainlistupdate",vo);
+	}
+
+	@Override
+	public void insertmxsubdomain(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.insert("dnspolicy.subdomainmxinsert",vo);
+	}
+
+	@Override
+	public void updatemxsubdomain(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		SqlSession.update("dnspolicy.subdomainmxupdate",vo);
 	}
 
 }

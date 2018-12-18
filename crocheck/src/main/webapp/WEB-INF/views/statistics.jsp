@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
 <!--header include-->
 <%@ include file="header.jsp"%>
@@ -18,6 +18,7 @@
 			<!-- page content -->
 			<div class="right_col">
 				<div class="row ">
+					<div class="base_panel">
 					<div class="col-md-4"></div>
 					<div class="col-md-4">
 						<form class="radio">
@@ -216,6 +217,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 
 		</div>

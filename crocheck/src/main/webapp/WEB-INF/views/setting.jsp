@@ -18,8 +18,8 @@
 			<!-- page content -->
 			<div class="right_col" role="main">
 				<div class="row ">
-					<!--  Policy setting start -->d
-					<div class="x_panel">
+					<!--  Policy setting start -->
+					<div class="base_panel">
 						<div class="x_title">
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 								<h2>시스템 설정</h2>

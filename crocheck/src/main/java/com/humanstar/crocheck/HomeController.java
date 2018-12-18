@@ -68,6 +68,7 @@ public class HomeController {
 		mav.addObject("msg", "success");
 		return mav;
 	}	
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home(HttpSession session, Locale locale, Model model, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -125,7 +126,7 @@ public class HomeController {
 			mav.addObject("msg", "fail");
 			return mav;
 		}
-		mav.setViewName("dashboard2");
+		mav.setViewName("dashboard_old");
 		mav.addObject("msg", "success");
 		return mav;
 	}	

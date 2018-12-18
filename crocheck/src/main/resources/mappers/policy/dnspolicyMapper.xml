@@ -91,7 +91,7 @@
 		minimum,comment,modified, bl)
 		values(#{zone}, #{ttl}, #{type}, #{host},
 		#{data}, #{primary_ns}, #{resp_contact}, #{serial},
-		#{refresh},#{retry}, #{expire}, #{minimum},#{comment},'1', '0')
+		#{refresh},#{retry}, #{expire}, #{minimum},#{comment},1, 0)
 	</insert>
 	<update id="dnsupdate">
 		update dns_record
@@ -117,13 +117,18 @@
 
 	<insert id="subdomaininsert">
 		INSERT INTO dns_record(zone, type, host, data, ttl,
+		comment,
+		modified)
+		values(#{zone}, #{type}, #{host},
+		#{data}, #{ttl}, #{comment},1)
+	</insert>
+	<insert id="subdomainmxinsert">
+		INSERT INTO dns_record(zone, type, host, data, ttl,
 		mx_priority, comment,
 		modified)
 		values(#{zone}, #{type}, #{host},
-		#{data}, #{ttl}, #{mx_priority}, #{comment},
-		#{modified})
+		#{data}, #{ttl}, #{mx_priority}, #{comment},1)
 	</insert>
-
 	<update id="subdomainupdate">
 		update dns_record
 		set
@@ -133,6 +138,21 @@
 		data = #{data},
 		comment = #{comment}
 		where id = #{id}
+	</update>
+		<update id="subdomainmxupdate">
+		update dns_record
+		set
+		type=
+		#{type},
+		host = #{host},
+		data = #{data},
+		comment = #{comment},
+		mx_priority = #{mx_priority}
+		where id = #{id}
+	</update>
+	<update id="subdomainlistupdate">
+		update dns_record set modified = '1' 
+		  where zone = #{zone}
 	</update>
 	<delete id="dnsdelete">
 		delete from dns_record where zone = #{zone}

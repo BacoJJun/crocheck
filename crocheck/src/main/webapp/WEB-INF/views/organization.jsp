@@ -20,6 +20,7 @@
 			<!-- page content -->
 			<div class="right_col" role="main">
 				<div class="row">
+				<div class="base_panel">
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
@@ -90,6 +91,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 			<!-- /page content -->
 		</div>

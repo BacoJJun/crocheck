@@ -90,7 +90,7 @@ public class dnspolicyServiceImpl implements dnspolicyService{
 		dnspolicyDAO.deletesubdomain(vo);	}
 
 	@Override
-	public List<dnspolicyVO> idsearchDns(dnspolicyVO vo) throws Exception {
+	public dnspolicyVO idsearchDns(dnspolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return dnspolicyDAO.idsearchDns(vo);
 	}
@@ -99,6 +99,24 @@ public class dnspolicyServiceImpl implements dnspolicyService{
 	public List<dnspolicyVO> zonesearchDns(dnspolicyVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return dnspolicyDAO.zonesearhDns(vo);
+	}
+
+	@Override
+	public void updatesubdomainlist(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dnspolicyDAO.updatesubdomainlist(vo);
+	}
+
+	@Override
+	public void insertmxsubdomain(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dnspolicyDAO.insertmxsubdomain(vo);
+	}
+
+	@Override
+	public void updatesubdomainmx(dnspolicyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dnspolicyDAO.updatemxsubdomain(vo);
 	}
 }
 

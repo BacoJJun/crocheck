@@ -20,7 +20,7 @@
 				<div class="row ">
 
 					<!--  Report start -->
-					<div class="x_panel">
+					<div class="base_panel">
 						<div class="x_title">
 							<h2>
 								임계값 설정 <small></small>

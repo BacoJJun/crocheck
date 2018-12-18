@@ -19,7 +19,7 @@
 			<div class="right_col" role="main">
 				<div class="row ">
 					<!--  Report start -->
-					<div class="x_panel">
+					<div class="base_panel">
 						<div class="x_title">
 							<h2>
 								변경 내역 보고서 <small></small>

@@ -4,6 +4,7 @@ $(document)
 					dnstable();
 					table_click_event();
 					dnsblocklist();
+					zonelistdraw();
 					$('#btn-lookup')
 							.click(
 									function() {
@@ -20,7 +21,35 @@ $(document)
 					dns_button_event();
 					buttonClickEvent();
 
+					mx_check_view();
 				});
+
+function mx_check_view(){
+	$("#mx_view").hide();
+	$("#update_mx_view").hide();
+	
+	$("#subdomain_type").click(function(){
+		var type = $('input:radio[id="subdomain_insert_type"]:checked').val();
+
+		if(type == 'MX'){
+			console.log(type);
+			$("#mx_view").show();
+		}else{
+			$("#mx_view").hide();
+		}
+	});
+	
+	$("#subdomain_update_type").click(function(){
+		var update_type =  $('input:radio[id="subdomain_update_type"]:checked').val();
+		if(update_type == 'MX'){
+			console.log(update_type);
+			$("#update_mx_view").show();
+		}else{
+			$("#update_mx_view").hide();
+		}
+	});
+	
+}
 function hostDomain(zones, hosts){
 	var zone = zones;
 	var host = hosts;
@@ -128,9 +157,7 @@ function buttonClickEvent() {
 	$("#updatedns").click(function() {
 		updatednszone();
 	});
-	$("#insertSubDomainBtn").click(function() {
-		zonelistdraw();
-	});
+
 	$("#dns_copy").click(function(){
 		copydomain();
 	});
@@ -284,6 +311,13 @@ function sub_button_event() {
 			subdomaindeletebuttonevent(sub_id);
 		}
 	});
+	$("#subdomain_datatable_paginate li").click(function(){
+		sub_button_event();
+	});
+	$("#subdomain_datatable_filter").change(function(){
+		sub_button_event();
+	});
+	
 }
 
 function search_button_event() {
@@ -383,6 +417,7 @@ function updatednszone() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
+				dnsscript();
 				sleep(1000);
 			} else {
 				alert(result.errorMsg);
@@ -412,6 +447,7 @@ function insertdnszone() {
 	var expire = document.getElementById("dns_insert_expire").value;
 	var minimum = document.getElementById("dns_insert_minimum").value;
 	var comment = document.getElementById("dns_insert_comment").value;
+	var modified = 1;
 	var bl = 0;
 	var zonecheckyn = 0;
 	
@@ -474,6 +510,7 @@ function insertdnszone() {
 				"expire" : expire,
 				"minimum" : minimum,
 				"comment" : comment,
+				"modified" : modified,
 				"bl" : bl
 			},
 			type : 'post',
@@ -503,16 +540,45 @@ function insertdnszone() {
 function updatesubdomain() {
 	var zone = document.getElementById("subdomain_update_zone").value;
 	var type = $('input:radio[name="subdomain_zone_type_check"]:checked').val();
+	var mx_priority = document.getElementById("subdomain_update_mx_priority").value;
 	var host = document.getElementById("subdomain_update_host").value;
 	var data = document.getElementById("subdomain_update_data").value;
 	var comment = document.getElementById("subdomain_update_comment").value;
 
+	var regSP = /[`~!\#$%<>^&*\()\=+_\']/gi;
+	var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+	var regHost = hostDomain(zone, host);
+	
+	
+	if(host == "" || host == null){
+		$("#subdomain_update_host").focus();
+	}else if(type == "MX" && mx_priority ==""){
+			$("#subdomain_update_mx_priority").focus();
+			alert('mx_priority는 빈값이 들어갈 수 없습니다.');
+	}else if(regSP.test(host)){
+		$("#subdomain_update_host").focus();
+		alert('특수문자는 사용 불가능합니다.');
+	}else if(type == "A" && !regIP.test(data)){
+		$("#subdomain_update_data").focus();
+		alert('A타입은 IP만 사용 가능합니다.');
+	}else if(regHost == 0){
+		$("#subdomain_update_host").focus();
+		alert('host 정책에 위배됩니다.');
+	}else{
+		if(type != "MX"){
+			mx_priority = -1;
+		}else if(type == "MX"){
+			host = "@";
+		}else if(type == "TXT"){
+			host = "@";
+		}
 	$.ajax({
 		url : '/updatesubdomain',
 		data : {
 			"zone" : zone,
 			"type" : type,
 			"host" : host,
+			"mx_priority" : mx_priority,
 			"data" : data,
 			"comment" : comment
 		},
@@ -534,12 +600,13 @@ function updatesubdomain() {
 		}
 	});
 	location.reload();
-
+	}
 }
 function subdomainupdate(sub_id) {
 	var modaltitle = document.getElementById("subdomain_zone_name");
 	var zone = document.getElementById("subdomain_update_zone");
 	var type = $('input:radio[name="subdomain_zone_type_check"]:checked');
+	var mx_priority = document.getElementById("subdomain_update_mx_priority");
 	var host = document.getElementById("subdomain_update_host");
 	var data = document.getElementById("subdomain_update_data");
 	var comment = document.getElementById("subdomain_update_comment");
@@ -556,10 +623,15 @@ function subdomainupdate(sub_id) {
 				console.log(result.dnsTableList);
 				modaltitle.innerText = result.dnsTableList[0].zone + '  설정';
 				zone.value = result.dnsTableList[0].zone;
-				$(
-						'input:radio[name="subdomain_zone_type_check"][value='
+				$(	'input:radio[name="subdomain_zone_type_check"][value='
 								+ result.dnsTableList[0].type + ']').prop(
 						'checked', true);
+				if(result.dnsTableList[0].type == 'MX'){
+					$("#update_mx_view").show();
+					mx_priority.value = result.dnsTableList[0].mx_priority;
+				}else{
+					$("#update_mx_view").hide();
+				}
 				host.value = result.dnsTableList[0].host;
 				data.value = result.dnsTableList[0].data;
 				comment.value = result.dnsTableList[0].comment;
@@ -760,8 +832,10 @@ function subdomaininsert() {
 	var zone = document.getElementById("subdomain_insert_zone").value;
 	var type = $('input:radio[name="zone_type_check"]:checked').val();
 	var host = document.getElementById("subdomain_insert_host").value;
+	var mx_priority  = document.getElementById("subdomain_insert_mx_priority").value;
 	var data = document.getElementById("subdomain_insert_data").value;
 	var comment = document.getElementById("subdomain_insert_comment").value;
+	console.log("insert type : " + type);
 	
 	var regSP = /[`~!\#$%<>^&*\()\=+_\']/gi;
 	var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
@@ -769,8 +843,9 @@ function subdomaininsert() {
 	
 	if(host == "" || host == null){
 		$("#subdomain_insert_host").focus();
-	}else if(type == "MX" || type =="TXT"){
-		host = "@";
+	}else if(type == "MX" && mx_priority ==""){
+			$("#subdomain_insert_mx_priority").focus();
+			alert('mx_priority는 빈값이 들어갈 수 없습니다.');
 	}else if(regSP.test(host)){
 		$("#subdomain_insert_host").focus();
 		alert('특수문자는 사용 불가능합니다.');
@@ -781,12 +856,20 @@ function subdomaininsert() {
 		$("#subdomain_insert_host").focus();
 		alert('host 정책에 위배됩니다.');
 	}else{
-
+		if(type != "MX"){
+			mx_priority = -1;
+		}else if(type == "MX"){
+			host = "@";
+		}else if(type == "TXT"){
+			host = "@";
+		}
+		console.log(zone);
 	$.ajax({
 		url : '/insertsubdomain',
 		data : {
 			"zone" : zone,
 			"type" : type,
+			"mx_priority" : mx_priority,
 			"host" : host,
 			"data" : data,
 			"comment" : comment,
@@ -797,8 +880,7 @@ function subdomaininsert() {
 		async : false,
 		success : function(result) {
 			if (result.result == 'success') {
-//				dnsscript();
-				sleep(1000);
+				dnsscript();
 			} else {
 				alert(result.errorMsg);
 			}
@@ -817,14 +899,44 @@ function subdomaininsert2() {
 	var zone = document.getElementById("subdomain_insert_zone").value;
 	var type = $('input:radio[name="zone_type_check"]:checked').val();
 	var host = document.getElementById("subdomain_insert_host").value;
+	var mx_priority  = document.getElementById("subdomain_insert_mx_priority").value;
 	var data = document.getElementById("subdomain_insert_data").value;
 	var comment = document.getElementById("subdomain_insert_comment").value;
-
+	console.log("insert type : " + type);
+	
+	var regSP = /[`~!\#$%<>^&*\()\=+_\']/gi;
+	var regIP = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+	var regHost = hostDomain(zone, host);
+	
+	if(host == "" || host == null){
+		$("#subdomain_insert_host").focus();
+	}else if(type == "MX" && mx_priority ==""){
+			$("#subdomain_insert_mx_priority").focus();
+			alert('mx_priority는 빈값이 들어갈 수 없습니다.');
+	}else if(regSP.test(host)){
+		$("#subdomain_insert_host").focus();
+		alert('특수문자는 사용 불가능합니다.');
+	}else if(type == "A" && !regIP.test(data)){
+		$("#subdomain_insert_data").focus();
+		alert('A타입은 IP만 사용 가능합니다.');
+	}else if(regHost == 0){
+		$("#subdomain_insert_host").focus();
+		alert('host 정책에 위배됩니다.');
+	}else{
+		if(type != "MX"){
+			mx_priority = -1;
+		}else if(type == "MX"){
+			host = "@";
+		}else if(type == "TXT"){
+			host = "@";
+		}
+		console.log(zone);
 	$.ajax({
 		url : '/insertsubdomain',
 		data : {
 			"zone" : zone,
 			"type" : type,
+			"mx_priority" : mx_priority,
 			"host" : host,
 			"data" : data,
 			"comment" : comment,
@@ -836,7 +948,6 @@ function subdomaininsert2() {
 		success : function(result) {
 			if (result.result == 'success') {
 				dnsscript();
-				
 			} else {
 				alert(result.errorMsg);
 			}
@@ -847,6 +958,7 @@ function subdomaininsert2() {
 					+ request.responseText + "\n");
 		}
 	});
+	}	
 }
 function zonelistdraw() {
 	var subdomainzonelist = document.getElementById("subdomain_zonelist");
@@ -1014,6 +1126,7 @@ function dnstable() {
 							+ request.responseText + "\n");
 				}
 			});
+	$("#zone_datatable").dataTable();
 }
 function table_click_event() {
 	function onRowClick(tableId, callback) {
@@ -1029,16 +1142,19 @@ function table_click_event() {
 	}
 	;
 
-	onRowClick("datatable", function(row) {
+	onRowClick("zone_datatable", function(row) {
 		var zone_name = row.getElementsByTagName("td")[0].innerHTML;
 		subDnstable(zone_name);
 	});
 
+	$("#zone_datatable_paginate li").click(function(){
+		table_click_event();
+	})
 }
 function subDnstable(zone_name) {
+	redrawsublist();
 	var sub_domain = document.getElementById("sublist");
 	var sub_count = document.getElementById("sub_domain_count");
-
 	$
 			.ajax({
 				url : '/subDnsList',
@@ -1049,9 +1165,11 @@ function subDnstable(zone_name) {
 				dataType : 'json',
 				async : false,
 				success : function(result) {
+
 					if (result.result == 'success') {
 						var domain_html = '';
 						sub_count.innerText = result.dnsTableList.length;
+						$("#subdomain_insert_zone").val(result.dnsTableList[0].zone).prop("selected", true);
 						for (var i = 0; i < result.dnsTableList.length; i++) {
 							domain_html += '<tr>';
 							domain_html += '<td>' + result.dnsTableList[i].type
@@ -1064,6 +1182,15 @@ function subDnstable(zone_name) {
 							} else {
 								domain_html += '<td></td>';
 							}
+							
+							if (result.dnsTableList[i].type == 'MX' ) {
+								domain_html += '<td>'
+										+ result.dnsTableList[i].mx_priority + '</td>';
+							} else {
+								domain_html += '<td></td>';
+							}
+							
+							
 							domain_html += '<td><button type="button"  id="sub_edit" class="btn btn-success btn-xs fa fa-edit" name="sub_edit" data-toggle="modal" data-target="#subDomainUpdateModal" value="'
 									+ result.dnsTableList[i].id
 									+ '"></button> <button type="button"  class="btn btn-danger btn-xs fa fa-trash" data-toggle="modal" data-target="#subDomainDeleteModal" name="sub_delete" value="'
@@ -1081,5 +1208,19 @@ function subDnstable(zone_name) {
 							+ request.responseText + "\n");
 				}
 			});
+	$("#subdomain_datatable").dataTable();
 	sub_button_event();
+}
+function redrawsublist(){
+	var sublistHtml = document.getElementById("sublist_table");
+	sublistHtml.innerHTML = ' ';
+	
+	var table_html = '';
+	table_html += '<table id="subdomain_datatable" class="table table-striped"	cellspacing="0" width="100%">';
+	table_html += '<colgroup><col width="15%"></col><col width="15%"></col><col width="40%"></col>	<col width="10%"></col><col width="20%"></col></colgroup>';
+	table_html += '<thead><tr class="headings "><th class="column-title">Type</th><th class="column-title">Host</th><th class="column-title">Data</th><th class="column-title">mx_priority</th><th class="column-title"></th></tr></thead>';
+	table_html += '<tbody id="sublist"></tbody>';
+	table_html += '</table>';
+
+	sublistHtml.innerHTML = table_html;
 }

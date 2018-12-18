@@ -4,14 +4,17 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.humanstar.crocheck.controller.policy.policyController;
 import com.humanstar.crocheck.model.policy.dao.dnsbanDAOImpl;
 import com.humanstar.crocheck.model.policy.dto.dnspolicyVO;
 
 @Service
 public class dnsbanServiceImpl implements dnsbanService{
-
+	private static final Logger logger = LoggerFactory.getLogger(dnsbanServiceImpl.class);
 	@Inject
 	dnsbanDAOImpl dnsbanDAO;
 	

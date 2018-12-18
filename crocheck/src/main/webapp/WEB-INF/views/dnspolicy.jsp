@@ -6,7 +6,7 @@
 <%@ include file="header.jsp"%>
 
 <body class="nav-sm">
-	<div class="container body">
+	<div class="container body" >
 		<div class="main_container">
 
 			<!-- sidebar menu -->
@@ -22,7 +22,7 @@
 			<div class="right_col" role="main" style="min-height: 1200px;">
 				<div class="row ">
 
-					<div class="x_panel">
+					<div class="base_panel">
 						<div class="x_title">
 							<h2>
 								DNS <small>Domain Named System </small>
@@ -121,8 +121,8 @@
 								</div>
 								<div class="clearfix"></div>
 							</div>
-							<div class="col-md-8 col-sm-12 col-xs-12">
-								<table id="datatable" class="table table-striped table-bordered">
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<table id="zone_datatable" class="table table-striped table-bordered">
 									<colgroup>
 										<col width="20%"></col>
 										<col width="20%"></col>
@@ -143,20 +143,21 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="col-md-4 col-sm-12 col-xs-12"
-								style="overflow-y: auto; height: 550px;">
+							<div class="col-md-6 col-sm-12 col-xs-12">
 								<div class="x_title">
 									<h2>
 										sub_domain : <span id="sub_domain_count"></span>
 									</h2>
 									<div class="clearfix"></div>
 								</div>
-								<table id="datatable" class="table table-striped"
+								<div id="sublist_table">
+								<table id="subdomain_datatable" class="table table-striped"
 									cellspacing="0" width="100%">
 									<colgroup>
 										<col width="15%"></col>
 										<col width="15%"></col>
-										<col width="50%"></col>
+										<col width="40%"></col>
+										<col width="10%"></col>
 										<col width="20%"></col>
 									</colgroup>
 									<thead>
@@ -164,12 +165,14 @@
 											<th class="column-title">Type</th>
 											<th class="column-title">Host</th>
 											<th class="column-title">Data</th>
+											<th class="column-title">mx_priority</th>
 											<th class="column-title"></th>
 										</tr>
 									</thead>
 									<tbody id="sublist">
 									</tbody>
 								</table>
+								</div>
 							</div>
 						</div>
 						<!--  DNS Zone List end -->
@@ -551,22 +554,40 @@
 							<div class="form-group">
 								<label
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">Type</label>
-								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<div id="subdomain_type"		class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<label><input type="radio" id="subdomain_insert_type"
-										name="zone_type_check" value="A" class="flot" value="A">A
-										<input type="radio" id="subdomain_insert_type"
-										name="zone_type_check" value="NS" class="flot" value="NS">NS
-										<input type="radio" id="subdomain_insert_type"
+										name="zone_type_check" value="A" class="flot" value="A"
+										checked>A</label>
+									<label> <input type="radio"
+										id="subdomain_insert_type" name="zone_type_check" value="NS"
+										class="flot" value="NS">NS
+									</label>
+									<label> <input type="radio" id="subdomain_insert_type"
 										name="zone_type_check" value="CNAME" class="flot"
-										value="CNAME">CNAME <input type="radio"
-										id="subdomain_insert_type" name="zone_type_check" value="PTR"
-										class="flot" value="PTR">PTR <input type="radio"
-										id="subdomain_insert_type" name="zone_type_check" value="TXT"
-										class="flot" value="TXT">TXT <input type="radio"
-										id="subdomain_insert_type" name="zone_type_check" value="SRV"
-										class="flot" value="SRV">SRV <input type="radio"
-										id="subdomain_insert_type" name="zone_type_check" value="MX"
-										class="flot" value="MX">MX </label>
+										value="CNAME">CNAME
+									</label>
+									<label><input type="radio" id="subdomain_insert_type"
+										name="zone_type_check" value="PTR" class="flot" value="PTR">PTR
+									</label>
+									<label><input type="radio" id="subdomain_insert_type"
+										name="zone_type_check" value="TXT" class="flot" value="TXT">TXT
+									</label>
+									<label><input type="radio" id="subdomain_insert_type"
+										name="zone_type_check" value="SRV" class="flot" value="SRV">SRV
+									</label>
+									<label><input
+										type="radio" id="subdomain_insert_type" name="zone_type_check"
+										value="MX" class="flot" value="MX">MX 
+									</label>
+								</div>
+							</div>
+								<div  id="mx_view" class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">mx_priority</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<input class="form-control" name="subject"
+										placeholder="MX값을 설정합니다. " id="subdomain_insert_mx_priority"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -641,22 +662,38 @@
 							<div class="form-group">
 								<label
 									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">Type</label>
-								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<div  id="subdomain_update_type" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 									<label><input type="radio" id="subdomain_update_type"
-										name="subdomain_zone_type_check" value="A" class="flot">A
+										name="subdomain_zone_type_check" value="A" class="flot">A</label>
+										<label>
 										<input type="radio" id="subdomain_update_type"
-										name="subdomain_zone_type_check" value="NS" class="flot">NS
+										name="subdomain_zone_type_check" value="NS" class="flot">NS</label>
+										<label>
 										<input type="radio" id="subdomain_update_type"
-										name="subdomain_zone_type_check" value="CNAME" class="flot">CNAME
+										name="subdomain_zone_type_check" value="CNAME" class="flot">CNAME</label>
+										<label>
 										<input type="radio" id="subdomain_update_type"
-										name="subdomain_zone_type_check" value="PTR" class="flot">PTR
+										name="subdomain_zone_type_check" value="PTR" class="flot">PTR</label>
+										<label>
 										<input type="radio" id="subdomain_update_type"
-										name="subdomain_zone_type_check" value="TXT" class="flot">TXT
+										name="subdomain_zone_type_check" value="TXT" class="flot">TXT</label>
+										<label>
 										<input type="radio" id="subdomain_update_type"
-										name="subdomain_zone_type_check" value="SRV" class="flot">SRV
+										name="subdomain_zone_type_check" value="SRV" class="flot">SRV</label>
+										<label>
 										<input type="radio" id="subdomain_update_type"
-										name="subdomain_zone_type_check" value="MX" class="flot">MX
+										name="subdomain_zone_type_check" value="MX" class="flot">MX</label>
+										<label>
 									</label>
+								</div>
+							</div>
+							<div  id="update_mx_view" class="form-group">
+								<label
+									class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12">mx_priority</label>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+									<input class="form-control" name="subject"
+										placeholder="MX값을 설정합니다. " id="subdomain_update_mx_priority"
+										type="text" required value="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -859,9 +896,10 @@
 
 
 	<!-- Custom Theme Scripts -->
+		<script src="js/custom.js"></script>
 	<script src="js/dnspolicy.js"></script>
 	<script src="js/alert.js"></script>
-	<script src="js/custom.js"></script>
+
 
 
 </body>
